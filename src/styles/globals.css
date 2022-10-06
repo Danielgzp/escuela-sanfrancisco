@@ -1,0 +1,224 @@
+:root {
+  --dark-red: #9a0105;
+  --dark-red2: #aa0f16;
+  --blue-text: rgb(83, 83, 235);
+  --font-text: "Fira Sans";
+}
+
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+main{
+  min-height: 88.2vh;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: black;
+  }
+}
+
+/*html {
+   font-size: 62.5%; 
+}*/
+.icon-white {
+  color: white;
+}
+.icon-red {
+  color: var(--dark-red);
+}
+strong {
+  font-weight: bold !important;
+}
+.row .col {
+  padding: 0 !important;
+}
+.col .row {
+  margin: 0 !important;
+}
+a {
+  text-decoration: none;
+}
+.background {
+  height: 100vh;
+  overflow: none;
+  background-image: url("../images/fondoSideBar.jpg");
+  background-size: cover;
+  opacity: 0.18;
+}
+
+#billboard .carousel {
+  background-color: #3a3a3a;
+  height: 550px;
+}
+#billboard .carousel-background {
+  background-image: url("../images/loginFont.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+}
+#billboard .carousel-item {
+  width: 78%;
+  /* height: 85%;  */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 15px;
+}
+#billboard .carousel-item__image {
+  width: 100%;
+  height: 70%;
+}
+#billboard .carousel-item__image img {
+  height: 100%;
+  width: 101%;
+  border-radius: 15px 15px 0 0;
+  margin-left: -1px;
+}
+#billboard .carousel-item__info {
+  width: 100%;
+  height: 130%;
+  padding: 0px 10px 10px 10px;
+}
+#billboard .carousel-item__info p {
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  line-height: 20px;
+  text-align: justify;
+}
+#billboard .carousel-item__info h4 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  margin-top: 10px;
+  color: var(--dark-red2);
+  padding: 10px 0;
+  font-weight: 600;
+  font-family: "Fira Sans";
+  color: var(--dark-red);
+  text-align: center;
+}
+#billboard .btn {
+  margin-top: 10px;
+  position: relative;
+  height: 30px;
+  font-size: 1rem;
+  line-height: 30px;
+}
+#billboard .btn:hover {
+  background-color: rgb(241, 60, 60);
+}
+#billboard .carousel .indicators .indicator-item {
+  background-color: white;
+}
+#billboard .carousel .indicators .indicator-item.active {
+  background-color: red;
+}
+#billboard .indicator-item {
+  margin: 14px 4px;
+}
+
+@media (min-width: 768px) {
+  #billboard .carousel {
+    height: 420px;
+  }
+  #billboard .carousel-item {
+    width: 78%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 15px;
+    min-height: 0%;
+  }
+  #billboard .carousel-item__image {
+    width: 100%;
+    height: 100%;
+  }
+  #billboard .carousel-item__image img {
+    height: 100%;
+    width: 101%;
+    border-radius: 15px 0 0 15px;
+    margin-left: -1px;
+  }
+  #billboard .carousel-item__info {
+    width: 100%;
+    height: 100%;
+    padding: 0px 15px 15px 15px;
+  }
+}
+@media (min-width: 1024px) {
+  #billboard .carousel {
+    height: 400px;
+  }
+  #billboard .carousel-item {
+    width: 50%;
+    height: 75%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 0;
+  }
+  #billboard .carousel-item__image {
+    width: 95%;
+    height: 100%;
+  }
+  #billboard .carousel-item__image img {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+  #billboard .carousel-item__info {
+    width: 105%;
+    height: 100%;
+    padding: 25px 40px 0 40px;
+  }
+  #billboard .carousel-item__info h4 {
+    font-size: 1.3rem;
+    text-align: left;
+  }
+  #billboard .carousel-item__info p {
+    font-size: 12px;
+    text-align: left;
+  }
+  #billboard .btn {
+    float: left;
+    margin-top: 20px;
+  }
+  #billboard .btn i {
+    margin-top: 0;
+  }
+}
+@media (min-width: 1444px) {
+  .history-frame {
+    width: 850px;
+    height: 600px;
+  }
+}
+
