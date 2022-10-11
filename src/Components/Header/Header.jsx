@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import logo from "images/logo.svg";
 
-
 const Header = () => {
   let [showMobileMenu, setShowMobileMenu] = useState(false);
   const [state, setState] = useState({
@@ -94,6 +93,12 @@ const Header = () => {
               <a>Psicopedagogía</a>
             </Link>
           </li>
+          <li className="divider"></li>
+          <li>
+            <Link href="/pastoral">
+              <a>Pastoral</a>
+            </Link>
+          </li>
         </ul>
         <div className="slider-container">
           <ul id="slide-out" className="sidenav slide-menu">
@@ -103,7 +108,12 @@ const Header = () => {
 
                 <div className="user-view">
                   <div className="background"></div>
-                  <Image className="circle" src={logo} alt="Logo escuela" height={70} />
+                  <Image
+                    className="circle"
+                    src={logo}
+                    alt="Logo escuela"
+                    height={70}
+                  />
 
                   <span className="white-text name center">
                     U.E Colegio Fe y Alegria San Francisco
@@ -193,7 +203,16 @@ const Header = () => {
                         </a>
                       </Link>
                     </li>
-
+                    <li>
+                      <Link href="/pastoral">
+                        <a>
+                          <i className="tiny material-icons icon-white">
+                            chevron_right
+                          </i>
+                          Pastoral
+                        </a>
+                      </Link>
+                    </li>
                     <li>
                       <Link href="/mision-vision">
                         <a>
@@ -231,7 +250,7 @@ const Header = () => {
                     className="logo"
                     height="45"
                     width="70"
-                    style={{width: 'fit-content', height: '45px'}}
+                    style={{ width: "fit-content", height: "45px" }}
                   />
                   <span>U.E.C Fe y Alegría San Francisco</span>
                 </a>

@@ -16,8 +16,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main{
-  min-height: 88.2vh;
+main {
+  min-height: 89vh;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -46,6 +46,23 @@ a {
 /*html {
    font-size: 62.5%; 
 }*/
+body .big-title__red {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Fira Sans";
+  color: var(--dark-red);
+}
+body .medium-title__red {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: "Fira Sans";
+  color: var(--dark-red);
+}
+body .small-title__red {
+  font-size: 1.4rem;
+  background-color: #f3f3f3;
+  color: var(--dark-red);
+}
 .icon-white {
   color: white;
 }
@@ -222,3 +239,13 @@ a {
   }
 }
 
+/*                                    IMAGENENES DE FONDO/LAYOUTS                */
+.layout-background {
+  background-image: url("../images/historypage/layout-2.jpg");
+}
+.layout-pastoral {
+  background-image: url("../images/pastoralpage/layout.jpg");
+}
+.layout-biblioteca {
+  background-image: url("../images/fondoBiblioteca.jpg");
+}
