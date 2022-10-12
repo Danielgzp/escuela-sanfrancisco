@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
-const bcrypt = require("bcrypt");
+
+import { REPRESENTANTS_TABLE } from "./representants.model";
 
 const STUDENTS_TABLE = "students";
 
@@ -45,12 +46,12 @@ const StudentsSchema = {
   birthPlace: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: "birth_place"
+    field: "birth_place",
   },
   houseProperty: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: "house_property"
+    field: "house_property",
   },
   createdAt: {
     allowNull: false,
@@ -58,23 +59,35 @@ const StudentsSchema = {
     field: "created_at",
     defaultValue: Sequelize.NOW,
   },
+  representant: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    references: {
+      model: REPRESENTANTS_TABLE,
+      key: "ci",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
+  },
   //La relacion con el usuario
-//   userId: {
-//     field: "user_id",
-//     allowNull: false,
-//     type: DataTypes.INTEGER,
-//     unique: true,
-//     references: {
-//       model: USER_TABLE,
-//       key: "id",
-//     },
-//     onUpdate: "CASCADE",
-//     onDelete: "SET NULL",
-//   },
+  //   userId: {
+  //     field: "user_id",
+  //     allowNull: false,
+  //     type: DataTypes.INTEGER,
+  //     unique: true,
+  //     references: {
+  //       model: USER_TABLE,
+  //       key: "id",
+  //     },
+  //     onUpdate: "CASCADE",
+  //     onDelete: "SET NULL",
+  //   },
 };
 
 class Students extends Model {
-  static associate(models) {}
+  static associate(models) {
+    this.belongsTo(models.Representants, { as: "representant" });
+  }
 
   static config(sequelize) {
     return {
