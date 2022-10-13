@@ -3,8 +3,6 @@ import Link from "next/link";
 import styles from "./styles";
 import Image from "next/image";
 
-import logo from "images/logo.svg";
-
 const Header = () => {
   let [showMobileMenu, setShowMobileMenu] = useState(false);
   const [state, setState] = useState({
@@ -57,7 +55,7 @@ const Header = () => {
       <header>
         <ul id="dropdown1" className="dropdown-content">
           <li>
-            <Link href="/history">
+            <Link href="/historia">
               <a>Historia</a>
             </Link>
           </li>
@@ -71,13 +69,15 @@ const Header = () => {
         </ul>
         <ul id="dropdown2" className="dropdown-content">
           <li>
-            <Link href="/services/biblioteca">
+            <Link
+              href="/servicios/biblioteca"
+            >
               <a>Biblioteca</a>
             </Link>
           </li>
           <li className="divider"></li>
           <li>
-            <Link href="/mision-vision">
+            <Link href="/admin">
               <a>Computación</a>
             </Link>
           </li>
@@ -108,11 +108,10 @@ const Header = () => {
 
                 <div className="user-view">
                   <div className="background"></div>
-                  <Image
+                  <img
                     className="circle"
-                    src={logo}
+                    src="/images/logo.svg"
                     alt="Logo escuela"
-                    height={70}
                   />
 
                   <span className="white-text name center">
@@ -244,13 +243,12 @@ const Header = () => {
             <div className="nav-wrapper fixed">
               <Link href="/">
                 <a className="logo-big left">
-                  <Image
-                    src={logo}
+                  <img
+                    src="/images/logo.svg"
                     alt="Logo del colegio"
                     className="logo"
-                    height="45"
-                    width="70"
-                    style={{ width: "fit-content", height: "45px" }}
+
+                    // style={{ width: "fit-content", height: "45px" }}
                   />
                   <span>U.E.C Fe y Alegría San Francisco</span>
                 </a>

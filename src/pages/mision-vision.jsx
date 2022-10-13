@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import childrens from "../images/misionyvision/childrens.jpg";
+import childrens from "/images/misionyvision/childrens.jpg";
 
 const MisionVision = () => {
   return (

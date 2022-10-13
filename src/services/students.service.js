@@ -1,6 +1,6 @@
 const boom = require("@hapi/boom");
 
-import { models } from "../../libs/sequelize";
+import { models } from "../../libs/sequelize"
 
 class StudentsService {
   constructor() {}

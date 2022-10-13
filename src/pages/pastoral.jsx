@@ -1,6 +1,5 @@
 import React from "react";
 
-import childrens from "images/pastoralpage/childrens-2.jpg";
 import Image from "next/image";
 
 const Pastoral = () => {
@@ -44,7 +43,11 @@ const Pastoral = () => {
               </div>
             </div>
             <div className="col s12 m5 l3 childrens__container center">
-              <Image src={childrens} alt="" className="responsive-img" />
+              <img
+                src={"/images/pastoralpage/childrens-2.jpg"}
+                alt="Alumnos"
+                className="responsive-img"
+              />
             </div>
           </div>
         </div>

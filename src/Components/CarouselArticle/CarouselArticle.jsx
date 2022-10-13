@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
+
 const CarouselArticle = ({ img, title, description, link }) => {
+  
   return (
     <article className="carousel-item z-depth-3 cente-r">
       <div className="carousel-item__image">

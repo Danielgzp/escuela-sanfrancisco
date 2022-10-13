@@ -1,9 +1,5 @@
 import React from "react";
 
-import biblioteca from "images/bibliotecapage/fyabiblio.jpg";
-// import cuestion from "../images/bibliotecapage/cuestion.png";
-// import childrens from "../images/bibliotecapage/childresBooks.png";
-// import title from "../images/bibliotecapage/title.png";
 import Image from "next/image";
 
 const Biblioteca = () => {
@@ -52,8 +48,8 @@ const Biblioteca = () => {
                 <strong>Sala de consultas bibliográfica</strong> y{" "}
                 <strong> préstamo de material didáctico</strong>
               </h4>
-              <Image
-                src={biblioteca}
+              <img
+                src={"/images/bibliotecapage/fyabiblio.jpg"}
                 alt="Imagen de la Biblioteca"
                 className="picture-biblio"
               />

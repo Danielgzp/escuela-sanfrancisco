@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 
-import docenteAlumno from "images/historypage/docente-alumno.jpg";
-import joseMariaVelaz from "images/historypage/josemariavelaz.png";
-import alumnos from "images/historypage/alumnos.jpg";
-
 import Image from "next/image";
 
 const History = () => {
@@ -71,12 +67,20 @@ const History = () => {
             </div>
           </div>
           <div className="col s12 l4 history__container-img">
-            <Image src={docenteAlumno} alt="Foto Docente con su alumno" />
+            <img
+              src={"/images/historypage/docente-alumno.jpg"}
+              alt="Foto Docente con su alumno"
+              layout="fill"
+            />
           </div>
         </div>
         <div className="row">
           <div className="col s12 l4 history__container-img">
-            <Image src={joseMariaVelaz} alt="Fundador de Fe y Alegría" />
+            <img
+              src={"/images/historypage/josemariavelaz.png"}
+              alt="Fundador de Fe y Alegría"
+              layout="fill"
+            />
           </div>
           <div className="col s12 l8">
             <div className="information__container-info">
@@ -171,7 +175,7 @@ const History = () => {
           <div className="col s12 l8">
             <div className="information__container-info">
               <h3 className="small-title__red">
-                Fe y Alegría de la "chispa" al "incendio"
+                Fe y Alegría de la chispa al incendio
               </h3>
               <p>
                 <strong>
@@ -233,7 +237,10 @@ const History = () => {
             </div>
           </div>
           <div className="col s12 l4 history__container-img">
-            <Image src={alumnos} alt="Alumnos en Clase" />
+            <img
+              src={"/images/historypage/alumnos.jpg"}
+              alt="Alumnos en Clase"
+            />
           </div>
         </div>
         <div className="row">

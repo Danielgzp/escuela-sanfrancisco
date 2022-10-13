@@ -10,6 +10,11 @@ const birthDate = Joi.number().integer();
 const birthPlace = Joi.string();
 const admissionDate = Joi.number().integer();
 const houseProperty = Joi.string();
+const representantCI = Joi.string();
+const representantName = Joi.string().min(3).max(30);
+const representantLastName = Joi.string().min(3).max(30);
+const representantPhone = Joi.string();
+const representantEmail = Joi.string().email({ tlds: { allow: false } });
 
 const getStudentSchema = Joi.object({
   id: id.required(),
@@ -24,6 +29,13 @@ const createStudentSchema = Joi.object({
   birthPlace: birthPlace.required(),
   admissionDate: admissionDate.required(),
   houseProperty: houseProperty.required(),
+  representant: {
+    representantCI: representantCI.required(),
+    representantName: representantName.required(),
+    representantLastName: representantLastName.required(),
+    representantPhone: representantPhone.required(),
+    representantEmail: representantEmail.required(),
+  },
 });
 
 const updateStudentSchema = Joi.object({

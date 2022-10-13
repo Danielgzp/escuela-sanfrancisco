@@ -4,10 +4,9 @@ import Header from "Components/Header/Header.jsx";
 import Footer from "Components/Footer/Footer.jsx";
 
 const MainLayout = (props) => {
-  // console.log(props.location.pathname);
-  //   if (props.location.pathname.includes("/admin")) {
-  //     return props.children;
-  //   } else {
+  // if (props.location.pathname.includes("/admin")) {
+  //   return props.children;
+  // } else {
   return (
     <>
       <Header />
@@ -16,5 +15,16 @@ const MainLayout = (props) => {
     </>
   );
 };
+// };
 
 export default MainLayout;
+
+export async function getServerSideProps(req, query) {
+  // const url = req.nextUrl.clone();
+  // return {
+  //   props: {
+  //     data: {},
+  //   },
+  // };
+  
+}

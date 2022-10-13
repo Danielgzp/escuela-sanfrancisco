@@ -2,16 +2,17 @@ const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const REPRESENTANTS_TABLE = "representants";
 const RepresentantsSchema = {
-  id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
-    type: DataTypes.INTEGER,
-  },
+  //   id: {
+  //     allowNull: false,
+  //     autoIncrement: true,
+  //     primaryKey: true,
+  //     type: DataTypes.INTEGER,
+  //   },
   ci: {
     allowNull: false,
     unique: true,
     type: DataTypes.STRING,
+    primaryKey: true,
   },
   name: {
     allowNull: false,
