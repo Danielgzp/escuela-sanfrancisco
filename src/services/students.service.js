@@ -1,13 +1,15 @@
 const boom = require("@hapi/boom");
 
-import { models } from "../../libs/sequelize"
+const { models } = require("../../libs/sequelize");
 
 class StudentsService {
   constructor() {}
   generate() {}
 
   async find() {
-    const students = await models.Students.findAll();
+    const students = await models.Students.findAll({
+      include: ["representant"],
+    });
 
     return students;
   }
@@ -21,7 +23,9 @@ class StudentsService {
   }
 
   async create(data) {
-    const newStudent = await models.Students.create(data);
+    const newStudent = await models.Students.create(data, {
+      include: ["representant"],
+    });
 
     return newStudent;
   }

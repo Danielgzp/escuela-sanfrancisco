@@ -1,4 +1,4 @@
-const { Strategy, ExtractJwt } = require("passport-jwt");
+import { Strategy, ExtractJwt } from "passport-jwt";
 
 import { config } from "../../../config/config";
 

@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
-import { REPRESENTANTS_TABLE } from "./representants.model";
+const { REPRESENTANTS_TABLE } = require("./representants.model");
 
 const STUDENTS_TABLE = "students";
 
@@ -11,6 +11,13 @@ const StudentsSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
+  // schoolID: {
+  //   allowNull: false,
+  //   type: DataTypes.STRING,
+  //   unique: true,
+
+  //   field: 'school_ci',
+  // },
   name: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -20,17 +27,13 @@ const StudentsSchema = {
     type: DataTypes.STRING,
     field: "last_name",
   },
-  ci: {
-    allowNull: true,
-    type: DataTypes.STRING,
-    unique: true,
-  },
   address: {
     allowNull: false,
     type: DataTypes.STRING,
   },
   birthDate: {
-    allowNull: false,
+    // allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
     field: "birth_date",
   },
@@ -39,7 +42,8 @@ const StudentsSchema = {
     type: DataTypes.STRING,
   },
   admissionDate: {
-    allowNull: false,
+    // allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
     field: "admission_date",
   },
@@ -59,34 +63,27 @@ const StudentsSchema = {
     field: "created_at",
     defaultValue: Sequelize.NOW,
   },
-  representant: {
+  representantId: {
+    field: "representant_id",
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     references: {
       model: REPRESENTANTS_TABLE,
-      key: "ci",
+      key: "id",
     },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
-  //La relacion con el usuario
-  //   userId: {
-  //     field: "user_id",
-  //     allowNull: false,
-  //     type: DataTypes.INTEGER,
-  //     unique: true,
-  //     references: {
-  //       model: USER_TABLE,
-  //       key: "id",
-  //     },
-  //     onUpdate: "CASCADE",
-  //     onDelete: "SET NULL",
-  //   },
 };
 
 class Students extends Model {
   static associate(models) {
     this.belongsTo(models.Representants, { as: "representant" });
+    /*this.hasMany(models.RecordStudent, {
+      as: 'recordStudent',
+      //alias o el nombre de la relacion nque definimos en el model de products
+      foreignKey: 'studentCI',
+    });*/
   }
 
   static config(sequelize) {

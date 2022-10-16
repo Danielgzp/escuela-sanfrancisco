@@ -2,26 +2,26 @@ const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const REPRESENTANTS_TABLE = "representants";
 const RepresentantsSchema = {
-  //   id: {
-  //     allowNull: false,
-  //     autoIncrement: true,
-  //     primaryKey: true,
-  //     type: DataTypes.INTEGER,
-  //   },
-  ci: {
+  id: {
     allowNull: false,
-    unique: true,
-    type: DataTypes.STRING,
+    autoIncrement: true,
     primaryKey: true,
+    type: DataTypes.INTEGER,
   },
-  name: {
+  // ci: {
+  //   allowNull: false,
+  //   type: DataTypes.STRING,
+  //   primaryKey: true,
+  // },
+  repName: {
     allowNull: false,
     type: DataTypes.STRING,
+    field: "rep_name"
   },
-  lastName: {
+  repLastName: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: "last_name",
+    field: "rep_last_name",
   },
   phone: {
     allowNull: false,
@@ -42,7 +42,7 @@ class Representants extends Model {
     this.hasMany(models.Students, {
       as: "students",
       //alias o el nombre de la relacion nque definimos en el model de products
-      foreignKey: "ci",
+      foreignKey: "representantId",
     });
   }
   static config(sequelize) {

@@ -3,28 +3,28 @@
 // import { checkRoles } from "middlewares/auth.handler";
 import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
-import { createStudentSchema } from "schemas/students.schema";
-import StudentsService from "services/students.service";
+// import { createRepresentantschema } from "schemas/students.schema";
+import RepresentantsService from "services/representants.service";
 
-const service = new StudentsService();
+const service = new RepresentantsService();
 const handler = nextConnect();
 
 handler
   .get(async (req, res) => {
     try {
-      const students = await service.find(req.query);
-      res.json(students);
+      const representants = await service.find(req.query);
+      res.json(representants);
     } catch (error) {
       console.log(error);
     }
   })
   .post(
-    validatorHandler(createStudentSchema, "body"),
+    // validatorHandler(createRepresentantschema, "body"),
     async (req, res, next) => {
       try {
         const body = req.body;
-        const newStudent = await service.create(body);
-        res.json(newStudent);
+        const newRepresentant = await service.create(body);
+        res.json(newRepresentant);
       } catch (error) {
         next(error);
       }
