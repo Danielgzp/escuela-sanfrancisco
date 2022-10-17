@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-// const representantId = Joi.number().integer();
+const representantId = Joi.number().integer();
 const schoolID = Joi.string();
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
@@ -17,6 +17,11 @@ const repLastName = Joi.string().min(3).max(30);
 const phone = Joi.string();
 const email = Joi.string().email({ tlds: { allow: false } });
 
+const studentId = Joi.number().integer();
+const title = Joi.string();
+const description = Joi.string();
+const day = Joi.string();
+
 const getStudentSchema = Joi.object({
   id: id.required(),
 });
@@ -31,7 +36,7 @@ const createStudentSchema = Joi.object({
   birthPlace: birthPlace.required(),
   // admissionDate: admissionDate.required(),
   houseProperty: houseProperty.required(),
-  // representantId: representantId.required(),
+  representantId: representantId.optional(),
   representant: Joi.object({
     // representantCI: representantCI.required(),
     repName: repName.required(),
@@ -39,10 +44,10 @@ const createStudentSchema = Joi.object({
     phone: phone.required(),
     email: email.required(),
   }),
+  record: Joi.array().optional(),
 });
 
 const updateStudentSchema = Joi.object({
-  schoolID,
   name,
   lastName,
   address,
@@ -51,6 +56,8 @@ const updateStudentSchema = Joi.object({
   birthPlace,
   admissionDate,
   houseProperty,
+  studentId,
+  representantId,
 });
 
 module.exports = {

@@ -7,7 +7,9 @@ class RepresentantsService {
   generate() {}
 
   async find() {
-    const representants = await models.Representants.findAll();
+    const representants = await models.Representants.findAll({
+      include: ["students"],
+    });
 
     return representants;
   }

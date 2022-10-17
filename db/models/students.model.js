@@ -79,11 +79,11 @@ const StudentsSchema = {
 class Students extends Model {
   static associate(models) {
     this.belongsTo(models.Representants, { as: "representant" });
-    /*this.hasMany(models.RecordStudent, {
-      as: 'recordStudent',
+    this.hasMany(models.RecordStudent, {
+      as: "record",
       //alias o el nombre de la relacion nque definimos en el model de products
-      foreignKey: 'studentCI',
-    });*/
+      foreignKey: "studentId",
+    });
   }
 
   static config(sequelize) {

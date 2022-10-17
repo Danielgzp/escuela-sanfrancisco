@@ -5,7 +5,7 @@ import { Jwt } from "jsonwebtoken";
 import { config } from "../../config/config";
 
 // const UserService = require("./users.service");
-const service = new UserService();
+// const service = new UserService();
 
 class AuthService {
   async getUser(email, password) {

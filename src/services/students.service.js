@@ -8,7 +8,7 @@ class StudentsService {
 
   async find() {
     const students = await models.Students.findAll({
-      include: ["representant"],
+      include: ["representant", "record"],
     });
 
     return students;
@@ -24,7 +24,7 @@ class StudentsService {
 
   async create(data) {
     const newStudent = await models.Students.create(data, {
-      include: ["representant"],
+      include: ["representant", "record"],
     });
 
     return newStudent;
