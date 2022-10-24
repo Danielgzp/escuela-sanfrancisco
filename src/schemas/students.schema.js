@@ -22,6 +22,7 @@ const title = Joi.string();
 const description = Joi.string();
 const day = Joi.string();
 
+const sectionId = Joi.number().integer();
 const getStudentSchema = Joi.object({
   id: id.required(),
 });
@@ -45,6 +46,7 @@ const createStudentSchema = Joi.object({
     email: email.required(),
   }),
   record: Joi.array().optional(),
+  sectionId: sectionId.required(),
 });
 
 const updateStudentSchema = Joi.object({
@@ -58,6 +60,7 @@ const updateStudentSchema = Joi.object({
   houseProperty,
   studentId,
   representantId,
+  sectionId,
 });
 
 module.exports = {

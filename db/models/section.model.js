@@ -36,6 +36,10 @@ const SectionSchema = {
 
 class Section extends Model {
   static associate(models) {
+    // this.hasMany(models.Students, {
+    //     as: "student",
+    //     foreignKey: "sectionId"
+    // })
     this.hasMany(models.Grade, {
       as: "grade",
       //alias o el nombre de la relacion nque definimos en el model de products

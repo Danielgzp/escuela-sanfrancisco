@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const { REPRESENTANTS_TABLE } = require("./representants.model");
+const { SECTION_TABLE } = require("./section.model");
 
 const STUDENTS_TABLE = "students";
 
@@ -74,11 +75,21 @@ const StudentsSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
+  sectionId: {
+    field: "section_id",
+    allowNull: true,
+    type: DataTypes.INTEGER,
+    references: {
+      model: SECTION_TABLE,
+      key: "id",
+    },
+  },
 };
 
 class Students extends Model {
   static associate(models) {
     this.belongsTo(models.Representants, { as: "representant" });
+    this.belongsTo(models.Section, { as: "section" });
     this.hasMany(models.RecordStudent, {
       as: "record",
       //alias o el nombre de la relacion nque definimos en el model de products

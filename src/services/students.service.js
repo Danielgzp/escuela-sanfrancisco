@@ -8,14 +8,24 @@ class StudentsService {
 
   async find() {
     const students = await models.Students.findAll({
-      include: ["representant", "record"],
+      include: [
+        "representant",
+        "record",
+        "section",
+        {
+          association: "section",
+          include: ["grade"],
+        },
+      ],
     });
 
     return students;
   }
 
   async findOne(id) {
-    const student = await models.Students.findByPk(id);
+    const student = await models.Students.findByPk(id, {
+      include: ["representant", "record", "section"],
+    });
     if (!student) {
       throw boom.notFound("Student not found");
     }
