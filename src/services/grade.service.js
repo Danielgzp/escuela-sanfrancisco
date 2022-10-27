@@ -8,7 +8,7 @@ class GradeService {
 
   async find() {
     const grades = await models.Grade.findAll({
-      include: ["sections"],
+      include: ["period", "students"],
     });
 
     return grades;
@@ -16,7 +16,7 @@ class GradeService {
 
   async findOne(id) {
     const grade = await models.Grade.findByPk(id, {
-      include: ["sections"],
+      include: ["period"],
     });
     if (!grade) {
       throw boom.notFound("grade not found");

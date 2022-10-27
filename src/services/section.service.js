@@ -8,7 +8,7 @@ class SectionService {
 
   async find() {
     const sections = await models.Section.findAll({
-      include: ["grade", "period"],
+      // include: ["grade", "period"],
     });
 
     return sections;
@@ -16,7 +16,7 @@ class SectionService {
 
   async findOne(id) {
     const section = await models.Section.findByPk(id, {
-      include: ["grade"],
+      // include: ["grade"],
     });
     if (!section) {
       throw boom.notFound("section not found");
@@ -26,7 +26,7 @@ class SectionService {
 
   async create(data) {
     const newSection = await models.Section.create(data, {
-      include: ["grade"],
+      // include: ["grade"],
     });
 
     return newSection;

@@ -21,17 +21,17 @@ const SectionSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
-  periodId: {
-    field: "period_id",
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: PERIOD_TABLE,
-      key: "id",
-    },
-    onUpdate: "CASCADE",
-    onDelete: "SET NULL",
-  },
+  // periodId: {
+  //   field: "period_id",
+  //   allowNull: false,
+  //   type: DataTypes.INTEGER,
+  //   references: {
+  //     model: PERIOD_TABLE,
+  //     key: "id",
+  //   },
+  //   onUpdate: "CASCADE",
+  //   onDelete: "SET NULL",
+  // },
 };
 
 class Section extends Model {
@@ -40,12 +40,12 @@ class Section extends Model {
     //     as: "student",
     //     foreignKey: "sectionId"
     // })
-    this.hasMany(models.Grade, {
+    /*this.hasMany(models.Grade, {
       as: "grade",
       //alias o el nombre de la relacion nque definimos en el model de products
       foreignKey: "sectionId",
     });
-    this.belongsTo(models.Period, { as: "period" });
+    this.belongsTo(models.Period, { as: "period" });*/
   }
 
   static config(sequelize) {

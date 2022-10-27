@@ -24,8 +24,12 @@ const PeriodSchema = {
 
 class Period extends Model {
   static associate(models) {
-    this.hasMany(models.Section, {
-      as: "section",
+    // this.hasMany(models.Section, {
+    //   as: "section",
+    //   foreignKey: "periodId",
+    // });
+    this.hasMany(models.Grade, {
+      as: "grade",
       foreignKey: "periodId",
     });
   }
