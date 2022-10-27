@@ -1,0 +1,104 @@
+const { Model, DataTypes, Sequelize } = require("sequelize");
+
+const { GRADE_TABLE } = require("./grade.model");
+
+const TEACHER_TABLE = "teacher";
+
+const TeacherSchema = {
+  id: {
+    allowNull: false,
+    autoIncrement: true,
+    type: DataTypes.INTEGER,
+  },
+  ci: {
+    primaryKey: true,
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  lastName: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: "last_name",
+  },
+  address: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  phone: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  birthDate: {
+    // allowNull: false,
+    allowNull: true,
+    type: DataTypes.DATE,
+    field: "birth_date",
+  },
+  gender: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  admissionDate: {
+    // allowNull: false,
+    allowNull: true,
+    type: DataTypes.DATE,
+    field: "admission_date",
+  },
+  birthPlace: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: "birth_place",
+  },
+  createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: "created_at",
+    defaultValue: Sequelize.NOW,
+  },
+  gradeId: {
+    field: "grade_id",
+    allowNull: true,
+    type: DataTypes.INTEGER,
+    references: {
+      model: GRADE_TABLE,
+      key: "id",
+    },
+  },
+  //   roleId: {
+  //     field: "role_id",
+  //     allowNull: false,
+  //     type: DataTypes.INTEGER,
+  //     references: {
+  //       model: ROLE_TABLE,
+  //       key: "id",
+  //     },
+  //     onUpdate: "CASCADE",
+  //     onDelete: "SET NULL",
+  //   },
+};
+
+class Teacher extends Model {
+  static associate(models) {
+    this.belongsTo(models.Grade, { as: "grade" });
+    this.hasMany(models.Eventuality, {
+      as: "eventuality",
+      foreignKey: "teacherCi",
+    });
+  }
+
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: TEACHER_TABLE,
+      modelName: "Teacher",
+      timestamps: false,
+    };
+  }
+}
+
+module.exports = { Teacher, TeacherSchema, TEACHER_TABLE };
