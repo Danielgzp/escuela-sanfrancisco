@@ -26,7 +26,7 @@ class StaffService {
 
   async create(data) {
     const newStaff = await models.Staff.create(data, {
-      include: ["eventuality", "news"],
+      include: ["eventuality", "news", "user"],
     });
 
     return newStaff;

@@ -5,6 +5,7 @@ const { Period, PeriodSchema } = require("./period.model");
 const { Grade, GradeSchema } = require("./grade.model");
 const { Section, SectionSchema } = require("./section.model");
 const { Role, RoleSchema } = require("./role.model");
+const { User, UserSchema } = require("./user.model");
 const { Staff, StaffSchema } = require("./staff.model");
 const { News, NewsSchema } = require("./news.model");
 const { Eventuality, EventualitySchema } = require("./eventuality.model");
@@ -18,6 +19,7 @@ function setupModels(sequelize) {
   // Section.init(SectionSchema, Section.config(sequelize));
   Grade.init(GradeSchema, Grade.config(sequelize));
   Role.init(RoleSchema, Role.config(sequelize));
+  User.init(UserSchema, User.config(sequelize));
   Staff.init(StaffSchema, Staff.config(sequelize));
   Teacher.init(TeacherSchema, Teacher.config(sequelize));
   News.init(NewsSchema, News.config(sequelize));
@@ -30,6 +32,7 @@ function setupModels(sequelize) {
   // Section.associate(sequelize.models);
   Grade.associate(sequelize.models);
   Role.associate(sequelize.models);
+  User.associate(sequelize.models);
   Staff.associate(sequelize.models);
   Teacher.associate(sequelize.models);
   News.associate(sequelize.models);

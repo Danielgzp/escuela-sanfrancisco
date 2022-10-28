@@ -1,6 +1,5 @@
-import { Strategy, ExtractJwt } from "passport-jwt";
-
-import { config } from "../../../config/config";
+const { Strategy, ExtractJwt } = require("passport-jwt");
+const { config } = require("../../../config/config");
 
 const options = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),

@@ -13,6 +13,7 @@ const email = Joi.string().email({ tlds: { allow: false } });
 const roleId = Joi.number().integer();
 const eventuality = Joi.array();
 const news = Joi.array();
+const password = Joi.string().min(8);
 
 const getStaffSchema = Joi.object({
   ci: ci.required(),
@@ -32,6 +33,10 @@ const createStaffSchema = Joi.object({
   roleId: roleId.required(),
   eventuality: eventuality.optional(),
   news: news.optional(),
+  user: Joi.object({
+    email: email.required(),
+    password: password.required(),
+  }).optional(),
 });
 
 const updateStaffSchema = Joi.object({

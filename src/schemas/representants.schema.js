@@ -6,7 +6,7 @@ const representantLastName = Joi.string().min(3).max(30);
 const representantPhone = Joi.string();
 const representantEmail = Joi.string().email({ tlds: { allow: false } });
 
-const createUserSchema = Joi.object({
+const createRepresentantSchema = Joi.object({
   representantCI: representantCI.required(),
   representantName: representantName.required(),
   representantLastName: representantLastName.required(),
@@ -14,7 +14,7 @@ const createUserSchema = Joi.object({
   representantEmail: representantEmail.required(),
 });
 
-const updateUserSchema = Joi.object({
+const updateRepresentantSchema = Joi.object({
   representantCI,
   representantName,
   representantLastName,
@@ -22,8 +22,8 @@ const updateUserSchema = Joi.object({
   representantEmail,
 });
 
-const getUserSchema = Joi.object({
+const getRepresentantSchema = Joi.object({
   representantCI: representantCI.required(),
 });
 
-module.exports = { createUserSchema, updateUserSchema, getUserSchema };
+module.exports = { createRepresentantSchema, updateRepresentantSchema, getRepresentantSchema };

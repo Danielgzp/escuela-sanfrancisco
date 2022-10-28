@@ -1,29 +1,31 @@
-import { Boom } from "@hapi/boom";
+const boom = require("@hapi/boom");
 const bcrypt = require("bcrypt");
-import { Jwt } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 // const nodemailer = require("nodemailer");
-import { config } from "../../config/config";
+const { config } = require("../../config/config");
 
-// const UserService = require("./users.service");
-// const service = new UserService();
+// const nodemailer = require("nodemailer");
+
+const UserService = require("./user.service");
+const service = new UserService();
 
 class AuthService {
   async getUser(email, password) {
     const user = await service.findByEmail(email);
 
     if (!user) {
-      throw Boom.unauthorized();
+      throw boom.unauthorized();
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      throw Boom.unauthorized();
+      throw boom.unauthorized();
     }
 
-    delete user.dataValues.password;
+    // delete user.dataValues.password;
 
-    delete user.dataValues.recoveryToken;
+    // delete user.dataValues.recoveryToken;
 
     return user;
   }
@@ -35,10 +37,12 @@ class AuthService {
 
     const payload = {
       sub: user.id,
-      role: user.role,
+      name: user.staff.name,
+      // staff: user.staff,
+      role: user.staff.role.name,
     };
 
-    const token = Jwt.sign(payload, config.jwtSecret, jwtConfig);
+    const token = jwt.sign(payload, config.jwtSecret, jwtConfig);
 
     return {
       user,

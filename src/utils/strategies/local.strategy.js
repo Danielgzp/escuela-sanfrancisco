@@ -1,6 +1,6 @@
-import { Strategy } from "passport-local";
+const { Strategy } = require("passport-local");
+const AuthService = require("services/auth.service");
 
-const AuthService = require("../../services/auth.service");
 const service = new AuthService();
 
 const LocalStrategy = new Strategy(

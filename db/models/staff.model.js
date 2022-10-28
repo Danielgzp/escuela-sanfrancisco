@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const { ROLE_TABLE } = require("./role.model");
+const { USER_TABLE } = require("./user.model");
 
 const STAFF_TABLE = "staff";
 
@@ -31,8 +32,8 @@ const StaffSchema = {
     type: DataTypes.STRING,
   },
   phone: {
-    allowNull: false, 
-    type: DataTypes.STRING
+    allowNull: false,
+    type: DataTypes.STRING,
   },
   birthDate: {
     // allowNull: false,
@@ -72,11 +73,24 @@ const StaffSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
+  userId: {
+    field: "user_id",
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    unique: true,
+    references: {
+      model: USER_TABLE,
+      key: "id",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
+  },
 };
 
 class Staff extends Model {
   static associate(models) {
     this.belongsTo(models.Role, { as: "role" });
+    this.belongsTo(models.User, { as: "user" });
     this.hasMany(models.Eventuality, {
       as: "eventuality",
       foreignKey: "staffCi",
