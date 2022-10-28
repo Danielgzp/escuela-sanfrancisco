@@ -32,7 +32,7 @@ const EventualitySchema = {
   },
   staffCi: {
     field: "staff_ci",
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
     references: {
       model: STAFF_TABLE,
@@ -43,7 +43,7 @@ const EventualitySchema = {
   },
   teacherCi: {
     field: "teacher_ci",
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
     references: {
       model: TEACHER_TABLE,

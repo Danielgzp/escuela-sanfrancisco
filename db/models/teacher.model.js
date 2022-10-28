@@ -68,18 +68,9 @@ const TeacherSchema = {
       model: GRADE_TABLE,
       key: "id",
     },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
   },
-  //   roleId: {
-  //     field: "role_id",
-  //     allowNull: false,
-  //     type: DataTypes.INTEGER,
-  //     references: {
-  //       model: ROLE_TABLE,
-  //       key: "id",
-  //     },
-  //     onUpdate: "CASCADE",
-  //     onDelete: "SET NULL",
-  //   },
 };
 
 class Teacher extends Model {

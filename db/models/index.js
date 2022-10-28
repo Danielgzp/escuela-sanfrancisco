@@ -19,10 +19,9 @@ function setupModels(sequelize) {
   Grade.init(GradeSchema, Grade.config(sequelize));
   Role.init(RoleSchema, Role.config(sequelize));
   Staff.init(StaffSchema, Staff.config(sequelize));
+  Teacher.init(TeacherSchema, Teacher.config(sequelize));
   News.init(NewsSchema, News.config(sequelize));
-  Teacher.init(TeacherSchema, News.config(sequelize));
   Eventuality.init(EventualitySchema, Eventuality.config(sequelize));
-
 
   Representants.associate(sequelize.models);
   Students.associate(sequelize.models);
@@ -32,8 +31,9 @@ function setupModels(sequelize) {
   Grade.associate(sequelize.models);
   Role.associate(sequelize.models);
   Staff.associate(sequelize.models);
+  Teacher.associate(sequelize.models);
   News.associate(sequelize.models);
-  Teacher.associate(sequelize.models)
+
   Eventuality.associate(sequelize.models);
 }
 

@@ -8,7 +8,7 @@ class TeacherService {
 
   async find() {
     const teacher = await models.Teacher.findAll({
-      include: ["grade", "eventuality"],
+      include: ["eventuality", "grade"],
     });
 
     return teacher;
@@ -16,7 +16,7 @@ class TeacherService {
 
   async findOne(ci) {
     const teacher = await models.Teacher.findByPk(ci, {
-      include: ["grade", "eventuality"],
+      include: ["eventuality", "grade"],
     });
     if (!teacher) {
       throw boom.notFound("Teacher not found");
