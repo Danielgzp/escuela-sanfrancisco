@@ -11,7 +11,7 @@ const handler = nextConnect();
 handler
   .get(
     passport.authenticate("jwt", { session: false }),
-    checkRoles("sub-directora"),
+    checkRoles("director"),
     async (req, res, next) => {
       try {
         const users = await service.find(req.query);

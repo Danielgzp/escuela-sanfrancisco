@@ -2,15 +2,32 @@
 
 const { DATE, NOW } = require("sequelize");
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    const hash = await bcrypt.hash("admin123", 10);
+
+    await queryInterface.bulkInsert(
+      "period",
+      [
+        {
+          name: "2022/2023",
+          create_at: new Date(),
+        },
+        {
+          name: "2023/2024",
+          create_at: new Date(),
+        },
+      ],
+      {}
+    );
     await queryInterface.bulkInsert(
       "role",
       [
         {
           name: "director",
-          create_at: true,
+          create_at: new Date(),
         },
         {
           name: "sub-director",
@@ -32,35 +49,29 @@ module.exports = {
       {}
     );
     await queryInterface.bulkInsert(
-      "staff",
+      "users",
       [
         {
-          ci: "9604885",
-          name: "Naibys",
-          lastName: "Paez",
-          address: "Cabudare",
-          gender: "Femenino",
-          birthPlace: "Barquisimeto",
-          phone: "04149876543",
           email: "naibys@mail.com",
-          roleId: 1,
-          user: {
-            email: "naibys@mail.com",
-            password: "admin123",
-          },
+          password: hash,
+          create_at: new Date(),
         },
       ],
       {}
     );
     await queryInterface.bulkInsert(
-      "period",
+      "staff",
       [
         {
-          name: "2022/2023",
-          create_at: new Date(),
-        },
-        {
-          name: "2023/2024",
+          ci: "9604885",
+          name: "Naibys",
+          last_name: "Paez",
+          address: "Cabudare",
+          gender: "Femenino",
+          birth_place: "Barquisimeto",
+          phone: "04149876543",
+          role_id: 1,
+          user_id: 1,
           create_at: new Date(),
         },
       ],
@@ -144,11 +155,15 @@ module.exports = {
       ],
       {}
     );
-    await queryInterface.bulkInsert("", [{}], {});
-    await queryInterface.bulkInsert("", [{}], {});
+    // await queryInterface.bulkInsert("", [{}], {});
+    // await queryInterface.bulkInsert("", [{}], {});
   },
 
   async down(queryInterface) {
+    await queryInterface.bulkDelete("staff", null, {});
     await queryInterface.bulkDelete("role", null, {});
+    // await queryInterface.bulkDelete("user", null, {});
+    await queryInterface.bulkDelete("grade", null, {});
+    await queryInterface.bulkDelete("period", null, {});
   },
 };

@@ -20,7 +20,6 @@ const GradeSchema = {
   section: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
   },
   createdAt: {
     allowNull: false,

@@ -13,6 +13,15 @@ const {
   RECORD_STUDENT_TABLE,
   RecordStudentSchema,
 } = require("../models/recordStudent.model");
+const { ROLE_TABLE, RoleSchema } = require("../models/role.model");
+const { STAFF_TABLE, StaffSchema } = require("../models/staff.model");
+const {
+  EVENTUALITY_TABLE,
+  EventualitySchema,
+} = require("../models/eventuality.model");
+const { NEWS_TABLE, NewsSchema } = require("../models/news.model");
+const { TEACHER_TABLE, TeacherSchema } = require("../models/teacher.model");
+const { USER_TABLE, UserSchema } = require("../models/user.model");
 
 const bcrypt = require("bcrypt");
 
@@ -22,20 +31,14 @@ module.exports = {
     // await queryInterface.createTable(SECTION_TABLE, SectionSchema);
     await queryInterface.createTable(GRADE_TABLE, GradeSchema);
     await queryInterface.createTable(REPRESENTANTS_TABLE, RepresentantsSchema);
-    //Esto es para crear un usuario admin por default al correr la migracio
-    // const hash = await bcrypt.hash("admin123", 10);
-    // await queryInterface.bulkInsert(USER_TABLE, [
-    //   {
-    //     email: "superadmin@mail.com",
-    //     password: hash,
-    //     role: "admin",
-    //     create_at: new Date(),
-    //   },
-    // ]);
-
-    //
     await queryInterface.createTable(STUDENTS_TABLE, StudentsSchema);
     await queryInterface.createTable(RECORD_STUDENT_TABLE, RecordStudentSchema);
+    await queryInterface.createTable(USER_TABLE, UserSchema);
+    await queryInterface.createTable(ROLE_TABLE, RoleSchema);
+    await queryInterface.createTable(STAFF_TABLE, StaffSchema);
+    await queryInterface.createTable(TEACHER_TABLE, TeacherSchema);
+    await queryInterface.createTable(EVENTUALITY_TABLE, EventualitySchema);
+    await queryInterface.createTable(NEWS_TABLE, NewsSchema);
   },
 
   async down(queryInterface) {
@@ -43,11 +46,14 @@ module.exports = {
     // await queryInterface.dropTable(GRADE_TABLE);
     await queryInterface.dropTable(STUDENTS_TABLE);
     await queryInterface.dropTable(REPRESENTANTS_TABLE);
+    await queryInterface.dropTable(NEWS_TABLE);
+    await queryInterface.dropTable(EVENTUALITY_TABLE);
+    await queryInterface.dropTable(STAFF_TABLE);
+    await queryInterface.dropTable(TEACHER_TABLE);
+    await queryInterface.dropTable(ROLE_TABLE);
+    await queryInterface.dropTable(USER_TABLE);
     await queryInterface.dropTable(GRADE_TABLE);
     // await queryInterface.dropTable(SECTION_TABLE);
     await queryInterface.dropTable(PERIOD_TABLE);
-
-    //Colocar customers por encima de users, ya que una depende de la otra al momento de borrar
-    // await queryInterface.dropTable(USER_TABLE);
   },
 };
