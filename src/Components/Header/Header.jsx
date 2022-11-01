@@ -31,6 +31,12 @@ const Header = () => {
       iconRotate: document.querySelector("i.material-icons.right"),
       burgerMenu: document.querySelector(".btn-menu__container"),
     });
+
+    const loggedUser = window.localStorage.getItem("loggedNoteAppUser");
+
+    if (loggedUser) {
+      console.log("Hay un usuario logeado");
+    }
   }, []);
 
   const handleMenuShow = () => {
@@ -69,9 +75,7 @@ const Header = () => {
         </ul>
         <ul id="dropdown2" className="dropdown-content">
           <li>
-            <Link
-              href="/servicios/biblioteca"
-            >
+            <Link href="/servicios/biblioteca">
               <a>Biblioteca</a>
             </Link>
           </li>

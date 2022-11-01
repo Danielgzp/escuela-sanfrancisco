@@ -7,7 +7,9 @@ class RoleService {
   generate() {}
 
   async find() {
-    const roles = await models.Role.findAll();
+    const roles = await models.Role.findAll({
+      include: ["staff"]
+    });
 
     return roles;
   }
