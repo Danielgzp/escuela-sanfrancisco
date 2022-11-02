@@ -4,16 +4,25 @@ import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
 import { createUserSchema } from "schemas/user.schema";
 import UserService from "services/user.service";
+import bearerHandler from "middlewares/bearer";
 
 const service = new UserService();
 const handler = nextConnect();
 
 handler
   .get(
+    // bearerHandler(),
     passport.authenticate("jwt", { session: false }),
-    checkRoles("director"),
+    // checkRoles("director"),
     async (req, res, next) => {
       try {
+        // const token = req.cookies.tokenJWT
+        // if(!token){
+        //   return res.status(401).json({
+        //     success: false,
+        //     message: "Please log in to get access.",
+        //   });
+        // }
         const users = await service.find(req.query);
         res.json(users);
       } catch (error) {

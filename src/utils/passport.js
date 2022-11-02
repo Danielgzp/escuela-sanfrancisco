@@ -14,6 +14,7 @@ const AuthService = require("../services/auth.service");
 
 import passport from "passport";
 import LocalStrategy from "passport-local";
+import axios from "axios";
 
 const service = new AuthService();
 

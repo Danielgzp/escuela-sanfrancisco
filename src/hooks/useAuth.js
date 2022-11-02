@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
+// const { config } = require("../../config/config");
+
 // import endPoints from "services/api";
 
 const AuthContext = createContext();
@@ -18,12 +20,13 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [user, setUser] = useState(null);
+
   const [state, setState] = useState({
     loading: false,
     error: null,
   });
 
-  const signIn = async (email, password) => {
+  const signIn = async (loginForm) => {
     const options = {
       headers: {
         accept: "*/*",
@@ -31,28 +34,23 @@ function useProvideAuth() {
       },
     };
 
-    const { data } = await axios.post(
-      endPoints.auth.login,
-      { email, password },
-      options
-    );
+    const { data } = await axios.post(endPoints.auth.login, loginForm, options);
 
-    console.log(data);
     if (data) {
+      console.log(data);
       const token = data.token;
       const userData = data.user;
-      Cookies.set("tokenJWT", token, { expires: 5 });
+      console.log(token);
 
-      axios.defaults.headers.Authorization = `Bearer ${token}`;
-      console.log(axios.defaults.headers.Authorization);
-      
-      console.log(userData);
+      Cookies.set("userJWT", token, { expires: 5 });
+
+      axios.defaults.headers.Authorization = `bearer ${token}`;
       setUser(userData);
     }
   };
 
   const logout = () => {
-    Cookies.remove("tokenJWT");
+    Cookies.remove("userJWT");
     setUser(null);
     delete axios.defaults.headers.Authorization;
     window.location.href = "/login";

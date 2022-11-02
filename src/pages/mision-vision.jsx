@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React from "react";
 
-import childrens from "/images/misionyvision/childrens.jpg";
-
 const MisionVision = () => {
   return (
     <>
@@ -35,33 +33,28 @@ const MisionVision = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col s12">
-            <div className="mision-vision__container">
-              <div className="center">
-                <h3 className="medium-title__red">Mision</h3>
-                <i className="large material-icons icon-red center">favorite</i>
-                <p>
-                  Ser un Movimiento de Educación Popular y Promoción Social
-                  dirigido a la población empobrecida y excluida, que busca
-                  construir un proyecto de transformación social, con base en
-                  valores cristianos de justicia, participación y solidaridad.
-                </p>
-              </div>
-
-              <div className="center">
-                <h3 className="medium-title__red center">Vision</h3>
-                <i className="large material-icons icon-red">remove_red_eye</i>
-                <p>
-                  Un mundo donde todas las personas tenga la posibilidad de
-                  desarrollar plenamente sus capacidades y vivir con dignidad,
-                  construyendo una sociedad justa en la que todos sus estructura
-                  estén al servicio del ser humano y la trasformación de las
-                  situaciones que generen la inequidad, la pobreza y la
-                  exclusión.
-                </p>
-              </div>
-            </div>
+          <div className="col s12 m6 l6 center mision-vision__container">
+            <h3 className="medium-title__red">Mision</h3>
+            <i className="large material-icons icon-red center">favorite</i>
+            <p>
+              Ser un Movimiento de Educación Popular y Promoción Social dirigido
+              a la población empobrecida y excluida, que busca construir un
+              proyecto de transformación social, con base en valores cristianos
+              de justicia, participación y solidaridad.
+            </p>
           </div>
+          <div className="col s12 m6 l6 center mision-vision__container">
+            <h3 className="medium-title__red center">Vision</h3>
+            <i className="large material-icons icon-red">remove_red_eye</i>
+            <p>
+              Un mundo donde todas las personas tenga la posibilidad de
+              desarrollar plenamente sus capacidades y vivir con dignidad,
+              construyendo una sociedad justa en la que todos sus estructura
+              estén al servicio del ser humano y la trasformación de las
+              situaciones que generen la inequidad, la pobreza y la exclusión.
+            </p>
+          </div>
+
           <div className="row">
             <div className="col s12 l8">
               <div>
@@ -84,7 +77,11 @@ const MisionVision = () => {
             </div>
             <div className="col s12 l4">
               <div className="center">
-                <Image src={childrens} alt="Niños de Fe y Alegría" />
+                <img
+                  src={"/images/pastoralpage/childrens-2.jpg"}
+                  alt="Alumnos"
+                  className="responsive-img"
+                />
               </div>
             </div>
           </div>
@@ -109,14 +106,11 @@ const MisionVision = () => {
           margin-bottom: 20px;
           align-self: center;
         }
-        .mision-vision__container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        main .mision-vision__container {
           background-color: #f3f3f3;
           border-radius: 15px;
-          padding: 15px;
-          text-align: justify;
+          padding: 25px !important;
+          /* text-align: justify; */
         }
         .mision-vision__container h4 {
           font-size: 1.4rem;

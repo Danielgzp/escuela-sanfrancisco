@@ -2,14 +2,40 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles";
 import Image from "next/image";
+import { useAuth } from "hooks/useAuth";
+import Cookies from "js-cookie";
 
-const Header = () => {
+const Header = (req) => {
+  console.log(req);
   let [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [cookie, setCookie] = useState(null);
+
+  const auth = useAuth();
   const [state, setState] = useState({
     menu: "",
     iconRotate: "",
     burgerMenu: "",
   });
+
+  const userData = {
+    // los ? se llaman optional channing para garantizar que este disponible
+    // Sin ese signo no funciona esta parte del codigo
+    name: auth?.user?.staff?.name,
+    email: auth?.user?.email,
+  };
+
+  const getCookie = async () => {
+    try {
+      const data = await Cookies.get("userJWT");
+
+      setCookie(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  getCookie();
+  console.log(cookie)
 
   useEffect(() => {
     var elems = document.querySelectorAll(".sidenav");
@@ -31,12 +57,6 @@ const Header = () => {
       iconRotate: document.querySelector("i.material-icons.right"),
       burgerMenu: document.querySelector(".btn-menu__container"),
     });
-
-    const loggedUser = window.localStorage.getItem("loggedNoteAppUser");
-
-    if (loggedUser) {
-      console.log("Hay un usuario logeado");
-    }
   }, []);
 
   const handleMenuShow = () => {
@@ -142,7 +162,7 @@ const Header = () => {
                   <div className="collapsible-body">
                     <ul>
                       <li>
-                        <Link href="/history">
+                        <Link href="/historia">
                           <a>
                             <i className="tiny material-icons icon-white">
                               chevron_right
@@ -231,14 +251,31 @@ const Header = () => {
                 </div>
               </li>
             </ul>
-            <li>
+            {cookie ? (
+              <li onClick={auth.logout}>
+                <a>
+                  <i className="material-icons icon-white">account_circle</i>
+                  Cerrar Sesion
+                </a>
+              </li>
+            ) : (
+              <li>
+                <Link href="/login">
+                  <a>
+                    <i className="material-icons icon-white">account_circle</i>
+                    Login
+                  </a>
+                </Link>
+              </li>
+            )}
+            {/* <li>
               <Link href="/login">
                 <a>
                   <i className="material-icons icon-white">account_circle</i>
                   Login
                 </a>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -301,7 +338,6 @@ const Header = () => {
                 <a></a></Link>
               </li> */}
                 <li>
-                  {/* <i className="material-icons icon-white">contacts</i> */}
                   <a
                     className="dropdown-trigger"
                     href="#!"
@@ -311,15 +347,22 @@ const Header = () => {
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
-
                 <li>
-                  <Link href="/login">
-                    <a>
-                      {/* <i className="material-icons icon-white">account_circle</i> */}
-                      Login
-                    </a>
+                  <Link href="/api/v1/users">
+                    <a>Users</a>
                   </Link>
                 </li>
+                {cookie ? (
+                  <li onClick={auth.logout}>
+                    <a>Cerrar Sesion</a>
+                  </li>
+                ) : (
+                  <li>
+                    <Link href="/login">
+                      <a>Login</a>
+                    </Link>
+                  </li>
+                )}
               </ul>
               <div className="right btn-menu__container">
                 <div

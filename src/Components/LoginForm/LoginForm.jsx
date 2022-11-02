@@ -22,20 +22,19 @@ const LoginForm = () => {
     setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
     const loginUser = Object.fromEntries([...formData.entries()]);
-    console.log(loginUser);
 
     auth
-      .signIn("naibys@mail.com", "admin123")
+      .signIn(loginUser)
       .then(() => {
+        router.push("/");
+        setState({ loading: false, error: null });
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Loggin Successfull",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2500,
         });
-        setState({ loading: false, error: null });
-        router.push("/");
       })
       .catch((err) => {
         if (err.response?.status === 401) {
