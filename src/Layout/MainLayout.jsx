@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "Components/Header/Header.jsx";
 import Footer from "Components/Footer/Footer.jsx";
+import Cookies from "js-cookie";
 
 const MainLayout = (props) => {
   // if (props.location.pathname.includes("/admin")) {
@@ -18,13 +19,3 @@ const MainLayout = (props) => {
 // };
 
 export default MainLayout;
-
-export async function getServerSideProps(req, query) {
-  // const url = req.nextUrl.clone();
-  // return {
-  //   props: {
-  //     data: {},
-  //   },
-  // };
-  
-}

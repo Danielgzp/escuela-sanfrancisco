@@ -11,7 +11,8 @@ import BillBoard from "../Components/BillBoard/BillBoard";
 
 // const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${llave}`;
 
-const Home = () => {
+const Home = (data) => {
+  // console.log(data)
   return (
     <>
       <Head>
@@ -54,3 +55,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      data: "algo",
+    },
+  };
+}

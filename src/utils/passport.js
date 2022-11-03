@@ -1,11 +1,3 @@
-// const passport = require("passport");
-
-// const LocalStrategy = require("./strategies/local.strategy");
-// const JwtStrategy = require("./strategies/jwt.strategy");
-
-// passport.use(LocalStrategy);
-// passport.use(JwtStrategy);
-
 const { Strategy, ExtractJwt } = require("passport-jwt");
 
 const { config } = require("../../config/config");
@@ -14,7 +6,6 @@ const AuthService = require("../services/auth.service");
 
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import axios from "axios";
 
 const service = new AuthService();
 

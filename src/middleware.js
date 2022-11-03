@@ -1,5 +1,5 @@
-import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
 export const middleware = async (req) => {
   // return NextResponse.rewrite(new URL("/about-2", req.url));
@@ -32,7 +32,9 @@ export const middleware = async (req) => {
   if (url.includes("/login")) {
     if (cookieToken !== undefined) {
       try {
+        jwtVerify(cookieToken, new TextEncoder().encode(secret));
         const newUrl = new URL("/", req.url);
+
         // loginUrl.searchParams.set("from", req.nextUrl.pathname);
 
         return NextResponse.redirect(newUrl);

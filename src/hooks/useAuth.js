@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import endPoints from "utils/endpoints";
@@ -20,7 +20,6 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -37,20 +36,20 @@ function useProvideAuth() {
     const { data } = await axios.post(endPoints.auth.login, loginForm, options);
 
     if (data) {
-      console.log(data);
       const token = data.token;
       const userData = data.user;
-      console.log(token);
 
       Cookies.set("userJWT", token, { expires: 5 });
+      Cookies.set("userData", JSON.stringify(userData), { expires: 5 });
 
-      axios.defaults.headers.Authorization = `bearer ${token}`;
+      // axios.defaults.headers.Authorization = `Bearer ${token}`;
       setUser(userData);
     }
   };
 
   const logout = () => {
     Cookies.remove("userJWT");
+    Cookies.remove("userData");
     setUser(null);
     delete axios.defaults.headers.Authorization;
     window.location.href = "/login";

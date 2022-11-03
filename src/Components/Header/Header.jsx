@@ -4,38 +4,27 @@ import styles from "./styles";
 import Image from "next/image";
 import { useAuth } from "hooks/useAuth";
 import Cookies from "js-cookie";
+import { verify } from "jsonwebtoken";
 
-const Header = (req) => {
-  console.log(req);
+// const { config } = require("../../../config/config");
+
+const Header = (data ) => {
+  // const { role } = data;
+  
   let [showMobileMenu, setShowMobileMenu] = useState(false);
   const [cookie, setCookie] = useState(null);
+  const auth = useAuth()
 
-  const auth = useAuth();
+  console.log(auth.user)
+
+  
   const [state, setState] = useState({
     menu: "",
     iconRotate: "",
     burgerMenu: "",
   });
 
-  const userData = {
-    // los ? se llaman optional channing para garantizar que este disponible
-    // Sin ese signo no funciona esta parte del codigo
-    name: auth?.user?.staff?.name,
-    email: auth?.user?.email,
-  };
-
-  const getCookie = async () => {
-    try {
-      const data = await Cookies.get("userJWT");
-
-      setCookie(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  getCookie();
-  console.log(cookie)
+  
 
   useEffect(() => {
     var elems = document.querySelectorAll(".sidenav");
@@ -251,7 +240,7 @@ const Header = (req) => {
                 </div>
               </li>
             </ul>
-            {cookie ? (
+            {auth.user ? (
               <li onClick={auth.logout}>
                 <a>
                   <i className="material-icons icon-white">account_circle</i>
@@ -352,7 +341,7 @@ const Header = (req) => {
                     <a>Users</a>
                   </Link>
                 </li>
-                {cookie ? (
+                {auth.user ? (
                   <li onClick={auth.logout}>
                     <a>Cerrar Sesion</a>
                   </li>
@@ -392,3 +381,13 @@ const Header = (req) => {
 };
 
 export default Header;
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      data: "algo",
+    },
+  };
+}
+
+

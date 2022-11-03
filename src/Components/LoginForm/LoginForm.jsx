@@ -23,6 +23,7 @@ const LoginForm = () => {
     const formData = new FormData(formRef.current);
     const loginUser = Object.fromEntries([...formData.entries()]);
 
+    console.log(loginUser)
     auth
       .signIn(loginUser)
       .then(() => {
