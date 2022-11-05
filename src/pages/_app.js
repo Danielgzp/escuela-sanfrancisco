@@ -1,7 +1,11 @@
 import "../styles/globals.css";
-import "materialize-css/dist/css/materialize.min.css";
+import "../styles/style.css";
+import "../styles/skin.css";
+import "../styles/bootstrap-select.min.css";
+// import "materialize-css/dist/css/materialize.min.css";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,6 +15,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </MainLayout>
       </ProviderAuth>
+      
     </>
   );
 }

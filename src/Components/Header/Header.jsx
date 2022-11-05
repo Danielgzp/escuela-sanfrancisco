@@ -8,23 +8,20 @@ import { verify } from "jsonwebtoken";
 
 // const { config } = require("../../../config/config");
 
-const Header = (data ) => {
+const Header = (data) => {
   // const { role } = data;
-  
+
   let [showMobileMenu, setShowMobileMenu] = useState(false);
   const [cookie, setCookie] = useState(null);
-  const auth = useAuth()
+  const auth = useAuth();
 
-  console.log(auth.user)
+  console.log(auth.user);
 
-  
   const [state, setState] = useState({
     menu: "",
     iconRotate: "",
     burgerMenu: "",
   });
-
-  
 
   useEffect(() => {
     var elems = document.querySelectorAll(".sidenav");
@@ -312,12 +309,14 @@ const Header = (data ) => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/admin">
-                    <a>
-                      {/* <i className="material-icons icon-white">description</i> */}
-                      ADMIN
-                    </a>
-                  </Link>
+                  {/* He quitado el href porque la pagina index necesita cargar scripts
+                  y si se maneja en forma de SPA no cargan los scripts */}
+                  {/* <Link href="/admin"> */}
+                  <a href="/admin">
+                    {/* <i className="material-icons icon-white">description</i> */}
+                    ADMIN
+                  </a>
+                  {/* </Link> */}
                 </li>
 
                 {/* <li>
@@ -389,5 +388,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-
