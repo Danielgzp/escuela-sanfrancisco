@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewFooter = () => {
+const AdminFooter = () => {
   return (
     <>
       <div className="footer">
@@ -18,4 +18,4 @@ const NewFooter = () => {
   );
 };
 
-export default NewFooter;
+export default AdminFooter;

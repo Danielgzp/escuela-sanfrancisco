@@ -12,12 +12,13 @@ export default function Document() {
           rel="stylesheet"
         />
         {/* <link rel="manifest" href="/public/manifest.json" /> */}
-        <link rel="apple-touch-icon" href="/public/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         {/* BOOTSTRAP ICONS */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
         />
+        {/* <link rel="stylesheet" href="../styles/bootstrap-select.min.css" /> */}
         <meta name="theme-color" content="#232352" />
       </Head>
       <body>

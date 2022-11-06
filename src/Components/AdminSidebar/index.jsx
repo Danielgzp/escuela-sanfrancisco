@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Menu = () => {
+const AdminSidebar = () => {
   return (
     <>
       <div className="dlabnav">
@@ -15,13 +15,19 @@ const Menu = () => {
               </a>
               <ul aria-expanded="false">
                 <li>
-                  <a href="index.html">Dashboard 1</a>
+                  <Link href="/admin">
+                    <a>Dashboard </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="index-2.html">Dashboard 2</a>
+                  <Link href="/admin">
+                    <a>Dashboard </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="index-3.html">Dashboard 3</a>
+                  <Link href="/admin">
+                    <a>Dashboard </a>
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -451,4 +457,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default AdminSidebar;

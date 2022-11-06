@@ -2,7 +2,8 @@ import "../styles/globals.css";
 import "../styles/style.css";
 import "../styles/skin.css";
 import "../styles/bootstrap-select.min.css";
-
+import "../styles/default.css"
+import "../styles/default-date.css"
 // import "materialize-css/dist/css/materialize.min.css";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";

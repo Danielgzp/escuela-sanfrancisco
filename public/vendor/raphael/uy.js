@@ -1,1 +1,0 @@
-console.log("este es otro script")
