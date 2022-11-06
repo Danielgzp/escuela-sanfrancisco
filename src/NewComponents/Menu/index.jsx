@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Menu = () => {
@@ -64,7 +65,9 @@ const Menu = () => {
                   <a href="all-students.html">All Students</a>
                 </li>
                 <li>
-                  <a href="add-student.html">Add Students</a>
+                  <Link href="/admin/add-student">
+                    <a>Add Students</a>
+                  </Link>
                 </li>
                 <li>
                   <a href="edit-student.html">Edit Students</a>
