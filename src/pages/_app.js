@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import "../styles/style.css";
-import "../styles/skin.css";
+import "../styles/skin-2.css";
 import "../styles/bootstrap-select.min.css";
 import "../styles/default.css"
 import "../styles/default-date.css"
