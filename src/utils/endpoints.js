@@ -52,11 +52,11 @@ const endPoints = {
     updateStaff: (id) => `${API}/${VERSION}/staff/${id}`,
   },
   students: {
-    getStudent: (id) => `${API}/${VERSION}/students/${id}/`,
+    getStudent: (id) => `${API}/${VERSION}/students/${id}`,
     addStudent: `${API}/${VERSION}/students`,
-    updateStudent: (id) => `${API}/${VERSION}/students/${id}/`,
-    deleteStudent: (id) => `${API}/${VERSION}/students/${id}/`,
-    getAllStudents: `${API}/${VERSION}/students/`,
+    updateStudent: (id) => `${API}/${VERSION}/students/${id}`,
+    deleteStudent: (id) => `${API}/${VERSION}/students/${id}`,
+    getAllStudents: `${API}/${VERSION}/students`,
   },
   teachers: {
     getAllTeachers: `${API}/${VERSION}/teachers`,

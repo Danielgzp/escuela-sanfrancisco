@@ -22,8 +22,8 @@ class StudentsService {
     return students;
   }
 
-  async findOne(id) {
-    const student = await models.Students.findByPk(id, {
+  async findOne(ci) {
+    const student = await models.Students.findByPk(ci, {
       include: ["representant", "record", "grade"],
     });
     if (!student) {
@@ -40,17 +40,20 @@ class StudentsService {
     return newStudent;
   }
 
-  async update(id, changes) {
-    const student = await this.findOne(id);
-    const updateStudent = await student.update(changes);
+  async update(ci, changes) {
+    const student = await this.findOne(ci);
+    const updateStudent = await student.update(changes, {
+      include: ["representant"],
+    });
+
     return updateStudent;
   }
 
-  async delete(id) {
-    const student = await this.findOne(id);
+  async delete(ci) {
+    const student = await this.findOne(ci);
     await student.destroy();
 
-    return { id };
+    return { ci };
   }
 }
 

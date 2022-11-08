@@ -29,13 +29,13 @@ const RecordStudentSchema = {
     field: "created_at",
     defaultValue: Sequelize.NOW,
   },
-  studentId: {
-    field: "student_id",
+  studentCi: {
+    field: "student_ci",
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: STUDENTS_TABLE,
-      key: "id",
+      key: "ci",
     },
     onUpdate: "CASCADE",
     onDelete: "CASCADE",

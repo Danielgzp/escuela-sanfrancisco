@@ -10,16 +10,14 @@ const StudentsSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
-    primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  // schoolID: {
-  //   allowNull: false,
-  //   type: DataTypes.STRING,
-  //   unique: true,
-
-  //   field: 'school_ci',
-  // },
+  ci: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    unique: true,
+    primaryKey: true,
+  },
   name: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -34,7 +32,7 @@ const StudentsSchema = {
     type: DataTypes.STRING,
   },
   birthDate: {
-    // allowNull: false,
+    allowNull: false,
     allowNull: true,
     type: DataTypes.DATE,
     field: "birth_date",
@@ -44,7 +42,7 @@ const StudentsSchema = {
     type: DataTypes.STRING,
   },
   admissionDate: {
-    // allowNull: false,
+    allowNull: false,
     allowNull: true,
     type: DataTypes.DATE,
     field: "admission_date",
@@ -65,13 +63,13 @@ const StudentsSchema = {
     field: "created_at",
     defaultValue: Sequelize.NOW,
   },
-  representantId: {
-    field: "representant_id",
+  representantCi: {
+    field: "representant_ci",
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: REPRESENTANTS_TABLE,
-      key: "id",
+      key: "ci",
     },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
@@ -94,7 +92,7 @@ class Students extends Model {
     this.hasMany(models.RecordStudent, {
       as: "record",
       //alias o el nombre de la relacion nque definimos en el model de products
-      foreignKey: "studentId",
+      foreignKey: "studentCi",
     });
   }
 

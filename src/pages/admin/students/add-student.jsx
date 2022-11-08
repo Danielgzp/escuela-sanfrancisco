@@ -26,15 +26,17 @@ const AddStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const newStudent = {
+      ci: objectData.schoolId,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
-      // birthDate: objectData.birthDate,
+      birthDate: objectData.birthDate,
       gender: objectData.gender,
-      // admissionDate: objectData.admissionDate,
+      admissionDate: objectData.admissionDate,
       birthPlace: objectData.birthPlace,
       houseProperty: objectData.houseProperty,
       representant: {
+        ci: objectData.repCI,
         repName: objectData.repName,
         repLastName: objectData.repLastName,
         email: objectData.email,
@@ -84,10 +86,6 @@ const AddStudent = ({ data }) => {
     const script3 = document.createElement("script");
     const script4 = document.createElement("script");
     const script5 = document.createElement("script");
-
-    script5.src = "/js/dlabnav-init.js";
-    script5.async = false;
-    document.body.appendChild(script5);
 
     script.src = "/vendor/pickadate/picker.js";
     script.async = false;
@@ -160,12 +158,24 @@ const AddStudent = ({ data }) => {
                           />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Direccion</label>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">
+                            Cedula de Identidad Escolar
+                          </label>
+                          <input
+                            type="number"
+                            name="schoolId"
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Direccion</label>
                           <textarea
                             name="address"
-                            class="form-control"
+                            className="form-control"
                             rows="5"
                           ></textarea>
                         </div>
@@ -212,7 +222,7 @@ const AddStudent = ({ data }) => {
                             {grades.map((grade) => (
                               <option
                                 key={grade.id}
-                                value={`${grade.name} ${grade.section}`}
+                                value={`${grade.id}`}
                               >{`${grade.name} ${grade.section}`}</option>
                             ))}
                           </select>
@@ -222,9 +232,9 @@ const AddStudent = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Género</label>
                           <select name="gender" className="form-control">
-                            <option value="Gender">Género</option>
-                            <option value="Male">Masculino</option>
-                            <option value="Female">Femenino</option>
+                            <option value="">Género</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
                           </select>
                         </div>
                       </div>
@@ -260,6 +270,18 @@ const AddStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repLastName"
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">
+                            Cedula de Identidad del Representante
+                          </label>
+                          <input
+                            type="number"
+                            name="repCI"
                             className="form-control"
                           />
                         </div>

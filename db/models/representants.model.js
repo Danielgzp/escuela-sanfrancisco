@@ -5,18 +5,18 @@ const RepresentantsSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
-    primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  // ci: {
-  //   allowNull: false,
-  //   type: DataTypes.STRING,
-  //   primaryKey: true,
-  // },
+  ci: {
+    allowNull: false,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
   repName: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: "rep_name"
+    field: "rep_name",
   },
   repLastName: {
     allowNull: false,
@@ -42,7 +42,7 @@ class Representants extends Model {
     this.hasMany(models.Students, {
       as: "students",
       //alias o el nombre de la relacion nque definimos en el model de products
-      foreignKey: "representantId",
+      foreignKey: "representantCi",
     });
   }
   static config(sequelize) {
