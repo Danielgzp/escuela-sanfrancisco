@@ -1,6 +1,16 @@
 import css from "styled-jsx/css";
 
 export default css`
+  .epa {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background-color: black;
+  }
+  .table-title {
+    color: red !important;
+    font-size: 2.4rem;
+  }
   #main-wrapper {
     background-color: black !important;
   }

@@ -1,0 +1,187 @@
+.students-table {
+  margin: 0 10px 10px 10px;
+}
+.students-table nav {
+  height: auto;
+  line-height: normal;
+}
+.students-table select {
+  display: inline-block !important;
+}
+.students-table header {
+  /* background-color: var(--blue-dark); */
+  color: var(--blue-dark);
+  border-bottom: 1px rgba(128, 128, 128, 0.295) solid;
+}
+.students-table header .btn-primary {
+  /* background-color: var(--blue-dark); */
+  background-color: var(--blue-dark);
+  border: 1px solid transparent;
+  font-weight: bold;
+}
+.students-table header .btn-primary:hover {
+  /* background-color: var(--blue-dark); */
+  background-color: white;
+  color: var(--blue-dark);
+  border: 1px solid var(--blue-dark);
+}
+#headerTable-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+}
+#headerTable-container form {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  background-color: transparent;
+}
+#headerTable-container p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--blue-dark);
+  margin-right: 10px;
+}
+#headerTable-container input {
+  margin: 0;
+  border: 1px rgba(128, 128, 128, 0.3) solid;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 0.9rem;
+  height: 90%;
+  background-color: white;
+}
+#headerTable-container input[type="text"]:focus {
+  box-shadow: none;
+}
+#headerTable-container h4 {
+  /* color: rgb(2, 255, 2); */
+  color: var(--blue-dark);
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+.search-bar p {
+  margin-top: 0 !important;
+}
+/* .rdt_Pagination button {
+  border-right: 1px grey solid;
+  border-radius: 0%;
+  padding: 0;
+  width: 60px;
+  height: 40px;
+  color: white;
+  background-color: rgb(223, 233, 77);
+}
+.rdt_Pagination i {
+  height: 100% !important;
+  line-height: 40px !important;
+} */
+.rdt_TableHeadRow {
+  background-color: var(--blue-dark) !important;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  width: fit-content;
+  height: auto;
+}
+.rdt_TableCol_Sortable div {
+  white-space: normal;
+  min-width: 85px;
+  width: fit-content;
+  max-width: 175px;
+  text-align: center;
+
+  /* max-width: 275px; */
+}
+.rdt_TableCol_Sortable img {
+  /* height: 20px;
+  width: 20px;
+  margin-left: 6px; */
+}
+.rdt_TableCol {
+  justify-content: center;
+  padding: 12px 5px !important;
+  /* max-width: fit-content !important;
+  min-width: 50px !important; */
+}
+.rdt_TableCell {
+  justify-content: center;
+}
+.rdt_TableCell i {
+  color: orange;
+}
+.rdt_TableCell > div {
+  text-align: center;
+  white-space: normal !important;
+  min-width: 85px;
+  width: fit-content;
+  max-width: 175px;
+  line-height: 22px;
+  padding: 2px 0;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+.pagination-container {
+  margin: 10px 20px;
+  background-color: white;
+  border-radius: 3px;
+}
+.pagination-container li {
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+.pagination-container li a {
+  color: black;
+  font-weight: 500;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--blue-dark);
+}
+.pagination-button {
+  margin-left: 20px;
+}
+.pagination-button a {
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
+  /* box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%),
+    0 1px 5px 0 rgb(0 0 0 / 20%); */
+}
+.pagination-button a:hover {
+  background-color: rgb(238, 169, 22);
+  color: white;
+}
+.pagination-container li a:hover {
+  /* color: var(--blue-text); */
+}
+.pagination {
+  margin: 0;
+}

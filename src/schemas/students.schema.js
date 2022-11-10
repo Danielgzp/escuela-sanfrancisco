@@ -2,16 +2,16 @@ const Joi = require("joi");
 
 const id = Joi.number().integer();
 const representantId = Joi.number().integer();
-const ci = Joi.number().integer()
+const ci = Joi.number().integer();
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
 const address = Joi.string();
 const gender = Joi.string();
-const birthDate = Joi.date()
+const birthDate = Joi.date();
 const birthPlace = Joi.string();
-const admissionDate = Joi.date()
+const admissionDate = Joi.date();
 const houseProperty = Joi.string();
-const repCI = Joi.number()
+const repCI = Joi.number();
 const repName = Joi.string().min(3).max(30);
 const repLastName = Joi.string().min(3).max(30);
 const phone = Joi.string();
@@ -24,6 +24,9 @@ const description = Joi.string();
 const day = Joi.string();
 
 const gradeId = Joi.number().integer();
+
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
 
 const getStudentSchema = Joi.object({
   ci: ci.required(),
@@ -73,8 +76,16 @@ const updateStudentSchema = Joi.object({
   gradeId,
 });
 
+const queryStudentSchema = Joi.object({
+  limit,
+  offset,
+
+  //Importante recordar que cualquiera de estos valores es opcional para ello hicimos una
+  //validacion en el servicio
+});
 module.exports = {
   getStudentSchema,
   createStudentSchema,
   updateStudentSchema,
+  queryStudentSchema
 };

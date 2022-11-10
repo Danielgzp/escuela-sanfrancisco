@@ -6,8 +6,8 @@ class StudentsService {
   constructor() {}
   generate() {}
 
-  async find() {
-    const students = await models.Students.findAll({
+  async find(query) {
+    const options = {
       include: [
         "representant",
         "record",
@@ -17,7 +17,16 @@ class StudentsService {
           include: ["period"],
         },
       ],
-    });
+      where: {},
+    };
+    console.log(query)
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+
+    const students = await models.Students.findAll(options);
 
     return students;
   }

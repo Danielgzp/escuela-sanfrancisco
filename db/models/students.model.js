@@ -13,8 +13,8 @@ const StudentsSchema = {
     type: DataTypes.INTEGER,
   },
   ci: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+    allowNull: true,
+    type: DataTypes.STRING,
     unique: true,
     primaryKey: true,
   },
@@ -28,13 +28,12 @@ const StudentsSchema = {
     field: "last_name",
   },
   address: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   birthDate: {
     allowNull: false,
-    allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.INTEGER,
     field: "birth_date",
   },
   gender: {
@@ -42,30 +41,29 @@ const StudentsSchema = {
     type: DataTypes.STRING,
   },
   admissionDate: {
-    allowNull: false,
     allowNull: true,
     type: DataTypes.DATE,
     field: "admission_date",
   },
   birthPlace: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
     field: "birth_place",
   },
   houseProperty: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
     field: "house_property",
   },
   createdAt: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
     field: "created_at",
     defaultValue: Sequelize.NOW,
   },
   representantCi: {
     field: "representant_ci",
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER,
     references: {
       model: REPRESENTANTS_TABLE,
@@ -76,7 +74,7 @@ const StudentsSchema = {
   },
   gradeId: {
     field: "grade_id",
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: GRADE_TABLE,

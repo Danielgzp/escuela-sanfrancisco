@@ -8,7 +8,7 @@ export const columnas = (student) => [
     sortable: true,
     reorder: true,
     style: {
-      backgroundColor: "rgba(187, 204, 221, 1)",
+      backgroundColor: "#143b6444",
     },
   },
   {
@@ -56,36 +56,36 @@ export const columnas = (student) => [
     sortable: true,
     reorder: true,
   },
-  {
-    name: "Nombre del representante",
-    selector: (row) => row.representant.repName,
-    sortable: true,
-    reorder: true,
-  },
-  {
-    name: "Apellido del representante",
-    selector: (row) => row.representant.repLastName,
-    sortable: true,
-    reorder: true,
-  },
-  {
-    name: "C.I Representante",
-    selector: (row) => row.representant.ci,
-    sortable: true,
-    reorder: true,
-  },
-  {
-    name: "Telefono",
-    selector: (row) => row.representant.phone,
-    sortable: true,
-    reorder: true,
-  },
-  {
-    name: "Correo",
-    selector: (row) => row.representant.email,
-    sortable: true,
-    reorder: true,
-  },
+  // {
+  //   name: "Nombre del representante",
+  //   selector: (row) => row.representant.repName,
+  //   sortable: true,
+  //   reorder: true,
+  // },
+  // {
+  //   name: "Apellido del representante",
+  //   selector: (row) => row.representant.repLastName,
+  //   sortable: true,
+  //   reorder: true,
+  // },
+  // {
+  //   name: "C.I Representante",
+  //   selector: (row) => row.representant.ci,
+  //   sortable: true,
+  //   reorder: true,
+  // },
+  // {
+  //   name: "Telefono",
+  //   selector: (row) => row.representant.phone,
+  //   sortable: true,
+  //   reorder: true,
+  // },
+  // {
+  //   name: "Correo",
+  //   selector: (row) => row.representant.email,
+  //   sortable: true,
+  //   reorder: true,
+  // },
   {
     cell: (row, id) => (
       <>
@@ -127,10 +127,10 @@ export const columnas = (student) => [
   },
 ];
 
-export const paginationOptions = {
-  rowsPerPageText: "",
-  rangeSeparatorText: "of",
-  noRowsPerPage: false,
-  selectAllRowsItem: true,
-  selectAllRowsItemText: "All",
-};
+// export const paginationOptions = {
+//   rowsPerPageText: "",
+//   rangeSeparatorText: "of",
+//   noRowsPerPage: false,
+//   selectAllRowsItem: true,
+//   selectAllRowsItemText: "All",
+// };

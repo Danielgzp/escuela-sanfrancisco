@@ -32,7 +32,7 @@ const RecordStudentSchema = {
   studentCi: {
     field: "student_ci",
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     references: {
       model: STUDENTS_TABLE,
       key: "ci",
