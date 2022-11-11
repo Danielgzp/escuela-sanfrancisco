@@ -54,7 +54,7 @@ const AdminSidebar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/admin/profesorres/añadir-profesor">
+                  <Link href="/admin/profesores/agregar-profesor">
                     <a>Añadir Profesor</a>
                   </Link>
                 </li>
@@ -67,12 +67,12 @@ const AdminSidebar = () => {
               </a>
               <ul aria-expanded="false">
                 <li>
-                  <Link href="/admin/students">
+                  <Link href="/admin/estudiantes">
                     <a>Lista de Estudiantes</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/admin/students/add-student">
+                  <Link href="/admin/estudiantes/agregar-estudiante">
                     <a>Añadir Estudiante</a>
                   </Link>
                 </li>
@@ -90,7 +90,7 @@ const AdminSidebar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/admin/grados/añadir-grado">
+                  <Link href="/admin/grados/agregar-grado">
                     <a>Añadir Grado</a>
                   </Link>
                 </li>

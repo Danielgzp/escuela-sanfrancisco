@@ -8,7 +8,7 @@ import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 
-const ListTeachers = () => {
+const ListStaff = () => {
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -26,13 +26,13 @@ const ListTeachers = () => {
         error: null,
       });
       try {
-        const response = await axios.get(endPoints.teachers.getAllTeachers);
-        const teachers = await JSON.parse(JSON.stringify(response.data));
+        const response = await axios.get(endPoints.staff.getAllStaff);
+        const staff = await JSON.parse(JSON.stringify(response.data));
         setState({
           ...state,
           loading: false,
           error: null,
-          api: teachers,
+          api: staff,
           filter: state.api,
         });
       } catch (err) {
@@ -43,8 +43,8 @@ const ListTeachers = () => {
   }, []);
 
   useMemo(() => {
-    const result = state?.api?.filter((teacher) => {
-      return `${teacher.name} ${teacher.lastName} ${teacher.ci} ${teacher.grade.name} ${teacher.grade.section}`
+    const result = state?.api?.filter((staff) => {
+      return `${staff.name} ${staff.lastName} ${staff.ci} ${staff.role.name}`
         .toLowerCase()
         .includes(state.search.toLowerCase());
     });
@@ -60,7 +60,8 @@ const ListTeachers = () => {
   return (
     <div className="content-body">
       <div className="container-fluid">
-        <AdminMainPagination pageName={"Profesores"} />
+        <AdminMainPagination pageName={"Personal"} />
+
         <div className="row">
           <div className="col-lg-12">
             <ul className="nav nav-pills mb-3">
@@ -92,11 +93,9 @@ const ListTeachers = () => {
               >
                 <div className="card">
                   <div className="card-header">
-                    <h4 className="card-title">
-                      Lista de todos los Profesores{" "}
-                    </h4>
-                    <Link href="/admin/profesores/añadir-profesor">
-                      <a className="btn btn-primary">Agregar Profesor/a +</a>
+                    <h4 className="card-title">Lista de todos los Staff </h4>
+                    <Link href="/admin/staff/añadir-staff">
+                      <a className="btn btn-primary">Agregar Staff +</a>
                     </Link>
                   </div>
                   <div className="card-body">
@@ -118,4 +117,4 @@ const ListTeachers = () => {
   );
 };
 
-export default ListTeachers;
+export default ListStaff;

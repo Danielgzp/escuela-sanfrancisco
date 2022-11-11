@@ -8,7 +8,7 @@ class StaffService {
 
   async find() {
     const staff = await models.Staff.findAll({
-      include: ["role", "eventuality", "news"],
+      include: ["role", "eventuality", "news", "user"],
     });
 
     return staff;

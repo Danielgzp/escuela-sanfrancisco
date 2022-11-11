@@ -1,6 +1,3 @@
-import React, { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-
 //import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // este boopstrap da en el carousel
 import DataTable from "react-data-table-component";
@@ -9,51 +6,18 @@ import Swal from "sweetalert2";
 // import PageError from "../Error/PageError";
 
 import Loader from "Components/Loader";
-import { columnas, paginationOptions } from "./js/datatable";
 // import TableHeader from "./TableHeader";
 // import PaginationTable from "./PaginationTable";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import styles from "./css/styles";
+import TableHeader from "./TableHeader";
 // import "./MyDataTable.css";
 
-const MyDataTable = (props) => {
-  const [state, setState] = useState({
-    loading: false,
-    error: null,
-    api: [],
-    filter: [],
-  });
-
-  useEffect(() => {
-    async function fetchData() {
-      setState({
-        loading: true,
-        error: null,
-      });
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/students?limit=50&offset=0`
-        );
-
-        const students = await JSON.parse(JSON.stringify(response.data));
-
-        setState({
-          ...state,
-          loading: false,
-          error: null,
-          api: students,
-          //   filter: state.api
-        });
-      } catch (error) {
-        setState({ loading: false, error: error });
-      }
-    }
-    fetchData();
-  }, []);
+const MyDataTable = ({ data, headerSearch, tableColumns }) => {
+  const { filter, loading, error, search, tableTitle } = data;
 
   async function studentDelete(props) {
-    console.log(props);
     try {
       await axios.delete(endPoints.students.deleteStudent(1));
       Swal.fire("El Estudiante se ha eliminado correctamente", "", "success");
@@ -63,7 +27,6 @@ const MyDataTable = (props) => {
   }
 
   const handleDeleteStudent = async (props) => {
-    console.log(props);
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¿Deseas eliminar este Estudiante?",
@@ -116,63 +79,63 @@ const MyDataTable = (props) => {
     );
   };
 
-  const TableHeader = ({ props, changeButton }) => {
-    return (
-      <div id="headerTable-container">
-        <h4 class="card-title">Lista de todos los Estudiantes </h4>
-        <div className="search-bar">
-          <p>
-            <i className="material-icons">search</i>
-            Buscar:
-          </p>
-          <form>
-            <input
-              type="text"
-              value={props}
-              // onChange={changeButton}
-              className="z-depth-2"
-            />
-          </form>
-        </div>
-        <div class="card-header">
-          <Link href="/admin/students/add-student">
-            <a class="btn btn-primary">Agregar Estudiante +</a>
-          </Link>
-        </div>
-      </div>
-    );
-  };
-  // if (state.loading) {
-  //   return <Loader />;
-  // }
-  // if (state.error) {
-  //   return <PageError />;
-  // }
+  // const TableHeader = ({ props, changeButton }) => {
+  //   return (
+  //     <div id="headerTable-container">
+  //       <h4 className="card-title">Lista de todos los Estudiantes </h4>
+  //       <div className="search-bar">
+  //         <p>
+  //           <i className="material-icons">search</i>
+  //           Buscar:
+  //         </p>
+  //         <form>
+  //           <input
+  //             type="text"
+  //             value={props}
+  //             // onChange={changeButton}
+  //             className="z-depth-2"
+  //           />
+  //         </form>
+  //       </div>
+  //       <div className="card-header">
+  //         <Link href="/admin/students/add-student">
+  //           <a className="btn btn-primary">Agregar Estudiante +</a>
+  //         </Link>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <>
       {/* <div className="table-responsive students-table z-depth-3"> */}
-        <DataTable
-          dense
-          direction="auto"
-          highlightOnHover={true}
-          columns={columnas(handleDeleteStudent)}
-          data={state.api}
-          striped={true}
-          fixedHeader
-          fixedHeaderScrollHeight="700px"
-          noDataComponent={<h2>No se encontro ningun elemento</h2>}
-          progressPending={state.loading}
-          progressComponent={<Loader />}
-          pagination
-          //el paginationServer hacia que no funcionarai bien la paginacion,
-          // paginationComponentOptions={paginationOptions}
-          // paginationComponent={PaginationTable}
-          // paginationServer
-          //   onChangeRowsPerPage={20}
-          subHeader
-          subHeaderComponent={TableHeader("hola")}
-        />
+      <DataTable
+        dense
+        direction="auto"
+        highlightOnHover={true}
+        columns={tableColumns(handleDeleteStudent)}
+        data={filter}
+        striped={true}
+        fixedHeader
+        fixedHeaderScrollHeight="700px"
+        noDataComponent={<h2>No se encontro ningun elemento</h2>}
+        progressPending={loading}
+        progressComponent={<Loader />}
+        pagination
+        //el paginationServer hacia que no funcionarai bien la paginacion,
+        // paginationComponentOptions={paginationOptions}
+        // paginationComponent={PaginationTable}
+        // paginationServer
+        //   onChangeRowsPerPage={20}
+        subHeader
+        subHeaderComponent={
+          <TableHeader
+            searchButton={headerSearch}
+            inputValue={search}
+            tableName={tableTitle}
+          />
+        }
+      />
       <style jsx>{styles}</style>
     </>
   );

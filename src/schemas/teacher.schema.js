@@ -5,10 +5,10 @@ const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
 const address = Joi.string();
 const gender = Joi.string();
-const birthDate = Joi.number().integer();
+const birthDate = Joi.date()
 const birthPlace = Joi.string();
-const admissionDate = Joi.number().integer();
-const phone = Joi.string().min(11).max(11);
+const admissionDate = Joi.date()
+const phone = Joi.string().min(10).max(12);
 const email = Joi.string().email({ tlds: { allow: false } });
 const gradeId = Joi.number().integer();
 const eventuality = Joi.array();
@@ -27,7 +27,7 @@ const createTeacherSchema = Joi.object({
   birthPlace: birthPlace.required(),
   admissionDate: admissionDate.optional(),
   phone: phone.required(),
-  email: email.required(),
+  email: email.optional(),
   gradeId: gradeId.required(),
   eventuality: eventuality.optional(),
 });

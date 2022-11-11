@@ -1,3 +1,13 @@
+.card .btn-primary {
+  background-color: var(--blue-dark);
+  border: 2px solid transparent;
+}
+.card .btn-primary:hover {
+  /* background-color: var(--blue-dark); */
+  background-color: white;
+  color: var(--blue-dark);
+  border: 2px solid var(--blue-dark);
+}
 .students-table {
   margin: 0 10px 10px 10px;
 }
@@ -9,21 +19,8 @@
   display: inline-block !important;
 }
 .students-table header {
-  /* background-color: var(--blue-dark); */
-  color: var(--blue-dark);
-  border-bottom: 1px rgba(128, 128, 128, 0.295) solid;
-}
-.students-table header .btn-primary {
-  /* background-color: var(--blue-dark); */
-  background-color: var(--blue-dark);
-  border: 1px solid transparent;
-  font-weight: bold;
 }
 .students-table header .btn-primary:hover {
-  /* background-color: var(--blue-dark); */
-  background-color: white;
-  color: var(--blue-dark);
-  border: 1px solid var(--blue-dark);
 }
 #headerTable-container {
   width: 100%;
@@ -84,7 +81,7 @@
 .rdt_TableHeadRow {
   background-color: var(--blue-dark) !important;
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   width: fit-content;
   height: auto;
@@ -92,7 +89,7 @@
 .rdt_TableCol_Sortable div {
   white-space: normal;
   min-width: 85px;
-  width: fit-content;
+  width: max-content;
   max-width: 175px;
   text-align: center;
 
@@ -119,10 +116,11 @@
   text-align: center;
   white-space: normal !important;
   min-width: 85px;
-  width: fit-content;
+  width: max-content;
   max-width: 175px;
   line-height: 22px;
   padding: 2px 0;
+  font-size: 0.8rem;
 }
 .pagination {
   display: flex;

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-export const columnas = (student) => [
+export const columns = (staff) => [
   {
-    name: "Grado",
-    selector: (row) => `${row.grade.name} ${row.grade.section}`,
+    name: "C.I",
+    selector: (row) => `${row.ci}`,
     sortable: true,
     reorder: true,
     style: {
@@ -45,52 +45,28 @@ export const columnas = (student) => [
     reorder: true,
   },
   {
-    name: "C.I Escolar",
-    selector: (row) => row.ci,
-    sortable: true,
-    reorder: true,
-  },
-  {
     name: "Direccion",
     selector: (row) => row.address,
     sortable: true,
     reorder: true,
   },
-  // {
-  //   name: "Nombre del representante",
-  //   selector: (row) => row.representant.repName,
-  //   sortable: true,
-  //   reorder: true,
-  // },
-  // {
-  //   name: "Apellido del representante",
-  //   selector: (row) => row.representant.repLastName,
-  //   sortable: true,
-  //   reorder: true,
-  // },
-  // {
-  //   name: "C.I Representante",
-  //   selector: (row) => row.representant.ci,
-  //   sortable: true,
-  //   reorder: true,
-  // },
-  // {
-  //   name: "Telefono",
-  //   selector: (row) => row.representant.phone,
-  //   sortable: true,
-  //   reorder: true,
-  // },
-  // {
-  //   name: "Correo",
-  //   selector: (row) => row.representant.email,
-  //   sortable: true,
-  //   reorder: true,
-  // },
   {
-    cell: (row, id) => (
+    name: "Telefono",
+    selector: (row) => row.phone,
+    sortable: true,
+    reorder: true,
+  },
+  {
+    name: "Correo",
+    selector: (row) => row.user.email,
+    sortable: true,
+    reorder: true,
+  },
+  {
+    cell: (row) => (
       <>
         <Link
-          href={`/admin/students/edit/${row.ci}`}
+          href={`/admin/personal/editar/${row.ci}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -99,15 +75,15 @@ export const columnas = (student) => [
           </a>
         </Link>
         <a
-          href={row.id}
+          href={row.ci}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={student}
+          onClick={staff}
         >
           <i className="material-icons">delete</i>
         </a>
         <Link
-          href={`/admin/students/profile/${row.ci}`
+          href={`/admin/personal/perfil/${row.ci}`
             .toLowerCase()
             .replaceAll(" ", "-")
             .normalize("NFD")
