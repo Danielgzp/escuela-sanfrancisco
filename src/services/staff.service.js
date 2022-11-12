@@ -16,7 +16,7 @@ class StaffService {
 
   async findOne(ci) {
     const staff = await models.Staff.findByPk(ci, {
-      include: ["role", "eventuality", "news"],
+      include: ["role", "eventuality", "news", "user"],
     });
     if (!staff) {
       throw boom.notFound("Staff not found");

@@ -3,6 +3,7 @@ const { Model, DataTypes, Sequelize } = require("sequelize");
 const bcrypt = require("bcrypt");
 
 const USER_TABLE = "users";
+
 const UserSchema = {
   id: {
     //Permite que el campo sea nulo o no, en este caso le estamos diciendo que no puede ser null

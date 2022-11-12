@@ -9,7 +9,6 @@ const StaffSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
-
     type: DataTypes.INTEGER,
   },
   ci: {

@@ -18,29 +18,29 @@ const AdminSidebar = () => {
             </li>
             <li>
               <Link href="/admin">
-                <a className="has-arrow" aria-expanded="false">
+                <a className="ai-icon" aria-expanded="false">
                   <i className="la la-home"></i>
                   <span className="nav-text">Dashboard</span>
                 </a>
               </Link>
+            </li>
+            <li>
+              <a className="has-arrow" href="#!" aria-expanded="false">
+                <i className="la la-users"></i>
+                <span className="nav-text">Estudiantes</span>
+              </a>
               <ul aria-expanded="false">
                 <li>
-                  <Link href="/admin">
-                    <a>Dashboard </a>
+                  <Link href="/admin/estudiantes">
+                    <a>Lista de Estudiantes</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/admin/estudiantes/agregar-estudiante">
+                    <a>Añadir Estudiante</a>
                   </Link>
                 </li>
               </ul>
-            </li>
-
-            <li>
-              <a
-                className="ai-icon"
-                href="event-management.html"
-                aria-expanded="false"
-              >
-                <i className="la la-calendar"></i>
-                <span className="nav-text">Event Management</span>
-              </a>
             </li>
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
@@ -63,21 +63,22 @@ const AdminSidebar = () => {
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
                 <i className="la la-users"></i>
-                <span className="nav-text">Estudiantes</span>
+                <span className="nav-text">Personal</span>
               </a>
               <ul aria-expanded="false">
                 <li>
-                  <Link href="/admin/estudiantes">
-                    <a>Lista de Estudiantes</a>
+                  <Link href="/admin/personal">
+                    <a>Lista de Personal Administrativo, Obrero y Directivo</a>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/admin/estudiantes/agregar-estudiante">
-                    <a>Añadir Estudiante</a>
+                  <Link href="/admin/personal/agregar-personal">
+                    <a>Añadir Personal</a>
                   </Link>
                 </li>
               </ul>
             </li>
+
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
                 <i className="la la-graduation-cap"></i>
@@ -105,6 +106,16 @@ const AdminSidebar = () => {
               </Link>
             </li>
             <li>
+              <a
+                className="ai-icon"
+                href="event-management.html"
+                aria-expanded="false"
+              >
+                <i className="la la-calendar"></i>
+                <span className="nav-text">Event Management</span>
+              </a>
+            </li>
+            <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
                 <i className="la la-book"></i>
                 <span className="nav-text">Library</span>
@@ -129,24 +140,6 @@ const AdminSidebar = () => {
                 </li>
                 <li>
                   <a href="add-departments.html">Add Departments</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-users"></i>
-                <span className="nav-text">Personal</span>
-              </a>
-              <ul aria-expanded="false">
-                <li>
-                  <Link href="/admin/personal">
-                    <a>Lista de Personal Administrativo, Obrero y Directivo</a>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/admin/personal/añadir-personal">
-                    <a>Añadir Personal</a>
-                  </Link>
                 </li>
               </ul>
             </li>

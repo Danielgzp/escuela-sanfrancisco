@@ -27,8 +27,8 @@ const endPoints = {
     getAllPeriods: `${API}/${VERSION}/periods`,
     getPeriods: (id) => `${API}/${VERSION}/periods/${id}`,
     addPeriods: `${API}/${VERSION}/periods`,
-    deletePeriods: (id) => `${API}/${VERSION}/periods/${id}`,
-    updatePeriods: (id) => `${API}/${VERSION}/periods/${id}`,
+    deletePeriod: (id) => `${API}/${VERSION}/periods/${id}`,
+    updatePeriod: (id) => `${API}/${VERSION}/periods/${id}`,
   },
   representants: {
     getAllRepresentants: `${API}/${VERSION}/representants`,
@@ -41,8 +41,8 @@ const endPoints = {
     getAllRoles: `${API}/${VERSION}/roles`,
     getRoles: (id) => `${API}/${VERSION}/roles/${id}`,
     addRoles: `${API}/${VERSION}/roles`,
-    deleteRoles: (id) => `${API}/${VERSION}/roles/${id}`,
-    updateRoles: (id) => `${API}/${VERSION}/roles/${id}`,
+    deleteRole: (id) => `${API}/${VERSION}/roles/${id}`,
+    updateRole: (id) => `${API}/${VERSION}/roles/${id}`,
   },
   staff: {
     getAllStaff: `${API}/${VERSION}/staff`,
@@ -60,10 +60,10 @@ const endPoints = {
   },
   teachers: {
     getAllTeachers: `${API}/${VERSION}/teachers`,
-    getTeachers: (id) => `${API}/${VERSION}/teachers/${id}`,
+    getTeacher: (id) => `${API}/${VERSION}/teachers/${id}`,
     addTeachers: `${API}/${VERSION}/teachers`,
-    deleteTeachers: (id) => `${API}/${VERSION}/teachers/${id}`,
-    updateTeachers: (id) => `${API}/${VERSION}/teachers/${id}`,
+    deleteTeacher: (id) => `${API}/${VERSION}/teachers/${id}`,
+    updateTeacher: (id) => `${API}/${VERSION}/teachers/${id}`,
   },
   users: {
     getAllUsers: `${API}/${VERSION}/users`,

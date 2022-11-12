@@ -25,7 +25,7 @@ const RoleSchema = {
 class Role extends Model {
   static associate(models) {
     // this.belongsTo(models.Section, { as: "section" });
-    this.hasMany(models.Staff, { as: "staff", foreignKey: "ci" });
+    this.hasMany(models.Staff, { as: "staff", foreignKey: "roleId" });
   }
 
   static config(sequelize) {

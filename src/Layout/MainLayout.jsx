@@ -24,7 +24,7 @@ const MainLayout = (props) => {
   if (router.pathname.includes("/admin")) {
     return (
       <>
-        <Loader />
+        {/* <Loader /> */}
         <div id="main-wrapper">
           <AdminHeader />
           <AdminSidebar />

@@ -25,6 +25,7 @@ export const loadScripts = () => {
   script5.src = "/vendor/morris/morris.min.js";
   script5.async = false;
   document.body.appendChild(script5);
+  
   script6.src = "/vendor/peity/jquery.peity.min.js";
   script6.async = false;
   document.body.appendChild(script6);
@@ -37,7 +38,7 @@ export const loadScripts = () => {
   script9.src = "/vendor/svganimation/svg.animation.js";
   script9.async = false;
   document.body.appendChild(script9);
-  script10.src = "/js/styleSwitcher.js";
-  script10.async = false;
-  document.body.appendChild(script10);
+  // script10.src = "/js/styleSwitcher.js";
+  // script10.async = false;
+  // document.body.appendChild(script10);
 };

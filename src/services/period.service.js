@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Sequelize } = require("sequelize");
 
 const { models } = require("../../libs/sequelize");
 
@@ -7,12 +8,16 @@ class PeriodService {
   generate() {}
 
   async find() {
-    const periods = await models.Period
-      .findAll
-      //     {
-      //   include: ["representant", "record"],
-      // }
-      ();
+    const periods = await models.Period.findAll({
+      // attributes: {
+      //   include: [
+      //     [Sequelize.fn("COUNT", Sequelize.col("grades.id")), "gradesCount"],
+      //   ],
+      // },
+      // include: ["grade"],
+      // group: ["grade.id"],
+      
+    });
 
     return periods;
   }
@@ -26,12 +31,7 @@ class PeriodService {
   }
 
   async create(data) {
-    const newPeriod = await models.Period.create(
-      data
-      //     , {
-      //   include: ["representant", "record"],
-      // }
-    );
+    const newPeriod = await models.Period.create(data);
 
     return newPeriod;
   }

@@ -19,16 +19,22 @@ class StudentsService {
       ],
       where: {},
     };
-    console.log(query)
+    console.log(query);
     const { limit, offset } = query;
     if (limit && offset) {
       options.limit = limit;
       options.offset = offset;
     }
 
-    const students = await models.Students.findAll(options);
+    const students = await models.Students.findAndCountAll(options);
 
     return students;
+  }
+
+  async countStudents() {
+    const total = await models.Students.count();
+
+    return total;
   }
 
   async findOne(ci) {
