@@ -71,30 +71,30 @@ const AddGrade = ({ data }) => {
   }, []);
   return (
     <>
-      <div class="content-body">
-        <div class="container-fluid">
+      <div className="content-body">
+        <div className="container-fluid">
           <AdminMainPagination pageName={"Grados"} crudName={"Añadir Grado"} />
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Detalles del grado</h4>
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="card">
+                <div className="card-header">
+                  <h4 className="card-title">Detalles del grado</h4>
                 </div>
-                <div class="card-body">
+                <div className="card-body">
                   <form onSubmit={handleSubmit} ref={formRef}>
-                    <div class="row">
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Nombre</label>
-                          <input type="text" class="form-control" name="name" />
+                    <div className="row">
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Nombre</label>
+                          <input type="text" className="form-control" name="name" />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Sección</label>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Sección</label>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             name="section"
                           />
                         </div>
@@ -113,73 +113,73 @@ const AddGrade = ({ data }) => {
                           </select>
                         </div>
                       </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Course Details</label>
-                          <textarea class="form-control" rows="5"></textarea>
+                      <div className="col-lg-12 col-md-12 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Course Details</label>
+                          <textarea className="form-control" rows="5"></textarea>
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Start Form</label>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Start Form</label>
                           <input
                             name="datepicker"
-                            class="datepicker-default form-control"
+                            className="datepicker-default form-control"
                             id="datepicker"
                           />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Course Duration</label>
-                          <input type="text" class="form-control" />
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Course Duration</label>
+                          <input type="text" className="form-control" />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Course Price</label>
-                          <input type="text" class="form-control" />
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Course Price</label>
+                          <input type="text" className="form-control" />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Professor Name</label>
-                          <input type="text" class="form-control" />
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Professor Name</label>
+                          <input type="text" className="form-control" />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">
                             Cupos disponibles en el grado
                           </label>
                           <input
                             type="number"
-                            class="form-control"
+                            className="form-control"
                             name="quotas"
                           />
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label class="form-label">Contact Number</label>
-                          <input type="text" class="form-control" />
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">Contact Number</label>
+                          <input type="text" className="form-control" />
                         </div>
                       </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="form-group fallback w-100">
-                          <label class="form-label d-block">Course Photo</label>
+                      <div className="col-lg-12 col-md-12 col-sm-12">
+                        <div className="form-group fallback w-100">
+                          <label className="form-label d-block">Course Photo</label>
                           <input
                             type="file"
-                            class="dropify"
+                            className="dropify"
                             data-default-file=""
                           />
                         </div>
                       </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12">
-                        <button type="submit" class="btn btn-primary">
+                      <div className="col-lg-12 col-md-12 col-sm-12">
+                        <button type="submit" className="btn btn-primary">
                           Submit
                         </button>
-                        <button type="submit" class="btn btn-light">
+                        <button type="submit" className="btn btn-light">
                           Cancelar
                         </button>
                       </div>

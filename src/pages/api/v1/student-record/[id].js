@@ -1,37 +1,37 @@
 import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
-import { getNewsSchema, updateNewsSchema } from "schemas/newsSchema";
-import NewsService from "services/news.service";
+import { getRecordSchema, updateRecordSchema } from "schemas/recordStudent.schema";
+import RecordStudent from "services/recordStudent.service";
 
-const service = new NewsService();
+const service = new RecordStudent();
 const handler = nextConnect();
 
 handler
-  .get(validatorHandler(getNewsSchema, "params"), async (req, res, next) => {
+  .get(validatorHandler(getRecordSchema, "params"), async (req, res, next) => {
     try {
       const { id } = req.query;
-      const news = await service.findOne(id);
-      res.json(news);
+      const recordStudent = await service.findOne(id);
+      res.json(recordStudent);
     } catch (error) {
       next(error);
     }
   })
   .patch(
-    validatorHandler(getNewsSchema, "params"),
-    validatorHandler(updateNewsSchema, "body"),
+    validatorHandler(getRecordSchema, "params"),
+    validatorHandler(updateRecordSchema, "body"),
     async (req, res, next) => {
       try {
         const { id } = req.query;
         const body = req.body;
         console.log(body);
-        const news = await service.update(id, body);
-        res.json(news);
+        const recordStudent = await service.update(id, body);
+        res.json(recordStudent);
       } catch (error) {
         next(error);
       }
     }
   )
-  .delete(validatorHandler(getNewsSchema, "params"), async (req, res, next) => {
+  .delete(validatorHandler(getRecordSchema, "params"), async (req, res, next) => {
     try {
       const { id } = req.query;
       await service.delete(id);

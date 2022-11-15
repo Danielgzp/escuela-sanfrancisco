@@ -12,9 +12,18 @@ import axios from "axios";
 import endPoints from "utils/endpoints";
 import styles from "./css/styles";
 import TableHeader from "./TableHeader";
+import Loading from "Components/Loading/Loading";
 // import "./MyDataTable.css";
 
-const MyDataTable = ({ data, headerSearch, tableColumns }) => {
+const MyDataTable = ({
+  data,
+  headerSearch,
+  tableColumns,
+  nextPage,
+  prevPage,
+  lastPage,
+  firstPage,
+}) => {
   const { filter, loading, error, search, tableTitle } = data;
 
   async function studentDelete(props) {
@@ -26,7 +35,7 @@ const MyDataTable = ({ data, headerSearch, tableColumns }) => {
     }
   }
 
-  const handleDeleteStudent = async (props) => {
+  const handleDeleteStudent = async () => {
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¿Deseas eliminar este Estudiante?",
@@ -46,19 +55,26 @@ const MyDataTable = ({ data, headerSearch, tableColumns }) => {
     return (
       <div className="table-pagination">
         <div className="pagination-button">
-          <a onClick={""}>Pre-Escolar</a>
+          <a>Pre-Escolar</a>
         </div>
         <ul className="pagination right">
           <div className="pagination-container">
-            <li className="page-item">
-              <a className="page-link">Previousss</a>
+            <li className="page-item" onClick={(e) => firstPage(e)}>
+              <a className="page-link" href="#">
+                Primera Página
+              </a>
             </li>
-            <li className="page-item activw">
+            <li className="page-item" onClick={(e) => prevPage(e)}>
+              <a className="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li className="page-item">
               <a className="page-link" href="#">
                 1
               </a>
             </li>
-            <li className="page-item" aria-current="page">
+            <li className="page-item active" aria-current="page">
               <a className="page-link" href="#">
                 2
               </a>
@@ -68,9 +84,14 @@ const MyDataTable = ({ data, headerSearch, tableColumns }) => {
                 3
               </a>
             </li>
-            <li className="page-item">
+            <li className="page-item" onClick={(e) => nextPage(e)}>
+              <a className="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li className="page-item" onClick={(e) => lastPage(e)}>
               <a className="page-link" href="#">
-                Next
+                Última Página
               </a>
             </li>
           </div>
@@ -120,12 +141,12 @@ const MyDataTable = ({ data, headerSearch, tableColumns }) => {
         fixedHeaderScrollHeight="700px"
         noDataComponent={<h2>No se encontro ningun elemento</h2>}
         progressPending={loading}
-        progressComponent={<Loader />}
+        progressComponent={<Loading />}
         pagination
         //el paginationServer hacia que no funcionarai bien la paginacion,
         // paginationComponentOptions={paginationOptions}
-        // paginationComponent={PaginationTable}
-        // paginationServer
+        paginationComponent={PaginationTable}
+        paginationServer
         //   onChangeRowsPerPage={20}
         subHeader
         subHeaderComponent={

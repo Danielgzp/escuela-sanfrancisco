@@ -11,7 +11,7 @@ const AdminSidebar = () => {
             <li>
               <Link href="/">
                 <a className="ai-icon" aria-expanded="false">
-                  <i className="la la-home"></i>
+                  <i className="material-icons">home</i>
                   <span className="nav-text">Home Page</span>
                 </a>
               </Link>
@@ -19,14 +19,14 @@ const AdminSidebar = () => {
             <li>
               <Link href="/admin">
                 <a className="ai-icon" aria-expanded="false">
-                  <i className="la la-home"></i>
+                  <i className="material-icons">domain</i>
                   <span className="nav-text">Dashboard</span>
                 </a>
               </Link>
             </li>
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-users"></i>
+                <i className="material-icons">face</i>
                 <span className="nav-text">Estudiantes</span>
               </a>
               <ul aria-expanded="false">
@@ -44,7 +44,7 @@ const AdminSidebar = () => {
             </li>
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-user"></i>
+                <i className="material-icons">person</i>
                 <span className="nav-text">Profesores</span>
               </a>
               <ul aria-expanded="false">
@@ -62,7 +62,7 @@ const AdminSidebar = () => {
             </li>
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-users"></i>
+                <i className="material-icons">supervisor_account</i>
                 <span className="nav-text">Personal</span>
               </a>
               <ul aria-expanded="false">
@@ -102,6 +102,25 @@ const AdminSidebar = () => {
                 <a className="ai-icon" aria-expanded="false">
                   <i className="la la-calendar"></i>
                   <span className="nav-text">Períodos Escolares</span>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/noticias">
+                <a className="ai-icon" aria-expanded="false">
+                  
+
+                  <i className="material-icons">library_books</i>
+
+                  <span className="nav-text">Noticias</span>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/admin/consultas">
+                <a className="ai-icon" aria-expanded="false">
+                  <i className="material-icons">description</i>
+                  <span className="nav-text">Consultas</span>
                 </a>
               </Link>
             </li>

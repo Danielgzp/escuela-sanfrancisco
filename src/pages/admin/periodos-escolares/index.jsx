@@ -1,6 +1,7 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
+import Loading from "Components/Loading/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -70,7 +71,7 @@ const ListPeriods = () => {
               <div className="card-body">
                 <div className="table-responsive">
                   {state.loading ? (
-                    <Loader />
+                    <Loading />
                   ) : (
                     <table className="table table-striped verticle-middle table-responsive-sm">
                       <thead>
@@ -88,7 +89,7 @@ const ListPeriods = () => {
                             <td>{period.id}</td>
                             <td>{period.name}</td>
                             <td>
-                              <span class="badge badge-success">Activo</span>
+                              <span className="badge badge-success">Activo</span>
                             </td>
                             {/* <td>{period.totalStudents}</td> */}
                             {/* <td>{period.students.length}</td> */}

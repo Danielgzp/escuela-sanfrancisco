@@ -90,7 +90,10 @@ export const columns = (student) => [
     cell: (row, id) => (
       <>
         <Link
-          href={`/admin/students/editar/${row.ci}`}
+          href={`/admin/estudiantes/editar/${row.ci}`
+            .replaceAll(" ", "-")
+            .normalize("NFD")
+            .replace(/[?¿¡!\u0300-\u036f]/g, "")}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -107,8 +110,7 @@ export const columns = (student) => [
           <i className="material-icons">delete</i>
         </a>
         <Link
-          href={`/admin/students/perfil/${row.ci}`
-            .toLowerCase()
+          href={`/admin/estudiantes/perfil/${row.ci}`
             .replaceAll(" ", "-")
             .normalize("NFD")
             .replace(/[?¿¡!\u0300-\u036f]/g, "")}

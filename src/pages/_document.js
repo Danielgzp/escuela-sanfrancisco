@@ -18,7 +18,7 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
         />
-        
+
         {/* <link rel="stylesheet" href="../styles/bootstrap-select.min.css" /> */}
         <meta name="theme-color" content="#232352" />
       </Head>
@@ -29,7 +29,10 @@ export default function Document() {
           src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
           strategy="beforeInteractive"
         />
-        
+        <Script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </Html>
   );

@@ -13,7 +13,7 @@ const TableHeader = ({ inputValue, searchButton, tableName }) => {
         <form>
           <input
             type="text"
-            value={inputValue}
+            value={inputValue || ''}
             onChange={searchButton}
             className="z-depth-2"
           />

@@ -15,7 +15,7 @@ const Header = (data) => {
   const [cookie, setCookie] = useState(null);
   const auth = useAuth();
 
-  console.log(auth.user);
+  // console.log(auth.user);
 
   const [state, setState] = useState({
     menu: "",
@@ -311,12 +311,12 @@ const Header = (data) => {
                 <li>
                   {/* He quitado el href porque la pagina index necesita cargar scripts
                   y si se maneja en forma de SPA no cargan los scripts */}
-                  {/* <Link href="/admin"> */}
-                  <a href="/admin">
-                    {/* <i className="material-icons icon-white">description</i> */}
-                    ADMIN
-                  </a>
-                  {/* </Link> */}
+                  <Link href="/admin">
+                    <a>
+                      <i className="material-icons icon-white">description</i>
+                      ADMIN
+                    </a>
+                  </Link>
                 </li>
 
                 {/* <li>

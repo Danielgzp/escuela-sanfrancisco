@@ -31,7 +31,7 @@ const NewsSchema = {
   },
   staffCi: {
     field: "staff_ci",
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
     references: {
       model: STAFF_TABLE,

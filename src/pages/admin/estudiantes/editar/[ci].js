@@ -1,4 +1,5 @@
 import axios from "axios";
+import RecordStudentModal from "Components/Modal/RecordStudentModal";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
@@ -7,7 +8,8 @@ import { loadScripts } from "utils/loadScripts";
 
 const EditStudent = ({ data }) => {
   const { student, grades } = data;
-  
+  console.log(student)
+
   const formRef = useRef(null);
   const router = useRouter();
   const [state, setState] = useState({
@@ -16,12 +18,12 @@ const EditStudent = ({ data }) => {
   });
 
   useEffect(() => {
-    loadScripts()
+    loadScripts();
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
     const script4 = document.createElement("script");
-    
+
     script.src = "/vendor/pickadate/picker.js";
     script.async = false;
     document.body.appendChild(script);
@@ -34,7 +36,7 @@ const EditStudent = ({ data }) => {
     script4.src = "/js/plugins-init/pickadate-init.js";
     script4.async = false;
     document.body.appendChild(script4);
-  }, [])
+  }, []);
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -54,12 +56,12 @@ const EditStudent = ({ data }) => {
       houseProperty: objectData.houseProperty,
       // no funciona bien el actualizar el representante
       // representantId: 7,
-      representant: {
-        repName: objectData.repName,
-        repLastName: objectData.repLastName,
-        email: objectData.email,
-        phone: objectData.phone,
-      },
+      // representant: {
+      //   repName: objectData.repName,
+      //   repLastName: objectData.repLastName,
+      //   email: objectData.email,
+      //   phone: objectData.phone,
+      // },
       gradeId: objectData.grade,
     };
 
@@ -248,7 +250,7 @@ const EditStudent = ({ data }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12">
+                      {/* <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">
                             Nombre del Representante
@@ -297,11 +299,7 @@ const EditStudent = ({ data }) => {
                             className="form-control"
                             defaultValue={student.representant.phone}
                           />
-                          {/* <input
-                            name="datepicker"
-                            className="datepicker-default form-control"
-                            id="datepicker1"
-                          /> */}
+                          
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
@@ -314,7 +312,7 @@ const EditStudent = ({ data }) => {
                             defaultValue={student.representant.email}
                           />
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="form-group fallback w-100">
@@ -328,13 +326,25 @@ const EditStudent = ({ data }) => {
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
-                          Submit
+                          Enviar
                         </button>
                         <button type="submit" className="btn btn-light">
-                          Cencel
+                          Cancelar
+                        </button>
+                        <button
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#record-${student.ci}`}
+                          className="btn btn-primary mr-3"
+                        >
+                          <span className="mr-3">
+                            <i className="fa fa-pencil"></i>
+                          </span>
+                          Agregar Eventualidad
                         </button>
                       </div>
                     </div>
+                    <RecordStudentModal student={student} />
                   </form>
                 </div>
               </div>

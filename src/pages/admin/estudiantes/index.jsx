@@ -20,9 +20,13 @@ const ListStudents = () => {
     error: null,
     api: [],
     filter: [],
-    search: "",
+    search: " ",
+
     tableTitle: "Lista de los Estudiantes",
   });
+
+  const [limit, setLimit] = useState(50);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     loadScripts();
@@ -34,7 +38,7 @@ const ListStudents = () => {
       });
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/students?limit=40&offset=0`
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
         );
 
         const students = await JSON.parse(JSON.stringify(response.data));
@@ -51,12 +55,6 @@ const ListStudents = () => {
       }
     }
     fetchData();
-    // script.src = "/vendor/datatables/js/jquery.dataTables.min.js";
-    // script.async = false;
-    // document.body.appendChild(script);
-    // script2.src = "/js/plugins-init/datatables.init.js";
-    // script2.async = false;
-    // document.body.appendChild(script2);
   }, []);
 
   useMemo(() => {
@@ -72,6 +70,147 @@ const ListStudents = () => {
 
   const handleSearchButton = (e) => {
     setState({ ...state, search: e.target.value });
+  };
+  const handleClickNext = (e) => {
+    e.preventDefault();
+
+    setState({
+      loading: true,
+      error: null,
+    });
+    setOffset(offset + limit);
+    console.log(offset);
+
+    console.log(offset);
+    // setOffset(offset + 50);
+    async function fetchNextPage() {
+      try {
+        const response = await axios(
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
+        );
+        console.log(
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
+        );
+
+        const data = await JSON.parse(JSON.stringify(response.data));
+        setState({
+          ...state,
+          api: data,
+          filter: state.data,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        setState({ loading: false, error: err });
+      }
+    }
+    fetchNextPage();
+  };
+  const handleClickPrev = (e) => {
+    e.preventDefault();
+
+    if (offset == 0) {
+      console.log("es igual a 0");
+
+      return;
+    }
+    setState({
+      loading: true,
+      error: null,
+    });
+    setOffset(offset - limit);
+    // setOffset(offset + 50);
+    async function fetchNextPage() {
+      try {
+        console.log(offset);
+        const response = await axios(
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
+        );
+        const data = await JSON.parse(JSON.stringify(response.data));
+
+        setState({
+          ...state,
+          api: data,
+          filter: state.data,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        setState({ loading: false, error: err });
+      }
+    }
+    fetchNextPage();
+  };
+  const handleClickFirstPage = (e) => {
+    e.preventDefault();
+
+    if (offset == 0) {
+      console.log("es igual a 0");
+
+      return;
+    }
+    setState({
+      loading: true,
+      error: null,
+    });
+    setOffset(1);
+    // setOffset(offset + 50);
+    async function fetchFirstPage() {
+      try {
+        console.log(offset);
+        const response = await axios(
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
+        );
+        const data = await JSON.parse(JSON.stringify(response.data));
+
+        setState({
+          ...state,
+          api: data,
+          filter: state.data,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        setState({ loading: false, error: err });
+      }
+    }
+    fetchFirstPage();
+  };
+
+  const handleClickLastPage = (e) => {
+    e.preventDefault();
+
+    if (offset == 394) {
+      console.log("es igual a 0");
+
+      return;
+    }
+    setState({
+      loading: true,
+      error: null,
+    });
+    setOffset(344);
+    // setOffset(offset + 50);
+    async function fetchLastPage() {
+      try {
+        console.log(offset);
+        const response = await axios(
+          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}`
+        );
+        const data = await JSON.parse(JSON.stringify(response.data));
+
+        setState({
+          ...state,
+          api: data,
+          filter: state.data,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        setState({ loading: false, error: err });
+      }
+    }
+    fetchLastPage();
   };
 
   return (
@@ -114,7 +253,7 @@ const ListStudents = () => {
                       <h4 className="card-title">
                         Lista de todos los Estudiantes{" "}
                       </h4>
-                      <Link href="/admin/students/add-student">
+                      <Link href="/admin/estudiantes/agregar-estudiante">
                         <a className="btn btn-primary">Agregar Estudiante +</a>
                       </Link>
                     </div>
@@ -124,6 +263,10 @@ const ListStudents = () => {
                           data={state}
                           tableColumns={columns}
                           headerSearch={handleSearchButton}
+                          nextPage={handleClickNext}
+                          prevPage={handleClickPrev}
+                          firstPage={handleClickFirstPage}
+                          lastPage={handleClickLastPage}
                         />
                       </div>
                     </div>

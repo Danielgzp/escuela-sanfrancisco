@@ -25,7 +25,8 @@ const MainLayout = (props) => {
     return (
       <>
         {/* <Loader /> */}
-        <div id="main-wrapper">
+        {/* <div id="main-wrapper"> */}
+        <div>
           <AdminHeader />
           <AdminSidebar />
           {props.children}

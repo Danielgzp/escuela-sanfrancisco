@@ -1,5 +1,7 @@
+import axios from "axios";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
+import endPoints from "utils/endpoints";
 
 import BillBoard from "../Components/BillBoard/BillBoard";
 // import HomeInfo from "../Components/HomeInfo/HomeInfo";
@@ -11,7 +13,17 @@ import BillBoard from "../Components/BillBoard/BillBoard";
 
 // const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${llave}`;
 
-const Home = (data) => {
+const Home = ({ data }) => {
+  const { news } = data;
+
+  useEffect(() => {
+    var elems = document.querySelector(".carousel");
+    var instances = M.Carousel.init(elems, {
+      duration: 600,
+      indicators: true,
+    });
+  }, []);
+
   // console.log(data)
   return (
     <>
@@ -22,8 +34,7 @@ const Home = (data) => {
       <main>
         <div className="row">
           <div className="col l12 s12">
-            {" "}
-            <BillBoard></BillBoard>{" "}
+            <BillBoard posts={news} />
           </div>
         </div>
         <div className="container">
@@ -57,9 +68,16 @@ const Home = (data) => {
 export default Home;
 
 export async function getServerSideProps() {
-  return {
-    props: {
-      data: "algo",
-    },
-  };
+  try {
+    const response = await axios.get(endPoints.news.getAllNews);
+    const news = await JSON.parse(JSON.stringify(response.data));
+
+    return {
+      props: {
+        data: { news },
+      },
+    };
+  } catch (error) {
+    return { props: { data: error.message } };
+  }
 }

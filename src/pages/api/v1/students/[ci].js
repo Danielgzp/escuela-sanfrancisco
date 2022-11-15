@@ -19,6 +19,7 @@ handler
     }
   })
   .patch(
+    validatorHandler(getStudentSchema, "params"),
     validatorHandler(updateStudentSchema, "body"),
     async (req, res, next) => {
       try {

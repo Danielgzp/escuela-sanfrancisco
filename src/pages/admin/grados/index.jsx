@@ -1,6 +1,7 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
+import Loading from "Components/Loading/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -69,7 +70,7 @@ const ListGrades = () => {
               <div className="card-body">
                 <div className="table-responsive">
                   {state.loading ? (
-                    <Loader />
+                    <Loading />
                   ) : (
                     <table className="table table-striped verticle-middle table-responsive-sm">
                       <thead>

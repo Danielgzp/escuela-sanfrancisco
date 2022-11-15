@@ -8,7 +8,13 @@ const endPoints = {
     login: `${API}/${VERSION}/auth/login`,
     profile: `${API}/${VERSION}/auth/profile`,
   },
-  eventualities: {},
+  eventualities: {
+    getAllEventualities: `${API}/${VERSION}/eventualities`,
+    getEventualities: (id) => `${API}/${VERSION}/eventualities/${id}`,
+    addEventualities: `${API}/${VERSION}/eventualities`,
+    deleteEventualities: (id) => `${API}/${VERSION}/eventualities/${id}`,
+    updateEventualities: (id) => `${API}/${VERSION}/eventualities/${id}`,
+  },
   grades: {
     getAllGrades: `${API}/${VERSION}/grades`,
     getGrade: (id) => `${API}/${VERSION}/grades/${id}`,
@@ -36,6 +42,13 @@ const endPoints = {
     addRepresentant: `${API}/${VERSION}/representants`,
     deleteRepresentant: (id) => `${API}/${VERSION}/representants/${id}`,
     updateRepresentant: (id) => `${API}/${VERSION}/representants/${id}`,
+  },
+  record: {
+    getAllRecord: `${API}/${VERSION}/student-record`,
+    getRecord: (id) => `${API}/${VERSION}/student-record/${id}`,
+    addRecord: `${API}/${VERSION}/student-record`,
+    deleteRecord: (id) => `${API}/${VERSION}/student-record/${id}`,
+    updateRecord: (id) => `${API}/${VERSION}/student-record/${id}`,
   },
   roles: {
     getAllRoles: `${API}/${VERSION}/roles`,

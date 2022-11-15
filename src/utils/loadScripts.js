@@ -25,7 +25,6 @@ export const loadScripts = () => {
   script5.src = "/vendor/morris/morris.min.js";
   script5.async = false;
   document.body.appendChild(script5);
-  
   script6.src = "/vendor/peity/jquery.peity.min.js";
   script6.async = false;
   document.body.appendChild(script6);

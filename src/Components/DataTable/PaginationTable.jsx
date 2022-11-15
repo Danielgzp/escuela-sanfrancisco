@@ -1,10 +1,14 @@
 import React from "react";
 
-const PaginationTable = ({ prev, next }) => {
+const PaginationTable = ({next, firstPage, lastPage}) => {
+  
   return (
     <ul className="pagination justify-content-end">
       <div className="pagination-container">
-        <li className="page-item" onClick={prev}>
+        <li className="page-item" onClick={firstPage}>
+          <a className="page-link">Primera Página</a>
+        </li>
+        <li className="page-item">
           <a className="page-link">Previous</a>
         </li>
         <li className="page-item activw">
@@ -26,6 +30,9 @@ const PaginationTable = ({ prev, next }) => {
           <a className="page-link" href="#">
             Next
           </a>
+        </li>
+        <li className="page-item" onClick={lastPage}>
+          <a className="page-link">Última Página</a>
         </li>
       </div>
     </ul>

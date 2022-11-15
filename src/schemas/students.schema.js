@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const id = Joi.number().integer();
 const representantId = Joi.number().integer();
-const ci = Joi.number().integer();
+const ci = Joi.string();
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
 const address = Joi.string();

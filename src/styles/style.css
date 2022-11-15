@@ -35202,7 +35202,7 @@ button:focus {
 }
 .pagination .page-item .page-link:hover i,
 .pagination .page-item .page-link span {
-  color: #fff;
+  color: var(--dark-blue);
 }
 .pagination .page-item .page-link:focus {
   outline: 0;

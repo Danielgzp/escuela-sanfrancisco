@@ -9,24 +9,73 @@ class StudentsService {
   async find(query) {
     const options = {
       include: [
-        "representant",
-        "record",
+        // "representant",
+        // "record",
         "grade",
+        // "record",
         {
           association: "grade",
           include: ["period"],
         },
       ],
-      where: {},
+      order: [["gradeId"]],
+      attributes: [
+        "name",
+        "lastName",
+        "birthPlace",
+        "birthDate",
+        "admissionDate",
+        "id",
+        "gender",
+        "ci",
+      ],
+      // where: {},
     };
-    console.log(query);
+
     const { limit, offset } = query;
     if (limit && offset) {
       options.limit = limit;
       options.offset = offset;
     }
 
-    const students = await models.Students.findAndCountAll(options);
+    const students = await models.Students.findAll(options);
+
+    return students;
+  }
+
+  async findPreScool(query) {
+    const options = {
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+          include: ["period"],
+        },
+      ],
+      order: [["gradeId"]],
+      attributes: [
+        "name",
+        "lastName",
+        "birthPlace",
+        "birthDate",
+        "admissionDate",
+        "id",
+        "gender",
+        "ci",
+      ],
+      where: {
+        gradeId: ["11", "12"]
+      },
+    };
+
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
+
+    const students = await models.Students.findAll(options);
 
     return students;
   }
