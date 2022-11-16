@@ -7,9 +7,11 @@ import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import EventualityTeacherModal from "Components/Modal/EventualityTeacherModal";
 
 const EditTeacher = ({ data }) => {
   const { grades, teacher } = data;
+  console.log(teacher);
 
   const formRef = useRef(null);
   const router = useRouter();
@@ -41,7 +43,7 @@ const EditTeacher = ({ data }) => {
     setState({ loading: true, error: null });
     console.log(editTeacher);
     axios
-      .post(endPoints.teachers.updateTeacher, editTeacher)
+      .patch(endPoints.teachers.updateTeacher(teacher.ci), editTeacher)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -106,7 +108,7 @@ const EditTeacher = ({ data }) => {
                             type="text"
                             name="name"
                             className="form-control"
-                            defaultValue={teacher.name}
+                            defaultValue={teacher?.name}
                           />
                         </div>
                       </div>
@@ -117,7 +119,7 @@ const EditTeacher = ({ data }) => {
                             type="text"
                             name="lastName"
                             className="form-control"
-                            defaultValue={teacher.lastName}
+                            defaultValue={teacher?.lastName}
                           />
                         </div>
                       </div>
@@ -130,7 +132,7 @@ const EditTeacher = ({ data }) => {
                             type="number"
                             name="ci"
                             className="form-control"
-                            defaultValue={teacher.ci}
+                            defaultValue={teacher?.ci}
                           />
                         </div>
                       </div>
@@ -141,7 +143,7 @@ const EditTeacher = ({ data }) => {
                             name="address"
                             className="form-control"
                             rows="5"
-                            defaultValue={teacher.address}
+                            defaultValue={teacher?.address}
                           ></textarea>
                         </div>
                       </div>
@@ -154,7 +156,7 @@ const EditTeacher = ({ data }) => {
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
-                            defaultValue={teacher.admissionDate}
+                            defaultValue={teacher?.admissionDate}
                           />
                         </div>
                       </div>
@@ -167,7 +169,7 @@ const EditTeacher = ({ data }) => {
                             name="birthDate"
                             className="datepicker-default form-control"
                             id="datepicker"
-                            defaultValue={teacher.birthDate}
+                            defaultValue={teacher?.birthDate}
                           />
                         </div>
                       </div>
@@ -180,7 +182,7 @@ const EditTeacher = ({ data }) => {
                             type="text"
                             name="birthPlace"
                             className="form-control"
-                            defaultValue={teacher.birthPlace}
+                            defaultValue={teacher?.birthPlace}
                           />
                         </div>
                       </div>
@@ -190,14 +192,14 @@ const EditTeacher = ({ data }) => {
                             Grado el cual imparte
                           </label>
                           <select name="role" className="form-control">
-                            <option value="" defaultValue={teacher.grade.id}>
-                              {teacher.grade.name} {teacher.grade.section}
+                            <option value="" defaultValue={teacher?.grade?.id}>
+                              {teacher?.grade?.name} {teacher?.grade?.section}
                             </option>
-                            {grades.map((grade) => (
+                            {grades?.map((grade) => (
                               <option
                                 key={grade.id}
                                 value={`${grade.id}`}
-                              >{`${grade.name} ${grade.grade.section}`}</option>
+                              >{`${grade.name} ${grade.section}`}</option>
                             ))}
                           </select>
                         </div>
@@ -206,8 +208,8 @@ const EditTeacher = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Género</label>
                           <select name="gender" className="form-control">
-                            <option value="" defaultValue={teacher.gender}>
-                              {teacher.gender}
+                            <option value="" defaultValue={teacher?.gender}>
+                              {teacher?.gender}
                             </option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -223,7 +225,7 @@ const EditTeacher = ({ data }) => {
                             type="text"
                             name="phone"
                             className="form-control"
-                            defaultValue={teacher.phone}
+                            defaultValue={teacher?.phone}
                           />
                           {/* <input
                             name="datepicker"
@@ -239,7 +241,7 @@ const EditTeacher = ({ data }) => {
                             type="email"
                             name="email"
                             className="form-control"
-                            defaultValue={teacher.email}
+                            defaultValue={teacher?.email}
                           />
                         </div>
                       </div>
@@ -259,9 +261,21 @@ const EditTeacher = ({ data }) => {
                           Submit
                         </button>
                         <button type="submit" className="btn btn-light">
-                          Cancel
+                          Cancelar
+                        </button>
+                        <button
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#eventuality-${teacher.ci}`}
+                          className="btn btn-primary mr-3"
+                        >
+                          <span className="mr-3">
+                            <i className="fa fa-pencil"></i>
+                          </span>
+                          Agregar Eventualidad
                         </button>
                       </div>
+                      <EventualityTeacherModal teacher={teacher.ci} />
                     </div>
                   </form>
                 </div>

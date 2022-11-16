@@ -25,7 +25,7 @@ handler
       try {
         const { ci } = req.query;
         const body = req.body;
-        const Teacher = await service.update(ci, body);
+        const teacher = await service.update(ci, body);
         res.json(teacher);
       } catch (error) {
         next(error);
@@ -33,7 +33,7 @@ handler
     }
   )
   .delete(
-    validatorHandler(getteacherSchema, "params"),
+    validatorHandler(getTeacherSchema, "params"),
     async (req, res, next) => {
       try {
         const { ci } = req.query;

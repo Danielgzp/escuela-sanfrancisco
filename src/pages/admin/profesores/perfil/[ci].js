@@ -6,13 +6,13 @@ import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
 import { loadScripts } from "utils/loadScripts";
 
-const StudentProfile = ({ data }) => {
+const TeacherProfile = ({ data }) => {
   const { ci } = data;
   const [state, setState] = useState({
     loading: false,
     error: null,
   });
-  const [student, setStudent] = useState({});
+  const [teacher, setTeacher] = useState({});
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -20,9 +20,9 @@ const StudentProfile = ({ data }) => {
     async function fetchData() {
       setState({ loading: true, error: null });
       try {
-        const response = await axios.get(endPoints.students.getStudent(ci));
+        const response = await axios.get(endPoints.teachers.getTeacher(ci));
         const data = await JSON.parse(JSON.stringify(response.data));
-        setStudent(data);
+        setTeacher(data);
         setState({ loading: false, error: null });
       } catch (err) {
         setState({ loading: false, error: err });
@@ -33,15 +33,15 @@ const StudentProfile = ({ data }) => {
     loadScripts();
   }, []);
 
-  console.log(student);
+  console.log(teacher);
 
   return (
     <>
       <div className="content-body">
         <div className="container-fluid">
           <AdminMainPagination
-            pageName={"Estudiantes"}
-            crudName={"Perfil del Estudiante"}
+            pageName={"Profesores"}
+            crudName={"Perfil del Profesor"}
           />
 
           {state.loading ? (
@@ -70,13 +70,13 @@ const StudentProfile = ({ data }) => {
                             />
                           </div>
                           <h3 className="mt-3 mb-1 text-white">
-                            {student?.name} {student?.lastName}
+                            {teacher?.name} {teacher?.lastName}
                           </h3>
                         </div>
 
                         <div className="card-footer text-center border-0 mt-0">
                           <Link
-                            href={`/admin/estudiantes/editar/${student.ci}`}
+                            href={`/admin/profesores/editar/${teacher?.ci}`}
                           >
                             <a className="btn btn-primary btn-rounded px-4">
                               Editar
@@ -99,31 +99,31 @@ const StudentProfile = ({ data }) => {
                         <div className="card-body pb-0">
                           <ul className="list-group list-group-flush">
                             <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Gender</strong>
-                              <span className="mb-0">{student?.gender}</span>
+                              <strong>Género</strong>
+                              <span className="mb-0">{teacher?.gender}</span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Grado que cursa</strong>
+                              <strong>Grado que imparte</strong>
                               <span className="mb-0">
-                                {student?.grade?.name} {student?.grade?.section}
+                                {teacher?.grade?.name} {teacher?.grade?.section}
                               </span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Lugar de Nacimiento</strong>
                               <span className="mb-0">
-                                {student?.birthPlace}
+                                {teacher?.birthPlace}
                               </span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Fecha de Ingreso</strong>
                               <span className="mb-0">
-                                {student?.admissionDate}
+                                {teacher?.admissionDate}
                               </span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Propiedad</strong>
                               <span className="mb-0">
-                                {student?.houseProperty}
+                                {/* {teacher?.houseProperty} */}
                               </span>
                             </li>
                           </ul>
@@ -152,7 +152,7 @@ const StudentProfile = ({ data }) => {
                           <h4 className="card-title">Dirección </h4>
                         </div>
                         <div className="card-body">
-                          <p className="mb-0">{student?.address}</p>
+                          <p className="mb-0">{teacher?.address}</p>
                         </div>
                       </div>
                     </div>
@@ -248,7 +248,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.name}</span>
+                                    <span>{teacher?.name}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -259,7 +259,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.lastName}</span>
+                                    <span>{teacher?.lastName}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -269,47 +269,10 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.birthDate}</span>
+                                    <span>{teacher?.birthDate}</span>
                                   </div>
                                 </div>
-                                <div className="row mb-4">
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-6">
-                                    <h5 className="f-w-500">
-                                      Cedula Escolar{" "}
-                                      <span className="pull-right">:</span>
-                                    </h5>
-                                  </div>
-                                  <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.ci}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="profile-skills pt-2 border-bottom-1 pb-2">
-                                <h4 className="text-primary mb-4">
-                                  Representante
-                                </h4>
-                                <div className="row mb-4">
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-6">
-                                    <h5 className="f-w-500">
-                                      Nombre{" "}
-                                      <span className="pull-right">:</span>
-                                    </h5>
-                                  </div>
-                                  <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.name}</span>
-                                  </div>
-                                </div>
-                                <div className="row mb-4">
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-6">
-                                    <h5 className="f-w-500">
-                                      Apellido
-                                      <span className="pull-right">:</span>
-                                    </h5>
-                                  </div>
-                                  <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.lastName}</span>
-                                  </div>
-                                </div>
+
                                 <div className="row mb-4">
                                   <div className="col-lg-3 col-md-4 col-sm-6 col-6">
                                     <h5 className="f-w-500">
@@ -318,7 +281,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.ci}</span>
+                                    <span>{teacher?.ci}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -329,7 +292,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>representante@email.com</span>
+                                    <span>{teacher?.email}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -340,37 +303,38 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>03123212</span>
+                                    <span>{teacher.phone}</span>
                                   </div>
                                 </div>
                               </div>
 
                               <div className="profile-skills pt-2 border-bottom-1 pb-2">
-                                {student?.record?.length === 0 ? (
+                                {teacher?.eventuality?.length === 0 ? (
                                   <h4>
                                     No hay Eventualidades registradas en este
-                                    estudiante
+                                    profesor
                                   </h4>
                                 ) : (
                                   <h4 className="text-primary mb-4">
                                     Eventualidades
                                   </h4>
                                 )}
-                                {student?.record?.map((record) => (
-                                  <>
+                                {teacher?.eventuality?.map((eventuality) => (
+                                  <article key={eventuality.id}>
                                     <a
                                       href="#!"
                                       className="text-muted pr-3 f-s-16"
                                     >
                                       <i className="flag-icon flag-icon-fr"></i>
-                                      {record.title} {"  -  "} {record.day}
+                                      {eventuality.title} {"  -  "}{" "}
+                                      {eventuality.day}
                                     </a>
                                     <div className="profile-about-me">
                                       <div className="border-bottom-1 pb-4">
-                                        <p>{record.description}</p>
+                                        <p>{eventuality.description}</p>
                                       </div>
                                     </div>
-                                  </>
+                                  </article>
                                 ))}
                               </div>
                             </div>
@@ -513,7 +477,7 @@ const StudentProfile = ({ data }) => {
   );
 };
 
-export default StudentProfile;
+export default TeacherProfile;
 
 export async function getServerSideProps({ query }) {
   const { ci } = query;

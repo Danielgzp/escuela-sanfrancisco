@@ -7,6 +7,7 @@ import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import EventualityTeacherModal from "Components/Modal/EventualityTeacherModal";
 
 const EditStaff = ({ data }) => {
   const { roles, staff } = data;
@@ -42,7 +43,7 @@ const EditStaff = ({ data }) => {
     setState({ loading: true, error: null });
     console.log(editStaff);
     axios
-      .post(endPoints.staff.updateStaff, editStaff)
+      .patch(endPoints.staff.updateStaff(staff.ci), editStaff)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -189,7 +190,7 @@ const EditStaff = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Role/Cargo</label>
                           <select name="role" className="form-control">
-                            <option value="" defaultValue={staff.role.id}>
+                            <option defaultValue={staff.role.id}>
                               {staff.role.name}
                             </option>
                             {roles.map((role) => (
@@ -205,7 +206,7 @@ const EditStaff = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Género</label>
                           <select name="gender" className="form-control">
-                            <option value="" defaultValue={staff.gender}>
+                            <option defaultValue={staff.gender}>
                               {staff.gender}
                             </option>
                             <option value="Masculino">Masculino</option>
@@ -268,8 +269,20 @@ const EditStaff = ({ data }) => {
                           Submit
                         </button>
                         <button type="submit" className="btn btn-light">
-                          Cancel
+                          Cancelar
                         </button>
+                        <button
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#eventuality-${staff.ci}`}
+                          className="btn btn-primary mr-3"
+                        >
+                          <span className="mr-3">
+                            <i className="fa fa-pencil"></i>
+                          </span>
+                          Agregar Eventualidad
+                        </button>
+                        <EventualityTeacherModal staff={staff.ci} />
                       </div>
                     </div>
                   </form>

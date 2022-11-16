@@ -44,6 +44,7 @@ const updateTeacherSchema = Joi.object({
   phone,
   email,
   eventuality,
+  gradeId,
 });
 
 module.exports = {
