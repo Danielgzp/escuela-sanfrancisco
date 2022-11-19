@@ -67,15 +67,14 @@ const Modal = ({ posts }) => {
                 <h5 className="modal-title" id="exampleModalLabel">
                   Editar Noticia
                 </h5>
-                <button
+                <a
                   type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  style={{ border: "none !important" }}
                 >
                   x
-                </button>
+                </a>
               </div>
               <div className="modal-body">
                 <form ref={formRef}>

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
-import { loadScripts } from "utils/loadScripts";
 
 const EditStudent = ({ data }) => {
   const { student, grades } = data;

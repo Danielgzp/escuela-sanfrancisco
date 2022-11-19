@@ -4,7 +4,6 @@ import Loading from "Components/Loading/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
-import { loadScripts } from "utils/loadScripts";
 
 const TeacherProfile = ({ data }) => {
   const { ci } = data;
@@ -30,7 +29,6 @@ const TeacherProfile = ({ data }) => {
     }
 
     fetchData();
-    loadScripts();
   }, []);
 
   console.log(teacher);

@@ -10,8 +10,6 @@ import AdminSidebar from "Components/AdminSidebar";
 import { loadScripts } from "utils/loadScripts";
 import AppLoader from "Components/Loading/AppLoader";
 
-
-
 // import Head from "next/head";
 
 const MainLayout = (props) => {

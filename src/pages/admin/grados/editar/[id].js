@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import { loadScripts } from "utils/loadScripts";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 
@@ -52,21 +51,7 @@ const AddGrade = ({ data }) => {
         setState({ loading: false, error: null });
       });
   };
-  useEffect(() => {
-    // async function getGrades() {
-    //   try {
-    //     const res = await axios.get(endPoints.grades.getAllGrades);
-
-    //     setGrades(res.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    loadScripts();
-    const script = document.createElement("script");
-
-    // getGrades();
-  }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <div className="content-body">
@@ -124,7 +109,10 @@ const AddGrade = ({ data }) => {
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Course Details</label>
-                          <textarea className="form-control" rows="5"></textarea>
+                          <textarea
+                            className="form-control"
+                            rows="5"
+                          ></textarea>
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
@@ -175,7 +163,9 @@ const AddGrade = ({ data }) => {
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <div className="form-group fallback w-100">
-                          <label className="form-label d-block">Course Photo</label>
+                          <label className="form-label d-block">
+                            Course Photo
+                          </label>
                           <input
                             type="file"
                             className="dropify"

@@ -67,14 +67,14 @@ const EditGradeModal = ({ grade, periods }) => {
                 <h5 className="modal-title" id="exampleModalLabel">
                   Editar Grado
                 </h5>
-                <button
+                <a
                   type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 >
-                  x
-                </button>
+                  <i className="material-icons">close</i>
+                </a>
               </div>
               <div className="modal-body">
                 <form ref={formRef}>

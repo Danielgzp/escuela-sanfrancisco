@@ -4,7 +4,6 @@ import Loading from "Components/Loading/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
-import { loadScripts } from "utils/loadScripts";
 
 const StaffProfile = ({ data }) => {
   const { ci } = data;
@@ -30,7 +29,6 @@ const StaffProfile = ({ data }) => {
     }
 
     fetchData();
-    loadScripts();
   }, []);
 
   console.log(staff);
@@ -75,9 +73,7 @@ const StaffProfile = ({ data }) => {
                         </div>
 
                         <div className="card-footer text-center border-0 mt-0">
-                          <Link
-                            href={`/admin/personal/editar/${staff?.ci}`}
-                          >
+                          <Link href={`/admin/personal/editar/${staff?.ci}`}>
                             <a className="btn btn-primary btn-rounded px-4">
                               Editar
                             </a>
@@ -104,15 +100,11 @@ const StaffProfile = ({ data }) => {
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Role</strong>
-                              <span className="mb-0">
-                                {staff?.role?.name} 
-                              </span>
+                              <span className="mb-0">{staff?.role?.name}</span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Lugar de Nacimiento</strong>
-                              <span className="mb-0">
-                                {staff?.birthPlace}
-                              </span>
+                              <span className="mb-0">{staff?.birthPlace}</span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
                               <strong>Fecha de Ingreso</strong>

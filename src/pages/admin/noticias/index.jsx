@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import { loadScripts } from "utils/loadScripts";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Modal from "Components/Modal/Modal";
@@ -32,7 +31,6 @@ const ListNews = () => {
       }
     }
 
-    loadScripts();
     fetchData();
   }, []);
   //revisar bien esto para que cuando se elimnine una noticia se actulize

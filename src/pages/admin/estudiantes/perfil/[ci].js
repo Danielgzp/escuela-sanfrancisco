@@ -4,7 +4,6 @@ import Loading from "Components/Loading/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
-import { loadScripts } from "utils/loadScripts";
 
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import MakePDF from "utils/pdfMaker";
@@ -19,8 +18,6 @@ const StudentProfile = ({ data }) => {
   const [student, setStudent] = useState({});
 
   useEffect(() => {
-   
-
     async function fetchData() {
       setState({ loading: true, error: null });
       try {
@@ -34,7 +31,6 @@ const StudentProfile = ({ data }) => {
     }
 
     fetchData();
-    
   }, []);
 
   console.log(student);

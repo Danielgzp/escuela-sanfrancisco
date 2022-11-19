@@ -8,7 +8,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
-import { loadScripts } from "utils/loadScripts";
 
 const ListPeriods = () => {
   const [state, setState] = useState({
@@ -30,7 +29,7 @@ const ListPeriods = () => {
         setState({ loading: false, error: err });
       }
     }
-    loadScripts();
+
     // const script = document.createElement("script");
     // script.src = "/js/dlabnav-init.js";
     // script.async = false;
@@ -123,13 +122,14 @@ const ListPeriods = () => {
                             {/* <td>{period.students.length}</td> */}
                             <td>
                               <>
-                                <button
-                                  type="button"
+                                <a
+                                  href="#!"
+                                  rel="noopener noreferrer"
                                   data-bs-toggle="modal"
                                   data-bs-target={`#period-${period.id}`}
                                 >
                                   <i className="material-icons">edit</i>
-                                </button>
+                                </a>
                                 <a
                                   href="#!"
                                   rel="noopener noreferrer"

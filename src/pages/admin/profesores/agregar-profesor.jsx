@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import { loadScripts } from "utils/loadScripts";
+
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 const boom = require("@hapi/boom");
@@ -72,7 +72,7 @@ const AddTeacher = ({ data }) => {
     //     console.log(error);
     //   }
     // }
-    loadScripts();
+   
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 import Swal from "sweetalert2";
-import { loadScripts } from "utils/loadScripts";
 import endPoints from "utils/endpoints";
 import MyDataTable from "Components/DataTable/MyDataTable";
 import Link from "next/link";
@@ -32,7 +31,7 @@ const ListStudents = () => {
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
   useEffect(() => {
-    loadScripts();
+   
 
     setState({ loading: true, error: null });
     axios

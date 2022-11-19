@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-import { loadScripts } from "utils/loadScripts";
 import MyDataTable from "Components/DataTable/MyDataTable";
 import { columns } from "./js/columns";
 import axios from "axios";
@@ -19,7 +18,6 @@ const ListStaff = () => {
   });
 
   useEffect(() => {
-    loadScripts();
     async function fetchData() {
       setState({
         loading: true,

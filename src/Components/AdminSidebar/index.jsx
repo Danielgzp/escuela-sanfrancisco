@@ -92,7 +92,7 @@ const AdminSidebar = () => {
                 </li>
                 <li>
                   <Link href="/admin/grados/agregar-grado">
-                    <a target="_blank">Añadir Grado</a>
+                    <a>Añadir Grado</a>
                   </Link>
                 </li>
               </ul>

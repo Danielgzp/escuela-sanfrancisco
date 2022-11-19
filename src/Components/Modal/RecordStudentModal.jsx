@@ -68,14 +68,15 @@ const RecordStudentModal = ({ student }) => {
                 <h5 className="modal-title" id="exampleModalLabel">
                   Agregar Eventualidad
                 </h5>
-                <button
-                  type="button"
+                <a
+                  href="#!"
+                  rel="noopener noreferrer"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 >
-                  x
-                </button>
+                  <i className="material-icons">close</i>
+                </a>
               </div>
               <div className="modal-body">
                 <form ref={formRef}>

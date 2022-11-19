@@ -2,9 +2,9 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
-import { loadScripts } from "utils/loadScripts";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
+import Script from "next/Script";
 const boom = require("@hapi/boom");
 
 const AddStudent = ({ data }) => {
@@ -84,7 +84,6 @@ const AddStudent = ({ data }) => {
     const script4 = document.createElement("script");
     const script5 = document.createElement("script");
 
-
     script.src = "/vendor/pickadate/picker.js";
     script.async = false;
     document.body.appendChild(script);
@@ -100,7 +99,6 @@ const AddStudent = ({ data }) => {
     // script5.src = "/js/dlabnav-init.js";
     // script5.async = false;
     // document.body.appendChild(script5);
-    
 
     // getGrades();
   }, []);

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-import { loadScripts } from "utils/loadScripts";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
@@ -66,7 +65,6 @@ const EditTeacher = ({ data }) => {
       });
   };
   useEffect(() => {
-    loadScripts();
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
