@@ -8,8 +8,8 @@ class GradeService {
 
   async find() {
     const grades = await models.Grade.findAll({
-      include: ["period", "students", "teacher"],
-      order: ['id']
+      include: ["period", "level", "students", "teacher"],
+      order: ['levelId', 'name']
     });
 
     return grades;

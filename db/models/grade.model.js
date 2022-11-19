@@ -1,7 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
-// const { SECTION_TABLE } = require("./section.model");
-
+const { EDUCATION_LEVEL_TABLE } = require("./education.level.model");
 const { PERIOD_TABLE } = require("./period.model");
 
 const GRADE_TABLE = "grade";
@@ -26,6 +25,15 @@ const GradeSchema = {
     type: DataTypes.DATE,
     field: "create_at",
     defaultValue: Sequelize.NOW,
+  },
+  levelId: {
+    field: "education_level_id",
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: EDUCATION_LEVEL_TABLE,
+      key: "id",
+    },
   },
   periodId: {
     field: "period_id",
@@ -53,6 +61,7 @@ class Grade extends Model {
   static associate(models) {
     // this.belongsTo(models.Section, { as: "section" });
     this.belongsTo(models.Period, { as: "period" });
+    this.belongsTo(models.EducationLevel, { as: "level" });
     this.hasMany(models.Students, { as: "students", foreignKey: "gradeId" });
     this.hasOne(models.Teacher, { as: "teacher", foreignKey: "gradeId" });
   }

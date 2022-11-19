@@ -1,7 +1,5 @@
 "use strict";
 
-const { DATE, NOW } = require("sequelize");
-const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -22,6 +20,21 @@ module.exports = {
       ],
       {}
     );
+    await queryInterface.bulkInsert(
+      "level",
+      [
+        {
+          name: "Pre-Escolar",
+          create_at: new Date(),
+        },
+        {
+          name: "Primaria",
+          create_at: new Date(),
+        },
+      ],
+      {}
+    );
+
     await queryInterface.bulkInsert(
       "role",
       [
@@ -81,76 +94,116 @@ module.exports = {
       "grade",
       [
         {
+          name: "2do nivel",
+          section: "A",
+          create_at: new Date(),
+          education_level_id: 1,
+          period_id: 1,
+        },
+        {
+          name: "2do nivel",
+          section: "B",
+          create_at: new Date(),
+          education_level_id: 1,
+          period_id: 1,
+        },
+        {
+          name: "3er nivel",
+          section: "A",
+          create_at: new Date(),
+          education_level_id: 1,
+          period_id: 1,
+        },
+        {
+          name: "3er nivel",
+          section: "B",
+          create_at: new Date(),
+          education_level_id: 1,
+          period_id: 1,
+        },
+        {
           name: "1er grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "1er grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "2do grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "2do grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "3er grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "3er grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "4to grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "4to grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "5to grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "5to grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "6to grado",
           section: "A",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
         {
           name: "6to grado",
           section: "B",
           create_at: new Date(),
           period_id: 1,
+          education_level_id: 2,
         },
       ],
       {}
@@ -162,8 +215,9 @@ module.exports = {
   async down(queryInterface) {
     await queryInterface.bulkDelete("staff", null, {});
     await queryInterface.bulkDelete("role", null, {});
-    // await queryInterface.bulkDelete("user", null, {});
+    await queryInterface.bulkDelete("user", null, {});
     await queryInterface.bulkDelete("grade", null, {});
+    await queryInterface.bulkDelete("level", null, {});
     await queryInterface.bulkDelete("period", null, {});
   },
 };

@@ -10,6 +10,7 @@ const { Staff, StaffSchema } = require("./staff.model");
 const { News, NewsSchema } = require("./news.model");
 const { Eventuality, EventualitySchema } = require("./eventuality.model");
 const { Teacher, TeacherSchema } = require("./teacher.model");
+const { EducationLevel, EducationLevelSchema } = require("./education.level.model");
 
 function setupModels(sequelize) {
   Representants.init(RepresentantsSchema, Representants.config(sequelize));
@@ -24,6 +25,7 @@ function setupModels(sequelize) {
   Teacher.init(TeacherSchema, Teacher.config(sequelize));
   News.init(NewsSchema, News.config(sequelize));
   Eventuality.init(EventualitySchema, Eventuality.config(sequelize));
+  EducationLevel.init(EducationLevelSchema, EducationLevel.config(sequelize))
 
   Representants.associate(sequelize.models);
   Students.associate(sequelize.models);
@@ -36,8 +38,8 @@ function setupModels(sequelize) {
   Staff.associate(sequelize.models);
   Teacher.associate(sequelize.models);
   News.associate(sequelize.models);
-
   Eventuality.associate(sequelize.models);
+  EducationLevel.associate(sequelize.models)
 }
 
 module.exports = setupModels;

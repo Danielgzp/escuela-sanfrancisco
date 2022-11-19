@@ -2,6 +2,8 @@ import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
 import Loading from "Components/Loading/Loading";
+import AddNewPeriodModal from "Components/Modal/AddNewPeriodModal";
+import EditPeriodModal from "Components/Modal/EditPeriodModal";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -21,7 +23,7 @@ const ListPeriods = () => {
       try {
         const response = await axios.get(endPoints.periods.getAllPeriods);
         const data = await JSON.parse(JSON.stringify(response.data));
-        console.log(data)
+        console.log(data);
         setPeriods(data);
         setState({ loading: false, error: null });
       } catch (err) {
@@ -40,14 +42,25 @@ const ListPeriods = () => {
     try {
       Swal.fire({
         title: "¿Estás seguro?",
-        text: "¿Deseas eliminar este Grado?",
+        text: "¿Deseas eliminar este Período Escolar?",
         icon: "warning",
         showDenyButton: "true",
-        confirmButtonText: "Sí, deseo eliminar el grado",
+        confirmButtonText: "Sí, deseo eliminar el período",
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete(endPoints.periods.deletePeriod(id));
-          Swal.fire("El Grado se ha eliminado correctamente", "", "success");
+          async function deletePeriod() {
+            try {
+              await axios.delete(endPoints.periods.deletePeriod(id));
+              Swal.fire(
+                "El Período se ha eliminado correctamente",
+                "",
+                "success"
+              );
+            } catch (err) {
+              setState({ loading: false, error: err });
+            }
+          }
+          deletePeriod();
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
@@ -66,7 +79,18 @@ const ListPeriods = () => {
           <div className="col-lg-12">
             <div className="card">
               <div className="card-header">
-                <h4 className="card-title">Bordered Table</h4>
+                <h4 className="card-title">
+                  Lista de todos los Períodos Escolares{" "}
+                </h4>
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#newPeriod"
+                  className="btn btn-primary"
+                >
+                  + Agregar Período Escolar
+                </button>
+                <AddNewPeriodModal />
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -88,22 +112,24 @@ const ListPeriods = () => {
                           <tr key={period.id}>
                             <td>{period.id}</td>
                             <td>{period.name}</td>
+
                             <td>
-                              <span className="badge badge-success">Activo</span>
+                              <span className="badge badge-success">
+                                Activo
+                              </span>
                             </td>
+                            <td>100</td>
                             {/* <td>{period.totalStudents}</td> */}
                             {/* <td>{period.students.length}</td> */}
                             <td>
                               <>
-                                <Link
-                                  href={`/admin/grados/editar/${period.id}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                <button
+                                  type="button"
+                                  data-bs-toggle="modal"
+                                  data-bs-target={`#period-${period.id}`}
                                 >
-                                  <a>
-                                    <i className="material-icons">edit</i>
-                                  </a>
-                                </Link>
+                                  <i className="material-icons">edit</i>
+                                </button>
                                 <a
                                   href="#!"
                                   rel="noopener noreferrer"
@@ -128,6 +154,7 @@ const ListPeriods = () => {
                                 </Link>
                               </>
                             </td>
+                            <EditPeriodModal period={period} />
                           </tr>
                         ))}
                       </tbody>

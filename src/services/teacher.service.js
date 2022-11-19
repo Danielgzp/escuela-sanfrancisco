@@ -9,6 +9,7 @@ class TeacherService {
   async find() {
     const teacher = await models.Teacher.findAll({
       include: ["eventuality", "grade"],
+      order: [["gradeId"]],
     });
 
     return teacher;

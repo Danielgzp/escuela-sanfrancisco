@@ -12,6 +12,12 @@ export const columns = (staff) => [
     },
   },
   {
+    name: "Rol",
+    selector: (row) => row.role.name,
+    sortable: true,
+    reorder: true,
+  },
+  {
     name: "Nombres",
     selector: (row) => row.name,
     sortable: true,

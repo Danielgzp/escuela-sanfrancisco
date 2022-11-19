@@ -3,16 +3,27 @@
 // import { checkRoles } from "middlewares/auth.handler";
 import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
-import { createStudentSchema, queryStudentSchema } from "schemas/students.schema";
+import {
+  createStudentSchema,
+  queryStudentSchema,
+} from "schemas/students.schema";
 import StudentsService from "services/students.service";
 
 const service = new StudentsService();
 const handler = nextConnect();
 
 handler
-  .get(validatorHandler(queryStudentSchema, 'query'), async (req, res) => {
+  .get(validatorHandler(queryStudentSchema, "query"), async (req, res) => {
     try {
-      console.log(req.query)
+      console.log(req.query);
+      if (req.query.level !== undefined) {
+        const students = await service.findByLevel(req.query, req.query.level);
+        res.json(students);
+      }
+      if (req.query.filterGrade !== undefined) {
+        const students = await service.findByGrade(req.query.filterGrade);
+        res.json(students);
+      }
       const students = await service.find(req.query);
       res.json(students);
     } catch (error) {

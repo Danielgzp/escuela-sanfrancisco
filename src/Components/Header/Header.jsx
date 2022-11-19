@@ -120,7 +120,7 @@ const Header = (data) => {
                   <div className="background"></div>
                   <img
                     className="circle"
-                    src="/images/logo.svg"
+                    src="/images/logofeyalegria.png"
                     alt="Logo escuela"
                   />
 
@@ -271,7 +271,7 @@ const Header = (data) => {
               <Link href="/">
                 <a className="logo-big left">
                   <img
-                    src="/images/logo.svg"
+                    src="/images/logofeyalegria.png"
                     alt="Logo del colegio"
                     className="logo"
 
@@ -312,10 +312,7 @@ const Header = (data) => {
                   {/* He quitado el href porque la pagina index necesita cargar scripts
                   y si se maneja en forma de SPA no cargan los scripts */}
                   <Link href="/admin">
-                    <a>
-                      <i className="material-icons icon-white">description</i>
-                      ADMIN
-                    </a>
+                    <a>Admin</a>
                   </Link>
                 </li>
 
@@ -334,11 +331,6 @@ const Header = (data) => {
                     Servicios
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
-                </li>
-                <li>
-                  <Link href="/api/v1/users">
-                    <a>Users</a>
-                  </Link>
                 </li>
                 {auth.user ? (
                   <li onClick={auth.logout}>

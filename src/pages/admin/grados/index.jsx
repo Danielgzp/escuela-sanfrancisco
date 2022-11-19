@@ -2,6 +2,7 @@ import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
 import Loading from "Components/Loading/Loading";
+import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -14,14 +15,22 @@ const ListGrades = () => {
     error: null,
   });
   const [grades, setGrades] = useState([]);
+  const [periods, setPeriods] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       setState({ loading: true, error: null });
       try {
         const response = await axios.get(endPoints.grades.getAllGrades);
+        const responsePeriods = await axios.get(
+          endPoints.periods.getAllPeriods
+        );
         const data = await JSON.parse(JSON.stringify(response.data));
+        const dataPeriods = await JSON.parse(
+          JSON.stringify(responsePeriods.data)
+        );
         setGrades(data);
+        setPeriods(dataPeriods);
         setState({ loading: false, error: null });
       } catch (err) {
         setState({ loading: false, error: err });
@@ -65,7 +74,10 @@ const ListGrades = () => {
           <div className="col-lg-12">
             <div className="card">
               <div className="card-header">
-                <h4 className="card-title">Bordered Table</h4>
+                <h4 className="card-title">Lista de todos los Grados </h4>
+                <Link href="/admin/grados/agregar-grado">
+                  <a className="btn btn-primary">+ Agregar Grado </a>
+                </Link>
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -94,15 +106,13 @@ const ListGrades = () => {
                             <td>{grade.students.length}</td>
                             <td>
                               <>
-                                <Link
-                                  href={`/admin/grados/editar/${grade.id}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                <button
+                                  type="button"
+                                  data-bs-toggle="modal"
+                                  data-bs-target={`#grade-${grade.id}`}
                                 >
-                                  <a>
-                                    <i className="material-icons">edit</i>
-                                  </a>
-                                </Link>
+                                  <i className="material-icons">edit</i>
+                                </button>
                                 <a
                                   href="#!"
                                   rel="noopener noreferrer"
@@ -127,6 +137,7 @@ const ListGrades = () => {
                                 </Link>
                               </>
                             </td>
+                            <EditGradeModal grade={grade} periods={periods} />
                           </tr>
                         ))}
                       </tbody>

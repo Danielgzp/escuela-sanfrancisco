@@ -16,7 +16,7 @@ class PeriodService {
       // },
       // include: ["grade"],
       // group: ["grade.id"],
-      
+      order: ["id"],
     });
 
     return periods;

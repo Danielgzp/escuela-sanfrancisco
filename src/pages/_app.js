@@ -1,18 +1,26 @@
-import "../styles/globals.css";
-import "../styles/style.css";
-import "../styles/skin-2.css";
-import "../styles/bootstrap-select.min.css";
-import "../styles/default.css"
-import "../styles/default-date.css"
-import "../styles/jquery.dataTables.min.css";
-import "../styles/datatable.css"
 //por los estilos de arriba, hay cosas que se ven mal en el carousel
+
+import "../styles/globals.css";
+import "../styles/juapablo.css"
 // import "materialize-css/dist/css/materialize.min.css";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";
-import Script from "next/script";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  if (router.pathname.includes("/admin")) {
+    require("../styles/style.css");
+    require("../styles/skin-2.css");
+    require("../styles/bootstrap-select.min.css");
+    require("../styles/default.css");
+    require("../styles/default-date.css");
+    require("../styles/jquery.dataTables.min.css");
+    require("../styles/datatable.css");
+  } else {
+    require("materialize-css/dist/css/materialize.min.css");
+  }
   return (
     <>
       <ProviderAuth>
@@ -20,7 +28,6 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </MainLayout>
       </ProviderAuth>
-      
     </>
   );
 }

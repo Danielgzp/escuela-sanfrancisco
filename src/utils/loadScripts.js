@@ -37,7 +37,7 @@ export const loadScripts = () => {
   script9.src = "/vendor/svganimation/svg.animation.js";
   script9.async = false;
   document.body.appendChild(script9);
-  // script10.src = "/js/styleSwitcher.js";
-  // script10.async = false;
-  // document.body.appendChild(script10);
+  script10.src = "/js/styleSwitcher.js";
+  script10.async = false;
+  document.body.appendChild(script10);
 };

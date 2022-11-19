@@ -2,8 +2,12 @@
 
 const { DataTypes, Sequelize } = require("sequelize");
 const { PERIOD_TABLE, PeriodSchema } = require("../models/period.model");
+const {
+  EDUCATION_LEVEL_TABLE,
+  EducationLevelSchema,
+} = require("../models/education.level.model");
 const { GRADE_TABLE, GradeSchema } = require("../models/grade.model");
-const { SECTION_TABLE, SectionSchema } = require("../models/section.model");
+
 const {
   REPRESENTANTS_TABLE,
   RepresentantsSchema,
@@ -28,7 +32,11 @@ const bcrypt = require("bcrypt");
 module.exports = {
   async up(queryInterface) {
     await queryInterface.createTable(PERIOD_TABLE, PeriodSchema);
-    // await queryInterface.createTable(SECTION_TABLE, SectionSchema);
+    await queryInterface.createTable(
+      EDUCATION_LEVEL_TABLE,
+      EducationLevelSchema
+    );
+
     await queryInterface.createTable(GRADE_TABLE, GradeSchema);
     await queryInterface.createTable(REPRESENTANTS_TABLE, RepresentantsSchema);
     await queryInterface.createTable(STUDENTS_TABLE, StudentsSchema);
@@ -53,7 +61,7 @@ module.exports = {
     await queryInterface.dropTable(ROLE_TABLE);
     await queryInterface.dropTable(USER_TABLE);
     await queryInterface.dropTable(GRADE_TABLE);
-    // await queryInterface.dropTable(SECTION_TABLE);
+    await queryInterface.dropTable(EDUCATION_LEVEL_TABLE);
     await queryInterface.dropTable(PERIOD_TABLE);
   },
 };

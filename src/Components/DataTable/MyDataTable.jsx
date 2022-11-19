@@ -10,10 +10,9 @@ import Loader from "Components/Loader";
 // import PaginationTable from "./PaginationTable";
 import axios from "axios";
 import endPoints from "utils/endpoints";
-import styles from "./css/styles";
 import TableHeader from "./TableHeader";
 import Loading from "Components/Loading/Loading";
-// import "./MyDataTable.css";
+// import "./css/datatable.css"
 
 const MyDataTable = ({
   data,
@@ -23,8 +22,12 @@ const MyDataTable = ({
   prevPage,
   lastPage,
   firstPage,
+  educationLevel,
+  level,
 }) => {
   const { filter, loading, error, search, tableTitle } = data;
+
+
 
   async function studentDelete(props) {
     try {
@@ -55,7 +58,11 @@ const MyDataTable = ({
     return (
       <div className="table-pagination">
         <div className="pagination-button">
-          <a>Pre-Escolar</a>
+          {level === 1 ? (
+            <a onClick={(e) => educationLevel(e)}>Primaria</a>
+          ) : (
+            <a onClick={(e) => educationLevel(e)}>Pre-Escolar</a>
+          )}
         </div>
         <ul className="pagination right">
           <div className="pagination-container">
@@ -157,9 +164,8 @@ const MyDataTable = ({
           />
         }
       />
-      <style jsx>{styles}</style>
     </>
   );
-};
+};;
 
 export default MyDataTable;

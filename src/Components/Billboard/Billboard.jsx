@@ -15,10 +15,10 @@ const BillBoard = ({ posts }) => {
 
         {posts?.map((post) => (
           <CarouselArticle
-            key={post.id}
-            img={post.image}
-            title={post.title}
-            description={post.info}
+            key={post?.id}
+            img={post?.image}
+            title={post?.title}
+            description={post?.info}
             link="#!"
           />
         ))}

@@ -1,22 +1,26 @@
+import Link from "next/link";
 import React from "react";
 
 const AdminHeader = () => {
   return (
     <>
       <div className="nav-header">
-        <a href="index.html" className="brand-logo">
-          <img className="logo-abbr" src="/images/logo-white-2.png" alt="" />
-          <img
-            className="logo-compact"
-            src="/images/logo-text-white.png"
-            alt=""
-          />
-          <img
-            className="brand-title"
-            src="/images/logo-text-white.png"
-            alt=""
-          />
-        </a>
+        <Link href="/admin">
+          <a className="brand-logo">
+            <img className="logo-abbr" src="/images/logofeyalegria.png" alt="" />
+            {/* <img
+              className="logo-compact"
+              src="/images/logo-text-white.png"
+              alt=""
+            />
+            <img
+              className="brand-title"
+              src="/images/logo-text-white.png"
+              alt=""
+            /> */}
+            San Francisco
+          </a>
+        </Link>
 
         <div className="nav-control">
           <div className="hamburger">
@@ -43,8 +47,8 @@ const AdminHeader = () => {
                       <input
                         className="form-control"
                         type="search"
-                        placeholder="Search"
-                        aria-label="Search"
+                        placeholder="Buscar..."
+                        aria-label="Buscar..."
                       />
                     </form>
                   </div>
@@ -189,7 +193,7 @@ const AdminHeader = () => {
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                       </svg>
-                      <span className="ml-2">Profile </span>
+                      <span className="ml-2">Perfil </span>
                     </a>
                     <a
                       href="email-inbox.html"
@@ -211,7 +215,7 @@ const AdminHeader = () => {
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                       </svg>
-                      <span className="ml-2">Inbox </span>
+                      <span className="ml-2">Correo </span>
                     </a>
                     <a href="page-login.html" className="dropdown-item ai-icon">
                       <svg
@@ -231,7 +235,7 @@ const AdminHeader = () => {
                         <polyline points="16 17 21 12 16 7"></polyline>
                         <line x1="21" y1="12" x2="9" y2="12"></line>
                       </svg>
-                      <span className="ml-2">Logout </span>
+                      <span className="ml-2">Cerrar Sesion </span>
                     </a>
                   </div>
                 </li>

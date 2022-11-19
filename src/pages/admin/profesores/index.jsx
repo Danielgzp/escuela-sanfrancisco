@@ -7,6 +7,7 @@ import { columns } from "./js/columns";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
+import Head from "next/head";
 
 const ListTeachers = () => {
   const [state, setState] = useState({
@@ -58,54 +59,60 @@ const ListTeachers = () => {
   };
 
   return (
-    <div className="content-body">
-      <div className="container-fluid">
-        <AdminMainPagination pageName={"Profesores"} />
-        <div className="row">
-          <div className="col-lg-12">
-            <ul className="nav nav-pills mb-3">
-              <li className="nav-item">
-                <a
-                  href="#list-view"
-                  data-toggle="tab"
-                  className="nav-link btn-primary mr-1 show active"
+    <>
+      <Head>
+        <title>Test</title>
+        <link rel="stylesheet" href="../styles/style.css" key="test" />
+      </Head>
+      <div className="content-body">
+        <div className="container-fluid">
+          <AdminMainPagination pageName={"Profesores"} />
+          <div className="row">
+            <div className="col-lg-12">
+              <ul className="nav nav-pills mb-3">
+                <li className="nav-item">
+                  <a
+                    href="#list-view"
+                    data-toggle="tab"
+                    className="nav-link btn-primary mr-1 show active"
+                  >
+                    List View
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    href="#grid-view"
+                    data-toggle="tab"
+                    className="nav-link btn-primary"
+                  >
+                    Grid View
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-12">
+              <div className="row tab-content">
+                <div
+                  id="list-view"
+                  className="tab-pane fade active show col-lg-12"
                 >
-                  List View
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  href="#grid-view"
-                  data-toggle="tab"
-                  className="nav-link btn-primary"
-                >
-                  Grid View
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-lg-12">
-            <div className="row tab-content">
-              <div
-                id="list-view"
-                className="tab-pane fade active show col-lg-12"
-              >
-                <div className="card">
-                  <div className="card-header">
-                    <h4 className="card-title">
-                      Lista de todos los Profesores{" "}
-                    </h4>
-                    <Link href="/admin/profesores/añadir-profesor">
-                      <a className="btn btn-primary">Agregar Profesor/a +</a>
-                    </Link>
-                  </div>
-                  <div className="card-body">
-                    <div className="table-responsive">
-                      <MyDataTable
-                        data={state}
-                        tableColumns={columns}
-                        headerSearch={handleSearchButton}
-                      />
+                  <div className="card">
+                    <div className="card-header">
+                      <h4 className="card-title">
+                        Lista de todos los Profesores{" "}
+                      </h4>
+                      <Link href="/admin/profesores/añadir-profesor">
+                        <a className="btn btn-primary">Agregar Profesor/a +</a>
+                      </Link>
+                    </div>
+                    <div className="card-body">
+                      <div className="table-responsive">
+                        <MyDataTable
+                          data={state}
+                          tableColumns={columns}
+                          headerSearch={handleSearchButton}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -114,7 +121,7 @@ const ListTeachers = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

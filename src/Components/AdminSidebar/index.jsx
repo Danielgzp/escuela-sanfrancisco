@@ -92,7 +92,7 @@ const AdminSidebar = () => {
                 </li>
                 <li>
                   <Link href="/admin/grados/agregar-grado">
-                    <a>Añadir Grado</a>
+                    <a target="_blank">Añadir Grado</a>
                   </Link>
                 </li>
               </ul>
@@ -108,8 +108,6 @@ const AdminSidebar = () => {
             <li>
               <Link href="/admin/noticias">
                 <a className="ai-icon" aria-expanded="false">
-                  
-
                   <i className="material-icons">library_books</i>
 
                   <span className="nav-text">Noticias</span>

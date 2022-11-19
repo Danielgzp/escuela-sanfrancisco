@@ -43,14 +43,35 @@ class StudentsService {
     return students;
   }
 
-  async findPreScool(query) {
+  async countStudents() {
+    const count = await models.Students.count();
+
+    return count;
+  }
+  async findByLevel(query) {
+    const { limit, offset, level } = query;
     const options = {
       include: [
         // "representant",
         "grade",
         {
           association: "grade",
-          include: ["period"],
+          attributes: ["name", "section"],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+          where: {
+            levelId: [`${level}`],
+          },
         },
       ],
       order: [["gradeId"]],
@@ -64,12 +85,8 @@ class StudentsService {
         "gender",
         "ci",
       ],
-      where: {
-        gradeId: ["11", "12"]
-      },
     };
 
-    const { limit, offset } = query;
     if (limit && offset) {
       options.limit = limit;
       options.offset = offset;
@@ -80,10 +97,70 @@ class StudentsService {
     return students;
   }
 
-  async countStudents() {
-    const total = await models.Students.count();
+  async countPreScool() {
+    const total = await models.Students.count({
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+          attributes: ["name", "section"],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+          where: {
+            levelId: [`1`],
+          },
+        },
+      ],
+    });
 
     return total;
+  }
+
+  async findByGrade(query) {
+    // console.log(query);
+    // console.log(filterGrade);
+    const options = {
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+          attributes: ["name", "section"],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
+      order: [["lastName"]],
+      attributes: ["name", "lastName", "birthDate", "gender", "ci", "gradeId", "id"],
+      where: {
+        gradeId: [`${query}`],
+      },
+    };
+
+    const students = await models.Students.findAll(options);
+
+    return students;
   }
 
   async findOne(ci) {

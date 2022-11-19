@@ -23,10 +23,14 @@ const title = Joi.string();
 const description = Joi.string();
 const day = Joi.string();
 
+
+
 const gradeId = Joi.number().integer();
 
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
+const level = Joi.number().integer();
+const filterGrade = Joi.number().integer();
 
 const getStudentSchema = Joi.object({
   ci: ci.required(),
@@ -79,6 +83,8 @@ const updateStudentSchema = Joi.object({
 const queryStudentSchema = Joi.object({
   limit,
   offset,
+  level,
+  filterGrade,
 
   //Importante recordar que cualquiera de estos valores es opcional para ello hicimos una
   //validacion en el servicio

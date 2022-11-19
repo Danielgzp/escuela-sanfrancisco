@@ -1,9 +1,11 @@
 import css from "styled-jsx/css";
 
 export default css`
-  #main-wrapper {
-    background-color: black !important;
+  .card-title {
+    color: red !important;
+    font-size: 50px !important;
   }
+
   .students-table {
     margin: 0 10px 10px 10px;
   }

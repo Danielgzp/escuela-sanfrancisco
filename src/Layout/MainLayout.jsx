@@ -9,6 +9,7 @@ import AdminFooter from "Components/AdminFooter";
 import AdminSidebar from "Components/AdminSidebar";
 
 import { loadScripts } from "utils/loadScripts";
+import Head from "next/head";
 
 const MainLayout = (props) => {
   const router = useRouter();

@@ -94,8 +94,8 @@ const ListStaff = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4 className="card-title">Lista de todos los Staff </h4>
-                    <Link href="/admin/staff/añadir-staff">
-                      <a className="btn btn-primary">Agregar Staff +</a>
+                    <Link href="/admin/personal/agregar-personal">
+                      <a className="btn btn-primary">+ Agregar Staff </a>
                     </Link>
                   </div>
                   <div className="card-body">

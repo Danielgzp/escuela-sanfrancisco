@@ -47,6 +47,7 @@ const Home = ({ data }) => {
           <div className="row">
             <div className="col l12 s12">
               <h2>Pago</h2>
+              <h3>Pago 2</h3>
             </div>
           </div>
         </div>
