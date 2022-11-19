@@ -33,6 +33,10 @@ export default function Document() {
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
           strategy="beforeInteractive"
         />
+        {/* <Script
+          src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
+          strategy="afterInteractive"
+        /> */}
       </body>
     </Html>
   );

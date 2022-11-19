@@ -9,7 +9,7 @@ import Link from "next/link";
 import { columns } from "./js/columns";
 import AdminMainPagination from "Components/AdminMainPagination";
 
-import styles from "./styles";
+// import styles from "./styles";
 
 // import "../../../public/vendor/pickadate/themes/default.date.module.css";
 // import styles from "../../../public/vendor/pickadate/themes/default.module.css";

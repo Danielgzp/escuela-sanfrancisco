@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack(config) {
     config.module.rules[2]?.oneOf?.forEach((one) => {
       if (!`${one.issuer?.and}`.includes("_app")) return;

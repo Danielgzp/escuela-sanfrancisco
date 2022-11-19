@@ -6,6 +6,10 @@ import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
 import { loadScripts } from "utils/loadScripts";
 
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import MakePDF from "utils/pdfMaker";
+import RenderPDF from "hooks/useRenderClient";
+
 const StudentProfile = ({ data }) => {
   const { ci } = data;
   const [state, setState] = useState({
@@ -15,7 +19,7 @@ const StudentProfile = ({ data }) => {
   const [student, setStudent] = useState({});
 
   useEffect(() => {
-    const script = document.createElement("script");
+   
 
     async function fetchData() {
       setState({ loading: true, error: null });
@@ -30,10 +34,13 @@ const StudentProfile = ({ data }) => {
     }
 
     fetchData();
-    loadScripts();
+    
   }, []);
 
   console.log(student);
+  const generatePDF = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -88,6 +95,7 @@ const StudentProfile = ({ data }) => {
                           >
                             Eliminar
                           </a>
+                          <RenderPDF student={student} />
                         </div>
                       </div>
                     </div>
@@ -128,22 +136,6 @@ const StudentProfile = ({ data }) => {
                             </li>
                           </ul>
                         </div>
-                        <div className="card-footer pt-0 pb-0 text-center">
-                          <div className="row">
-                            <div className="col-4 pt-3 pb-3 border-right">
-                              <h3 className="mb-1 text-primary">150</h3>
-                              <span>Projects</span>
-                            </div>
-                            <div className="col-4 pt-3 pb-3 border-right">
-                              <h3 className="mb-1 text-primary">140</h3>
-                              <span>Uploads</span>
-                            </div>
-                            <div className="col-4 pt-3 pb-3">
-                              <h3 className="mb-1 text-primary">45</h3>
-                              <span>Tasks</span>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div className="col-lg-12">
@@ -153,54 +145,6 @@ const StudentProfile = ({ data }) => {
                         </div>
                         <div className="card-body">
                           <p className="mb-0">{student?.address}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-12">
-                      <div className="card">
-                        <div className="card-header d-block">
-                          <h4 className="card-title">Interest </h4>
-                        </div>
-                        <div className="card-body">
-                          <h6>
-                            Photoshop
-                            <span className="pull-right">85%</span>
-                          </h6>
-                          <div className="progress ">
-                            <div
-                              className="progress-bar bg-danger progress-animated"
-                              style={{ width: "85%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
-                          <h6 className="mt-4">
-                            Code editor
-                            <span className="pull-right">90%</span>
-                          </h6>
-                          <div className="progress">
-                            <div
-                              className="progress-bar bg-info progress-animated"
-                              style={{ width: "90%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
-                          <h6 className="mt-4">
-                            Illustrator
-                            <span className="pull-right">65%</span>
-                          </h6>
-                          <div className="progress">
-                            <div
-                              className="progress-bar bg-success progress-animated"
-                              style={{ width: "65%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -226,8 +170,9 @@ const StudentProfile = ({ data }) => {
                                 href="#my-posts"
                                 data-toggle="tab"
                                 className="nav-link"
+                                onClick={(e) => generatePDF(e)}
                               >
-                                Otras cosas
+                                Guardar en PDF
                               </a>
                             </li>
                           </ul>
@@ -240,6 +185,7 @@ const StudentProfile = ({ data }) => {
                                 <h4 className="text-primary mb-4">
                                   Información Personal
                                 </h4>
+
                                 <div className="row mb-4">
                                   <div className="col-lg-3 col-md-4 col-sm-6 col-6">
                                     <h5 className="f-w-500">

@@ -122,44 +122,6 @@ const AdminSidebar = () => {
                 </a>
               </Link>
             </li>
-            <li>
-              <a
-                className="ai-icon"
-                href="event-management.html"
-                aria-expanded="false"
-              >
-                <i className="la la-calendar"></i>
-                <span className="nav-text">Event Management</span>
-              </a>
-            </li>
-            <li>
-              <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-book"></i>
-                <span className="nav-text">Library</span>
-              </a>
-              <ul aria-expanded="false">
-                <li>
-                  <a href="all-library.html">All Library</a>
-                </li>
-                <li>
-                  <a href="add-library.html">Add Library</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a className="has-arrow" href="#!" aria-expanded="false">
-                <i className="la la-building"></i>
-                <span className="nav-text">Departments</span>
-              </a>
-              <ul aria-expanded="false">
-                <li>
-                  <a href="all-departments.html">All Departments</a>
-                </li>
-                <li>
-                  <a href="add-departments.html">Add Departments</a>
-                </li>
-              </ul>
-            </li>
           </ul>
         </div>
       </div>

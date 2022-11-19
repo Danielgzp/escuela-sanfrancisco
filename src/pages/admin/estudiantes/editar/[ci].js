@@ -8,7 +8,7 @@ import { loadScripts } from "utils/loadScripts";
 
 const EditStudent = ({ data }) => {
   const { student, grades } = data;
-  console.log(student)
+  console.log(student);
 
   const formRef = useRef(null);
   const router = useRouter();
@@ -18,7 +18,6 @@ const EditStudent = ({ data }) => {
   });
 
   useEffect(() => {
-    loadScripts();
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");

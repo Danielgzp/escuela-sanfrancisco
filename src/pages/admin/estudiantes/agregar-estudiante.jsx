@@ -78,12 +78,12 @@ const AddStudent = ({ data }) => {
     //     console.log(error);
     //   }
     // }
-    loadScripts();
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
     const script4 = document.createElement("script");
     const script5 = document.createElement("script");
+
 
     script.src = "/vendor/pickadate/picker.js";
     script.async = false;
@@ -97,6 +97,10 @@ const AddStudent = ({ data }) => {
     script4.src = "/js/plugins-init/pickadate-init.js";
     script4.async = false;
     document.body.appendChild(script4);
+    // script5.src = "/js/dlabnav-init.js";
+    // script5.async = false;
+    // document.body.appendChild(script5);
+    
 
     // getGrades();
   }, []);
@@ -303,10 +307,10 @@ const AddStudent = ({ data }) => {
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
-                          Submit
+                          Enviar
                         </button>
                         <button type="submit" className="btn btn-light">
-                          Cencel
+                          Cancelar
                         </button>
                       </div>
                     </div>
@@ -328,7 +332,7 @@ export async function getServerSideProps() {
     const response = await axios.get(endPoints.grades.getAllGrades);
     const grades = await JSON.parse(JSON.stringify(response.data));
 
-    console.log(grades)
+    console.log(grades);
     return {
       props: { data: { grades } },
     };

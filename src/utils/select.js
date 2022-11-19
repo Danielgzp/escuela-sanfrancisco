@@ -1,9 +1,4 @@
-/*!
- * Bootstrap-select v1.13.9 (https://developer.snapappointments.com/bootstrap-select)
- *
- * Copyright 2012-2019 SnapAppointments, LLC
- * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
- */
+console.log("select arranca");
 
 !(function (e, t) {
   void 0 === e && void 0 !== window && (e = window),
@@ -118,6 +113,7 @@
     }
     "classList" in document.createElement("_") ||
       (function (e) {
+        console.log("select arranca segunda parte");
         if ("Element" in e) {
           var t = "classList",
             i = "prototype",
@@ -2533,4 +2529,3 @@
       });
   })(e);
 });
-//# sourceMappingURL=bootstrap-select.min.js.map

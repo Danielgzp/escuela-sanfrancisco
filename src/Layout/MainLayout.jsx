@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
 import Header from "Components/Header/Header.jsx";
 import Footer from "Components/Footer/Footer.jsx";
@@ -9,41 +8,57 @@ import AdminFooter from "Components/AdminFooter";
 import AdminSidebar from "Components/AdminSidebar";
 
 import { loadScripts } from "utils/loadScripts";
-import Head from "next/head";
+import AppLoader from "Components/Loading/AppLoader";
+
+
+
+// import Head from "next/head";
 
 const MainLayout = (props) => {
-  const router = useRouter();
-  useEffect(() => {
-    // if (router.pathname.includes("/admin/add-student")) {
-    //   return;
-    // }
-    if (router.pathname.includes("/admin")) {
-      loadScripts();
-    }
-  }, [router.pathname]);
+  const [isClient, setIsClient] = useState(false);
+  console.log("is not client");
 
-  if (router.pathname.includes("/admin")) {
-    return (
-      <>
-        {/* <Loader /> */}
-        {/* <div id="main-wrapper"> */}
+  useEffect(() => {
+    console.log("is client");
+
+    // if (router.pathname.includes("/admin")) {
+    loadScripts();
+    // console.log("load scripts");
+    // }
+    setIsClient(true);
+  }, []);
+
+  console.log("what is this");
+
+  return (
+    <>
+      {/* <Loader /> */}
+      {isClient ? (
+        <>
+          {/* <Loader /> */}
+          <div id="main-wrapper" className="show">
+            <AdminHeader />
+            <AdminSidebar />
+            {props.children}
+            <AdminFooter />
+          </div>
+        </>
+      ) : (
         <div>
-          <AdminHeader />
-          <AdminSidebar />
-          {props.children}
-          <AdminFooter />
+          <p style={{ display: "none" }}>.</p>
+          <Loader />
         </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <Header />
+      )}
+
+      {/* {props.children} */}
+      {/* <div>
+        <AdminHeader />
+        <AdminSidebar />
         {props.children}
-        <Footer />
-      </>
-    );
-  }
+        <AdminFooter />
+      </div> */}
+    </>
+  );
 };
 
 export default MainLayout;

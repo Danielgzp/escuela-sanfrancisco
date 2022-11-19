@@ -1,3 +1,5 @@
+// import select from "./select";
+
 export const loadScripts = () => {
   const script = document.createElement("script");
   const script2 = document.createElement("script");
@@ -9,6 +11,7 @@ export const loadScripts = () => {
   const script8 = document.createElement("script");
   const script9 = document.createElement("script");
   const script10 = document.createElement("script");
+  const script11 = document.createElement("script");
 
   script.src = "/vendor/global/global.min.js";
   script.async = false;
@@ -19,6 +22,9 @@ export const loadScripts = () => {
   script3.src = "/js/custom.min.js";
   script3.async = false;
   document.body.appendChild(script3);
+  // script11.src = "/js/dlabnav-init.js";
+  // script11.async = false;
+  // document.body.appendChild(script11);
   script4.src = "/vendor/raphael/raphael.min.js";
   script4.async = false;
   document.body.appendChild(script4);
@@ -40,4 +46,6 @@ export const loadScripts = () => {
   script10.src = "/js/styleSwitcher.js";
   script10.async = false;
   document.body.appendChild(script10);
+
+  console.log(script2);
 };

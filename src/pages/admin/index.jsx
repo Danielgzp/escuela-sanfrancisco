@@ -1,4 +1,3 @@
-import MyDataTable from "Components/DataTable/MyDataTable";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import GradeService from "services/grade.service";
@@ -11,7 +10,7 @@ const gradesService = new GradeService();
 
 const AdminDashboard = ({ data }) => {
   const { totalStudents, countPreSchool, grades } = data;
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
