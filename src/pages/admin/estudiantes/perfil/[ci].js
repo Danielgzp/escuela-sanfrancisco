@@ -1,6 +1,6 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
-import Loading from "Components/Loading/Loading";
+import Loading from "Components/Loaders/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
@@ -87,7 +87,7 @@ const StudentProfile = ({ data }) => {
                           </Link>
                           <a
                             href="#!"
-                            className="btn btn-warning btn-rounded px-4"
+                            className="btn btn-secondary btn-rounded px-4"
                           >
                             Eliminar
                           </a>
@@ -159,16 +159,6 @@ const StudentProfile = ({ data }) => {
                                 className="nav-link active show"
                               >
                                 Acerca de
-                              </a>
-                            </li>
-                            <li className="nav-item">
-                              <a
-                                href="#my-posts"
-                                data-toggle="tab"
-                                className="nav-link"
-                                onClick={(e) => generatePDF(e)}
-                              >
-                                Guardar en PDF
                               </a>
                             </li>
                           </ul>
@@ -314,130 +304,6 @@ const StudentProfile = ({ data }) => {
                                     </div>
                                   </>
                                 ))}
-                              </div>
-                            </div>
-                            <div id="my-posts" className="tab-pane fade">
-                              <div className="my-post-content pt-3">
-                                <div className="post-input">
-                                  <textarea
-                                    name="textarea"
-                                    id="textarea"
-                                    cols="30"
-                                    rows="5"
-                                    className="form-control bg-transparent"
-                                    placeholder="Please type what you want...."
-                                  ></textarea>{" "}
-                                  <a href="#!">
-                                    <i className="ti-clip"></i>{" "}
-                                  </a>
-                                  <a href="#!">
-                                    <i className="ti-camera"></i>{" "}
-                                  </a>
-                                  <a href="#!" className="btn btn-primary">
-                                    Post
-                                  </a>
-                                </div>
-                                <div className="profile-uoloaded-post border-bottom-1 pb-5">
-                                  <img
-                                    src="/images/profile/8.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                  />
-                                  <a className="post-title" href="#!">
-                                    <h4>
-                                      Collection of textile samples lay spread
-                                    </h4>
-                                  </a>
-                                  <p>
-                                    A wonderful serenity has take possession of
-                                    my entire soul like these sweet morning of
-                                    spare which enjoy whole heart.A wonderful
-                                    serenity has take possession of my entire
-                                    soul like these sweet morning of spare which
-                                    enjoy whole heart.
-                                  </p>
-                                  <button className="btn btn-primary mr-3">
-                                    <span className="mr-3">
-                                      <i className="fa fa-heart"></i>
-                                    </span>
-                                    Like
-                                  </button>
-                                  <button className="btn btn-secondary">
-                                    <span className="mr-3">
-                                      <i className="fa fa-reply"></i>
-                                    </span>
-                                    Reply
-                                  </button>
-                                </div>
-                                <div className="profile-uoloaded-post border-bottom-1 pb-5">
-                                  <img
-                                    src="/images/profile/9.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                  />
-                                  <a className="post-title" href="#!">
-                                    <h4>
-                                      Collection of textile samples lay spread
-                                    </h4>
-                                  </a>
-                                  <p>
-                                    A wonderful serenity has take possession of
-                                    my entire soul like these sweet morning of
-                                    spare which enjoy whole heart.A wonderful
-                                    serenity has take possession of my entire
-                                    soul like these sweet morning of spare which
-                                    enjoy whole heart.
-                                  </p>
-                                  <button className="btn btn-primary mr-3">
-                                    <span className="mr-3">
-                                      <i className="fa fa-heart"></i>
-                                    </span>
-                                    Like
-                                  </button>
-                                  <button className="btn btn-secondary">
-                                    <span className="mr-3">
-                                      <i className="fa fa-reply"></i>
-                                    </span>
-                                    Reply
-                                  </button>
-                                </div>
-                                <div className="profile-uoloaded-post pb-5">
-                                  <img
-                                    src="/images/profile/8.jpg"
-                                    alt=""
-                                    className="img-fluid"
-                                  />
-                                  <a className="post-title" href="#!">
-                                    <h4>
-                                      Collection of textile samples lay spread
-                                    </h4>
-                                  </a>
-                                  <p>
-                                    A wonderful serenity has take possession of
-                                    my entire soul like these sweet morning of
-                                    spare which enjoy whole heart.A wonderful
-                                    serenity has take possession of my entire
-                                    soul like these sweet morning of spare which
-                                    enjoy whole heart.
-                                  </p>
-                                  <button className="btn btn-primary mr-3">
-                                    <span className="mr-3">
-                                      <i className="fa fa-heart"></i>
-                                    </span>
-                                    Like
-                                  </button>
-                                  <button className="btn btn-secondary">
-                                    <span className="mr-3">
-                                      <i className="fa fa-reply"></i>
-                                    </span>
-                                    Reply
-                                  </button>
-                                </div>
-                                <div className="text-center mb-2">
-                                  <a href="#!" className="btn btn-primary">
-                                    Load More
-                                  </a>
-                                </div>
                               </div>
                             </div>
                           </div>

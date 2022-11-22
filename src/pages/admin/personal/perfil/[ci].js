@@ -1,6 +1,6 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
-import Loading from "Components/Loading/Loading";
+import Loading from "Components/Loaders/Loading";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";

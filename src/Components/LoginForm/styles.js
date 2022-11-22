@@ -11,9 +11,9 @@ export default css`
     justify-content: center;
   }
   .login {
-    width: auto;
+    width: 100%;
     display: flex;
-    background-color: rgb(29, 29, 29, 0.95);
+    background-color: rgb(29, 29, 29, 0);
     margin: 0 auto;
     justify-content: center;
     border-radius: 20px;
@@ -29,6 +29,10 @@ export default css`
     text-align: center;
     font-size: 2rem;
     letter-spacing: 0.5px;
+  }
+  .logInForm input {
+    padding-left: 20px;
+    width: 95%;
   }
   .logInForm p {
     color: #fff;

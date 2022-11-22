@@ -11,7 +11,7 @@ import Loader from "Components/Loader";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 // import TableHeader from "./TableHeader";
-import Loading from "Components/Loading/Loading";
+import Loading from "Components/Loaders/Loading";
 import { columns, paginationOptions } from "./columns";
 import { useRef, useState } from "react";
 // import "./css/datatable.css"
@@ -39,7 +39,6 @@ import { useRef, useState } from "react";
 //     />
 //   );
 // }, [filterText, resetPaginationToggle]);
-
 
 const ReportDataTable = ({ grades }) => {
   // const TableHeader = ({ props, changeButton }) => {
@@ -127,7 +126,7 @@ const ReportDataTable = ({ grades }) => {
         fixedHeader
         fixedHeaderScrollHeight="700px"
         noDataComponent={<h3>No se encontro ningun elemento</h3>}
-        // progressPending={loading}
+        progressPending={state.loading}
         progressComponent={<Loading />}
         pagination
         //el paginationServer hacia que no funcionarai bien la paginacion,
@@ -153,7 +152,9 @@ const ReportDataTable = ({ grades }) => {
                       >{`${grade.name} ${grade.section}`}</option>
                     ))}
                   </select>
-                  <button type="submit">Ir</button>
+                  <button type="submit" className="btn btn-primary">
+                    Ir
+                  </button>
                 </form>
               </div>
             </div>

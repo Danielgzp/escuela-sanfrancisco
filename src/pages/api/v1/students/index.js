@@ -24,6 +24,10 @@ handler
         const students = await service.findByGrade(req.query.filterGrade);
         res.json(students);
       }
+      if (req.query.search !== undefined) {
+        const students = await service.filterStudents(req.query.search);
+        res.json(students);
+      }
       const students = await service.find(req.query);
       res.json(students);
     } catch (error) {

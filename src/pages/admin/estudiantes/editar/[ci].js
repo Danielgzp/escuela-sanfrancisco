@@ -1,4 +1,5 @@
 import axios from "axios";
+import AdminMainPagination from "Components/AdminMainPagination";
 import RecordStudentModal from "Components/Modal/RecordStudentModal";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
@@ -90,32 +91,13 @@ const EditStudent = ({ data }) => {
     <>
       <div className="content-body">
         <div className="container-fluid">
-          <div className="row page-titles mx-0">
-            <div className="col-sm-6 p-md-0">
-              <div className="welcome-text">
-                <h4>Edit Student</h4>
-              </div>
-            </div>
-            <div className="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-              <ol className="breadcrumb">
-                <li className="breadcrumb-item">
-                  <a href="index.html">Home</a>
-                </li>
-                <li className="breadcrumb-item active">
-                  <a href="#!">Students</a>
-                </li>
-                <li className="breadcrumb-item active">
-                  <a href="#!">Edit Student</a>
-                </li>
-              </ol>
-            </div>
-          </div>
+          <AdminMainPagination pageName={"Estudiantes"} crudName={"Editar"} />
 
           <div className="row">
             <div className="col-xl-12 col-xxl-12 col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h5 className="card-title">Basic Info</h5>
+                  <h5 className="card-title">Información Básica</h5>
                 </div>
                 <div className="card-body">
                   <form onSubmit={handleSubmit} ref={formRef}>
@@ -324,7 +306,7 @@ const EditStudent = ({ data }) => {
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
-                          Enviar
+                          Guardar
                         </button>
                         <button type="submit" className="btn btn-light">
                           Cancelar
@@ -333,7 +315,7 @@ const EditStudent = ({ data }) => {
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target={`#record-${student.ci}`}
-                          className="btn btn-primary mr-3"
+                          className="btn btn-primary mr-3 right"
                         >
                           <span className="mr-3">
                             <i className="fa fa-pencil"></i>

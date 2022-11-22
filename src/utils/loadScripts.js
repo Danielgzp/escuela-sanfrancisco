@@ -46,6 +46,4 @@ export const loadScripts = () => {
   script10.src = "/js/styleSwitcher.js";
   script10.async = false;
   document.body.appendChild(script10);
-
-  console.log(script2);
 };

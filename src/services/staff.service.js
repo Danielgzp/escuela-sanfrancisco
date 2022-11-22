@@ -9,7 +9,7 @@ class StaffService {
   async find() {
     const staff = await models.Staff.findAll({
       include: ["role", "eventuality", "news", "user"],
-      order: [["roleId"]]
+      order: [["roleId"]],
     });
 
     return staff;
@@ -24,7 +24,11 @@ class StaffService {
     }
     return staff;
   }
+  async countStaff() {
+    const count = await models.Staff.count();
 
+    return count;
+  }
   async create(data) {
     const newStaff = await models.Staff.create(data, {
       include: ["eventuality", "news", "user"],

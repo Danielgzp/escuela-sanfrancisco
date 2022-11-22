@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
     require("../styles/jquery.dataTables.min.css");
     require("../styles/datatable.css");
   } else {
-    require("materialize-css/dist/css/materialize.min.css");
+    // require("materialize-css/dist/css/materialize.min.css");
   }
   return (
     <>

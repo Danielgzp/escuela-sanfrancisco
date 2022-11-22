@@ -25,6 +25,12 @@ class TeacherService {
     return teacher;
   }
 
+  async countTeachers() {
+    const count = await models.Teacher.count();
+
+    return count;
+  }
+
   async create(data) {
     const newTeacher = await models.Teacher.create(data, {
       include: ["eventuality"],

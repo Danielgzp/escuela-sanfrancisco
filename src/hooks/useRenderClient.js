@@ -16,7 +16,11 @@ const RenderPDF = ({ student }) => {
           document={<MakePDF profile={student} />}
           fileName="perfil.pdf"
         >
-          <button variant="info" className="btn btn-danger">
+          <button
+            variant="info"
+            className="btn btn-danger"
+            style={{ marginTop: "10px" }}
+          >
             <i className="material-icons">description</i>
             Descargar PDF
           </button>

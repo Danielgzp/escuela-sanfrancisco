@@ -89,14 +89,22 @@ const Modal = ({ posts }) => {
                       />
                     </div>
                   </div>
-                  <textarea
-                    name="description"
-                    id="textarea"
-                    cols="30"
-                    rows="4"
-                    className="form-control bg-transparent"
-                    defaultValue={posts?.info}
-                  ></textarea>
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div className="form-group">
+                      <label className="form-label">
+                        Descripción de la Noticia
+                      </label>
+                      <textarea
+                        name="description"
+                        id="textarea"
+                        cols="30"
+                        rows="4"
+                        className="form-control bg-transparent"
+                        defaultValue={posts?.info}
+                      ></textarea>
+                    </div>
+                  </div>
+
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="form-group">
                       <label className="form-label">Url de la imagen</label>

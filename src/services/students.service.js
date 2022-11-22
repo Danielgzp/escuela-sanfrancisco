@@ -43,6 +43,15 @@ class StudentsService {
     return students;
   }
 
+  async findOne(ci) {
+    const student = await models.Students.findByPk(ci, {
+      include: ["representant", "record", "grade"],
+    });
+    if (!student) {
+      throw boom.notFound("Student not found");
+    }
+    return student;
+  }
   async countStudents() {
     const count = await models.Students.count();
 
@@ -97,6 +106,55 @@ class StudentsService {
     return students;
   }
 
+  async filterStudents(query) {
+    // console.log(query);
+    // console.log(filterGrade);
+
+    const options = {
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+          where: {
+            name: [`${query}`],
+            section: [`${query}`],
+          },
+          attributes: ["name", "section"],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
+      order: [["lastName"]],
+      attributes: [
+        "name",
+        "lastName",
+        "birthDate",
+        "gender",
+        "ci",
+        "gradeId",
+        "id",
+      ],
+      where: {
+        name: [`${query}`],
+        lastName: [`${query}`],
+      },
+    };
+
+    const students = await models.Students.findAll(options);
+
+    return students;
+  }
   async countPreScool() {
     const total = await models.Students.count({
       include: [
@@ -119,6 +177,36 @@ class StudentsService {
           ],
           where: {
             levelId: [`1`],
+          },
+        },
+      ],
+    });
+
+    return total;
+  }
+
+  async countPrimary() {
+    const total = await models.Students.count({
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+          attributes: ["name", "section"],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+          where: {
+            levelId: [`2`],
           },
         },
       ],
@@ -152,7 +240,15 @@ class StudentsService {
         },
       ],
       order: [["lastName"]],
-      attributes: ["name", "lastName", "birthDate", "gender", "ci", "gradeId", "id"],
+      attributes: [
+        "name",
+        "lastName",
+        "birthDate",
+        "gender",
+        "ci",
+        "gradeId",
+        "id",
+      ],
       where: {
         gradeId: [`${query}`],
       },
@@ -161,16 +257,6 @@ class StudentsService {
     const students = await models.Students.findAll(options);
 
     return students;
-  }
-
-  async findOne(ci) {
-    const student = await models.Students.findByPk(ci, {
-      include: ["representant", "record", "grade"],
-    });
-    if (!student) {
-      throw boom.notFound("Student not found");
-    }
-    return student;
   }
 
   async create(data) {

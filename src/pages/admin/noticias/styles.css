@@ -1,0 +1,30 @@
+.post-container {
+  display: flex;
+  flex-direction: column;
+}
+.postInfo {
+  display: flex;
+  flex-direction: row;
+}
+.postImage {
+  width: 30%;
+}
+.postImage img {
+  width: 100%;
+  height: auto;
+}
+.postDescription {
+  width: 70%;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.postActions {
+  bottom: 0;
+  position: relative;
+  display: flex;
+}
+.postActions .postDate {
+  margin-left: 20px;
+}

@@ -11,23 +11,83 @@ import Loader from "Components/Loader";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import TableHeader from "./TableHeader";
-import Loading from "Components/Loading/Loading";
+import Loading from "Components/Loaders/Loading";
+import Paginate from "./Paginate";
+import { useState } from "react";
+// import Paginate from "Components/Paginate/Paginate";
 // import "./css/datatable.css"
 
 const MyDataTable = ({
   data,
   headerSearch,
+  handleSearchSubtmit,
   tableColumns,
-  nextPage,
-  prevPage,
+  // nextPage,
+  // prevPage,
   lastPage,
   firstPage,
   educationLevel,
   level,
+  setOffsetStudents,
+  totalStudents,
+  neighbours,
+  studentsPerPage,
 }) => {
   const { filter, loading, error, search, tableTitle } = data;
 
+  const items = [];
+  const [current, setCurrent] = useState(1);
+  const totalPage = Math.ceil(totalStudents / studentsPerPage);
+  const end = Math.min(
+    Math.max(neighbours * 2 + 2, neighbours + current + 1),
+    totalPage + 1
+  );
+  const start = Math.min(
+    Math.max(end - (neighbours * 2 + 1), 1),
+    Math.max(current - neighbours, 1)
+  );
 
+  for (let i = start; i < end; i++) {
+    items.push(
+      <li className={`page-item ${getClassActive(i)}`}>
+        <a
+          key={`Paginador-${i}`}
+          onClick={(e) => {
+            e.preventDefault()
+            setCurrent(i);
+            setOffsetStudents((i - 1) * studentsPerPage);
+          }}
+          href="#"
+          aria-current="page"
+          className="page-link"
+        >
+          {i}
+        </a>
+      </li>
+    );
+  }
+
+  function getClassActive(i) {
+    return i === current
+      ? "active"
+      : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50";
+  }
+
+  function prevPage(e) {
+    e.preventDefault();
+    if (current > 1) {
+      setCurrent(current - 1);
+      setOffsetStudents((current - 2) * studentsPerPage);
+    }
+  }
+
+  function nextPage(e) {
+    e.preventDefault();
+    if (current < totalPage) {
+      setCurrent(current + 1);
+      setOffsetStudents(current * studentsPerPage);
+    }
+  }
 
   async function studentDelete(props) {
     try {
@@ -64,14 +124,14 @@ const MyDataTable = ({
             <a onClick={(e) => educationLevel(e)}>Pre-Escolar</a>
           )}
         </div>
-        <ul className="pagination right">
-          <div className="pagination-container">
+        <nav aria-label="...">
+          <ul className="pagination">
             <li className="page-item" onClick={(e) => firstPage(e)}>
               <a className="page-link" href="#">
                 Primera Página
               </a>
             </li>
-            <li className="page-item" onClick={(e) => prevPage(e)}>
+            <li className="page-item disabled" onClick={(e) => prevPage(e)}>
               <a className="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
               </a>
@@ -91,18 +151,85 @@ const MyDataTable = ({
                 3
               </a>
             </li>
-            <li className="page-item" onClick={(e) => nextPage(e)}>
+            {/* <li className="page-item" onClick={(e) => nextPage(e)}>
               <a className="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
               </a>
-            </li>
+            </li> */}
             <li className="page-item" onClick={(e) => lastPage(e)}>
               <a className="page-link" href="#">
                 Última Página
               </a>
             </li>
-          </div>
-        </ul>
+          </ul>
+        </nav>
+      </div>
+    );
+  };
+
+  const Paginate = () => {
+    return (
+      <div className="table-pagination">
+        <div className="pagination-button">
+          {level === 1 ? (
+            <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+              Primaria
+            </a>
+          ) : (
+            <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+              Pre-Escolar
+            </a>
+          )}
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-700">
+            Mostrando{" "}
+            <span className="font-medium">
+              {studentsPerPage * (current - 1) + 1}
+            </span>{" "}
+            para{" "}
+            <span className="font-medium">
+              {current * studentsPerPage < totalStudents
+                ? current * studentsPerPage
+                : totalStudents}
+            </span>{" "}
+            de <span className="font-medium">{totalStudents}</span> resultados
+          </p>
+        </div>
+
+        <nav aria-label="...">
+          <ul className="pagination">
+            <li className="page-item" onClick={(e) => firstPage(e)}>
+              <a className="page-link" href="#">
+                <i className="material-icons">first_page</i>
+              </a>
+            </li>
+            <li
+              className="page-item bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+              onClick={(e) => prevPage(e)}
+            >
+              <a className="page-link " href="#" aria-label="Next">
+                <i className="material-icons">navigate_before</i>
+              </a>
+            </li>
+            {items}
+            <li className="page-item " onClick={(e) => nextPage(e)}>
+              <a
+                className="page-link bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+                href="#"
+                aria-label="Next"
+              >
+                <i className="material-icons">navigate_next</i>
+              </a>
+            </li>
+            <li className="page-item" onClick={(e) => lastPage(e)}>
+              <a className="page-link" href="#">
+                <i className="material-icons">last_page</i>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     );
   };
@@ -145,15 +272,15 @@ const MyDataTable = ({
         data={filter}
         striped={true}
         fixedHeader
-        fixedHeaderScrollHeight="700px"
+        fixedHeaderScrollHeight="750px"
         noDataComponent={<h2>No se encontro ningun elemento</h2>}
         progressPending={loading}
         progressComponent={<Loading />}
         pagination
         //el paginationServer hacia que no funcionarai bien la paginacion,
         // paginationComponentOptions={paginationOptions}
-        paginationComponent={PaginationTable}
         paginationServer
+        paginationComponent={Paginate}
         //   onChangeRowsPerPage={20}
         subHeader
         subHeaderComponent={
@@ -161,11 +288,12 @@ const MyDataTable = ({
             searchButton={headerSearch}
             inputValue={search}
             tableName={tableTitle}
+            searchSubmit={handleSearchSubtmit}
           />
         }
       />
     </>
   );
-};;
+};
 
 export default MyDataTable;

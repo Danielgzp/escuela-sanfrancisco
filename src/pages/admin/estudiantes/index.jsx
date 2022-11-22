@@ -27,13 +27,22 @@ const ListStudents = () => {
   const [limit, setLimit] = useState(50);
   const [offset, setOffset] = useState(0);
   const [level, setLevel] = useState(2);
+  const [totalStudents, setTotalStudents] = useState(0);
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
   useEffect(() => {
-   
-
     setState({ loading: true, error: null });
+
+    axios
+      .get(`http://localhost:3000/api/v1/students?level=${level}`)
+      .then((response) => {
+        setStudents(response.data);
+        setTotalStudents(response.data.length);
+      })
+      .catch((err) => {
+        setState({ loading: false, error: err });
+      });
     axios
       .get(
         `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
@@ -51,7 +60,7 @@ const ListStudents = () => {
       .catch((err) => {
         setState({ loading: false, error: err });
       });
-  }, []);
+  }, [offset, level]);
 
   // const result = state?.api?.filter((student) => {
   //   return `${student.name} ${student.lastName} ${student.grade.name} ${student.grade.section}`
@@ -92,169 +101,39 @@ const ListStudents = () => {
   const handleSearchButton = (e) => {
     setState({ ...state, search: e.target.value });
   };
-  const handleClickNext = (e) => {
-    e.preventDefault();
 
-    setState({
-      loading: true,
-      error: null,
-    });
-    setOffset(offset + limit);
-    console.log(offset);
-
-    console.log(offset);
-    // setOffset(offset + 50);
-    async function fetchNextPage() {
-      try {
-        const response = await axios(
-          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-        );
-        console.log(
-          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-        );
-
-        const data = await JSON.parse(JSON.stringify(response.data));
-        setState({
-          ...state,
-          api: data,
-          filter: state.data,
-          loading: false,
-          error: null,
-        });
-      } catch (err) {
-        setState({ loading: false, error: err });
-      }
-    }
-    fetchNextPage();
-  };
-  const handleClickPrev = (e) => {
-    e.preventDefault();
-
-    if (offset == 0) {
-      console.log("es igual a 0");
-
-      return;
-    }
-    setState({
-      loading: true,
-      error: null,
-    });
-    setOffset(offset - limit);
-    // setOffset(offset + 50);
-    async function fetchNextPage() {
-      try {
-        console.log(offset);
-        const response = await axios(
-          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-        );
-        const data = await JSON.parse(JSON.stringify(response.data));
-
-        setState({
-          ...state,
-          api: data,
-          filter: state.data,
-          loading: false,
-          error: null,
-        });
-      } catch (err) {
-        setState({ loading: false, error: err });
-      }
-    }
-    fetchNextPage();
-  };
   const handleClickFirstPage = (e) => {
     e.preventDefault();
 
-    if (offset == 0) {
-      console.log("es igual a 0");
-
-      return;
-    }
-    setState({
-      loading: true,
-      error: null,
-    });
-    setOffset(1);
-    // setOffset(offset + 50);
-    async function fetchFirstPage() {
-      try {
-        console.log(offset);
-        const response = await axios(
-          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-        );
-        const data = await JSON.parse(JSON.stringify(response.data));
-
-        setState({
-          ...state,
-          api: data,
-          filter: state.data,
-          loading: false,
-          error: null,
-        });
-      } catch (err) {
-        setState({ loading: false, error: err });
-      }
-    }
-    fetchFirstPage();
+    setOffset(0);
   };
 
   const handleClickLastPage = (e) => {
     e.preventDefault();
 
-    if (offset == 394) {
-      console.log("es igual a 0");
-
-      return;
-    }
-    setState({
-      loading: true,
-      error: null,
-    });
-    setOffset(344);
-    // setOffset(offset + 50);
-    async function fetchLastPage() {
-      try {
-        console.log(offset);
-        const response = await axios(
-          `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-        );
-        const data = await JSON.parse(JSON.stringify(response.data));
-
-        setState({
-          ...state,
-          api: data,
-          filter: state.data,
-          loading: false,
-          error: null,
-        });
-      } catch (err) {
-        setState({ loading: false, error: err });
-      }
-    }
-    fetchLastPage();
+    setOffset(totalStudents - limit);
   };
 
   const handleEducationLevel = (e) => {
+    e.preventDefault();
+
+    if (level === 1) {
+      setLevel(2);
+    }
+    if (level === 2) {
+      setLevel(1);
+    }
+  };
+
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
 
     setState({
       loading: true,
       error: null,
     });
-    console.log(level);
-    if (level === 1) {
-      const newLevel = 1;
-      setLevel({});
-    }
-    if (level === 2) {
-      const newLevel = 1;
-      setLevel(level - newLevel);
-    }
-    console.log(level);
     axios
-      .get(
-        `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
-      )
+      .get(`http://localhost:3000/api/v1/students?search=${state.search}`)
       .then((response) => {
         setState({
           ...state,
@@ -297,15 +176,17 @@ const ListStudents = () => {
                       <div className="table-responsive">
                         <MyDataTable
                           data={state}
-                          students={students}
                           tableColumns={columns}
                           headerSearch={handleSearchButton}
-                          nextPage={handleClickNext}
-                          prevPage={handleClickPrev}
+                          handleSearchSubtmit={handleSearchSubmit}
                           firstPage={handleClickFirstPage}
                           lastPage={handleClickLastPage}
                           educationLevel={handleEducationLevel}
                           level={level}
+                          setOffsetStudents={setOffset}
+                          totalStudents={totalStudents}
+                          studentsPerPage={limit}
+                          neighbours={2}
                         />
                       </div>
                     </div>

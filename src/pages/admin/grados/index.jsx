@@ -1,7 +1,7 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
-import Loading from "Components/Loading/Loading";
+import Loading from "Components/Loaders/Loading";
 import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";

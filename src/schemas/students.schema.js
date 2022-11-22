@@ -31,6 +31,7 @@ const limit = Joi.number().integer();
 const offset = Joi.number().integer();
 const level = Joi.number().integer();
 const filterGrade = Joi.number().integer();
+const search = Joi.string();
 
 const getStudentSchema = Joi.object({
   ci: ci.required(),
@@ -85,6 +86,7 @@ const queryStudentSchema = Joi.object({
   offset,
   level,
   filterGrade,
+  search
 
   //Importante recordar que cualquiera de estos valores es opcional para ello hicimos una
   //validacion en el servicio

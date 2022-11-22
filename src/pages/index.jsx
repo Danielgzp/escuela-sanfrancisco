@@ -16,14 +16,6 @@ import BillBoard from "../Components/BillBoard/BillBoard";
 const Home = ({ data }) => {
   const { news } = data;
 
-  useEffect(() => {
-    var elems = document.querySelector(".carousel");
-    var instances = M.Carousel.init(elems, {
-      duration: 600,
-      indicators: true,
-    });
-  }, []);
-
   // console.log(data)
   return (
     <>
