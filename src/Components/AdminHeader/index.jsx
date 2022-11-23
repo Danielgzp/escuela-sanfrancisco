@@ -1,13 +1,20 @@
+import { useAuth } from "hooks/useAuth";
 import Link from "next/link";
 import React from "react";
 
 const AdminHeader = () => {
+  const auth = useAuth();
+
   return (
     <>
       <div className="nav-header">
         <Link href="/admin">
           <a className="brand-logo">
-            <img className="logo-abbr" src="/images/logofeyalegria.png" alt="" />
+            <img
+              className="logo-abbr"
+              src="/images/logofeyalegria.png"
+              alt=""
+            />
             {/* <img
               className="logo-compact"
               src="/images/logo-text-white.png"
@@ -56,109 +63,6 @@ const AdminHeader = () => {
               </div>
 
               <ul className="navbar-nav header-right">
-                <li className="nav-item dropdown notification_dropdown">
-                  <a
-                    className="nav-link bell ai-icon"
-                    href="#"
-                    role="button"
-                    data-toggle="dropdown"
-                  >
-                    <svg
-                      id="icon-user"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="feather feather-bell"
-                    >
-                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                      <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                    <div className="pulse-css"></div>
-                  </a>
-                  <div className="dropdown-menu dropdown-menu-right">
-                    <ul className="list-unstyled">
-                      <li className="media dropdown-item">
-                        <span className="success">
-                          <i className="ti-user"></i>
-                        </span>
-                        <div className="media-body">
-                          <a href="#">
-                            <p>
-                              <strong>Martin</strong> has added a{" "}
-                              <strong>customer</strong> Successfully
-                            </p>
-                          </a>
-                        </div>
-                        <span className="notify-time">3:20 am</span>
-                      </li>
-                      <li className="media dropdown-item">
-                        <span className="primary">
-                          <i className="ti-shopping-cart"></i>
-                        </span>
-                        <div className="media-body">
-                          <a href="#">
-                            <p>
-                              <strong>Jennifer</strong> purchased Light
-                              Dashboard 2.0.
-                            </p>
-                          </a>
-                        </div>
-                        <span className="notify-time">3:20 am</span>
-                      </li>
-                      <li className="media dropdown-item">
-                        <span className="danger">
-                          <i className="ti-bookmark"></i>
-                        </span>
-                        <div className="media-body">
-                          <a href="#">
-                            <p>
-                              <strong>Robin</strong> marked a{" "}
-                              <strong>ticket</strong> as unsolved.
-                            </p>
-                          </a>
-                        </div>
-                        <span className="notify-time">3:20 am</span>
-                      </li>
-                      <li className="media dropdown-item">
-                        <span className="primary">
-                          <i className="ti-heart"></i>
-                        </span>
-                        <div className="media-body">
-                          <a href="#">
-                            <p>
-                              <strong>David</strong> purchased Light Dashboard
-                              1.0.
-                            </p>
-                          </a>
-                        </div>
-                        <span className="notify-time">3:20 am</span>
-                      </li>
-                      <li className="media dropdown-item">
-                        <span className="success">
-                          <i className="ti-image"></i>
-                        </span>
-                        <div className="media-body">
-                          <a href="#">
-                            <p>
-                              <strong> James.</strong> has added a
-                              <strong>customer</strong> Successfully
-                            </p>
-                          </a>
-                        </div>
-                        <span className="notify-time">3:20 am</span>
-                      </li>
-                    </ul>
-                    <a className="all-notification" href="#">
-                      See all notifications <i className="ti-arrow-right"></i>
-                    </a>
-                  </div>
-                </li>
                 <li className="nav-item dropdown header-profile">
                   <a
                     className="nav-link"
@@ -195,29 +99,7 @@ const AdminHeader = () => {
                       </svg>
                       <span className="ml-2">Perfil </span>
                     </a>
-                    <a
-                      href="email-inbox.html"
-                      className="dropdown-item ai-icon"
-                    >
-                      <svg
-                        id="icon-inbox"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="feather feather-mail"
-                      >
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                      </svg>
-                      <span className="ml-2">Correo </span>
-                    </a>
-                    <a href="page-login.html" className="dropdown-item ai-icon">
+                    <a href="#!" className="dropdown-item ai-icon">
                       <svg
                         id="icon-logout"
                         xmlns="http://www.w3.org/2000/svg"
@@ -235,7 +117,9 @@ const AdminHeader = () => {
                         <polyline points="16 17 21 12 16 7"></polyline>
                         <line x1="21" y1="12" x2="9" y2="12"></line>
                       </svg>
-                      <span className="ml-2">Cerrar Sesion </span>
+                      <span className="ml-2" onClick={auth.logout}>
+                        Cerrar Sesion{" "}
+                      </span>
                     </a>
                   </div>
                 </li>

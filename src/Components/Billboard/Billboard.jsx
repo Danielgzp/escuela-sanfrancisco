@@ -19,7 +19,7 @@ const BillBoard = ({ posts }) => {
       {/* <div id="cincopa_d0220b">...</div> */}
       <div className="carousel carousel-slider center">
         <div className="carousel-background"></div>
-        {posts.length !== 0 ? (
+        {posts?.length !== 0 ? (
           <>
             {posts?.map((post) => (
               <CarouselArticle
@@ -27,6 +27,7 @@ const BillBoard = ({ posts }) => {
                 img={post?.image}
                 title={post?.title}
                 description={post?.info}
+                date={post?.createdAt}
                 link="#!"
               />
             ))}

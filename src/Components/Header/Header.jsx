@@ -77,39 +77,8 @@ const Header = (data) => {
               <a>Mision y Vision</a>
             </Link>
           </li>
-          <li className="divider"></li>
         </ul>
-        <ul id="dropdown2" className="dropdown-content">
-          <li>
-            <Link href="/servicios/biblioteca">
-              <a>Biblioteca</a>
-            </Link>
-          </li>
-          <li className="divider"></li>
-          <li>
-            <Link href="/admin">
-              <a>Computación</a>
-            </Link>
-          </li>
-          <li className="divider"></li>
-          <li>
-            <Link href="#">
-              <a>Psicología</a>
-            </Link>
-          </li>
-          <li className="divider"></li>
-          <li>
-            <Link href="#">
-              <a>Psicopedagogía</a>
-            </Link>
-          </li>
-          <li className="divider"></li>
-          <li>
-            <Link href="/pastoral">
-              <a>Pastoral</a>
-            </Link>
-          </li>
-        </ul>
+
         <div className="slider-container">
           <ul id="slide-out" className="sidenav slide-menu">
             <li className="no-padding">
@@ -173,70 +142,26 @@ const Header = (data) => {
               </ul>
             </li>
             <li>
-              <Link href="/gallery">
+              <Link href="/services/biblioteca">
                 <a>
-                  <i className="material-icons icon-white">photo_library</i>
-                  Galeria
+                  <i className="tiny material-icons icon-white">
+                    chevron_right
+                  </i>
+                  {/* <i className="tiny material-icons icon-white">chevron_right</i> */}
+                  Biblioteca
                 </a>
               </Link>
             </li>
-
             <li>
-              <Link href="#">
+              <Link href="/pastoral">
                 <a>
-                  <i className="material-icons icon-white">description</i>
-                  Publicaciones
+                  <i className="tiny material-icons icon-white">
+                    chevron_right
+                  </i>
+                  Pastoral
                 </a>
               </Link>
             </li>
-            <ul className="collapsible">
-              <li>
-                <a
-                  className="collapsible-header"
-                  onClick={() => handleRotateClick()}
-                >
-                  <i className="material-icons">school</i>
-                  Servicios
-                  <i className="material-icons right">arrow_drop_down</i>
-                </a>
-                <div className="collapsible-body">
-                  <ul>
-                    <li>
-                      <Link href="/services/biblioteca">
-                        <a>
-                          <i className="tiny material-icons icon-white">
-                            chevron_right
-                          </i>
-                          {/* <i className="tiny material-icons icon-white">chevron_right</i> */}
-                          Biblioteca
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/pastoral">
-                        <a>
-                          <i className="tiny material-icons icon-white">
-                            chevron_right
-                          </i>
-                          Pastoral
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/mision-vision">
-                        <a>
-                          <i className="tiny material-icons icon-white">
-                            chevron_right
-                          </i>
-                          {/* <i className="tiny material-icons icon-white">chevron_right</i> */}
-                          Computación
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
             {auth.user ? (
               <li onClick={auth.logout}>
                 <a>
@@ -254,14 +179,6 @@ const Header = (data) => {
                 </Link>
               </li>
             )}
-            {/* <li>
-              <Link href="/login">
-                <a>
-                  <i className="material-icons icon-white">account_circle</i>
-                  Login
-                </a>
-              </Link>
-            </li> */}
           </ul>
         </div>
 
@@ -292,20 +209,16 @@ const Header = (data) => {
                     <i className="material-icons right">arrow_drop_down</i>
                   </a>
                 </li>
+
                 <li>
-                  <Link href="/gallery">
-                    <a>
-                      {/* <i className="material-icons icon-white">photo_library</i> */}
-                      Galeria
-                    </a>
+                  <Link href="/servicios/biblioteca">
+                    <a>Biblioteca</a>
                   </Link>
                 </li>
+
                 <li>
-                  <Link href="#">
-                    <a>
-                      {/* <i className="material-icons icon-white">description</i> */}
-                      Publicaciones
-                    </a>
+                  <Link href="/pastoral">
+                    <a>Pastoral</a>
                   </Link>
                 </li>
                 <li>
@@ -314,23 +227,6 @@ const Header = (data) => {
                   <Link href="/admin">
                     <a>Admin</a>
                   </Link>
-                </li>
-
-                {/* <li>
-                <Link href="#">
-                   <i className="material-icons icon-white">contacts</i> 
-                  Contacto
-                <a></a></Link>
-              </li> */}
-                <li>
-                  <a
-                    className="dropdown-trigger"
-                    href="#!"
-                    data-target="dropdown2"
-                  >
-                    Servicios
-                    <i className="material-icons right">arrow_drop_down</i>
-                  </a>
                 </li>
                 {auth.user ? (
                   <li onClick={auth.logout}>

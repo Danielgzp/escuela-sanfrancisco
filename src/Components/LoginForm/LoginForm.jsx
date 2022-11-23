@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
 import styles from "./styles";
+import LoginLoader from "Components/Loaders/LoginLoader";
+import Loading from "Components/Loaders/Loading";
 
 const LoginForm = () => {
   const formRef = useRef(null);
@@ -23,19 +25,19 @@ const LoginForm = () => {
     const formData = new FormData(formRef.current);
     const loginUser = Object.fromEntries([...formData.entries()]);
 
-    console.log(loginUser)
+    console.log(loginUser);
     auth
       .signIn(loginUser)
       .then(() => {
-        router.push("/");
         setState({ loading: false, error: null });
         Swal.fire({
           position: "top-end",
           icon: "success",
           title: "Loggin Successfull",
           showConfirmButton: false,
-          timer: 2500,
+          timer: 1500,
         });
+        router.push("/admin");
       })
       .catch((err) => {
         if (err.response?.status === 401) {
@@ -50,7 +52,7 @@ const LoginForm = () => {
           setState({ loading: false, error: err });
           Swal.fire({
             icon: "error",
-            text: "Ha ocurrido algún problema",
+            text: "Correo o Contraseña incorrectos",
           });
         } else {
           setState({ loading: false, error: err });
@@ -95,10 +97,6 @@ const LoginForm = () => {
       */
   };
 
-  if (state.loading) {
-    return <h1>Login you in</h1>;
-  }
-
   return (
     <>
       <section className="login-background">
@@ -141,6 +139,9 @@ const LoginForm = () => {
                 <button type="submit" className="sesion-button">
                   Iniciar Sesion{" "}
                 </button>
+              </div>
+              <div className="form-group center-align">
+                {state.loading && <LoginLoader />}
               </div>
             </form>
           </div>

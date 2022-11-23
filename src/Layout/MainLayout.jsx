@@ -65,9 +65,9 @@ const MainLayout = (props) => {
   } else {
     return (
       <>
-        {/* <Header /> */}
+        <Header />
         {props.children}
-        {/* <Footer /> */}
+        <Footer />
       </>
     );
   }

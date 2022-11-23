@@ -44,6 +44,10 @@ export default css`
   #user-form input {
     color: white;
   }
+  #user-form input:focus {
+    border-bottom: 1px solid red !important;
+    box-shadow: 0 1px 0 0 red !important;
+  }
   .sesion-button {
     display: flex;
     background-color: red;
