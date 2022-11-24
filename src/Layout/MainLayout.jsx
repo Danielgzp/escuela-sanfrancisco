@@ -16,10 +16,8 @@ import { useRouter } from "next/router";
 const MainLayout = (props) => {
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-  console.log("is not client");
 
   useEffect(() => {
-    console.log("is client");
     setIsClient(true);
 
     if (router.pathname.includes("/admin")) {
@@ -31,7 +29,6 @@ const MainLayout = (props) => {
     // }
   }, [router.pathname]);
 
-  console.log("what is this");
   if (router.pathname.includes("/admin")) {
     return (
       <>

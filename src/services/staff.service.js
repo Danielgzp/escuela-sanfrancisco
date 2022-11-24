@@ -8,7 +8,7 @@ class StaffService {
 
   async find() {
     const staff = await models.Staff.findAll({
-      include: ["role", "eventuality", "news", "user"],
+      include: ["role", "eventuality", "news"],
       order: [["roleId"]],
     });
 
@@ -17,7 +17,7 @@ class StaffService {
 
   async findOne(ci) {
     const staff = await models.Staff.findByPk(ci, {
-      include: ["role", "eventuality", "news", "user"],
+      include: ["role", "eventuality", "news"],
     });
     if (!staff) {
       throw boom.notFound("Staff not found");
@@ -31,7 +31,7 @@ class StaffService {
   }
   async create(data) {
     const newStaff = await models.Staff.create(data, {
-      include: ["eventuality", "news", "user"],
+      include: ["eventuality", "news"],
     });
 
     return newStaff;

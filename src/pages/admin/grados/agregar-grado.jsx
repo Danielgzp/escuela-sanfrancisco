@@ -84,6 +84,7 @@ const AddGrade = ({ data }) => {
                           <input
                             type="text"
                             className="form-control"
+                            required
                             name="name"
                           />
                         </div>
@@ -94,6 +95,7 @@ const AddGrade = ({ data }) => {
                           <input
                             type="text"
                             className="form-control"
+                            required
                             name="section"
                           />
                         </div>
@@ -102,6 +104,7 @@ const AddGrade = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Período Escolar</label>
                           <select name="period" className="form-control">
+                            required
                             <option>Período Escolar</option>
                             {periods?.map((period) => (
                               <option
@@ -117,6 +120,7 @@ const AddGrade = ({ data }) => {
                           <label className="form-label">Course Details</label>
                           <textarea
                             className="form-control"
+                            required
                             rows="5"
                           ></textarea>
                         </div>
@@ -134,19 +138,31 @@ const AddGrade = ({ data }) => {
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Course Duration</label>
-                          <input type="text" className="form-control" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Course Price</label>
-                          <input type="text" className="form-control" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Professor Name</label>
-                          <input type="text" className="form-control" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
@@ -157,6 +173,7 @@ const AddGrade = ({ data }) => {
                           <input
                             type="number"
                             className="form-control"
+                            required
                             name="quotas"
                           />
                         </div>
@@ -164,7 +181,11 @@ const AddGrade = ({ data }) => {
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Contact Number</label>
-                          <input type="text" className="form-control" />
+                          <input
+                            type="text"
+                            className="form-control"
+                            required
+                          />
                         </div>
                       </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">

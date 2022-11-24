@@ -72,7 +72,7 @@ const AddTeacher = ({ data }) => {
     //     console.log(error);
     //   }
     // }
-   
+
     const script = document.createElement("script");
     const script2 = document.createElement("script");
     const script3 = document.createElement("script");
@@ -117,6 +117,7 @@ const AddTeacher = ({ data }) => {
                             type="text"
                             name="name"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -127,6 +128,7 @@ const AddTeacher = ({ data }) => {
                             type="text"
                             name="lastName"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -139,6 +141,7 @@ const AddTeacher = ({ data }) => {
                             type="number"
                             name="ci"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -148,6 +151,7 @@ const AddTeacher = ({ data }) => {
                           <textarea
                             name="address"
                             className="form-control"
+                            required
                             rows="5"
                           ></textarea>
                         </div>
@@ -185,6 +189,7 @@ const AddTeacher = ({ data }) => {
                             type="text"
                             name="birthPlace"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -193,7 +198,11 @@ const AddTeacher = ({ data }) => {
                           <label className="form-label">
                             Grado al cual imparte clase
                           </label>
-                          <select name="grade" className="form-control">
+                          <select
+                            name="grade"
+                            className="form-control"
+                            required
+                          >
                             <option value="">Grado</option>
                             {grades.map((grade) => (
                               <option
@@ -207,7 +216,11 @@ const AddTeacher = ({ data }) => {
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Género</label>
-                          <select name="gender" className="form-control">
+                          <select
+                            name="gender"
+                            className="form-control"
+                            required
+                          >
                             <option value="">Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -223,6 +236,7 @@ const AddTeacher = ({ data }) => {
                             type="text"
                             name="phone"
                             className="form-control"
+                            required
                           />
                           {/* <input
                             name="datepicker"
@@ -238,25 +252,17 @@ const AddTeacher = ({ data }) => {
                             type="email"
                             name="email"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12">
-                        <div className="form-group fallback w-100">
-                          <input
-                            type="file"
-                            name=""
-                            className="dropify"
-                            data-default-file=""
-                          />
-                        </div>
-                      </div>
+                       
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
-                          Submit
+                          Enviar
                         </button>
                         <button type="submit" className="btn btn-light">
-                          Cancel
+                          Cancelar
                         </button>
                       </div>
                     </div>

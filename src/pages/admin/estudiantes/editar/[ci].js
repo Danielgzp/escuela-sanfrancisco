@@ -295,16 +295,6 @@ const EditStudent = ({ data }) => {
                       </div> */}
 
                       <div className="col-lg-12 col-md-12 col-sm-12">
-                        <div className="form-group fallback w-100">
-                          <input
-                            type="file"
-                            name=""
-                            className="dropify"
-                            data-default-file=""
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
                           Guardar
                         </button>

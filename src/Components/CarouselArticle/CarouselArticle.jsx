@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 const CarouselArticle = ({ img, title, description, link, date }) => {
-  console.log(date)
   return (
     <article className="carousel-item z-depth-3 center">
       <div className="carousel-item__image">

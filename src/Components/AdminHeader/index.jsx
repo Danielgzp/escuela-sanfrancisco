@@ -12,8 +12,9 @@ const AdminHeader = () => {
           <a className="brand-logo">
             <img
               className="logo-abbr"
-              src="/images/logofeyalegria.png"
+              src="/images/LogoSanFranciscoLetrasBlancas.png"
               alt=""
+              style={{ width: "100%", height: "auto" }}
             />
             {/* <img
               className="logo-compact"
@@ -25,7 +26,6 @@ const AdminHeader = () => {
               src="/images/logo-text-white.png"
               alt=""
             /> */}
-            San Francisco
           </a>
         </Link>
 

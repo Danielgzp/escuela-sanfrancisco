@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
 
 import CarouselArticle from "../CarouselArticle/CarouselArticle";
-// import M from "materialize-css";
 
 const BillBoard = ({ posts }) => {
-  console.log(posts);
   useEffect(() => {
     var elems = document.querySelector(".carousel");
     var instances = M.Carousel.init(elems, {

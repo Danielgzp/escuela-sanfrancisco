@@ -1,5 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
+const { USER_ROLE_TABLE } = require("./user.role.model");
+
 const bcrypt = require("bcrypt");
 
 const USER_TABLE = "users";
@@ -18,6 +20,7 @@ const UserSchema = {
   // unique para que solo haya un valor igual a ese
   email: { allowNull: false, type: DataTypes.STRING, unique: true },
   password: { allowNull: false, type: DataTypes.STRING },
+
   //Este campo lo hemos agregado ya despues en una neuva migracion
   createdAt: {
     allowNull: false,
@@ -25,13 +28,21 @@ const UserSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
+  userRole: {
+    field: "user_role",
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: USER_ROLE_TABLE,
+      key: "id",
+    },
+    onUpdate: "CASCADE",
+    onDelete: "SET NULL",
+  },
 };
 class User extends Model {
   static associate(models) {
-    this.hasOne(models.Staff, {
-      as: "staff",
-      foreignKey: "userId",
-    });
+    this.belongsTo(models.UserRole, { as: "usersRole" });
   }
   static config(sequelize) {
     return {

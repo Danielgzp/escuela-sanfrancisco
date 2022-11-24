@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Op } = require("sequelize");
 
 const { models } = require("../../libs/sequelize");
 
@@ -110,17 +111,21 @@ class StudentsService {
     // console.log(query);
     // console.log(filterGrade);
 
+    const { search } = query;
+
     const options = {
       include: [
         // "representant",
         "grade",
         {
           association: "grade",
-          where: {
-            name: [`${query}`],
-            section: [`${query}`],
-          },
+
+          // where: {
+          //   name: [`${query}`],
+          //   section: [`${query}`],
+          // },
           attributes: ["name", "section"],
+          order: [["name"]],
           include: [
             "period",
             {
@@ -135,7 +140,7 @@ class StudentsService {
           ],
         },
       ],
-      order: [["lastName"]],
+
       attributes: [
         "name",
         "lastName",
@@ -146,8 +151,22 @@ class StudentsService {
         "id",
       ],
       where: {
-        name: [`${query}`],
-        lastName: [`${query}`],
+        [Op.or]: [
+          {
+            name: {
+              [Op.substring]: query.toUpperCase(),
+            },
+          },
+          {
+            lastName: {
+              [Op.substring]: query.toUpperCase(),
+            },
+          },
+        ],
+        // name: {
+        //   [Op.substring]: "AA",
+        // },
+        // $and: [{ name: query }, { lastName: query }],
       },
     };
 

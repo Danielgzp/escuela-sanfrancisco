@@ -28,7 +28,6 @@
     "dotenv": "^16.0.3",
     "install": "^0.13.0",
     "joi": "^17.6.3",
-    "jose": "^4.10.4",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0",
@@ -43,6 +42,7 @@
     "react-chartjs-2": "^5.0.1",
     "react-data-table-component": "^7.5.3",
     "react-dom": "18.2.0",
+    "react-google-maps": "^9.4.5",
     "sequelize": "^6.25.0",
     "sequelize-cli": "^6.5.1",
     "sweetalert2": "^11.6.4"

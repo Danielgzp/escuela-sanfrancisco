@@ -85,6 +85,13 @@ const endPoints = {
     deleteUsers: (id) => `${API}/${VERSION}/users/${id}`,
     updateUsers: (id) => `${API}/${VERSION}/users/${id}`,
   },
+  usersRole: {
+    getAllUsersRole: `${API}/${VERSION}/usersRole`,
+    getUsersRole: (id) => `${API}/${VERSION}/usersRole/${id}`,
+    addUsersRole: `${API}/${VERSION}/usersRole`,
+    deleteUsersRole: (id) => `${API}/${VERSION}/usersRole/${id}`,
+    updateUsersRole: (id) => `${API}/${VERSION}/usersRole/${id}`,
+  },
 };
 
 export default endPoints;

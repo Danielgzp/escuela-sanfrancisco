@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
-const { ROLE_TABLE } = require("./role.model");
+const { ROLE_TABLE } = require("./staff.role.model");
 const { USER_TABLE } = require("./user.model");
 
 const STAFF_TABLE = "staff";
@@ -37,7 +37,7 @@ const StaffSchema = {
   birthDate: {
     // allowNull: false,
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     field: "birth_date",
   },
   gender: {
@@ -47,7 +47,7 @@ const StaffSchema = {
   admissionDate: {
     // allowNull: false,
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     field: "admission_date",
   },
   birthPlace: {
@@ -55,6 +55,7 @@ const StaffSchema = {
     type: DataTypes.STRING,
     field: "birth_place",
   },
+  email: { allowNull: false, type: DataTypes.STRING, unique: true },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
@@ -72,24 +73,12 @@ const StaffSchema = {
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
-  userId: {
-    field: "user_id",
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    unique: true,
-    references: {
-      model: USER_TABLE,
-      key: "id",
-    },
-    onUpdate: "CASCADE",
-    onDelete: "SET NULL",
-  },
 };
 
 class Staff extends Model {
   static associate(models) {
     this.belongsTo(models.Role, { as: "role" });
-    this.belongsTo(models.User, { as: "user" });
+
     this.hasMany(models.Eventuality, {
       as: "eventuality",
       foreignKey: "staffCi",

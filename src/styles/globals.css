@@ -80,7 +80,7 @@ strong {
 .col .row {
   margin: 0 !important;
 }
-.btn-secondary{
+.btn-secondary {
   background-color: orange !important;
   border-color: orange !important;
 }
@@ -165,6 +165,17 @@ a {
 }
 #billboard .indicator-item {
   margin: 14px 4px;
+}
+
+.card .btn-primary {
+  background-color: var(--blue-dark);
+  border: 2px solid transparent;
+}
+.card .btn-primary:hover {
+  /* background-color: var(--blue-dark); */
+  background-color: white;
+  color: var(--blue-dark);
+  border: 2px solid var(--blue-dark);
 }
 
 @media (min-width: 768px) {
@@ -271,23 +282,8 @@ a {
 .text-titles {
   font-family: "RobotoCondensedLight";
 }
-/*============ LogIn*/
-.logInForm {
-  position: absolute;
-  color: red;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 300px;
-  padding: 15px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
-  border-radius: 0 0 2px 2px;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-.logInForm p,
-.logInForm label {
-  color: #fff;
+.form-control:focus {
+  border-color: orange !important;
 }
 /*============ Partes del dashboard*/
 .dashboard-sideBar,

@@ -22,7 +22,7 @@ const EventualitySchema = {
   },
   day: {
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
   },
   createdAt: {
     allowNull: false,

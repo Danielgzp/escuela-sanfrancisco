@@ -1,4 +1,4 @@
-console.log("select arranca");
+
 
 !(function (e, t) {
   void 0 === e && void 0 !== window && (e = window),
@@ -113,7 +113,7 @@ console.log("select arranca");
     }
     "classList" in document.createElement("_") ||
       (function (e) {
-        console.log("select arranca segunda parte");
+        
         if ("Element" in e) {
           var t = "classList",
             i = "prototype",

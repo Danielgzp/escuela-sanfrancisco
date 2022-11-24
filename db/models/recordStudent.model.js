@@ -21,7 +21,7 @@ const RecordStudentSchema = {
   },
   day: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.DATEONLY,
   },
   createdAt: {
     allowNull: false,
@@ -30,12 +30,12 @@ const RecordStudentSchema = {
     defaultValue: Sequelize.NOW,
   },
   studentCi: {
-    field: "student_ci",
+    field: "student_school_ci",
     allowNull: false,
     type: DataTypes.STRING,
     references: {
       model: STUDENTS_TABLE,
-      key: "ci",
+      key: "schoolarshipCi",
     },
     onUpdate: "CASCADE",
     onDelete: "CASCADE",

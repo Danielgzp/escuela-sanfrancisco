@@ -19,7 +19,7 @@ const ListStudents = () => {
     error: null,
     api: [],
     filter: [],
-    search: " ",
+    search: "",
     tableTitle: "Lista de los Estudiantes",
   });
 
@@ -119,9 +119,13 @@ const ListStudents = () => {
 
     if (level === 1) {
       setLevel(2);
+      setOffset(0);
+      setLimit(50);
     }
     if (level === 2) {
       setLevel(1);
+      setOffset(0);
+      setLimit(50);
     }
   };
 
@@ -132,6 +136,7 @@ const ListStudents = () => {
       loading: true,
       error: null,
     });
+    console.log(`http://localhost:3000/api/v1/students?search=${state.search}`);
     axios
       .get(`http://localhost:3000/api/v1/students?search=${state.search}`)
       .then((response) => {

@@ -17,7 +17,8 @@ const config = {
   jwtEmailSecret: process.env.JWT_EMAIL_SECRET,
   emailUser: process.env.EMAIL_USER,
   emailPassword: process.env.EMAIL_PASSWORD,
-  cookieName: process.env.COOKIE_NAME
+  cookieName: process.env.COOKIE_NAME,
+  maps: process.env.GOOGLE_MAPS_KEY
 };
 
 module.exports = { config };

@@ -14,6 +14,8 @@ const gradesService = new GradeService();
 const teachersService = new TeacherService();
 const staffService = new StaffService();
 
+import "../../Components/DataTable/css/datatable.css"
+
 const AdminDashboard = ({ props }) => {
   const {
     totalStudents,

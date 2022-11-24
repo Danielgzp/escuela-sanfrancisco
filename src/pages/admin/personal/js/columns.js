@@ -64,7 +64,7 @@ export const columns = (staff) => [
   },
   {
     name: "Correo",
-    selector: (row) => row.user.email,
+    selector: (row) => row.email,
     sortable: true,
     reorder: true,
   },

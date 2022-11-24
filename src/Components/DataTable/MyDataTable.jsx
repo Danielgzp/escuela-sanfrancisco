@@ -15,7 +15,7 @@ import Loading from "Components/Loaders/Loading";
 import Paginate from "./Paginate";
 import { useState } from "react";
 // import Paginate from "Components/Paginate/Paginate";
-// import "./css/datatable.css"
+import "./css/datatable.css";
 
 const MyDataTable = ({
   data,
@@ -53,7 +53,7 @@ const MyDataTable = ({
         <a
           key={`Paginador-${i}`}
           onClick={(e) => {
-            e.preventDefault()
+            e.preventDefault();
             setCurrent(i);
             setOffsetStudents((i - 1) * studentsPerPage);
           }}
@@ -127,12 +127,16 @@ const MyDataTable = ({
         <nav aria-label="...">
           <ul className="pagination">
             <li className="page-item" onClick={(e) => firstPage(e)}>
-              <a className="page-link" href="#">
+              <a className="page-link lessPadding" href="#">
                 Primera Página
               </a>
             </li>
             <li className="page-item disabled" onClick={(e) => prevPage(e)}>
-              <a className="page-link" href="#" aria-label="Previous">
+              <a
+                className="page-link lessPadding"
+                href="#"
+                aria-label="Previous"
+              >
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
@@ -147,7 +151,7 @@ const MyDataTable = ({
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="#">
+              <a className="page-link lessPadding" href="#">
                 3
               </a>
             </li>
@@ -157,7 +161,7 @@ const MyDataTable = ({
               </a>
             </li> */}
             <li className="page-item" onClick={(e) => lastPage(e)}>
-              <a className="page-link" href="#">
+              <a className="page-link lessPadding" href="#">
                 Última Página
               </a>
             </li>
@@ -201,30 +205,23 @@ const MyDataTable = ({
         <nav aria-label="...">
           <ul className="pagination">
             <li className="page-item" onClick={(e) => firstPage(e)}>
-              <a className="page-link" href="#">
+              <a className="page-link lessPadding" href="#">
                 <i className="material-icons">first_page</i>
               </a>
             </li>
-            <li
-              className="page-item bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-              onClick={(e) => prevPage(e)}
-            >
-              <a className="page-link " href="#" aria-label="Next">
+            <li className="page-item" onClick={(e) => prevPage(e)}>
+              <a className="page-link lessPadding" href="#" aria-label="Next">
                 <i className="material-icons">navigate_before</i>
               </a>
             </li>
             {items}
             <li className="page-item " onClick={(e) => nextPage(e)}>
-              <a
-                className="page-link bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-                href="#"
-                aria-label="Next"
-              >
+              <a className="page-link  lessPadding" href="#" aria-label="Next">
                 <i className="material-icons">navigate_next</i>
               </a>
             </li>
             <li className="page-item" onClick={(e) => lastPage(e)}>
-              <a className="page-link" href="#">
+              <a className="page-link lessPadding" href="#">
                 <i className="material-icons">last_page</i>
               </a>
             </li>

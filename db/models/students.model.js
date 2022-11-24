@@ -11,12 +11,17 @@ const StudentsSchema = {
     allowNull: false,
     autoIncrement: true,
     type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
+  schoolarshipCi: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    unique: true,
   },
   ci: {
     allowNull: true,
     type: DataTypes.STRING,
     unique: true,
-    primaryKey: true,
   },
   name: {
     allowNull: false,
@@ -33,7 +38,7 @@ const StudentsSchema = {
   },
   birthDate: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.DATEONLY,
     field: "birth_date",
   },
   gender: {
@@ -42,7 +47,7 @@ const StudentsSchema = {
   },
   admissionDate: {
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     field: "admission_date",
   },
   birthPlace: {

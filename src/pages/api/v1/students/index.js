@@ -15,7 +15,6 @@ const handler = nextConnect();
 handler
   .get(validatorHandler(queryStudentSchema, "query"), async (req, res) => {
     try {
-      console.log(req.query);
       if (req.query.level !== undefined) {
         const students = await service.findByLevel(req.query, req.query.level);
         res.json(students);
@@ -28,8 +27,10 @@ handler
         const students = await service.filterStudents(req.query.search);
         res.json(students);
       }
-      const students = await service.find(req.query);
-      res.json(students);
+      // if (req.query !== undefined) {
+      //   const students = await service.find(req.query);
+      //   res.json(students);
+      // }
     } catch (error) {
       console.log(error);
     }

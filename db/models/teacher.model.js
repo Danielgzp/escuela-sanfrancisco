@@ -36,7 +36,7 @@ const TeacherSchema = {
   birthDate: {
     // allowNull: false,
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     field: "birth_date",
   },
   gender: {
@@ -46,7 +46,7 @@ const TeacherSchema = {
   admissionDate: {
     // allowNull: false,
     allowNull: true,
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     field: "admission_date",
   },
   birthPlace: {

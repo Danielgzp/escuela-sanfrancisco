@@ -6,16 +6,10 @@ import { useAuth } from "hooks/useAuth";
 import Cookies from "js-cookie";
 import { verify } from "jsonwebtoken";
 
-// const { config } = require("../../../config/config");
-
-const Header = (data) => {
-  // const { role } = data;
-
+const Header = () => {
   let [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [cookie, setCookie] = useState(null);
-  const auth = useAuth();
 
-  // console.log(auth.user);
+  const auth = useAuth();
 
   const [state, setState] = useState({
     menu: "",
@@ -89,13 +83,9 @@ const Header = (data) => {
                   <div className="background"></div>
                   <img
                     className="circle"
-                    src="/images/logofeyalegria.png"
+                    src="/images/LogoSanFranciscoLetrasBlancas.png"
                     alt="Logo escuela"
                   />
-
-                  <span className="white-text name center">
-                    U.E Colegio Fe y Alegria San Francisco
-                  </span>
                 </div>
                 <li>
                   <Link href="/">
@@ -144,9 +134,7 @@ const Header = (data) => {
             <li>
               <Link href="/services/biblioteca">
                 <a>
-                  <i className="tiny material-icons icon-white">
-                    chevron_right
-                  </i>
+                  <i className="material-icons icon-white">account_circle</i>
                   {/* <i className="tiny material-icons icon-white">chevron_right</i> */}
                   Biblioteca
                 </a>
@@ -155,14 +143,12 @@ const Header = (data) => {
             <li>
               <Link href="/pastoral">
                 <a>
-                  <i className="tiny material-icons icon-white">
-                    chevron_right
-                  </i>
+                  <i className="material-icons icon-white">account_circle</i>
                   Pastoral
                 </a>
               </Link>
             </li>
-            {auth.user ? (
+            {!!auth.user && typeof auth.user === "object" ? (
               <li onClick={auth.logout}>
                 <a>
                   <i className="material-icons icon-white">account_circle</i>
@@ -188,13 +174,12 @@ const Header = (data) => {
               <Link href="/">
                 <a className="logo-big left">
                   <img
-                    src="/images/logofeyalegria.png"
+                    src="/images/LogoSanFranciscoLetrasBlancas.png"
                     alt="Logo del colegio"
                     className="logo"
 
                     // style={{ width: "fit-content", height: "45px" }}
                   />
-                  <span>U.E.C Fe y Alegría San Francisco</span>
                 </a>
               </Link>
               <ul className="right nav-navigator__list">
@@ -221,17 +206,20 @@ const Header = (data) => {
                     <a>Pastoral</a>
                   </Link>
                 </li>
-                <li>
-                  {/* He quitado el href porque la pagina index necesita cargar scripts
+
+                {!!auth.user && typeof auth.user === "object" ? (
+                  <>
+                    <li>
+                      {/* He quitado el href porque la pagina index necesita cargar scripts
                   y si se maneja en forma de SPA no cargan los scripts */}
-                  <Link href="/admin">
-                    <a>Admin</a>
-                  </Link>
-                </li>
-                {auth.user ? (
-                  <li onClick={auth.logout}>
-                    <a>Cerrar Sesion</a>
-                  </li>
+                      <Link href="/admin">
+                        <a>Admin</a>
+                      </Link>
+                    </li>
+                    <li onClick={auth?.logout}>
+                      <a>Cerrar Sesion</a>
+                    </li>
+                  </>
                 ) : (
                   <li>
                     <Link href="/login">
@@ -268,11 +256,3 @@ const Header = (data) => {
 };
 
 export default Header;
-
-export async function getServerSideProps() {
-  return {
-    props: {
-      data: "algo",
-    },
-  };
-}

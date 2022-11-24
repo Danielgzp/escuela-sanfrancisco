@@ -125,6 +125,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="name"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -135,6 +136,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="lastName"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -147,6 +149,7 @@ const AddStudent = ({ data }) => {
                             type="number"
                             name="schoolId"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -156,6 +159,7 @@ const AddStudent = ({ data }) => {
                           <textarea
                             name="address"
                             className="form-control"
+                            required
                             rows="5"
                           ></textarea>
                         </div>
@@ -191,13 +195,18 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="birthPlace"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Grado</label>
-                          <select name="grade" className="form-control">
+                          <select
+                            name="grade"
+                            className="form-control"
+                            required
+                          >
                             <option value="">Grado</option>
                             {grades.map((grade) => (
                               <option
@@ -211,7 +220,11 @@ const AddStudent = ({ data }) => {
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Género</label>
-                          <select name="gender" className="form-control">
+                          <select
+                            name="gender"
+                            className="form-control"
+                            required
+                          >
                             <option value="">Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -227,6 +240,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="houseProperty"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -239,6 +253,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="repName"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -251,6 +266,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="repLastName"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -263,6 +279,7 @@ const AddStudent = ({ data }) => {
                             type="number"
                             name="repCI"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
@@ -274,6 +291,7 @@ const AddStudent = ({ data }) => {
                             type="text"
                             name="phone"
                             className="form-control"
+                            required
                           />
                           {/* <input
                             name="datepicker"
@@ -289,20 +307,11 @@ const AddStudent = ({ data }) => {
                             type="email"
                             name="email"
                             className="form-control"
+                            required
                           />
                         </div>
                       </div>
 
-                      <div className="col-lg-12 col-md-12 col-sm-12">
-                        <div className="form-group fallback w-100">
-                          <input
-                            type="file"
-                            name=""
-                            className="dropify"
-                            data-default-file=""
-                          />
-                        </div>
-                      </div>
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
                           Enviar

@@ -14,6 +14,7 @@ handler.post(
   async (req, res, next) => {
     try {
       const user = req.user;
+
       //Firmamos el token con nuestro servicio Auth
 
       res.json(service.signToken(user));

@@ -4,19 +4,14 @@ import React, { useEffect } from "react";
 import endPoints from "utils/endpoints";
 
 import BillBoard from "../Components/BillBoard/BillBoard";
-// import HomeInfo from "../Components/HomeInfo/HomeInfo";
+import Map from "hooks/useMap";
+import credentials from "utils/credentials";
 
-// import Map from "hooks/Map";
-// import credentials from "../credentials";
-
-// const llave = "AIzaSyCfnUmE4wnjXKHzK5SRxo2hI3Ppi-FWrQ4";
-
-// const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${llave}`;
+const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`;
 
 const Home = ({ data }) => {
   const { news } = data;
 
-  // console.log(data)
   return (
     <>
       <Head>
@@ -45,12 +40,12 @@ const Home = ({ data }) => {
         </div>
         <div className="row">
           <div className="col l12 s12 m12">
-            {/* <Map
+            <Map
               googleMapURL={mapUrl}
               containerElement={<div style={{ height: "600px" }}></div>}
               mapElement={<div style={{ height: "100%" }}></div>}
               loadingElement={<p>Cargando...</p>}
-            /> */}
+            />
           </div>
         </div>
       </main>

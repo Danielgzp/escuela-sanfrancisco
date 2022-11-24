@@ -11,7 +11,7 @@ const handler = nextConnect();
 handler
   .get(
     // bearerHandler(),
-    passport.authenticate("jwt", { session: false }),
+    // passport.authenticate("jwt", { session: false }),
     // checkRoles("director"),
     async (req, res, next) => {
       try {

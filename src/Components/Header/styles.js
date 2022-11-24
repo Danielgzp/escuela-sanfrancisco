@@ -51,8 +51,8 @@ export default css`
     color: white;
   }
   .logo {
-    width: fit-content;
-    height: 45px;
+    width: 70%;
+    height: auto;
   }
   .logo-big {
     height: 100%;
@@ -61,8 +61,9 @@ export default css`
     padding-left: 40px;
   }
   .logo-big img {
+    height: auto;
+    width: 35%;
     margin-right: 15px;
-    margin-top: 5px;
   }
   .logo-big span {
     font-size: 18px;

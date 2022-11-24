@@ -34,28 +34,41 @@ module.exports = {
       ],
       {}
     );
-
+    await queryInterface.bulkInsert(
+      "userRole",
+      [
+        {
+          name: "superadmin",
+          create_at: new Date(),
+        },
+        {
+          name: "gerencia",
+          create_at: new Date(),
+        },
+      ],
+      {}
+    );
     await queryInterface.bulkInsert(
       "role",
       [
         {
-          name: "director",
+          name: "Director",
           create_at: new Date(),
         },
         {
-          name: "sub-director",
+          name: "Sub-Director",
           create_at: new Date(),
         },
         {
-          name: "coordinador",
+          name: "Coordinador",
           create_at: new Date(),
         },
         {
-          name: "administrativo",
+          name: "Administrativo",
           create_at: new Date(),
         },
         {
-          name: "publisher",
+          name: "Obrero",
           create_at: new Date(),
         },
       ],
@@ -65,9 +78,16 @@ module.exports = {
       "users",
       [
         {
-          email: "naibys@mail.com",
+          email: "daniel@gmail.com",
           password: hash,
           create_at: new Date(),
+          user_role: 1,
+        },
+        {
+          email: "naibys@gmail.com",
+          password: hash,
+          create_at: new Date(),
+          user_role: 2,
         },
       ],
       {}
@@ -83,8 +103,8 @@ module.exports = {
           gender: "Femenino",
           birth_place: "Barquisimeto",
           phone: "04149876543",
+          email: "naibys@gmail.com",
           role_id: 1,
-          user_id: 1,
           create_at: new Date(),
         },
       ],
@@ -215,6 +235,7 @@ module.exports = {
   async down(queryInterface) {
     await queryInterface.bulkDelete("staff", null, {});
     await queryInterface.bulkDelete("role", null, {});
+    await queryInterface.bulkDelete("userRole", null, {});
     await queryInterface.bulkDelete("user", null, {});
     await queryInterface.bulkDelete("grade", null, {});
     await queryInterface.bulkDelete("level", null, {});

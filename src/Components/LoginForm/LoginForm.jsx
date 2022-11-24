@@ -37,7 +37,7 @@ const LoginForm = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/admin");
+        router.push("/");
       })
       .catch((err) => {
         if (err.response?.status === 401) {
@@ -110,7 +110,7 @@ const LoginForm = () => {
               id="user-form"
             >
               <p className="center-align text-muted">
-                <i className="zmdi zmdi-account-circle zmdi-hc-5x"></i>
+                <i className="zmdi zmdi-account-circle zmdi-hc-2x"></i>
               </p>
               <h2 className="center-align">Inicia sesión con tu cuenta</h2>
               <div className="form-group label-floating">
@@ -121,7 +121,7 @@ const LoginForm = () => {
                   type="email"
                   name="email"
                   required
-                  placeholder="Email address"
+                  placeholder="Correo Electrónico"
                 />
               </div>
               <div className="form-group label-floating">
@@ -132,8 +132,11 @@ const LoginForm = () => {
                   type="password"
                   name="password"
                   required
-                  placeholder="Password"
+                  placeholder="Contraseña"
                 />
+              </div>
+              <div className="form-group left-align forgotPassword">
+                <a href="#!">Olvidaste tú contraseña?</a>
               </div>
               <div className="form-group center-align">
                 <button type="submit" className="sesion-button">
