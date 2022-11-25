@@ -45,6 +45,7 @@
     "react-google-maps": "^9.4.5",
     "sequelize": "^6.25.0",
     "sequelize-cli": "^6.5.1",
+    "sequelize-import-export": "^1.0.1",
     "sweetalert2": "^11.6.4"
   },
   "devDependencies": {

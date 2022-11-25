@@ -37,9 +37,9 @@ class AuthService {
 
     const payload = {
       sub: user.id,
-      name: user.staff.name,
-      // staff: user.staff,
-      role: user.staff.role.name,
+      // name: user.staff.name,
+      // // staff: user.staff,
+      // role: user.staff.role.name,
     };
 
     const token = jwt.sign(payload, config.jwtSecret, jwtConfig);
