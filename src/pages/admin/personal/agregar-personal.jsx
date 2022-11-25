@@ -79,18 +79,18 @@ const AddStaff = ({ data }) => {
     const script4 = document.createElement("script");
     const script5 = document.createElement("script");
 
-    script.src = "/vendor/pickadate/picker.js";
-    script.async = false;
-    document.body.appendChild(script);
-    script2.src = "/vendor/pickadate/picker.time.js";
-    script2.async = false;
-    document.body.appendChild(script2);
-    script3.src = "/vendor/pickadate/picker.date.js";
-    script3.async = false;
-    document.body.appendChild(script3);
-    script4.src = "/js/plugins-init/pickadate-init.js";
-    script4.async = false;
-    document.body.appendChild(script4);
+    // script.src = "/vendor/pickadate/picker.js";
+    // script.async = false;
+    // document.body.appendChild(script);
+    // script2.src = "/vendor/pickadate/picker.time.js";
+    // script2.async = false;
+    // document.body.appendChild(script2);
+    // script3.src = "/vendor/pickadate/picker.date.js";
+    // script3.async = false;
+    // document.body.appendChild(script3);
+    // script4.src = "/js/plugins-init/pickadate-init.js";
+    // script4.async = false;
+    // document.body.appendChild(script4);
 
     // getGrades();
   }, []);
@@ -152,7 +152,7 @@ const AddStaff = ({ data }) => {
                             name="address"
                             className="form-control"
                             required
-                            rows="5"
+                            rows="2"
                           ></textarea>
                         </div>
                       </div>
@@ -162,6 +162,7 @@ const AddStaff = ({ data }) => {
                             Fecha de Contratación
                           </label>
                           <input
+                            type="date"
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -174,6 +175,7 @@ const AddStaff = ({ data }) => {
                             Fecha de nacimiento
                           </label>
                           <input
+                            type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
                             id="datepicker"

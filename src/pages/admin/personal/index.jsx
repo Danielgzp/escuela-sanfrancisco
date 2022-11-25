@@ -14,7 +14,7 @@ const ListStaff = () => {
     api: [],
     filter: [],
     search: "",
-    tableTitle: "Lista del Personal",
+    tableTitle: "Personal",
   });
 
   useEffect(() => {
@@ -61,28 +61,6 @@ const ListStaff = () => {
         <AdminMainPagination pageName={"Personal"} />
 
         <div className="row">
-          <div className="col-lg-12">
-            <ul className="nav nav-pills mb-3">
-              <li className="nav-item">
-                <a
-                  href="#list-view"
-                  data-toggle="tab"
-                  className="nav-link btn-primary mr-1 show active"
-                >
-                  List View
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  href="#grid-view"
-                  data-toggle="tab"
-                  className="nav-link btn-primary"
-                >
-                  Grid View
-                </a>
-              </li>
-            </ul>
-          </div>
           <div className="col-lg-12">
             <div className="row tab-content">
               <div

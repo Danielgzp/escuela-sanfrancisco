@@ -65,24 +65,24 @@ const EditStaff = ({ data }) => {
       });
   };
   useEffect(() => {
-    const script = document.createElement("script");
-    const script2 = document.createElement("script");
-    const script3 = document.createElement("script");
-    const script4 = document.createElement("script");
-    const script5 = document.createElement("script");
+    // const script = document.createElement("script");
+    // const script2 = document.createElement("script");
+    // const script3 = document.createElement("script");
+    // const script4 = document.createElement("script");
+    // const script5 = document.createElement("script");
 
-    script.src = "/vendor/pickadate/picker.js";
-    script.async = false;
-    document.body.appendChild(script);
-    script2.src = "/vendor/pickadate/picker.time.js";
-    script2.async = false;
-    document.body.appendChild(script2);
-    script3.src = "/vendor/pickadate/picker.date.js";
-    script3.async = false;
-    document.body.appendChild(script3);
-    script4.src = "/js/plugins-init/pickadate-init.js";
-    script4.async = false;
-    document.body.appendChild(script4);
+    // script.src = "/vendor/pickadate/picker.js";
+    // script.async = false;
+    // document.body.appendChild(script);
+    // script2.src = "/vendor/pickadate/picker.time.js";
+    // script2.async = false;
+    // document.body.appendChild(script2);
+    // script3.src = "/vendor/pickadate/picker.date.js";
+    // script3.async = false;
+    // document.body.appendChild(script3);
+    // script4.src = "/js/plugins-init/pickadate-init.js";
+    // script4.async = false;
+    // document.body.appendChild(script4);
   }, []);
 
   return (
@@ -151,6 +151,7 @@ const EditStaff = ({ data }) => {
                             Fecha de Contratación
                           </label>
                           <input
+                            type="date"
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -164,6 +165,7 @@ const EditStaff = ({ data }) => {
                             Fecha de nacimiento
                           </label>
                           <input
+                            type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -237,18 +239,7 @@ const EditStaff = ({ data }) => {
                             type="email"
                             name="email"
                             className="form-control"
-                            defaultValue={staff.user.email}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12">
-                        <div className="form-group">
-                          <label className="form-label">Password</label>
-                          <input
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            defaultValue={staff.user.password}
+                            defaultValue={staff.email}
                           />
                         </div>
                       </div>

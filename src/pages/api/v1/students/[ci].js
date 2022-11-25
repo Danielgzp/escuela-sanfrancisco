@@ -12,6 +12,7 @@ handler
   .get(validatorHandler(getStudentSchema, "params"), async (req, res, next) => {
     try {
       const { ci } = req.query;
+      console.log(req.query)
       const student = await service.findOne(ci);
       res.json(student);
     } catch (error) {

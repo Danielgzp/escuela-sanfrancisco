@@ -25,7 +25,7 @@ const UserRoleSchema = {
 class UserRole extends Model {
   static associate(models) {
     // this.belongsTo(models.Section, { as: "section" });
-    this.hasMany(models.User, { as: "user", foreignKey: "userRole" });
+    this.hasMany(models.User, { as: "user", foreignKey: "userRoleId" });
   }
 
   static config(sequelize) {

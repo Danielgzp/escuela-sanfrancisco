@@ -17,7 +17,7 @@ const RecordStudentModal = ({ student }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const createRecord = {
-      studentCi: student.ci,
+      studentSchoolarshipCi: student.schoolarshipCi,
       title: objectData.title,
       description: objectData.description,
       day: objectData.day,
@@ -112,7 +112,7 @@ const RecordStudentModal = ({ student }) => {
                     <div className="form-group">
                       <label className="form-label">Día en que ocurrió</label>
                       <input
-                        type="text"
+                        type="date"
                         name="day"
                         className="form-control"
                         // defaultValue={posts?.image}

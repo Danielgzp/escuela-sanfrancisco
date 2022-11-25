@@ -42,7 +42,7 @@ const AdminHeader = () => {
           <nav className="navbar navbar-expand">
             <div className="collapse navbar-collapse justify-content-between">
               <div className="header-left">
-                <div className="search_bar dropdown">
+                {/* <div className="search_bar dropdown">
                   <span
                     className="search_icon p-3 c-pointer"
                     data-toggle="dropdown"
@@ -59,7 +59,7 @@ const AdminHeader = () => {
                       />
                     </form>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <ul className="navbar-nav header-right">

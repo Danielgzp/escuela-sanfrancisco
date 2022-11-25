@@ -2,7 +2,8 @@ const Joi = require("joi");
 
 const id = Joi.number().integer();
 const representantId = Joi.number().integer();
-const ci = Joi.string();
+const nativeCi = Joi.string();
+const schoolarshipCi = Joi.string();
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
 const address = Joi.string();
@@ -11,7 +12,7 @@ const birthDate = Joi.date();
 const birthPlace = Joi.string();
 const admissionDate = Joi.date();
 const houseProperty = Joi.string();
-const repCI = Joi.number();
+const ci = Joi.string();
 const repName = Joi.string().min(3).max(30);
 const repLastName = Joi.string().min(3).max(30);
 const phone = Joi.string();
@@ -23,8 +24,6 @@ const title = Joi.string();
 const description = Joi.string();
 const day = Joi.string();
 
-
-
 const gradeId = Joi.number().integer();
 
 const limit = Joi.number().integer();
@@ -34,11 +33,12 @@ const filterGrade = Joi.number().integer();
 const search = Joi.string();
 
 const getStudentSchema = Joi.object({
-  ci: ci.required(),
+  schoolarshipCi: schoolarshipCi.required(),
 });
 
 const createStudentSchema = Joi.object({
-  ci: ci.required(),
+  schoolarshipCi: schoolarshipCi.required(),
+  nativeCi: nativeCi.optional(),
   name: name.required(),
   lastName: lastName.required(),
   address: address.required(),
@@ -49,7 +49,7 @@ const createStudentSchema = Joi.object({
   houseProperty: houseProperty.required(),
   representantId: representantId.optional(),
   representant: {
-    ci: repCI.required(),
+    ci: ci.optional(),
     repName: repName.required(),
     repLastName: repLastName.required(),
     phone: phone.required(),
@@ -60,7 +60,8 @@ const createStudentSchema = Joi.object({
 });
 
 const updateStudentSchema = Joi.object({
-  ci,
+  nativeCi,
+  schoolarshipCi,
   name,
   lastName,
   address,
@@ -72,7 +73,7 @@ const updateStudentSchema = Joi.object({
   studentId,
   representantId,
   representant: {
-    repCI,
+    ci,
     repName,
     repLastName,
     phone,
@@ -86,7 +87,7 @@ const queryStudentSchema = Joi.object({
   offset,
   level,
   filterGrade,
-  search
+  search,
 
   //Importante recordar que cualquiera de estos valores es opcional para ello hicimos una
   //validacion en el servicio
@@ -95,5 +96,5 @@ module.exports = {
   getStudentSchema,
   createStudentSchema,
   updateStudentSchema,
-  queryStudentSchema
+  queryStudentSchema,
 };

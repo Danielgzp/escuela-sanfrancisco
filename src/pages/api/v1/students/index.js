@@ -27,10 +27,10 @@ handler
         const students = await service.filterStudents(req.query.search);
         res.json(students);
       }
-      // if (req.query !== undefined) {
-      //   const students = await service.find(req.query);
-      //   res.json(students);
-      // }
+      if (req.query !== undefined) {
+        const students = await service.find(req.query);
+        res.json(students);
+      }
     } catch (error) {
       console.log(error);
     }

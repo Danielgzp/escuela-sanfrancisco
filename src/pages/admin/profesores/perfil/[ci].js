@@ -1,6 +1,7 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loading from "Components/Loaders/Loading";
+import RenderPDF from "hooks/useRenderClientTeacher";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import endPoints from "utils/endpoints";
@@ -86,6 +87,7 @@ const TeacherProfile = ({ data }) => {
                           >
                             Eliminar
                           </a>
+                          <RenderPDF teacher={teacher} />
                         </div>
                       </div>
                     </div>
@@ -118,29 +120,7 @@ const TeacherProfile = ({ data }) => {
                                 {teacher?.admissionDate}
                               </span>
                             </li>
-                            <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Propiedad</strong>
-                              <span className="mb-0">
-                                {/* {teacher?.houseProperty} */}
-                              </span>
-                            </li>
                           </ul>
-                        </div>
-                        <div className="card-footer pt-0 pb-0 text-center">
-                          <div className="row">
-                            <div className="col-4 pt-3 pb-3 border-right">
-                              <h3 className="mb-1 text-primary">150</h3>
-                              <span>Projects</span>
-                            </div>
-                            <div className="col-4 pt-3 pb-3 border-right">
-                              <h3 className="mb-1 text-primary">140</h3>
-                              <span>Uploads</span>
-                            </div>
-                            <div className="col-4 pt-3 pb-3">
-                              <h3 className="mb-1 text-primary">45</h3>
-                              <span>Tasks</span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -151,54 +131,6 @@ const TeacherProfile = ({ data }) => {
                         </div>
                         <div className="card-body">
                           <p className="mb-0">{teacher?.address}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-12">
-                      <div className="card">
-                        <div className="card-header d-block">
-                          <h4 className="card-title">Interest </h4>
-                        </div>
-                        <div className="card-body">
-                          <h6>
-                            Photoshop
-                            <span className="pull-right">85%</span>
-                          </h6>
-                          <div className="progress ">
-                            <div
-                              className="progress-bar bg-danger progress-animated"
-                              style={{ width: "85%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
-                          <h6 className="mt-4">
-                            Code editor
-                            <span className="pull-right">90%</span>
-                          </h6>
-                          <div className="progress">
-                            <div
-                              className="progress-bar bg-info progress-animated"
-                              style={{ width: "90%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
-                          <h6 className="mt-4">
-                            Illustrator
-                            <span className="pull-right">65%</span>
-                          </h6>
-                          <div className="progress">
-                            <div
-                              className="progress-bar bg-success progress-animated"
-                              style={{ width: "65%", height: "6px" }}
-                              role="progressbar"
-                            >
-                              <span className="sr-only">60% Complete</span>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -252,12 +184,13 @@ const TeacherProfile = ({ data }) => {
                                   </div>
                                 </div>
                                 <div className="row mb-4">
-                                  <div className="col-lg-3 col-md-4 col-sm-6 col-6">
+                                  <div className="col-lg-4 col-md-5 col-sm-6 col-6">
                                     <h5 className="f-w-500">
-                                      Edad <span className="pull-right">:</span>
+                                      Fecha de Nacimiento{" "}
+                                      <span className="pull-right">:</span>
                                     </h5>
                                   </div>
-                                  <div className="col-lg-9 col-md-8 col-sm-6 col-6">
+                                  <div className="col-lg-8 col-md-7 col-sm-5 col-6">
                                     <span>{teacher?.birthDate}</span>
                                   </div>
                                 </div>

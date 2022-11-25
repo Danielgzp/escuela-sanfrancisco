@@ -1,9 +1,9 @@
+import TeacherPDF from "Components/PDF/TeacherPDF";
+
 const { PDFDownloadLink } = require("@react-pdf/renderer");
 const { useState, useEffect } = require("react");
-const { default: MakePDF } = require("utils/pdfMaker");
-import StudentPDF from "Components/PDF/StudentPDF";
 
-const RenderPDF = ({ student }) => {
+const RenderPDF = ({ teacher }) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -14,8 +14,8 @@ const RenderPDF = ({ student }) => {
     <>
       {isClient && (
         <PDFDownloadLink
-          document={<StudentPDF profile={student} />}
-          fileName="perfil.pdf"
+          document={<TeacherPDF profile={teacher} />}
+          fileName={`ficha-${teacher.ci}.pdf`}
         >
           <button
             variant="info"

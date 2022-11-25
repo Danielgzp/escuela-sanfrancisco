@@ -1,42 +1,42 @@
+import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
 import Loading from "Components/Loaders/Loading";
 import AddNewUser from "Components/Modal/AddNewUser";
 import EditUser from "Components/Modal/EditUser";
+import UserRoleService from "services/users.role.service";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 
-const ListOfUsers = () => {
+const service = new UserRoleService();
+
+const ListOfUsers = ({ data }) => {
+  const { usersRole } = data;
   const [state, setState] = useState({
     loading: false,
     error: null,
   });
+
   const [users, setUsers] = useState([]);
-  const [usersRole, setUsersRole] = useState([]);
+  // const [usersRole, setUsersRole] = useState([]);
 
   useEffect(() => {
     setState({ loading: true, error: null });
-    axios
-      .get(endPoints.usersRole.getAllUsersRole)
-      .then((response) => {
-        setUsersRole(response.data);
-      })
-      .catch((err) => {
-        setState({ loading: false, error: err });
-      });
+
     axios
       .get(endPoints.users.getAllUsers)
       .then((response) => {
         setUsers(response.data);
-        setState({ loading: false, error: null });
       })
       .catch((err) => {
         setState({ loading: false, error: err });
       });
+    setState({ loading: false, error: null });
   }, []);
 
   const handleDeleteUser = async (id) => {
@@ -109,7 +109,7 @@ const ListOfUsers = () => {
                         {users?.map((user) => (
                           <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.role}</td>
+                            <td>{user.userRole.name}</td>
                             <td>{user.email}</td>
 
                             {/* <td>{User.totalStudents}</td> */}
@@ -131,7 +131,7 @@ const ListOfUsers = () => {
                                 >
                                   <i className="material-icons">delete</i>
                                 </a>
-                                <Link
+                                {/* <Link
                                   href={`/admin/grados/editar/${user.id}`
                                     .toLowerCase()
                                     .replaceAll(" ", "-")
@@ -145,7 +145,7 @@ const ListOfUsers = () => {
                                       account_box
                                     </i>
                                   </a>
-                                </Link>
+                                </Link> */}
                               </>
                             </td>
                             <EditUser user={user} />
@@ -165,3 +165,14 @@ const ListOfUsers = () => {
 };
 
 export default ListOfUsers;
+
+export async function getServerSideProps() {
+  const response = await service.find();
+  const usersRole = await JSON.parse(JSON.stringify(response));
+
+  return {
+    props: {
+      data: { usersRole },
+    },
+  };
+}

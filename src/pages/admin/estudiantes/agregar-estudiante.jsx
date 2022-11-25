@@ -24,7 +24,8 @@ const AddStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const newStudent = {
-      ci: objectData.schoolId,
+      schoolarshipCi: objectData.schoolId,
+      nativeCi: objectData.nativeCi,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -56,7 +57,7 @@ const AddStudent = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/");
+        router.push("/admin/estudiantes");
       })
       .catch((error) => {
         Swal.fire({
@@ -84,18 +85,18 @@ const AddStudent = ({ data }) => {
     const script4 = document.createElement("script");
     const script5 = document.createElement("script");
 
-    script.src = "/vendor/pickadate/picker.js";
-    script.async = false;
-    document.body.appendChild(script);
-    script2.src = "/vendor/pickadate/picker.time.js";
-    script2.async = false;
-    document.body.appendChild(script2);
-    script3.src = "/vendor/pickadate/picker.date.js";
-    script3.async = false;
-    document.body.appendChild(script3);
-    script4.src = "/js/plugins-init/pickadate-init.js";
-    script4.async = false;
-    document.body.appendChild(script4);
+    // script.src = "/vendor/pickadate/picker.js";
+    // script.async = false;
+    // document.body.appendChild(script);
+    // script2.src = "/vendor/pickadate/picker.time.js";
+    // script2.async = false;
+    // document.body.appendChild(script2);
+    // script3.src = "/vendor/pickadate/picker.date.js";
+    // script3.async = false;
+    // document.body.appendChild(script3);
+    // script4.src = "/js/plugins-init/pickadate-init.js";
+    // script4.async = false;
+    // document.body.appendChild(script4);
     // script5.src = "/js/dlabnav-init.js";
     // script5.async = false;
     // document.body.appendChild(script5);
@@ -146,10 +147,22 @@ const AddStudent = ({ data }) => {
                             Cedula de Identidad Escolar
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="schoolId"
                             className="form-control"
                             required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">
+                            Cedula de Identidad Venezolana(en caso de tenerla)
+                          </label>
+                          <input
+                            type="text"
+                            name="nativeCi"
+                            className="form-control"
                           />
                         </div>
                       </div>
@@ -160,7 +173,7 @@ const AddStudent = ({ data }) => {
                             name="address"
                             className="form-control"
                             required
-                            rows="5"
+                            rows="2"
                           ></textarea>
                         </div>
                       </div>
@@ -168,6 +181,7 @@ const AddStudent = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Fecha de Ingreso</label>
                           <input
+                            type="date"
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -180,9 +194,10 @@ const AddStudent = ({ data }) => {
                             Fecha de nacimiento
                           </label>
                           <input
+                            type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
-                            id="datepicker"
+                            // id="datepicker"
                           />
                         </div>
                       </div>
@@ -243,6 +258,11 @@ const AddStudent = ({ data }) => {
                             required
                           />
                         </div>
+                      </div>
+                      <div className="card-header col-lg-12 col-md-12 col-sm-12">
+                        <h5 className="card-title">
+                          Información del representante
+                        </h5>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">

@@ -20,7 +20,7 @@ const ListStudents = () => {
     api: [],
     filter: [],
     search: "",
-    tableTitle: "Lista de los Estudiantes",
+    tableTitle: "Estudiantes",
   });
 
   const [students, setStudents] = useState([]);

@@ -65,24 +65,24 @@ const EditTeacher = ({ data }) => {
       });
   };
   useEffect(() => {
-    const script = document.createElement("script");
-    const script2 = document.createElement("script");
-    const script3 = document.createElement("script");
-    const script4 = document.createElement("script");
-    const script5 = document.createElement("script");
+    // const script = document.createElement("script");
+    // const script2 = document.createElement("script");
+    // const script3 = document.createElement("script");
+    // const script4 = document.createElement("script");
+    // const script5 = document.createElement("script");
 
-    script.src = "/vendor/pickadate/picker.js";
-    script.async = false;
-    document.body.appendChild(script);
-    script2.src = "/vendor/pickadate/picker.time.js";
-    script2.async = false;
-    document.body.appendChild(script2);
-    script3.src = "/vendor/pickadate/picker.date.js";
-    script3.async = false;
-    document.body.appendChild(script3);
-    script4.src = "/js/plugins-init/pickadate-init.js";
-    script4.async = false;
-    document.body.appendChild(script4);
+    // script.src = "/vendor/pickadate/picker.js";
+    // script.async = false;
+    // document.body.appendChild(script);
+    // script2.src = "/vendor/pickadate/picker.time.js";
+    // script2.async = false;
+    // document.body.appendChild(script2);
+    // script3.src = "/vendor/pickadate/picker.date.js";
+    // script3.async = false;
+    // document.body.appendChild(script3);
+    // script4.src = "/js/plugins-init/pickadate-init.js";
+    // script4.async = false;
+    // document.body.appendChild(script4);
   }, []);
 
   return (
@@ -152,6 +152,7 @@ const EditTeacher = ({ data }) => {
                           </label>
                           <input
                             name="admissionDate"
+                            type="date"
                             className="datepicker-default form-control"
                             id="datepicker"
                             defaultValue={teacher?.admissionDate}
@@ -164,6 +165,7 @@ const EditTeacher = ({ data }) => {
                             Fecha de nacimiento
                           </label>
                           <input
+                            type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
                             id="datepicker"

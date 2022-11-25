@@ -101,8 +101,8 @@ const ListPeriods = () => {
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Periodo Escolar</th>
-                          <th scope="col">Estatus</th>
-                          <th scope="col">Estudiantes Totales</th>
+                          {/* <th scope="col">Estatus</th>
+                          <th scope="col">Estudiantes Totales</th> */}
                           <th scope="col">Acciones</th>
                         </tr>
                       </thead>
@@ -112,12 +112,12 @@ const ListPeriods = () => {
                             <td>{period.id}</td>
                             <td>{period.name}</td>
 
-                            <td>
+                            {/* <td>
                               <span className="badge badge-success">
                                 Activo
                               </span>
                             </td>
-                            <td>100</td>
+                            <td>100</td> */}
                             {/* <td>{period.totalStudents}</td> */}
                             {/* <td>{period.students.length}</td> */}
                             <td>
@@ -137,21 +137,6 @@ const ListPeriods = () => {
                                 >
                                   <i className="material-icons">delete</i>
                                 </a>
-                                <Link
-                                  href={`/admin/grados/editar/${period.id}`
-                                    .toLowerCase()
-                                    .replaceAll(" ", "-")
-                                    .normalize("NFD")
-                                    .replace(/[?¿¡!\u0300-\u036f]/g, "")}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <a>
-                                    <i className="material-icons">
-                                      account_box
-                                    </i>
-                                  </a>
-                                </Link>
                               </>
                             </td>
                             <EditPeriodModal period={period} />

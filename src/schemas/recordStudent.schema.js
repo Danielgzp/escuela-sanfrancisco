@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const studentCi = Joi.string();
+const studentSchoolarshipCi = Joi.string();
 const title = Joi.string().min(5).max(40);
 const description = Joi.string().min(10).max(100);
 const day = Joi.string();
@@ -14,14 +14,14 @@ const getRecordSchema = Joi.object({
 });
 
 const createRecordSchema = Joi.object({
-  studentCi: studentCi.required(),
+  studentSchoolarshipCi: studentSchoolarshipCi.required(),
   title: title.required(),
   description: description.required(),
   day: day.required(),
 });
 
 const updateRecordSchema = Joi.object({
-  studentCi,
+  studentSchoolarshipCi,
   title,
   description,
   day,

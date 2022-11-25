@@ -18,23 +18,22 @@ const EditStudent = ({ data }) => {
   });
 
   useEffect(() => {
-    const script = document.createElement("script");
-    const script2 = document.createElement("script");
-    const script3 = document.createElement("script");
-    const script4 = document.createElement("script");
-
-    script.src = "/vendor/pickadate/picker.js";
-    script.async = false;
-    document.body.appendChild(script);
-    script2.src = "/vendor/pickadate/picker.time.js";
-    script2.async = false;
-    document.body.appendChild(script2);
-    script3.src = "/vendor/pickadate/picker.date.js";
-    script3.async = false;
-    document.body.appendChild(script3);
-    script4.src = "/js/plugins-init/pickadate-init.js";
-    script4.async = false;
-    document.body.appendChild(script4);
+    // const script = document.createElement("script");
+    // const script2 = document.createElement("script");
+    // const script3 = document.createElement("script");
+    // const script4 = document.createElement("script");
+    // script.src = "/vendor/pickadate/picker.js";
+    // script.async = false;
+    // document.body.appendChild(script);
+    // script2.src = "/vendor/pickadate/picker.time.js";
+    // script2.async = false;
+    // document.body.appendChild(script2);
+    // script3.src = "/vendor/pickadate/picker.date.js";
+    // script3.async = false;
+    // document.body.appendChild(script3);
+    // script4.src = "/js/plugins-init/pickadate-init.js";
+    // script4.async = false;
+    // document.body.appendChild(script4);
   }, []);
   // const [grades, setGrades] = useState([]);
 
@@ -152,6 +151,7 @@ const EditStudent = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Fecha de Ingreso</label>
                           <input
+                            type="date"
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -165,6 +165,7 @@ const EditStudent = ({ data }) => {
                             Fecha de nacimiento
                           </label>
                           <input
+                            type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
                             id="datepicker"
@@ -329,6 +330,7 @@ const EditStudent = ({ data }) => {
 export default EditStudent;
 
 export async function getServerSideProps({ query }) {
+  console.log(query);
   const { ci } = query;
 
   try {
@@ -336,6 +338,7 @@ export async function getServerSideProps({ query }) {
     const student = await JSON.parse(JSON.stringify(response.data));
     const response2 = await axios.get(endPoints.grades.getAllGrades);
     const grades = await JSON.parse(JSON.stringify(response2.data));
+    console.log(student);
 
     return {
       props: { data: { student, grades } },

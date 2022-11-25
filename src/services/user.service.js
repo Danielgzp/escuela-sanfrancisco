@@ -20,7 +20,14 @@ class UserService {
 
   async find() {
     const user = await models.User.findAll({
-      include: ["usersRole"],
+      attributes: ["email", "id", "createdAt"],
+      include: [
+        "userRole",
+        {
+          association: "userRole",
+          attributes: ["name"],
+        },
+      ],
     });
 
     return user;
@@ -29,7 +36,7 @@ class UserService {
   async findOne(id) {
     //find by private key, es decir buscar por el id o el valor que le solicitemos
     const user = await models.User.findByPk(id, {
-      include: ["usersRole"],
+      // include: ["usersRole"],
     });
     if (!user) {
       //BOOM para manejar los errores
@@ -44,7 +51,7 @@ class UserService {
       //el where dice que bsuque hasta que encuentre en la DB un email igual al que se envia
       //por parametro
       where: { email },
-      include: ["usersRole"],
+      // include: ["usersRole"],
     });
 
     return user;

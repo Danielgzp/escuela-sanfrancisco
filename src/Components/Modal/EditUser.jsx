@@ -93,9 +93,12 @@ const EditUser = ({ user }) => {
                       <select
                         name="period"
                         className="form-control disabled"
-                        defaultValue={user?.rol}
                         disabled
-                      ></select>
+                      >
+                        <option defaultValue={user?.userRole?.name}>
+                          {user?.userRole?.name}
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </form>

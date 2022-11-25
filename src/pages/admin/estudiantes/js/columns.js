@@ -46,7 +46,13 @@ export const columns = (student) => [
   },
   {
     name: "C.I Escolar",
-    selector: (row) => row.ci,
+    selector: (row) => row.schoolarshipCi,
+    sortable: true,
+    reorder: true,
+  },
+  {
+    name: "C.I Natural",
+    selector: (row) => row.nativeCi,
     sortable: true,
     reorder: true,
   },
@@ -90,7 +96,7 @@ export const columns = (student) => [
     cell: (row, id) => (
       <>
         <Link
-          href={`/admin/estudiantes/editar/${row.ci}`
+          href={`/admin/estudiantes/editar/${row.schoolarshipCi}`
             .replaceAll(" ", "-")
             .normalize("NFD")
             .replace(/[?¿¡!\u0300-\u036f]/g, "")}
@@ -110,7 +116,7 @@ export const columns = (student) => [
           <i className="material-icons">delete</i>
         </a>
         <Link
-          href={`/admin/estudiantes/perfil/${row.ci}`
+          href={`/admin/estudiantes/perfil/${row.schoolarshipCi}`
             .replaceAll(" ", "-")
             .normalize("NFD")
             .replace(/[?¿¡!\u0300-\u036f]/g, "")}

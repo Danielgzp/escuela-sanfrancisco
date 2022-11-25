@@ -28,10 +28,10 @@ const UserSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
-  userRole: {
-    field: "user_role",
+  userRoleId: {
     allowNull: false,
     type: DataTypes.INTEGER,
+    field: "role_user",
     references: {
       model: USER_ROLE_TABLE,
       key: "id",
@@ -42,7 +42,7 @@ const UserSchema = {
 };
 class User extends Model {
   static associate(models) {
-    this.belongsTo(models.UserRole, { as: "usersRole" });
+    this.belongsTo(models.UserRole, { as: "userRole" });
   }
   static config(sequelize) {
     return {

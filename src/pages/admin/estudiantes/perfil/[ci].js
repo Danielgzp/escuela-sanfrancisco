@@ -79,7 +79,7 @@ const StudentProfile = ({ data }) => {
 
                         <div className="card-footer text-center border-0 mt-0">
                           <Link
-                            href={`/admin/estudiantes/editar/${student.ci}`}
+                            href={`/admin/estudiantes/editar/${student?.schoolarshipCi}`}
                           >
                             <a className="btn btn-primary btn-rounded px-4">
                               Editar
@@ -212,7 +212,18 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.ci}</span>
+                                    <span>{student?.schoolarshipCi}</span>
+                                  </div>
+                                </div>
+                                <div className="row mb-4">
+                                  <div className="col-lg-3 col-md-4 col-sm-6 col-6">
+                                    <h5 className="f-w-500">
+                                      Cedula Natal{" "}
+                                      <span className="pull-right">:</span>
+                                    </h5>
+                                  </div>
+                                  <div className="col-lg-9 col-md-8 col-sm-6 col-6">
+                                    <span>{student?.nativeCi}</span>
                                   </div>
                                 </div>
                               </div>
@@ -228,7 +239,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.name}</span>
+                                    <span>{student?.representant?.repName}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -239,7 +250,9 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.lastName}</span>
+                                    <span>
+                                      {student?.representant?.repLastName}
+                                    </span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -250,7 +263,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.ci}</span>
+                                    <span>{student?.representant?.ci}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -261,7 +274,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>representante@email.com</span>
+                                    <span>{student?.representant?.phone}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -272,7 +285,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>03123212</span>
+                                    <span>{student?.representant?.phone}</span>
                                   </div>
                                 </div>
                               </div>

@@ -7,11 +7,12 @@ import {
   StyleSheet,
 } from "@react-pdf/renderer";
 
-const MakePDF = ({ profile }) => {
+const StudentPDF = ({ profile }) => {
   const {
     name,
     lastName,
-    ci,
+    nativeCi,
+    schoolarshipCi,
     birthDate,
     birthPlace,
     admissionDate,
@@ -21,6 +22,7 @@ const MakePDF = ({ profile }) => {
     address,
     gradeId,
     record,
+    representant,
   } = profile;
 
   const styles = StyleSheet.create({
@@ -142,8 +144,6 @@ const MakePDF = ({ profile }) => {
     },
   });
 
-  console.log(profile);
-  console.log(record);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -154,7 +154,7 @@ const MakePDF = ({ profile }) => {
                 style={{
                   color: "grey",
                   textAlign: "center",
-                  fontSize: "10px",
+                  fontSize: "12px",
                   fontWeight: "bold",
                 }}
               >
@@ -164,37 +164,26 @@ const MakePDF = ({ profile }) => {
                 style={{
                   color: "black",
                   textAlign: "center",
-                  fontSize: "14px",
+                  fontSize: "18px",
                   fontWeight: "bold",
-                  // marginBottom: "5px",
-                  // marginTop: "5px",
+                  marginBottom: "5px",
+                  marginTop: "5px",
                 }}
               >
                 PERFIL DEL ESTUDIANTE
               </Text>
               <Text
-                style={{ color: "grey", textAlign: "center", fontSize: "8px" }}
+                style={{ color: "grey", textAlign: "center", fontSize: "10px" }}
               >
-                Ficha estudiantil
+                Ficha Estudiantil
               </Text>
             </View>
             <View style={styles.rightHeader}>
               <Image
-                src="https://ipysvenezuela.org/wp-content/uploads/2017/09/vista-prc3a8via-de-e2809clogofyabuenaresolucic3b3n-tife2809d-cc3b2pia.jpg"
+                src="/images/LogoSanFrancisco.png"
                 alt="Logo de Fe y Alegria"
-                style={{ width: "50%", height: "auto" }}
+                style={{ width: "90%", height: "auto" }}
               ></Image>
-              <Text
-                style={{
-                  color: "grey",
-                  textAlign: "left",
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  width: "50%",
-                }}
-              >
-                U.E.C Fe y Alegría San Francisco
-              </Text>
             </View>
           </View>
           <View style={styles.firstTitle}>
@@ -231,12 +220,12 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Cedula Escolar</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>{ci}</Text>
+                  <Text style={styles.columnText}>{schoolarshipCi}</Text>
                 </View>
               </View>
             </View>
             <View style={[styles.secondRow, styles.row]}>
-              <View style={[{ width: "60%" }, styles.column]}>
+              <View style={[{ width: "50%" }, styles.column]}>
                 <View style={[styles.topColumn1, styles.topColumn]}>
                   <Text style={styles.columnTitle}>Dirección</Text>
                 </View>
@@ -244,14 +233,22 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnText}>{address}</Text>
                 </View>
               </View>
-              <View
-                style={[{ width: "40%" }, styles.column, styles.columnNoBorder]}
-              >
+              <View style={[{ width: "25%" }, styles.column]}>
                 <View style={[styles.topColumn2, styles.topColumn]}>
                   <Text style={styles.columnTitle}>Fecha de Nacimiento</Text>
                 </View>
                 <View>
                   <Text style={styles.columnText}>{birthDate}</Text>
+                </View>
+              </View>
+              <View
+                style={[styles.column, styles.columnNoBorder, { width: "25%" }]}
+              >
+                <View style={[styles.topColumn3, styles.topColumn]}>
+                  <Text style={styles.columnTitle}>Cedula Natal</Text>
+                </View>
+                <View>
+                  <Text style={styles.columnText}>{nativeCi}</Text>
                 </View>
               </View>
             </View>
@@ -318,7 +315,7 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Nombres</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>c</Text>
+                  <Text style={styles.columnText}>{representant.repName}</Text>
                 </View>
               </View>
               <View style={[{ width: "40%" }, styles.column]}>
@@ -326,7 +323,9 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Apellidos</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>bdsa</Text>
+                  <Text style={styles.columnText}>
+                    {representant.repLastName}
+                  </Text>
                 </View>
               </View>
               <View
@@ -336,7 +335,7 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Cedula</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>10323452</Text>
+                  <Text style={styles.columnText}>{representant.ci}</Text>
                 </View>
               </View>
             </View>
@@ -346,10 +345,7 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Correo</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Nostrum
-                  </Text>
+                  <Text style={styles.columnText}>{representant.email}</Text>
                 </View>
               </View>
               <View
@@ -359,7 +355,7 @@ const MakePDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Telefono</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>0414102534</Text>
+                  <Text style={styles.columnText}>{representant.phone}</Text>
                 </View>
               </View>
             </View>
@@ -425,110 +421,4 @@ const MakePDF = ({ profile }) => {
   );
 };
 
-export default MakePDF;
-
-{
-  /* <View>
-  <View style={styles.">
-    <View style={styles.">
-      <View style={styles.">
-        <View style={styles.pdfTitle}>
-          <Text style={styles." tyle={styles.pdfTitle}>
-            Información Básica
-          </Text>
-        </View>
-        <View style={styles.personalInfo">
-          <View style={styles.">
-            <View style={styles.">
-              <View style={styles.">
-                <Text style={styles.formData}>Nombres</Text>
-
-                <Text style={styles.formData">{name}</Text>
-              </View>
-            </View>
-            <View style={styles.">
-              <View style={styles.">
-                <Text style={styles.">Apellidos</Text>
-                <Text style={styles.">{lastName}</Text>
-              </View>
-            </View>
-            <View style={styles.">
-              <View style={styles.">
-                <Text style={styles.">Cedula de Identidad Escolar</Text>
-                <Text name="schoolId">{ci}</Text>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Direccion</Text>
-                  <Text style={styles.">{address}</Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Fecha de Ingreso</Text>
-                  <Text style={styles.datepicker-default ">{admissionDate}</Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Fecha de nacimiento</Text>
-                  <Text style={styles.datepicker-default ">{birthDate}</Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Lugar de Nacimiento</Text>
-                  <Text style={styles.">{birthPlace}</Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Grado</Text>
-                  <Text style={styles.">
-                    {grade.name} Seccion {grade.section}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Género</Text>
-                  <Text style={styles.">{grade.gender}</Text>
-                </View>
-              </View>
-              <View style={styles.">
-                <View style={styles.">
-                  <Text style={styles.">Condición de la vivienda</Text>
-                  <Text style={styles.">{houseProperty}</Text>
-                </View>
-              </View>
-            </View>
-            <View>
-              <Text>Eventualidades</Text>
-              {record ? (
-                <>
-                  {record?.map((records) => (
-                    <View key={records.id}>
-                      <View>
-                        <Text>
-                          {records.title} - {records.day}
-                        </Text>
-                      </View>
-                      <View>
-                        <Text>{records.description}</Text>
-                      </View>
-                    </View>
-                  ))}
-                </>
-              ) : (
-                <View>
-                  <Text>No tiene Evenetualidades Registradas</Text>
-                </View>
-              )}
-            </View>
-          </View>
-        </View>
-      </View>
-    </View>
-  </View>
-</View>; */
-}
+export default StudentPDF;

@@ -10,7 +10,7 @@ const RepresentantsSchema = {
   ci: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
   },
   repName: {

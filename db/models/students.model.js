@@ -11,15 +11,17 @@ const StudentsSchema = {
     allowNull: false,
     autoIncrement: true,
     type: DataTypes.INTEGER,
-    primaryKey: true,
   },
   schoolarshipCi: {
     allowNull: false,
+    field: "schoolarship_ci",
     type: DataTypes.STRING,
     unique: true,
+    primaryKey: true,
   },
-  ci: {
+  nativeCi: {
     allowNull: true,
+    field: "native_ci",
     type: DataTypes.STRING,
     unique: true,
   },
@@ -69,7 +71,7 @@ const StudentsSchema = {
   representantCi: {
     field: "representant_ci",
     allowNull: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     references: {
       model: REPRESENTANTS_TABLE,
       key: "ci",
@@ -95,7 +97,7 @@ class Students extends Model {
     this.hasMany(models.RecordStudent, {
       as: "record",
       //alias o el nombre de la relacion nque definimos en el model de products
-      foreignKey: "studentCi",
+      foreignKey: "studentSchoolarshipCi",
     });
   }
 

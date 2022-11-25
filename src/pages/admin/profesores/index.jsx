@@ -15,7 +15,7 @@ const ListTeachers = () => {
     api: [],
     filter: [],
     search: "",
-    tableTitle: "Lista del Personal",
+    tableTitle: "Profesores",
   });
 
   useEffect(() => {
@@ -58,36 +58,10 @@ const ListTeachers = () => {
 
   return (
     <>
-      <Head>
-        <title>Test</title>
-        <link rel="stylesheet" href="../styles/style.css" key="test" />
-      </Head>
       <div className="content-body">
         <div className="container-fluid">
           <AdminMainPagination pageName={"Profesores"} />
           <div className="row">
-            <div className="col-lg-12">
-              <ul className="nav nav-pills mb-3">
-                <li className="nav-item">
-                  <a
-                    href="#list-view"
-                    data-toggle="tab"
-                    className="nav-link btn-primary mr-1 show active"
-                  >
-                    List View
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    href="#grid-view"
-                    data-toggle="tab"
-                    className="nav-link btn-primary"
-                  >
-                    Grid View
-                  </a>
-                </li>
-              </ul>
-            </div>
             <div className="col-lg-12">
               <div className="row tab-content">
                 <div
@@ -109,6 +83,7 @@ const ListTeachers = () => {
                           data={state}
                           tableColumns={columns}
                           headerSearch={handleSearchButton}
+                          
                         />
                       </div>
                     </div>

@@ -5,6 +5,7 @@ import endPoints from "utils/endpoints";
 
 const AddNewUser = ({ roles }) => {
   const formRef = useRef(null);
+
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -18,7 +19,8 @@ const AddNewUser = ({ roles }) => {
     const objectData = Object.fromEntries([...formData.entries()]);
     const newUser = {
       email: objectData.email,
-      role: objectData.role,
+      userRoleId: objectData.role,
+      password: objectData.password
       //   section: objectData.section,
       //   UsersId: objectData.Users,
     };
@@ -91,12 +93,23 @@ const AddNewUser = ({ roles }) => {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <div className="form-group">
+                      <label className="form-label">Contraseña</label>
+                      <input
+                        type="password"
+                        name="password"
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div className="form-group">
                       <label className="form-label">Rol</label>
                       <select
-                        name="period"
+                        name="role"
                         className="form-control"
                         // defaultValue={user?.name}
                       >
+                        <option value="">Rol</option>
                         {roles?.map((role) => (
                           <option
                             key={role.id}
