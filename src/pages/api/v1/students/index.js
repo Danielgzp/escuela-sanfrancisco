@@ -13,14 +13,20 @@ const service = new StudentsService();
 const handler = nextConnect();
 
 handler
-  .get(validatorHandler(queryStudentSchema, "query"), async (req, res) => {
+  .get(async (req, res) => {
     try {
       if (req.query.level !== undefined) {
         const students = await service.findByLevel(req.query, req.query.level);
         res.json(students);
       }
-      if (req.query.filterGrade !== undefined) {
-        const students = await service.findByGrade(req.query.filterGrade);
+      if (
+        req.query.filterGrade !== undefined &&
+        req.query.section !== undefined
+      ) {
+        const students = await service.findByGrade(
+          req.query.filterGrade,
+          req.query.section
+        );
         res.json(students);
       }
       if (req.query.search !== undefined) {

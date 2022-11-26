@@ -14,12 +14,7 @@ export const columns = (student) => [
       backgroundColor: "#143b6444",
     },
   },
-  {
-    name: "C.I Escolar",
-    selector: (row) => row.ci,
-    sortable: true,
-    reorder: true,
-  },
+
   {
     name: "Apellidos",
     selector: (row) => row.lastName,
@@ -32,7 +27,18 @@ export const columns = (student) => [
     sortable: true,
     reorder: true,
   },
-
+  {
+    name: "C.I Escolar",
+    selector: (row) => row.schoolarshipCi,
+    sortable: true,
+    reorder: true,
+  },
+  {
+    name: "Cedula",
+    selector: (row) => row.nativeCi,
+    sortable: true,
+    reorder: true,
+  },
   {
     name: "Sexo",
     selector: (row) => row.gender,

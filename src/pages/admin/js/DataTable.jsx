@@ -14,6 +14,7 @@ import endPoints from "utils/endpoints";
 import Loading from "Components/Loaders/Loading";
 import { columns, paginationOptions } from "./columns";
 import { useRef, useState } from "react";
+import { useMemo } from "react";
 // import "./css/datatable.css"
 
 // const [filterText, setFilterText] = useState("");
@@ -81,17 +82,18 @@ const ReportDataTable = ({ grades }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const gradeData = {
-      gradeId: objectData.grade,
+      name: objectData.name,
+      section: objectData.section,
     };
 
     setState({ loading: true, error: null });
     console.log(gradeData);
     console.log(
-      `${endPoints.students.getAllStudents}?filterGrade=${gradeData.gradeId}`
+      `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
     );
     axios
       .get(
-        `${endPoints.students.getAllStudents}?filterGrade=${gradeData.gradeId}`
+        `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
       )
       .then((response) => {
         console.log(response);
@@ -110,7 +112,7 @@ const ReportDataTable = ({ grades }) => {
       });
   };
 
-  console.log(students);
+
 
   return (
     <>
@@ -121,6 +123,7 @@ const ReportDataTable = ({ grades }) => {
         highlightOnHover={true}
         columns={columns()}
         data={students}
+        actions={<button className="btn btn-success">Exportar Excel</button>}
         striped={true}
         title="Movie List"
         fixedHeader
@@ -138,19 +141,22 @@ const ReportDataTable = ({ grades }) => {
             <div id="headerTable-container">
               <h4 className="card-title">Filtrar alumnos por grado</h4>
               <div className="search-bar">
-                <p>
-                  <i className="material-icons">search</i>
-                  Selecciona el grado
-                </p>
                 <form onSubmit={handleSubmit} ref={formRef}>
-                  <select name="grade" className="form-control">
+                  <label>Selecciona el grado</label>
+                  <select name="name" className="form-control">
                     <option value="">Grado</option>
                     {grades.map((grade) => (
                       <option
                         key={grade.id}
-                        value={`${grade.id}`}
-                      >{`${grade.name} ${grade.section}`}</option>
+                        value={`${grade.name}`}
+                      >{`${grade.name}`}</option>
                     ))}
+                  </select>
+                  <label>Selecciona la seccion</label>
+                  <select name="section" className="form-control">
+                    <option value="">Seccion</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
                   </select>
                   <button type="submit" className="btn btn-primary">
                     Ir

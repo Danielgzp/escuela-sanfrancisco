@@ -238,9 +238,9 @@ class StudentsService {
     return total;
   }
 
-  async findByGrade(query) {
-    // console.log(query);
-    // console.log(filterGrade);
+  async findByGrade(filterGrade, section) {
+    console.log(filterGrade);
+    console.log(section);
     const options = {
       include: [
         // "representant",
@@ -248,6 +248,14 @@ class StudentsService {
         {
           association: "grade",
           attributes: ["name", "section"],
+          where: {
+            name: {
+              [Op.like]: `%${filterGrade}%`,
+            },
+            section: {
+              [Op.like]: `%${section}%`,
+            },
+          },
           include: [
             "period",
             {
@@ -273,9 +281,6 @@ class StudentsService {
         "gradeId",
         "id",
       ],
-      where: {
-        gradeId: [`${query}`],
-      },
     };
 
     const students = await models.Students.findAll(options);
