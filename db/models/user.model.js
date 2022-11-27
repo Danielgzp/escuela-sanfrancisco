@@ -20,6 +20,11 @@ const UserSchema = {
   // unique para que solo haya un valor igual a ese
   email: { allowNull: false, type: DataTypes.STRING, unique: true },
   password: { allowNull: false, type: DataTypes.STRING },
+  recoveryToken: {
+    field: "recovery_token",
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
 
   //Este campo lo hemos agregado ya despues en una neuva migracion
   createdAt: {

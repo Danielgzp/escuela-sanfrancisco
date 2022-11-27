@@ -1,28 +1,25 @@
 import { NextResponse } from "next/server";
+const fs = require("fs")
+// const { JwtStrategy } = require("utils/strategies/jwt.strategy");
+// const jwt = require("jsonwebtoken");
 
 export const middleware = async (req) => {
-  // return NextResponse.rewrite(new URL("/about-2", req.url));
-  // const secret = process.env.SECRET;
-  // const cookieName = process.env.COOKIE_NAME;
-  // let cookieToken = req.cookies.get("userJWT");
-  // let url = req.url;
-
-  // // console.log("a")
-
-  // if (!cookieToken && url.includes("/admin")) {
-  //   return NextResponse.redirect("http://localhost:3000/");
-  // }
-  // if (url.includes("/api")) {
-  //   return NextResponse.redirect("http://localhost:3000/");
-  // }
-
   const secret = process.env.SECRET;
   const cookieName = process.env.COOKIE_NAME;
   const url = req.url;
   const cookieToken = req.cookies.get(cookieName);
+  // const verifiedToken = await jwt.verify(cookieToken, secret);
 
   if (url.includes("/admin")) {
     if (cookieToken === undefined) {
+      // if (!verifiedToken) {
+      //   // if this an API request, respond with JSON
+      //   return new NextResponse(
+      //     JSON.stringify({ error: { message: "authentication required" } }),
+      //     { status: 401 }
+      //   );
+      // }
+
       return NextResponse.redirect("http://localhost:3000/");
     }
 
@@ -40,11 +37,9 @@ export const middleware = async (req) => {
   //   return NextResponse.redirect("http://localhost:3000/");
   // }
 
-  if (url.includes("/login")) {
+  if (url.includes("/login") || url.includes("/recovery")) {
     if (cookieToken !== undefined) {
       try {
-        // jwtVerify(cookieToken, new TextEncoder().encode(secret));
-
         return NextResponse.redirect("http://localhost:3000/");
       } catch (e) {
         if (e.message === "invalid token") {

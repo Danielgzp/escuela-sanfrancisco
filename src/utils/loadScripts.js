@@ -12,10 +12,11 @@ export const loadScripts = () => {
   const script9 = document.createElement("script");
   const script10 = document.createElement("script");
   const script11 = document.createElement("script");
+  const script12 = document.createElement("script");
 
-  script.src = "/vendor/global/global.min.js";
-  script.async = false;
-  document.body.appendChild(script);
+  // script.src = "/vendor/global/global.min.js";
+  // script.async = false;
+  // document.body.appendChild(script);
   script2.src = "/vendor/bootstrap-select/dist/js/bootstrap-select.min.js";
   script2.async = false;
   document.body.appendChild(script2);
@@ -46,4 +47,7 @@ export const loadScripts = () => {
   script10.src = "/js/styleSwitcher.js";
   script10.async = false;
   document.body.appendChild(script10);
+  // script12.src = "/js/plugins-init/datatables.init.js";
+  // script12.async = false;
+  // document.body.appendChild(script12);
 };

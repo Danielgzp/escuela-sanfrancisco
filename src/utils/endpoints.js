@@ -7,6 +7,8 @@ const endPoints = {
   auth: {
     login: `${API}/${VERSION}/auth/login`,
     profile: `${API}/${VERSION}/auth/profile`,
+    recovery: `${API}/${VERSION}/auth/recovery`,
+    changePassword: `${API}/${VERSION}/auth/change-password`,
   },
   eventualities: {
     getAllEventualities: `${API}/${VERSION}/eventualities`,

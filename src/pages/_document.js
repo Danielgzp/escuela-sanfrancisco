@@ -18,7 +18,12 @@ export default function Document() {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
         />
-
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+          crossorigin="anonymous"
+        />
         {/* <link rel="stylesheet" href="../styles/bootstrap-select.min.css" /> */}
         <meta name="theme-color" content="#232352" />
       </Head>
@@ -36,6 +41,55 @@ export default function Document() {
         {/* <Script
           src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
           strategy="afterInteractive"
+        /> */}
+        <Script
+          src="/vendor/global/global.min.js"
+          strategy="beforeInteractive"
+        />
+        {/* <Script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          strategy="beforeInteractive"
+        /> */}
+
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.bootstrap5.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"
+          strategy="beforeInteractive"
+        />
+        {/* <Script
+          src="/vendor/global/global.min.js"
+          strategy="beforeInteractive"
         /> */}
       </body>
     </Html>

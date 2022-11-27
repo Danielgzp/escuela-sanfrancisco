@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginLoader = () => {
+const LoginLoader = ({ containerHeight, containerWidth, border, spinnerWidth, spinnerHeigth, left, top }) => {
   return (
     <>
       <div className="loadingio-spinner-rolling-wb5qu1mp89f">
@@ -19,20 +19,20 @@ const LoginLoader = () => {
         }
         .ldio-xg3u3vvzxwe div {
           position: absolute;
-          width: 30px;
-          height: 30px;
-          border: 5px solid #fff;
+          width: ${containerWidth};
+          height: ${containerHeight};
+          border: ${border} solid #fff;
           border-top-color: transparent;
           border-radius: 50%;
         }
         .ldio-xg3u3vvzxwe div {
           animation: ldio-xg3u3vvzxwe 1s linear infinite;
-          top: 25px;
-          left: 25px;
+          top: ${top};
+          left: ${left};
         }
         .loadingio-spinner-rolling-wb5qu1mp89f {
-          width: 50px;
-          height: 50px;
+          width: ${spinnerWidth};
+          height: ${spinnerHeigth};
           display: inline-block;
           overflow: hidden;
           background: transparent;

@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import styles from "./styles";
 import LoginLoader from "Components/Loaders/LoginLoader";
 import Loading from "Components/Loaders/Loading";
+import Link from "next/link";
 
 const LoginForm = () => {
   const formRef = useRef(null);
@@ -136,7 +137,9 @@ const LoginForm = () => {
                 />
               </div>
               <div className="form-group left-align forgotPassword">
-                <a href="#!">Olvidaste tú contraseña?</a>
+                <Link href="/recovery">
+                  <a>Olvidaste tú contraseña?</a>
+                </Link>
               </div>
               <div className="form-group center-align">
                 <button type="submit" className="sesion-button">
@@ -144,7 +147,17 @@ const LoginForm = () => {
                 </button>
               </div>
               <div className="form-group center-align">
-                {state.loading && <LoginLoader />}
+                {state.loading && (
+                  <LoginLoader
+                    containerHeight={"30px"}
+                    containerWidth={"30px"}
+                    border={"4px"}
+                    spinnerHeigth={"50px"}
+                    spinnerWidth={"50px"}
+                    top={"25px"}
+                    left={"25px"}
+                  />
+                )}
               </div>
             </form>
           </div>

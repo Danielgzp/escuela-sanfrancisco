@@ -4,6 +4,7 @@ import Loader from "Components/Loader";
 import Loading from "Components/Loaders/Loading";
 import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
+import Script from "next/Script";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
@@ -13,10 +14,12 @@ const ListGrades = () => {
     loading: false,
     error: null,
   });
+  const [isClient, setIsClient] = useState(false);
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
 
   useEffect(() => {
+    setIsClient(true);
     async function fetchData() {
       setState({ loading: true, error: null });
       try {
@@ -36,10 +39,10 @@ const ListGrades = () => {
       }
     }
 
-    // const script = document.createElement("script");
-    // script.src = "/js/dlabnav-init.js";
-    // script.async = false;
-    // document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.src = "/js/plugins-init/datatables.init.js";
+    script.async = true;
+    document.body.appendChild(script);
     fetchData();
   }, []);
 
@@ -80,74 +83,76 @@ const ListGrades = () => {
               </div>
               <div className="card-body">
                 <div className="table-responsive">
-                  {state.loading ? (
-                    <Loading />
-                  ) : (
-                    <table className="table table-striped verticle-middle table-responsive-sm">
-                      <thead>
-                        <tr>
-                          <th scope="col">Grado</th>
-                          <th scope="col">Sección</th>
-                          <th scope="col">Maestra/Maestro</th>
-                          <th scope="col">Estudiantes Cursantes</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {grades?.map((grade) => (
-                          <tr key={grade.id}>
-                            <td>{grade.name}</td>
-                            <td>{grade.section}</td>
-                            <td>
-                              {grade?.teacher?.name} {grade?.teacher?.lastName}
-                            </td>
+                  <table
+                    id="example5"
+                    className="table table-striped verticle-middle table-responsive-sm"
+                  >
+                    <thead>
+                      <tr>
+                        <th scope="col">Grado</th>
+                        <th scope="col">Sección</th>
+                        <th scope="col">Maestra/Maestro</th>
+                        <th scope="col">Estudiantes Cursantes</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {grades?.map((grade) => (
+                        <tr key={grade.id}>
+                          <td>{grade.name}</td>
+                          <td>{grade.section}</td>
+                          <td>
+                            {grade?.teacher?.name} {grade?.teacher?.lastName}
+                          </td>
 
-                            <td>{grade.students.length}</td>
-                            <td>
-                              <>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="modal"
-                                  data-bs-target={`#grade-${grade.id}`}
-                                >
-                                  <i className="material-icons">edit</i>
-                                </button>
-                                <a
-                                  href="#!"
-                                  rel="noopener noreferrer"
-                                  onClick={() => handleDeleteGrade(grade.id)}
-                                >
-                                  <i className="material-icons">delete</i>
+                          <td>{grade.students.length}</td>
+                          <td>
+                            <>
+                              <a
+                                href="#!"
+                                data-bs-toggle="modal"
+                                data-bs-target={`#grade-${grade.id}`}
+                              >
+                                <i className="material-icons">edit</i>
+                              </a>
+                              <a
+                                href="#!"
+                                rel="noopener noreferrer"
+                                onClick={() => handleDeleteGrade(grade.id)}
+                              >
+                                <i className="material-icons">delete</i>
+                              </a>
+                              <Link
+                                href={`/admin/grados/editar/${grade.id}`
+                                  .toLowerCase()
+                                  .replaceAll(" ", "-")
+                                  .normalize("NFD")
+                                  .replace(/[?¿¡!\u0300-\u036f]/g, "")}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <a>
+                                  <i className="material-icons">account_box</i>
                                 </a>
-                                <Link
-                                  href={`/admin/grados/editar/${grade.id}`
-                                    .toLowerCase()
-                                    .replaceAll(" ", "-")
-                                    .normalize("NFD")
-                                    .replace(/[?¿¡!\u0300-\u036f]/g, "")}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <a>
-                                    <i className="material-icons">
-                                      account_box
-                                    </i>
-                                  </a>
-                                </Link>
-                              </>
-                            </td>
-                            <EditGradeModal grade={grade} periods={periods} />
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  )}
+                              </Link>
+                            </>
+                          </td>
+                          <EditGradeModal grade={grade} periods={periods} />
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* <Script
+        src="/js/plugins-init/datatables.init.js"
+        strategy="afterInteractive"
+      /> */}
+      {/* {isClient && } */}
     </>
   );
 };
