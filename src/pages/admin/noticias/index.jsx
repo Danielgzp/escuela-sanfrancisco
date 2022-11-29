@@ -9,9 +9,15 @@ const boom = require("@hapi/boom");
 
 import "./styles.css";
 import Loading from "Components/Loaders/Loading";
+import { useAuth } from "hooks/useAuth";
 
 const ListNews = () => {
   const formRef = useRef(null);
+  const auth = useAuth();
+  const { id } = auth.user;
+  console.log(auth.user)
+  console.log(id)
+
   const router = useRouter();
   const [state, setState] = useState({
     loading: false,
@@ -48,7 +54,7 @@ const ListNews = () => {
       title: objectData.title,
       info: objectData.description,
       image: objectData.image,
-      staffCi: "9604885",
+      userId: id,
     };
 
     setState({ loading: true, error: null });
@@ -228,6 +234,9 @@ const ListNews = () => {
                                     </button>
                                     <span className="postDate">
                                       {post.createdAt}
+                                    </span>
+                                    <span className="postDate">
+                                      Publicada por - {post.user.email}
                                     </span>
                                   </div>
                                 </div>

@@ -5,7 +5,9 @@ import Swal from "sweetalert2";
 
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
-const boom = require("@hapi/boom");
+import GradeService from "services/grade.service";
+
+const service = new GradeService();
 
 const AddTeacher = ({ data }) => {
   const { grades } = data;
@@ -66,19 +68,16 @@ const AddTeacher = ({ data }) => {
     // async function getGrades() {
     //   try {
     //     const res = await axios.get(endPoints.grades.getAllGrades);
-
     //     setGrades(res.data);
     //   } catch (error) {
     //     console.log(error);
     //   }
     // }
-
     // const script = document.createElement("script");
     // const script2 = document.createElement("script");
     // const script3 = document.createElement("script");
     // const script4 = document.createElement("script");
     // const script5 = document.createElement("script");
-
     // script.src = "/vendor/pickadate/picker.js";
     // script.async = false;
     // document.body.appendChild(script);
@@ -91,7 +90,6 @@ const AddTeacher = ({ data }) => {
     // script4.src = "/js/plugins-init/pickadate-init.js";
     // script4.async = false;
     // document.body.appendChild(script4);
-
     // getGrades();
   }, []);
 
@@ -282,17 +280,14 @@ const AddTeacher = ({ data }) => {
 export default AddTeacher;
 
 export async function getServerSideProps() {
-  try {
-    const response = await axios.get(endPoints.grades.getAllGrades);
-    const grades = await JSON.parse(JSON.stringify(response.data));
+  const response = await service.find();
+  const grades = await JSON.parse(JSON.stringify(response));
 
-    return {
-      props: { data: { grades } },
-    };
-  } catch (error) {
-    const err = error.message;
-    return {
-      props: { data: { err } },
-    };
-  }
+  return {
+    props: {
+      data: {
+        grades,
+      },
+    },
+  };
 }

@@ -112,8 +112,6 @@ const ReportDataTable = ({ grades }) => {
       });
   };
 
-
-
   return (
     <>
       {/* <div className="table-responsive students-table z-depth-3"> */}
@@ -139,9 +137,8 @@ const ReportDataTable = ({ grades }) => {
         subHeaderComponent={
           <>
             <div id="headerTable-container">
-              <h4 className="card-title">Filtrar alumnos por grado</h4>
-              <div className="search-bar">
-                <form onSubmit={handleSubmit} ref={formRef}>
+              <form onSubmit={handleSubmit} ref={formRef} className="tableForm">
+                <div className="form-group">
                   <label>Selecciona el grado</label>
                   <select name="name" className="form-control">
                     <option value="">Grado</option>
@@ -152,17 +149,19 @@ const ReportDataTable = ({ grades }) => {
                       >{`${grade.name}`}</option>
                     ))}
                   </select>
+                </div>
+                <div className="form-group">
                   <label>Selecciona la seccion</label>
                   <select name="section" className="form-control">
                     <option value="">Seccion</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                   </select>
-                  <button type="submit" className="btn btn-primary">
-                    Ir
-                  </button>
-                </form>
-              </div>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Buscar
+                </button>
+              </form>
             </div>
           </>
         }

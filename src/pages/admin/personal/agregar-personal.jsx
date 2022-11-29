@@ -4,7 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
-const boom = require("@hapi/boom");
+import RoleService from "services/role.service";
+
+const service = new RoleService();
 
 const AddStaff = ({ data }) => {
   const { roles } = data;
@@ -287,17 +289,14 @@ const AddStaff = ({ data }) => {
 export default AddStaff;
 
 export async function getServerSideProps() {
-  try {
-    const response = await axios.get(endPoints.roles.getAllRoles);
-    const roles = await JSON.parse(JSON.stringify(response.data));
+  const response = await service.find();
+  const roles = await JSON.parse(JSON.stringify(response));
 
-    return {
-      props: { data: { roles } },
-    };
-  } catch (error) {
-    const err = error.message;
-    return {
-      props: { data: { err } },
-    };
-  }
+  return {
+    props: {
+      data: {
+        roles,
+      },
+    },
+  };
 }

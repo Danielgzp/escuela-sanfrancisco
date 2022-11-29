@@ -92,8 +92,6 @@ class AuthService {
       //Si el token que esta en la base de datos asignado al usuario es diferente al que llega por paramatro
       //Es el decir al que esta como query en el link de la url que nos llega al correo
       if (user.recoveryToken !== token) {
-        console.log(user.recoveryToken)
-        console.log(token)
         throw boom.unauthorized();
       }
 

@@ -35,7 +35,7 @@ const ListStudents = () => {
     setState({ loading: true, error: null });
 
     axios
-      .get(`http://localhost:3000/api/v1/students?level=${level}`)
+      .get(`http://localhost:3000/api/v1/admin/students?level=${level}`)
       .then((response) => {
         setStudents(response.data);
         setTotalStudents(response.data.length);
@@ -45,7 +45,7 @@ const ListStudents = () => {
       });
     axios
       .get(
-        `http://localhost:3000/api/v1/students?limit=${limit}&offset=${offset}&level=${level}`
+        `http://localhost:3000/api/v1/admin/students?limit=${limit}&offset=${offset}&level=${level}`
       )
       .then((response) => {
         setStudents(response.data);
@@ -136,9 +136,9 @@ const ListStudents = () => {
       loading: true,
       error: null,
     });
-    console.log(`http://localhost:3000/api/v1/students?search=${state.search}`);
+    console.log(`http://localhost:3000/api/v1/admin/students?search=${state.search}`);
     axios
-      .get(`http://localhost:3000/api/v1/students?search=${state.search}`)
+      .get(`http://localhost:3000/api/v1/admin/students?search=${state.search}`)
       .then((response) => {
         setState({
           ...state,
@@ -154,6 +154,22 @@ const ListStudents = () => {
       });
     // setOffset(offset + 50);
   };
+
+    const handleDeleteStudent = async () => {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "¿Deseas eliminar este Estudiante?",
+        icon: "warning",
+        showDenyButton: "true",
+        confirmButtonText: "Sí, deseo eliminar el estudiante",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          studentDelete();
+        } else if (result.isDenied) {
+          Swal.fire("Cancelado", "", "info");
+        }
+      });
+    };
 
   return (
     <>

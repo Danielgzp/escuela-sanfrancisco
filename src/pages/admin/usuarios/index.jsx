@@ -12,11 +12,13 @@ import Link from "next/link";
 
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
+import Cookies from "js-cookie";
 
 const service = new UserRoleService();
 
 const ListOfUsers = ({ data }) => {
   const { usersRole } = data;
+  const cookie = Cookies.get("userJWT");
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -40,6 +42,10 @@ const ListOfUsers = ({ data }) => {
   }, []);
 
   const handleDeleteUser = async (id) => {
+    const config = {
+      headers: { Authorization: `Bearer ${cookie}` },
+    };
+
     try {
       Swal.fire({
         title: "¿Estás seguro?",
@@ -49,19 +55,23 @@ const ListOfUsers = ({ data }) => {
         confirmButtonText: "Sí, deseo eliminar el usuario",
       }).then((result) => {
         if (result.isConfirmed) {
-          async function deleteUser() {
-            try {
-              await axios.delete(endPoints.users.deleteUsers(id));
+          axios
+            .delete(endPoints.users.deleteUsers(id), config)
+            .then((response) => {
               Swal.fire(
                 "El Usuario se ha eliminado correctamente",
                 "",
                 "success"
               );
-            } catch (err) {
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data,
+              });
               setState({ loading: false, error: err });
-            }
-          }
-          deleteUser();
+            });
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
@@ -89,7 +99,7 @@ const ListOfUsers = ({ data }) => {
                 >
                   + Agregar Usuario
                 </button>
-                <AddNewUser roles={usersRole} />
+                <AddNewUser roles={usersRole} token={cookie} />
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -148,7 +158,7 @@ const ListOfUsers = ({ data }) => {
                                 </Link> */}
                               </>
                             </td>
-                            <EditUser user={user} />
+                            <EditUser user={user} token={cookie} />
                           </tr>
                         ))}
                       </tbody>

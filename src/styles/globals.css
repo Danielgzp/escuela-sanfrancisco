@@ -84,6 +84,18 @@ strong {
   /* background-color: orange !important;
   border-color: orange !important; */
 }
+.userName:hover {
+  background-color: transparent !important;
+  color: orange !important;
+}
+.nav-link-img{
+  border: 2px solid transparent;
+}
+.nav-link-img:hover{
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
 a {
   text-decoration: none;
 }

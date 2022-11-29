@@ -5,6 +5,11 @@ import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
+import GradeService from "services/grade.service";
+import StudentsService from "services/students.service";
+
+const service = new GradeService();
+const studentService = new StudentsService();
 
 const EditStudent = ({ data }) => {
   const { student, grades } = data;
@@ -330,20 +335,19 @@ const EditStudent = ({ data }) => {
 export default EditStudent;
 
 export async function getServerSideProps({ query }) {
-  console.log(query);
   const { ci } = query;
 
-  try {
-    const response = await axios.get(endPoints.students.getStudent(ci));
-    const student = await JSON.parse(JSON.stringify(response.data));
-    const response2 = await axios.get(endPoints.grades.getAllGrades);
-    const grades = await JSON.parse(JSON.stringify(response2.data));
-    console.log(student);
+  const response = await service.find();
+  const grades = await JSON.parse(JSON.stringify(response));
+  const response2 = await studentService.findOne(ci);
+  const student = await JSON.parse(JSON.stringify(response2));
 
-    return {
-      props: { data: { student, grades } },
-    };
-  } catch (error) {
-    return { props: { data: error.message } };
-  }
+  return {
+    props: {
+      data: {
+        grades,
+        student,
+      },
+    },
+  };
 }

@@ -16,7 +16,7 @@ handler
     async (req, res, next) => {
       try {
         const users = await service.find(req.query);
-        
+
         res.json(users);
       } catch (error) {
         next(error);
@@ -24,7 +24,8 @@ handler
     }
   )
   .post(
-    // passport.authenticate("jwt", { session: false }),
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin"),
     validatorHandler(createUserSchema, "body"),
     async (req, res, next) => {
       try {

@@ -8,7 +8,7 @@ class NewsService {
 
   async find() {
     const news = await models.News.findAll({
-      include: ["staff"],
+      include: ["user"],
     });
 
     return news;
@@ -16,7 +16,7 @@ class NewsService {
 
   async findOne(id) {
     const news = await models.News.findByPk(id, {
-      include: ["staff"],
+      include: ["user"],
     });
     if (!news) {
       throw boom.notFound("News not found");

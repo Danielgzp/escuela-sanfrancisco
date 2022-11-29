@@ -52,7 +52,13 @@ export const columns = (student) => [
   },
   {
     name: "C.I Natural",
-    selector: (row) => row.nativeCi,
+    selector: (row) => {
+      if (row.nativeCi === null) {
+        return "NA";
+      } else {
+        return row.nativeCi;
+      }
+    },
     sortable: true,
     reorder: true,
   },
@@ -108,9 +114,10 @@ export const columns = (student) => [
           </a>
         </Link>
         <a
-          href={row.id}
+          href="#!"
           target="_blank"
           rel="noopener noreferrer"
+          id={row.schoolarshipCi}
           onClick={student}
         >
           <i className="material-icons">delete</i>

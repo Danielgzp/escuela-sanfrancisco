@@ -83,10 +83,6 @@ class Staff extends Model {
       as: "eventuality",
       foreignKey: "staffCi",
     });
-    this.hasMany(models.News, {
-      as: "news",
-      foreignKey: "staffCi",
-    });
   }
 
   static config(sequelize) {

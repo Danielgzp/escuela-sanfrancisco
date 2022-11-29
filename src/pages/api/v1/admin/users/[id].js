@@ -1,3 +1,5 @@
+import passport from "utils/passport";
+import { checkRoles } from "middlewares/auth.handler";
 import validatorHandler from "middlewares/validator.handler";
 import nextConnect from "next-connect";
 import { getUserSchema, updateUserSchema } from "schemas/user.schema";
@@ -17,6 +19,8 @@ handler
     }
   })
   .patch(
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin"),
     validatorHandler(getUserSchema, "params"),
     validatorHandler(updateUserSchema, "body"),
     async (req, res, next) => {
@@ -30,14 +34,19 @@ handler
       }
     }
   )
-  .delete(validatorHandler(getUserSchema, "params"), async (req, res, next) => {
-    try {
-      const { id } = req.query;
-      await service.delete(id);
-      res.status(201).json({ id });
-    } catch (error) {
-      next(error);
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin"),
+    validatorHandler(getUserSchema, "params"),
+    async (req, res, next) => {
+      try {
+        const { id } = req.query;
+        await service.delete(id);
+        res.status(201).json({ id });
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
 export default handler;

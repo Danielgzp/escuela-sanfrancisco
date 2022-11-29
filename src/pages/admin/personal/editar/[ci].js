@@ -7,6 +7,11 @@ import AdminMainPagination from "Components/AdminMainPagination";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import EventualityTeacherModal from "Components/Modal/EventualityTeacherModal";
+import RoleService from "services/role.service";
+import StaffService from "services/staff.service";
+
+const rolesService = new RoleService();
+const service = new StaffService();
 
 const EditStaff = ({ data }) => {
   const { roles, staff } = data;
@@ -70,7 +75,6 @@ const EditStaff = ({ data }) => {
     // const script3 = document.createElement("script");
     // const script4 = document.createElement("script");
     // const script5 = document.createElement("script");
-
     // script.src = "/vendor/pickadate/picker.js";
     // script.async = false;
     // document.body.appendChild(script);
@@ -281,16 +285,17 @@ export default EditStaff;
 export async function getServerSideProps({ query }) {
   const { ci } = query;
 
-  try {
-    const response = await axios.get(endPoints.staff.getStaff(ci));
-    const staff = await JSON.parse(JSON.stringify(response.data));
-    const response2 = await axios.get(endPoints.roles.getAllRoles);
-    const roles = await JSON.parse(JSON.stringify(response2.data));
+  const response2 = await rolesService.find();
+  const roles = await JSON.parse(JSON.stringify(response2));
+  const response = await service.findOne(ci);
+  const staff = await JSON.parse(JSON.stringify(response));
 
-    return {
-      props: { data: { staff, roles } },
-    };
-  } catch (error) {
-    return { props: { data: error.message } };
-  }
+  return {
+    props: {
+      data: {
+        staff,
+        roles,
+      },
+    },
+  };
 }

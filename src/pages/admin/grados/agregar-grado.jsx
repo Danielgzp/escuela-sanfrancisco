@@ -188,18 +188,7 @@ const AddGrade = ({ data }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12">
-                        <div className="form-group fallback w-100">
-                          <label className="form-label d-block">
-                            Course Photo
-                          </label>
-                          <input
-                            type="file"
-                            className="dropify"
-                            data-default-file=""
-                          />
-                        </div>
-                      </div>
+
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
                           Submit

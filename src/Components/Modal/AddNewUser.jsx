@@ -3,9 +3,10 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const AddNewUser = ({ roles }) => {
+const AddNewUser = ({ roles, token }) => {
   const formRef = useRef(null);
 
+  console.log(token);
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -20,15 +21,18 @@ const AddNewUser = ({ roles }) => {
     const newUser = {
       email: objectData.email,
       userRoleId: objectData.role,
-      password: objectData.password
+      password: objectData.password,
       //   section: objectData.section,
       //   UsersId: objectData.Users,
     };
 
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     setState({ loading: true, error: null });
     console.log(newUser);
     axios
-      .post(endPoints.users.addUsers, newUser)
+      .post(endPoints.users.addUsers, newUser, config)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -45,7 +49,7 @@ const AddNewUser = ({ roles }) => {
           title: "Oops...",
           text: error.response.data,
         });
-        console.log(error);
+        
         setState({ loading: false, error: null });
       });
   };

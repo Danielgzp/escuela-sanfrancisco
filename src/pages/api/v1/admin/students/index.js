@@ -33,6 +33,10 @@ handler
         const students = await service.filterStudents(req.query.search);
         res.json(students);
       }
+      if (req.query.cedulados !== undefined) {
+        const students = await service.filterStudentsCi();
+        res.json(students);
+      }
       if (req.query !== undefined) {
         const students = await service.find(req.query);
         res.json(students);
@@ -42,7 +46,7 @@ handler
     }
   })
   .post(
-    validatorHandler(createStudentSchema, "body"),
+    // validatorHandler(createStudentSchema, "body"),
     async (req, res, next) => {
       try {
         const body = req.body;

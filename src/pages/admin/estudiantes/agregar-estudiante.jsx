@@ -4,11 +4,15 @@ import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
-import Script from "next/Script";
+import GradeService from "services/grade.service";
+
+const service = new GradeService();
+
 const boom = require("@hapi/boom");
 
 const AddStudent = ({ data }) => {
   const { grades, err } = data;
+  console.log(data);
 
   const formRef = useRef(null);
   const router = useRouter();
@@ -22,10 +26,20 @@ const AddStudent = ({ data }) => {
     event.preventDefault();
 
     const formData = new FormData(formRef.current);
+
     const objectData = Object.fromEntries([...formData.entries()]);
+
     const newStudent = {
       schoolarshipCi: objectData.schoolId,
-      nativeCi: objectData.nativeCi,
+      nativeCi: () => {
+        console.log("entro aca");
+        if (objectData.nativeCi.lenght() > 0) {
+          return null;
+        } else {
+          console.log("no era");
+          return objectData.nativeCi;
+        }
+      },
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -223,7 +237,7 @@ const AddStudent = ({ data }) => {
                             required
                           >
                             <option value="">Grado</option>
-                            {grades.map((grade) => (
+                            {grades?.map((grade) => (
                               <option
                                 key={grade.id}
                                 value={`${grade.id}`}
@@ -355,18 +369,14 @@ const AddStudent = ({ data }) => {
 export default AddStudent;
 
 export async function getServerSideProps() {
-  try {
-    const response = await axios.get(endPoints.grades.getAllGrades);
-    const grades = await JSON.parse(JSON.stringify(response.data));
+  const response = await service.find();
+  const grades = await JSON.parse(JSON.stringify(response));
 
-    console.log(grades);
-    return {
-      props: { data: { grades } },
-    };
-  } catch (error) {
-    const err = error.message;
-    return {
-      props: { data: { err } },
-    };
-  }
+  return {
+    props: {
+      data: {
+        grades,
+      },
+    },
+  };
 }

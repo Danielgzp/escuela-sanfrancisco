@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const EditUser = ({ user }) => {
+const EditUser = ({ user, token }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -19,11 +19,13 @@ const EditUser = ({ user }) => {
     const editUser = {
       name: objectData.name,
     };
-
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     setState({ loading: true, error: null });
     console.log(editUser);
     axios
-      .patch(endPoints.users.updateUsers(user.id), editUser)
+      .patch(endPoints.users.updateUsers(user.id), editUser, config)
       .then(() => {
         Swal.fire({
           position: "top-end",

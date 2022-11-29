@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
-const { STAFF_TABLE } = require("./staff.model");
+const { USER_TABLE } = require("./user.model");
 
 const NEWS_TABLE = "news";
 
@@ -29,13 +29,13 @@ const NewsSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
-  staffCi: {
-    field: "staff_ci",
-    allowNull: true,
-    type: DataTypes.STRING,
+  userId: {
+    field: "user_id",
+    allowNull: false,
+    type: DataTypes.INTEGER,
     references: {
-      model: STAFF_TABLE,
-      key: "ci",
+      model: USER_TABLE,
+      key: "id",
     },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
@@ -45,7 +45,7 @@ const NewsSchema = {
 class News extends Model {
   static associate(models) {
     // this.belongsTo(models.Section, { as: "section" });
-    this.belongsTo(models.Staff, { as: "staff" });
+    this.belongsTo(models.User, { as: "user" });
   }
 
   static config(sequelize) {

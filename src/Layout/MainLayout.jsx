@@ -10,6 +10,7 @@ import AdminSidebar from "Components/AdminSidebar";
 import { loadScripts } from "utils/loadScripts";
 import AppLoader from "Components/Loaders/AppLoader";
 import { useRouter } from "next/router";
+import Loading from "Components/Loaders/Loading";
 
 // import Head from "next/head";
 
@@ -49,6 +50,7 @@ const MainLayout = (props) => {
             <Loader />
           </div>
         )}
+        {!isClient && <Loader />}
 
         {/* {props.children} */}
         {/* <div>

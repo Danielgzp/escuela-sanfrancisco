@@ -14,7 +14,7 @@ const gradesService = new GradeService();
 const teachersService = new TeacherService();
 const staffService = new StaffService();
 
-import "../../Components/DataTable/css/datatable.css"
+import "../../Components/DataTable/css/datatable.css";
 
 const AdminDashboard = ({ props }) => {
   const {
@@ -67,10 +67,9 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-primary"
-                          style={{ width: "80%" }}
+                          style={{ width: "1000%" }}
                         ></div>
                       </div>
-                      <small>80% Increase in 20 Days</small>
                     </div>
                   </div>
                 </div>
@@ -82,10 +81,9 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-warning"
-                          style={{ width: "50%" }}
+                          style={{ width: "1000%" }}
                         ></div>
                       </div>
-                      <small>50% Increase in 25 Days</small>
                     </div>
                   </div>
                 </div>
@@ -97,10 +95,9 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-red"
-                          style={{ width: "76%" }}
+                          style={{ width: "100%" }}
                         ></div>
                       </div>
-                      <small>76% Increase in 20 Days</small>
                     </div>
                   </div>
                 </div>
@@ -112,10 +109,9 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-success"
-                          style={{ width: "30%" }}
+                          style={{ width: "100%" }}
                         ></div>
                       </div>
-                      <small>30% Increase in 30 Days</small>
                     </div>
                   </div>
                 </div>
@@ -127,10 +123,9 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-secondary"
-                          style={{ width: "30%" }}
+                          style={{ width: "100%" }}
                         ></div>
                       </div>
-                      <small>30% Increase in 30 Days</small>
                     </div>
                   </div>
                 </div>

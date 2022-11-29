@@ -178,6 +178,66 @@ class StudentsService {
 
     return students;
   }
+  async filterStudentsCi(query) {
+    // console.log(query);
+    // console.log(filterGrade);
+
+    const { search } = query;
+
+    const options = {
+      include: [
+        // "representant",
+        "grade",
+        {
+          association: "grade",
+
+          // where: {
+          //   name: [`${query}`],
+          //   section: [`${query}`],
+          // },
+          attributes: ["name", "section"],
+          order: [["name"]],
+          include: [
+            "period",
+            {
+              association: "period",
+              attributes: ["name"],
+            },
+            "level",
+            {
+              association: "level",
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
+
+      attributes: [
+        "name",
+        "lastName",
+        "birthDate",
+        "gender",
+        "nativeCi",
+        "schoolarshipCi",
+        "gradeId",
+        "id",
+      ],
+      where: {
+        nativeCi: {
+          [Op.ne]: null || " ",
+        },
+
+        // name: {
+        //   [Op.substring]: "AA",
+        // },
+        // $and: [{ name: query }, { lastName: query }],
+      },
+    };
+
+    const students = await models.Students.findAll(options);
+
+    return students;
+  }
   async countPreScool() {
     const total = await models.Students.count({
       include: [

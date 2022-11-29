@@ -34,7 +34,7 @@ const LoginForm = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Loggin Successfull",
+          title: "Inicio de sesión exitoso",
           showConfirmButton: false,
           timer: 1500,
         });

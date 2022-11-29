@@ -12443,7 +12443,7 @@ svg.pulse-svg .third-circle {
 }
 .header-right .dropdown-menu {
   border-width: 0;
-  box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+  box-shadow: 0 0 37px rgba(8, 21, 66, 0.15);
 }
 [data-theme-version="dark"] .header-right .dropdown-menu {
   box-shadow: none;

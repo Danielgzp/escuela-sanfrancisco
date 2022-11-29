@@ -7,6 +7,11 @@ import AdminMainPagination from "Components/AdminMainPagination";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import EventualityTeacherModal from "Components/Modal/EventualityTeacherModal";
+import GradeService from "services/grade.service";
+import TeacherService from "services/teacher.service";
+
+const service = new GradeService();
+const teacherService = new TeacherService()
 
 const EditTeacher = ({ data }) => {
   const { grades, teacher } = data;
@@ -283,16 +288,17 @@ export default EditTeacher;
 export async function getServerSideProps({ query }) {
   const { ci } = query;
 
-  try {
-    const response = await axios.get(endPoints.teachers.getTeacher(ci));
-    const teacher = await JSON.parse(JSON.stringify(response.data));
-    const response2 = await axios.get(endPoints.grades.getAllGrades);
-    const grades = await JSON.parse(JSON.stringify(response2.data));
+  const response = await service.find();
+  const grades = await JSON.parse(JSON.stringify(response));
+  const response2 = await teacherService.findOne(ci);
+  const teacher = await JSON.parse(JSON.stringify(response2));
 
-    return {
-      props: { data: { teacher, grades } },
-    };
-  } catch (error) {
-    return { props: { data: error.message } };
-  }
+  return {
+    props: {
+      data: {
+        teacher,
+        grades,
+      },
+    },
+  };
 }

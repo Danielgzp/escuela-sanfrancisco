@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 const id = Joi.number().integer();
 const representantId = Joi.number().integer();
-const nativeCi = Joi.string();
+
 const schoolarshipCi = Joi.string();
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
@@ -39,7 +39,7 @@ const getStudentSchema = Joi.object({
 
 const createStudentSchema = Joi.object({
   schoolarshipCi: schoolarshipCi.required(),
-  nativeCi: nativeCi.optional(),
+  nativeCi: Joi.string().optional(),
   name: name.required(),
   lastName: lastName.required(),
   address: address.required(),
@@ -61,7 +61,6 @@ const createStudentSchema = Joi.object({
 });
 
 const updateStudentSchema = Joi.object({
-  nativeCi,
   schoolarshipCi,
   name,
   lastName,

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-const fs = require("fs")
+const fs = require("fs");
 // const { JwtStrategy } = require("utils/strategies/jwt.strategy");
 // const jwt = require("jsonwebtoken");
 
@@ -10,7 +10,7 @@ export const middleware = async (req) => {
   const cookieToken = req.cookies.get(cookieName);
   // const verifiedToken = await jwt.verify(cookieToken, secret);
 
-  if (url.includes("/admin")) {
+  if (url.includes("/admin") || url.includes("/api/v1/admin")) {
     if (cookieToken === undefined) {
       // if (!verifiedToken) {
       //   // if this an API request, respond with JSON

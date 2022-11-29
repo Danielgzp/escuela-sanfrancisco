@@ -1,8 +1,6 @@
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-var id = 0;
-
 export const columns = (student) => [
   {
     id: (row) => row.id,

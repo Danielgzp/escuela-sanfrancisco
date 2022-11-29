@@ -78,15 +78,7 @@ const AdminSidebar = () => {
                 </li>
               </ul>
             </li>
-            <li>
-              <Link href="/admin/usuarios">
-                <a className="ai-icon" aria-expanded="false">
-                  <i className="material-icons">library_books</i>
 
-                  <span className="nav-text">Usuarios</span>
-                </a>
-              </Link>
-            </li>
             <li>
               <a className="has-arrow" href="#!" aria-expanded="false">
                 <i className="la la-graduation-cap"></i>
@@ -104,6 +96,15 @@ const AdminSidebar = () => {
                   </Link>
                 </li>
               </ul>
+            </li>
+            <li>
+              <Link href="/admin/usuarios">
+                <a className="ai-icon" aria-expanded="false">
+                  <i className="material-icons">portrait</i>
+
+                  <span className="nav-text">Usuarios</span>
+                </a>
+              </Link>
             </li>
             <li>
               <Link href="/admin/periodos-escolares">

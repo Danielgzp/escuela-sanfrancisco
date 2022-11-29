@@ -89,31 +89,6 @@ const MyDataTable = ({
     }
   }
 
-  async function studentDelete(props) {
-    try {
-      await axios.delete(endPoints.students.deleteStudent(1));
-      Swal.fire("El Estudiante se ha eliminado correctamente", "", "success");
-    } catch (error) {
-      Swal.fire("Oops", error.message, "error");
-    }
-  }
-
-  const handleDeleteStudent = async () => {
-    Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas eliminar este Estudiante?",
-      icon: "warning",
-      showDenyButton: "true",
-      confirmButtonText: "Sí, deseo eliminar el estudiante",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        studentDelete();
-      } else if (result.isDenied) {
-        Swal.fire("Cancelado", "", "info");
-      }
-    });
-  };
-
   const PaginationTable = () => {
     return (
       <div className="table-pagination">
@@ -265,7 +240,7 @@ const MyDataTable = ({
         dense
         direction="auto"
         highlightOnHover={true}
-        columns={tableColumns(handleDeleteStudent)}
+        columns={tableColumns()}
         data={filter}
         striped={true}
         fixedHeader
@@ -274,6 +249,8 @@ const MyDataTable = ({
         progressPending={loading}
         progressComponent={<Loading />}
         pagination
+        persistTableHead
+        persistTablePaginationComponent
         //el paginationServer hacia que no funcionarai bien la paginacion,
         // paginationComponentOptions={paginationOptions}
         paginationServer

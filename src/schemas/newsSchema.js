@@ -1,9 +1,9 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const staffCi = Joi.string();
+const userId = Joi.number().integer();
 const title = Joi.string().min(5).max(40);
-const info = Joi.string().min(10).max(100);
+const info = Joi.string().min(10).max(300);
 const image = Joi.string();
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
@@ -13,14 +13,14 @@ const getNewsSchema = Joi.object({
 });
 
 const createNewsSchema = Joi.object({
-  staffCi: staffCi.required(),
+  userId: userId.required(),
   title: title.required(),
   info: info.required(),
   image: image.required(),
 });
 
 const updateNewsSchema = Joi.object({
-  staffCi,
+  userId,
   title,
   info,
   image,

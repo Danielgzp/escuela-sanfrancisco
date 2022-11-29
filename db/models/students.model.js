@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
 
 const { REPRESENTANTS_TABLE } = require("./representants.model");
 // const { SECTION_TABLE } = require("./section.model");
@@ -23,7 +24,7 @@ const StudentsSchema = {
     allowNull: true,
     field: "native_ci",
     type: DataTypes.STRING,
-    unique: true,
+    // unique: true,
   },
   name: {
     allowNull: false,
@@ -41,6 +42,9 @@ const StudentsSchema = {
   birthDate: {
     allowNull: false,
     type: DataTypes.DATEONLY,
+    get: function () {
+      return moment(this.getDataValue("birthDate")).format("DD-MM-YYYY");
+    },
     field: "birth_date",
   },
   gender: {
