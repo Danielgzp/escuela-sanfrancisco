@@ -16,28 +16,25 @@ const ListStaff = () => {
     search: "",
     tableTitle: "Personal",
   });
+  const [totalStaff, setTotalStaff] = useState(0);
 
   useEffect(() => {
-    async function fetchData() {
-      setState({
-        loading: true,
-        error: null,
-      });
-      try {
-        const response = await axios.get(endPoints.staff.getAllStaff);
-        const staff = await JSON.parse(JSON.stringify(response.data));
+    setState({ loading: true, error: null });
+    axios
+      .get(endPoints.staff.getAllStaff)
+      .then((response) => {
+        setTotalStaff(response.data.length);
         setState({
           ...state,
           loading: false,
           error: null,
-          api: staff,
+          api: response.data,
           filter: state.api,
         });
-      } catch (err) {
+      })
+      .catch((err) => {
         setState({ loading: false, error: err });
-      }
-    }
-    fetchData();
+      });
   }, []);
 
   useMemo(() => {
@@ -80,6 +77,10 @@ const ListStaff = () => {
                         data={state}
                         tableColumns={columns}
                         headerSearch={handleSearchButton}
+                        totalStudents={totalStaff}
+                        neighbours={2}
+                        setOffsetStudents={0}
+                        studentsPerPage={50}
                       />
                     </div>
                   </div>

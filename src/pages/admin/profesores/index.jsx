@@ -17,28 +17,24 @@ const ListTeachers = () => {
     search: "",
     tableTitle: "Profesores",
   });
-
+  const [totalTeachers, setTotalTeachers] = useState(0);
   useEffect(() => {
-    async function fetchData() {
-      setState({
-        loading: true,
-        error: null,
-      });
-      try {
-        const response = await axios.get(endPoints.teachers.getAllTeachers);
-        const teachers = await JSON.parse(JSON.stringify(response.data));
+    setState({ loading: true, error: null });
+    axios
+      .get(endPoints.teachers.getAllTeachers)
+      .then((response) => {
+        setTotalTeachers(response.data.length);
         setState({
           ...state,
           loading: false,
           error: null,
-          api: teachers,
+          api: response.data,
           filter: state.api,
         });
-      } catch (err) {
+      })
+      .catch((err) => {
         setState({ loading: false, error: err });
-      }
-    }
-    fetchData();
+      });
   }, []);
 
   useMemo(() => {
@@ -83,7 +79,10 @@ const ListTeachers = () => {
                           data={state}
                           tableColumns={columns}
                           headerSearch={handleSearchButton}
-                          
+                          totalStudents={totalTeachers}
+                          neighbours={2}
+                          setOffsetStudents={0}
+                          studentsPerPage={50}
                         />
                       </div>
                     </div>

@@ -59,7 +59,7 @@ const MyDataTable = ({
           }}
           href="#"
           aria-current="page"
-          className="page-link"
+          className="page-link lessPaddingNumber"
         >
           {i}
         </a>
@@ -149,18 +149,6 @@ const MyDataTable = ({
   const Paginate = () => {
     return (
       <div className="table-pagination">
-        <div className="pagination-button">
-          {level === 1 ? (
-            <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
-              Primaria
-            </a>
-          ) : (
-            <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
-              Pre-Escolar
-            </a>
-          )}
-        </div>
-
         <div>
           <p className="text-sm text-gray-700">
             Mostrando{" "}
@@ -190,8 +178,8 @@ const MyDataTable = ({
               </a>
             </li>
             {items}
-            <li className="page-item " onClick={(e) => nextPage(e)}>
-              <a className="page-link  lessPadding" href="#" aria-label="Next">
+            <li className="page-item" onClick={(e) => nextPage(e)}>
+              <a className="page-link lessPadding" href="#" aria-label="Next">
                 <i className="material-icons">navigate_next</i>
               </a>
             </li>
@@ -233,6 +221,7 @@ const MyDataTable = ({
   //   );
   // };
 
+  console.log(level);
   return (
     <>
       {/* <div className="table-responsive students-table z-depth-3"> */}
@@ -263,6 +252,8 @@ const MyDataTable = ({
             inputValue={search}
             tableName={tableTitle}
             searchSubmit={handleSearchSubtmit}
+            level={level}
+            educationLevel={educationLevel}
           />
         }
       />

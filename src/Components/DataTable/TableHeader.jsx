@@ -7,16 +7,33 @@ const TableHeader = ({
   tableName,
   searchSubmit,
   formRef,
+  level,
+  educationLevel,
 }) => {
+  console.log(level);
   return (
     <div id="headerTable-container">
-      <h4 className="card-title">{tableName}</h4>
+      {level !== undefined && (
+        <>
+          <div className="pagination-button">
+            {level === 1 ? (
+              <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+                Primaria
+              </a>
+            ) : (
+              <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+                Pre-Escolar
+              </a>
+            )}
+          </div>
+        </>
+      )}
       <div className="search-bar">
-        <p>
-          <i className="material-icons">search</i>
-          Buscar:
-        </p>
-        <form onSubmit={searchSubmit} ref={formRef}>
+        <form onSubmit={searchSubmit} ref={formRef} className="tableForm">
+          <label>
+            <i className="material-icons">search</i>
+            Buscar:
+          </label>
           <input
             type="text"
             name="search"
@@ -24,7 +41,9 @@ const TableHeader = ({
             onChange={searchButton}
             className="z-depth-2"
           />
-          <button type="submit" className="btn btn-primary">Ir</button>
+          <button type="submit" className="btn btn-primary">
+            Ir
+          </button>
         </form>
       </div>
     </div>

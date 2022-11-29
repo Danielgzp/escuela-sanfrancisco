@@ -10,13 +10,13 @@ const boom = require("@hapi/boom");
 import "./styles.css";
 import Loading from "Components/Loaders/Loading";
 import { useAuth } from "hooks/useAuth";
+import Cookies from "js-cookie";
 
 const ListNews = () => {
   const formRef = useRef(null);
   const auth = useAuth();
   const { id } = auth.user;
-  console.log(auth.user)
-  console.log(id)
+  const cookie = Cookies.get("userJWT");
 
   const router = useRouter();
   const [state, setState] = useState({
@@ -28,19 +28,16 @@ const ListNews = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      setState({ loading: true, error: null });
-      try {
-        const response = await axios.get(endPoints.news.getAllNews);
-        const data = await JSON.parse(JSON.stringify(response.data));
-        setNews(data);
+    setState({ loading: true, error: null });
+    axios
+      .get(endPoints.news.getAllNews)
+      .then((response) => {
+        setNews(response.data);
         setState({ loading: false, error: null });
-      } catch (err) {
+      })
+      .catch((err) => {
         setState({ loading: false, error: err });
-      }
-    }
-
-    fetchData();
+      });
   }, []);
   //revisar bien esto para que cuando se elimnine una noticia se actulize
   //   en tiempo real, esto en todo la aplicacion sucede este problema, funcioan solo colocando news
@@ -57,10 +54,13 @@ const ListNews = () => {
       userId: id,
     };
 
+    const config = {
+      headers: { Authorization: `Bearer ${cookie}` },
+    };
     setState({ loading: true, error: null });
     console.log(newPost);
     axios
-      .post(endPoints.news.addNews, newPost)
+      .post(endPoints.news.addNews, newPost, config)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -113,7 +113,6 @@ const ListNews = () => {
     });
   };
 
-  console.log(news);
   return (
     <div className="content-body">
       <div className="container-fluid">
@@ -193,7 +192,7 @@ const ListNews = () => {
                               </div>
                             </form>
                           </div>
-                          {news?.map((post) => (
+                          {news.map((post) => (
                             <article className="post-container" key={post.id}>
                               <div className="postInfo border-bottom-1 pb-5">
                                 <div className="postImage">

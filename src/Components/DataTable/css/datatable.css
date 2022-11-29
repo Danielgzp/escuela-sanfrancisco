@@ -1,6 +1,3 @@
-.students-table {
-  margin: 0 10px 10px 10px;
-}
 .students-table nav {
   height: auto;
   line-height: normal;
@@ -18,6 +15,7 @@
   align-items: center;
   justify-content: center;
   justify-content: space-between;
+  padding: 8px 0;
 }
 #headerTable-container form {
   display: flex;
@@ -33,7 +31,6 @@
   margin-right: 10px;
 }
 #headerTable-container input {
-  margin: 0;
   border: 1px rgba(128, 128, 128, 0.3) solid;
   border-radius: 5px;
   padding-left: 10px;
@@ -48,19 +45,39 @@
   /* color: rgb(2, 255, 2); */
   color: var(--blue-dark);
 }
+
+#headerTable-container .tableForm {
+  justify-content: flex-end;
+}
 #headerTable-container .tableForm .form-group {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 0;
 }
+#headerTable-container .tableForm label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+#headerTable-container .tableForm label .material-icons {
+  font-size: 22px;
+  margin-right: 3px;
+}
 .tableForm {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   /* align-items: center; */
+}
+.tableForm input {
+  margin: 0 10px;
+}
+.tableForm .btn {
+  padding: 3px 14px;
 }
 
 /* .rdt_Pagination button {
@@ -124,14 +141,26 @@
 .table-pagination {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   height: 100%;
+  padding: 15px 10px;
   /* background-color: var(--blue-dark); */
+}
+.table-pagination p {
+  margin-right: 25px;
+}
+
+.table-pagination p,
+.table-pagination .pagination {
+  margin-bottom: 0;
 }
 .table-pagination .material-icons {
   line-height: normal;
 }
 .lessPadding {
-  padding: 3px 8px;
+  padding: 3px 7px !important;
+}
+.lessPaddingNumber {
+  padding: 7.5px 14px !important;
 }
