@@ -153,6 +153,8 @@ class StudentsService {
         "schoolarshipCi",
         "gradeId",
         "id",
+        "address",
+        "birthPlace",
       ],
       where: {
         [Op.or]: [
@@ -182,7 +184,7 @@ class StudentsService {
     // console.log(query);
     // console.log(filterGrade);
 
-    const { search } = query;
+    // const { search } = query;
 
     const options = {
       include: [
@@ -221,6 +223,8 @@ class StudentsService {
         "schoolarshipCi",
         "gradeId",
         "id",
+        "address",
+        "birthPlace",
       ],
       where: {
         nativeCi: {

@@ -52,6 +52,10 @@ class User extends Model {
       as: "news",
       foreignKey: "userId",
     });
+    this.hasMany(models.Logs, {
+      as: "logs",
+      foreignKey: "userId",
+    });
   }
   static config(sequelize) {
     return {

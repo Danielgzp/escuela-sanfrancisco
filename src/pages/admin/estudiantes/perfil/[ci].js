@@ -66,7 +66,7 @@ const StudentProfile = ({ data }) => {
                         >
                           <div className="profile-photo">
                             <img
-                              src="/images/profile/profile.png"
+                              src="/images/avatar/profile.png"
                               width="100"
                               className="img-fluid rounded-circle"
                               alt=""
@@ -103,7 +103,7 @@ const StudentProfile = ({ data }) => {
                         <div className="card-body pb-0">
                           <ul className="list-group list-group-flush">
                             <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Gender</strong>
+                              <strong>Género</strong>
                               <span className="mb-0">{student?.gender}</span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">
@@ -197,7 +197,7 @@ const StudentProfile = ({ data }) => {
                                 <div className="row mb-4">
                                   <div className="col-lg-3 col-md-4 col-sm-6 col-6">
                                     <h5 className="f-w-500">
-                                      Edad <span className="pull-right">:</span>
+                                      Fecha de Nacimiento <span className="pull-right">:</span>
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
@@ -223,7 +223,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.nativeCi}</span>
+                                    <span>{student?.nativeCi || "No tiene"}</span>
                                   </div>
                                 </div>
                               </div>
@@ -274,7 +274,7 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.representant?.phone}</span>
+                                    <span>{student?.representant?.email}</span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">

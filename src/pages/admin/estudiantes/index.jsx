@@ -136,7 +136,6 @@ const ListStudents = () => {
       loading: true,
       error: null,
     });
-    console.log(`http://localhost:3000/api/v1/admin/students?search=${state.search}`);
     axios
       .get(`http://localhost:3000/api/v1/admin/students?search=${state.search}`)
       .then((response) => {
@@ -155,21 +154,21 @@ const ListStudents = () => {
     // setOffset(offset + 50);
   };
 
-    const handleDeleteStudent = async () => {
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Deseas eliminar este Estudiante?",
-        icon: "warning",
-        showDenyButton: "true",
-        confirmButtonText: "Sí, deseo eliminar el estudiante",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          studentDelete();
-        } else if (result.isDenied) {
-          Swal.fire("Cancelado", "", "info");
-        }
-      });
-    };
+  const handleDeleteStudent = async () => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este Estudiante?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminar el estudiante",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        studentDelete();
+      } else if (result.isDenied) {
+        Swal.fire("Cancelado", "", "info");
+      }
+    });
+  };
 
   return (
     <>

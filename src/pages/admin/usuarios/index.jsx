@@ -19,6 +19,7 @@ const service = new UserRoleService();
 const ListOfUsers = ({ data }) => {
   const { usersRole } = data;
 
+  const cookie = Cookies.get(process.env.COOKIE_NAME);
   const [state, setState] = useState({
     loading: false,
     error: null,

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-const fs = require("fs");
+
 // const { JwtStrategy } = require("utils/strategies/jwt.strategy");
 // const jwt = require("jsonwebtoken");
 
@@ -32,10 +32,6 @@ export const middleware = async (req) => {
       return NextResponse.redirect("http://localhost:3000/");
     }
   }
-  //si coloco esto da un error total en la api
-  // if (url.includes("/api")) {
-  //   return NextResponse.redirect("http://localhost:3000/");
-  // }
 
   if (url.includes("/login") || url.includes("/recovery")) {
     if (cookieToken !== undefined) {

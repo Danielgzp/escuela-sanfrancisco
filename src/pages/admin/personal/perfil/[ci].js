@@ -114,12 +114,6 @@ const StaffProfile = ({ data }) => {
                                 {staff?.admissionDate}
                               </span>
                             </li>
-                            <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Propiedad</strong>
-                              <span className="mb-0">
-                                {/* {staff?.houseProperty} */}
-                              </span>
-                            </li>
                           </ul>
                         </div>
                       </div>
@@ -186,7 +180,8 @@ const StaffProfile = ({ data }) => {
                                 <div className="row mb-4">
                                   <div className="col-lg-3 col-md-4 col-sm-6 col-6">
                                     <h5 className="f-w-500">
-                                      Edad <span className="pull-right">:</span>
+                                      Fecha de Nacimiento{" "}
+                                      <span className="pull-right">:</span>
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
