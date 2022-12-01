@@ -18,13 +18,11 @@ const service = new UserRoleService();
 
 const ListOfUsers = ({ data }) => {
   const { usersRole } = data;
-
-  const cookie = Cookies.get(process.env.COOKIE_NAME);
+  const cookie = Cookies.get("userJWT");
   const [state, setState] = useState({
     loading: false,
     error: null,
   });
-
   const [users, setUsers] = useState([]);
   // const [usersRole, setUsersRole] = useState([]);
 

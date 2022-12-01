@@ -40,13 +40,17 @@ handler
       if (req.query !== undefined) {
         const students = await service.find(req.query);
         res.json(students);
+      } else {
+        const students = await service.find();
+
+        res.json(students);
       }
     } catch (error) {
       console.log(error);
     }
   })
   .post(
-    // validatorHandler(createStudentSchema, "body"),
+    validatorHandler(createStudentSchema, "body"),
     async (req, res, next) => {
       try {
         const body = req.body;

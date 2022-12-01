@@ -10,9 +10,9 @@ const Joi = require("joi");
 
 const email = Joi.string().email(),
   //Aqui validamos que la password sea de 6 o mas caracteres
-  password = Joi.string().min(6),
+  password = Joi.string().min(8),
   //Aqui validamos que la newPassword sea de 6 o mas caracteres
-  newPassword = Joi.string().min(6),
+  newPassword = Joi.string().min(8),
   //Este es un metodo para validar el token de jwt
   token = Joi.string();
 

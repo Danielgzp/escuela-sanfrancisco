@@ -56,13 +56,13 @@ const ChangePassword = ({ data }) => {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response?.status === 401) {
+        if (err.response?.status === 500) {
           setState({ loading: false, error: err });
           Swal.fire({
             icon: "error",
             title: "Oops...",
             // text: error.message,
-            text: err.message,
+            text: "El link de recuperación ha expirado",
           });
         } else if (err.request) {
           setState({ loading: false, error: err });

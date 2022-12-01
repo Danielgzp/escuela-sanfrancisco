@@ -1,10 +1,10 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const teacherCi = Joi.string();
-const staffCi = Joi.string();
-const title = Joi.string().min(5).max(30);
-const description = Joi.string().min(10).max(100);
+const teacherCi = Joi.string().min(1).max(9);
+const staffCi = Joi.string().min(1).max(9);
+const title = Joi.string().min(5).max(40);
+const description = Joi.string().min(50).max(200);
 const day = Joi.date();
 
 const limit = Joi.number().integer();

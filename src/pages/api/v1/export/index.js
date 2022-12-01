@@ -11,7 +11,7 @@ handler
     // checkRoles("director"),
     async (req, res, next) => {
       dbex
-        .export("school.sql")
+        .export("school_data_backup.sql")
         .then((path) => {
           console.log(`exported successfully to "${path}!"`);
         })

@@ -165,7 +165,7 @@ const MyDataTable = ({
           </p>
         </div>
 
-        <nav aria-label="...">
+        <nav>
           <ul className="pagination">
             <li className="page-item" onClick={(e) => firstPage(e)}>
               <a className="page-link lessPadding" href="#">
@@ -229,7 +229,7 @@ const MyDataTable = ({
         dense
         direction="auto"
         highlightOnHover={true}
-        columns={tableColumns()}
+        columns={tableColumns}
         data={filter}
         striped={true}
         fixedHeader

@@ -2,20 +2,19 @@ const Joi = require("joi");
 
 const id = Joi.number().integer();
 const representantId = Joi.number().integer();
-
-const schoolarshipCi = Joi.string();
+const schoolarshipCi = Joi.string().max(12);
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
-const address = Joi.string();
+const address = Joi.string().min(5).max(60);
 const gender = Joi.string();
 const birthDate = Joi.date();
-const birthPlace = Joi.string();
+const birthPlace = Joi.string().min(5).max(60);
 const admissionDate = Joi.date();
-const houseProperty = Joi.string();
-const ci = Joi.string();
+const houseProperty = Joi.string().min(3).max(30);
+const ci = Joi.string().max(9);
 const repName = Joi.string().min(3).max(30);
 const repLastName = Joi.string().min(3).max(30);
-const phone = Joi.string();
+const phone = Joi.string().min(11).max(14);;
 const email = Joi.string().email({ tlds: { allow: false } });
 const representant = Joi.object({});
 

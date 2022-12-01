@@ -25,12 +25,7 @@ class NewsService {
   }
 
   async create(data) {
-    const newNews = await models.News.create(
-      data
-      //     , {
-      //   include: ["representant", "record"],
-      // }
-    );
+    const newNews = await models.News.create(data);
 
     return newNews;
   }

@@ -33,7 +33,6 @@ const ListStudents = () => {
 
   useEffect(() => {
     setState({ loading: true, error: null });
-
     axios
       .get(`http://localhost:3000/api/v1/admin/students?level=${level}`)
       .then((response) => {
@@ -61,6 +60,38 @@ const ListStudents = () => {
         setState({ loading: false, error: err });
       });
   }, [offset, level]);
+
+  const handleDeleteStudent = (e) => {
+    const id = e.target.getAttribute("id");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este Estudiante?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminar el estudiante",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(endPoints.students.deleteStudent(id))
+          .then((response) => {
+            Swal.fire(
+              "El Estudiante se ha eliminado correctamente",
+              "",
+              "success"
+            );
+          })
+          .catch((err) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: err.response.data,
+            });
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Cancelado", "", "info");
+      }
+    });
+  };
 
   // const result = state?.api?.filter((student) => {
   //   return `${student.name} ${student.lastName} ${student.grade.name} ${student.grade.section}`
@@ -154,22 +185,6 @@ const ListStudents = () => {
     // setOffset(offset + 50);
   };
 
-  const handleDeleteStudent = async () => {
-    Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas eliminar este Estudiante?",
-      icon: "warning",
-      showDenyButton: "true",
-      confirmButtonText: "Sí, deseo eliminar el estudiante",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        studentDelete();
-      } else if (result.isDenied) {
-        Swal.fire("Cancelado", "", "info");
-      }
-    });
-  };
-
   return (
     <>
       <div className="content-body">
@@ -196,7 +211,7 @@ const ListStudents = () => {
                       <div className="table-responsive">
                         <MyDataTable
                           data={state}
-                          tableColumns={columns}
+                          tableColumns={columns(handleDeleteStudent)}
                           headerSearch={handleSearchButton}
                           handleSearchSubtmit={handleSearchSubmit}
                           firstPage={handleClickFirstPage}

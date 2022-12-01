@@ -87,10 +87,10 @@ const ReportDataTable = ({ grades }) => {
     };
 
     setState({ loading: true, error: null });
-    console.log(gradeData);
-    console.log(
-      `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
-    );
+    // console.log(gradeData);
+    // console.log(
+    //   `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
+    // );
     axios
       .get(
         `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
@@ -121,7 +121,7 @@ const ReportDataTable = ({ grades }) => {
         highlightOnHover={true}
         columns={columns()}
         data={students}
-        actions={<button className="btn btn-success">Exportar Excel</button>}
+        // actions={<button className="btn btn-success">Exportar Excel</button>}
         striped={true}
         title="Movie List"
         fixedHeader

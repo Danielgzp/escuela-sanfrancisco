@@ -1,10 +1,10 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const studentSchoolarshipCi = Joi.string();
+const studentSchoolarshipCi = Joi.number().integer()
 const title = Joi.string().min(5).max(40);
 const description = Joi.string().min(10).max(100);
-const day = Joi.string();
+const day = Joi.date();
 
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();

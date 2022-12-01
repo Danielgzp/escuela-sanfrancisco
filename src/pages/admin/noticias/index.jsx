@@ -28,7 +28,7 @@ const ListNews = () => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    setState({ loading: true, error: null });
+    
     axios
       .get(endPoints.news.getAllNews)
       .then((response) => {
@@ -57,7 +57,7 @@ const ListNews = () => {
     const config = {
       headers: { Authorization: `Bearer ${cookie}` },
     };
-    setState({ loading: true, error: null });
+    // setState({ loading: true, error: null });
     console.log(newPost);
     axios
       .post(endPoints.news.addNews, newPost, config)

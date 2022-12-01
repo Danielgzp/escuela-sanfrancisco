@@ -11,8 +11,7 @@ const service = new GradeService();
 const boom = require("@hapi/boom");
 
 const AddStudent = ({ data }) => {
-  const { grades, err } = data;
-  console.log(data);
+  const { grades } = data;
 
   const formRef = useRef(null);
   const router = useRouter();
@@ -59,10 +58,11 @@ const AddStudent = ({ data }) => {
     };
 
     setState({ loading: true, error: null });
-    console.log(newStudent);
+
     axios
       .post(endPoints.students.addStudent, newStudent)
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -73,13 +73,13 @@ const AddStudent = ({ data }) => {
         setState({ loading: false, error: null });
         router.push("/admin/estudiantes");
       })
-      .catch((error) => {
+      .catch((err) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: error.response.data,
+          text: err.response.data,
         });
-        console.log(error);
+        console.log(err);
         setState({ loading: false, error: null });
       });
   };
@@ -199,6 +199,7 @@ const AddStudent = ({ data }) => {
                             name="admissionDate"
                             className="datepicker-default form-control"
                             id="datepicker"
+                            required
                           />
                         </div>
                       </div>
@@ -211,6 +212,7 @@ const AddStudent = ({ data }) => {
                             type="date"
                             name="birthDate"
                             className="datepicker-default form-control"
+                            required
                             // id="datepicker"
                           />
                         </div>

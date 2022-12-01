@@ -124,9 +124,9 @@ const AdminSidebar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/admin/consultas">
+              <Link href="/admin/auditoria">
                 <a className="ai-icon" aria-expanded="false">
-                  <i className="material-icons">description</i>
+                  <i className="material-icons">insert_chart</i>
                   <span className="nav-text">Auditoría</span>
                 </a>
               </Link>

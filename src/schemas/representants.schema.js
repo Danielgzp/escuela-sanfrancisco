@@ -1,9 +1,9 @@
 const Joi = require("joi");
 
-const representantCI = Joi.string();
+const representantCI = Joi.string().max(9);
 const representantName = Joi.string().min(3).max(30);
 const representantLastName = Joi.string().min(3).max(30);
-const representantPhone = Joi.string();
+const representantPhone = Joi.string().min(11).max(14);
 const representantEmail = Joi.string().email({ tlds: { allow: false } });
 
 const createRepresentantSchema = Joi.object({
