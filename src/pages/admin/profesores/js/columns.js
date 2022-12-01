@@ -1,7 +1,7 @@
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-export const columns = (teacher) => [
+export const columns = (handleDelete) => [
   {
     name: "Grado",
     selector: (row) => `${row.grade.name} ${row.grade.section}`,
@@ -75,12 +75,13 @@ export const columns = (teacher) => [
           </a>
         </Link>
         <a
-          href={row.ci}
-          target="_blank"
           rel="noopener noreferrer"
-          onClick={teacher}
+          onClick={(e) => handleDelete(e)}
+          style={{ cursor: "pointer" }}
         >
-          <i className="material-icons">delete</i>
+          <i className="material-icons" id={row.ci}>
+            delete
+          </i>
         </a>
         <Link
           href={`/admin/profesores/perfil/${row.ci}`

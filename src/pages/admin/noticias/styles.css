@@ -7,14 +7,14 @@
   flex-direction: row;
 }
 .postImage {
-  width: 30%;
+  width: 25%;
 }
 .postImage img {
   width: 100%;
   height: auto;
 }
 .postDescription {
-  width: 70%;
+  width: 75%;
   padding: 10px 40px;
   display: flex;
   flex-direction: column;

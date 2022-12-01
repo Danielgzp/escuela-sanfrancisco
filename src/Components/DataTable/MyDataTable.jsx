@@ -6,16 +6,15 @@ import Swal from "sweetalert2";
 // import PageError from "../Error/PageError";
 
 import Loader from "Components/Loader";
-// import TableHeader from "./TableHeader";
-// import PaginationTable from "./PaginationTable";
+
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import TableHeader from "./TableHeader";
 import Loading from "Components/Loaders/Loading";
 import Paginate from "./Paginate";
 import { useState } from "react";
-// import Paginate from "Components/Paginate/Paginate";
-import "./css/datatable.css";
+import "./css/styles.css"
+
 
 const MyDataTable = ({
   data,

@@ -7,14 +7,14 @@ import ReportDataTable from "./js/DataTable";
 import StaffService from "services/staff.service";
 import StudentsService from "services/students.service";
 import TeacherService from "services/teacher.service";
+import UserService from "services/user.service";
 import { Chart } from "Components/Charts/Chart";
 
 const service = new StudentsService();
 const gradesService = new GradeService();
 const teachersService = new TeacherService();
 const staffService = new StaffService();
-
-import "../../Components/DataTable/css/datatable.css";
+const userService = new UserService();
 
 const AdminDashboard = ({ props }) => {
   const {
@@ -23,6 +23,7 @@ const AdminDashboard = ({ props }) => {
     countPrimary,
     countStaff,
     countTeachers,
+    countUsers,
     grades,
   } = props;
 
@@ -33,18 +34,33 @@ const AdminDashboard = ({ props }) => {
       "PreEscolar",
       "Personal",
       "Maestros",
+      "Usuarios",
     ],
     datasets: [
       {
         label: "Registro Total",
         borderWidth: 2,
-        backgroundColor: ["#ffbb11", "#c0c0c0", "#50AF95", "f3ba2f", "#2a71d0"],
+        backgroundColor: [
+          "#143b64",
+          "#ffaa16",
+          "#c62828",
+          "#673bb7",
+          "#7ed321",
+
+          "#50e3c2",
+          // "#50AF95",
+
+          // "#2a71d0",
+
+          // "#e29000",
+        ],
         data: [
           totalStudents,
           countPreSchool,
           countPrimary,
           countStaff,
           countTeachers,
+          countUsers,
         ],
       },
     ],
@@ -129,6 +145,20 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
+                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                  <div className="widget-stat card">
+                    <div className="card-body">
+                      <h4 className="card-title">Usuarios</h4>
+                      <h3>{countUsers}</h3>
+                      <div className="progress mb-2">
+                        <div
+                          className="progress-bar progress-animated bg-info"
+                          style={{ width: "100%" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div className="col-xl-7 col-xxl-7 col-sm-12">
@@ -156,9 +186,6 @@ const AdminDashboard = ({ props }) => {
                       <h4 className="card-title">
                         Lista de todos los Estudiantes{" "}
                       </h4>
-                      <Link href="/admin/estudiantes/agregar-estudiante">
-                        <a className="btn btn-primary">Agregar Estudiante +</a>
-                      </Link>
                     </div>
                     <div className="card-body">
                       <div className="table-responsive">
@@ -184,6 +211,7 @@ export async function getServerSideProps() {
   const countPrimary = await service.countPrimary();
   const countTeachers = await teachersService.countTeachers();
   const countStaff = await staffService.countStaff();
+  const countUsers = await userService.countUsers();
 
   const response = await gradesService.find();
   const grades = await JSON.parse(JSON.stringify(response));
@@ -196,6 +224,7 @@ export async function getServerSideProps() {
         totalStudents,
         countPreSchool,
         countPrimary,
+        countUsers,
         grades,
       },
     },

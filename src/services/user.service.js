@@ -32,6 +32,11 @@ class UserService {
 
     return user;
   }
+  async countUsers() {
+    const count = await models.User.count();
+
+    return count;
+  }
 
   async findOne(id) {
     //find by private key, es decir buscar por el id o el valor que le solicitemos

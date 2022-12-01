@@ -1,7 +1,7 @@
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-export const columns = (staff) => [
+export const columns = (handleDelete) => [
   {
     name: "C.I",
     selector: (row) => `${row.ci}`,
@@ -81,12 +81,13 @@ export const columns = (staff) => [
           </a>
         </Link>
         <a
-          href={row.ci}
-          target="_blank"
           rel="noopener noreferrer"
-          onClick={staff}
+          onClick={(e) => handleDelete(e)}
+          style={{ cursor: "pointer" }}
         >
-          <i className="material-icons">delete</i>
+          <i className="material-icons" id={row.ci}>
+            delete
+          </i>
         </a>
         <Link
           href={`/admin/personal/perfil/${row.ci}`

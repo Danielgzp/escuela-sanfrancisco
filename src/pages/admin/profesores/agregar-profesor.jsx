@@ -261,7 +261,10 @@ const AddTeacher = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button type="submit" className="btn btn-light">
+                        <button
+                          type="button"
+                          className="btn btn-warning ml-2 text-white"
+                        >
                           Cancelar
                         </button>
                       </div>

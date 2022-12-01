@@ -3,6 +3,7 @@
   --dark-red2: #aa0f16;
   --blue-text: rgb(83, 83, 235);
   --blue-dark: #143b64;
+  --opacity-orange: rgba(255, 166, 0, 0.5);
   --blue-dark-opacity: #143b6444;
   --font-text: "Fira Sans";
 }
@@ -90,6 +91,7 @@ strong {
 }
 .nav-link-img{
   border: 2px solid transparent;
+  padding: 4px !important;
 }
 .nav-link-img:hover{
   border: 2px solid #fff;
@@ -293,6 +295,9 @@ a {
 }
 .text-titles {
   font-family: "RobotoCondensedLight";
+}
+.form-control {
+ border: 1px solid rgba(128, 128, 128, 0.25) !important;
 }
 .form-control:focus {
   border-color: orange !important;

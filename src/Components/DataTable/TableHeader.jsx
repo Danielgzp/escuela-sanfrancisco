@@ -10,7 +10,6 @@ const TableHeader = ({
   level,
   educationLevel,
 }) => {
-  console.log(level);
   return (
     <div id="headerTable-container">
       {level !== undefined && (
@@ -30,17 +29,20 @@ const TableHeader = ({
       )}
       <div className="search-bar">
         <form onSubmit={searchSubmit} ref={formRef} className="tableForm">
-          <label>
-            <i className="material-icons">search</i>
-            Buscar:
-          </label>
-          <input
-            type="text"
-            name="search"
-            value={inputValue || ""}
-            onChange={searchButton}
-            className="z-depth-2"
-          />
+          <div className="form-group">
+            <label>
+              <i className="material-icons">search</i>
+              Buscar:
+            </label>
+            <input
+              type="text"
+              name="search"
+              value={inputValue || ""}
+              onChange={searchButton}
+              className="z-depth-2"
+            />
+          </div>
+
           <button type="submit" className="btn btn-primary">
             Ir
           </button>

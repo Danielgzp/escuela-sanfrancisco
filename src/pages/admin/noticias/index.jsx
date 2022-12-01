@@ -5,46 +5,45 @@ import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Modal from "Components/Modal/Modal";
-const boom = require("@hapi/boom");
-
-import "./styles.css";
 import Loading from "Components/Loaders/Loading";
 import { useAuth } from "hooks/useAuth";
 import Cookies from "js-cookie";
+
+import "./styles.css";
 
 const ListNews = () => {
   const formRef = useRef(null);
   const auth = useAuth();
   const { id } = auth.user;
+  const [news, setNews] = useState([]);
+  const [isLoading, setLoading] = useState(false);
   const cookie = Cookies.get("userJWT");
 
-  const router = useRouter();
-  const [state, setState] = useState({
-    loading: false,
-    error: null,
-    // news: [],
-  });
-
-  const [news, setNews] = useState([]);
-
-  useEffect(() => {
-    
+  const fetchData = () => {
+    setLoading(true);
     axios
       .get(endPoints.news.getAllNews)
       .then((response) => {
         setNews(response.data);
-        setState({ loading: false, error: null });
+        setLoading(false);
       })
       .catch((err) => {
-        setState({ loading: false, error: err });
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.response.data,
+        });
+        setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
-  //revisar bien esto para que cuando se elimnine una noticia se actulize
-  //   en tiempo real, esto en todo la aplicacion sucede este problema, funcioan solo colocando news
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const newPost = {
@@ -57,7 +56,7 @@ const ListNews = () => {
     const config = {
       headers: { Authorization: `Bearer ${cookie}` },
     };
-    // setState({ loading: true, error: null });
+
     console.log(newPost);
     axios
       .post(endPoints.news.addNews, newPost, config)
@@ -69,17 +68,15 @@ const ListNews = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        setState({ loading: false, error: null });
-        router.push("/admin/noticias");
+        fetchData();
       })
-      .catch((error) => {
+      .catch((err) => {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: error.response.data,
+          text: err.response.data,
         });
-        console.log(error);
-        setState({ loading: false, error: null });
+        setLoading(false);
       });
   };
 
@@ -94,19 +91,21 @@ const ListNews = () => {
       confirmButtonText: "Sí, deseo eliminar la noticia",
     }).then((result) => {
       if (result.isConfirmed) {
-        async function deleteNews() {
-          try {
-            await axios.delete(endPoints.news.deleteNews(id));
+        setLoading(true);
+        axios
+          .delete(endPoints.news.deleteNews(id))
+          .then((response) => {
             Swal.fire(
               "La noticia se ha eliminado correctamente",
               "",
               "success"
             );
-          } catch (error) {
-            Swal.fire("Oops", error.message, "error");
-          }
-        }
-        deleteNews();
+            fetchData();
+          })
+          .catch((err) => {
+            Swal.fire("Oops", err.message, "error");
+            setLoading(false);
+          });
       } else if (result.isDenied) {
         Swal.fire("Cancelado", "", "info");
       }
@@ -241,10 +240,10 @@ const ListNews = () => {
                                 </div>
                               </div>
 
-                              <Modal posts={post} />
+                              <Modal posts={post} newsEdited={fetchData} />
                             </article>
                           ))}
-                          {state.loading ? (
+                          {isLoading ? (
                             <Loading />
                           ) : (
                             <>

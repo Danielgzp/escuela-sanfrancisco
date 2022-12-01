@@ -48,7 +48,8 @@ const EditStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const updateDataStudent = {
-      ci: objectData.schoolId,
+      schoolarshipCi: objectData.schoolId,
+      nativeCi: objectData.nativeCi,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -59,12 +60,13 @@ const EditStudent = ({ data }) => {
       houseProperty: objectData.houseProperty,
       // no funciona bien el actualizar el representante
       // representantId: 7,
-      // representant: {
-      //   repName: objectData.repName,
-      //   repLastName: objectData.repLastName,
-      //   email: objectData.email,
-      //   phone: objectData.phone,
-      // },
+      representant: {
+        ci: objectData.repCi,
+        repName: objectData.repName,
+        repLastName: objectData.repLastName,
+        email: objectData.email,
+        phone: objectData.phone,
+      },
       gradeId: objectData.grade,
     };
 
@@ -101,7 +103,7 @@ const EditStudent = ({ data }) => {
             <div className="col-xl-12 col-xxl-12 col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h5 className="card-title">Información Básica</h5>
+                  <h4 className="text-primary mb-4">Información Personal</h4>
                 </div>
                 <div className="card-body">
                   <form onSubmit={handleSubmit} ref={formRef}>
@@ -137,7 +139,20 @@ const EditStudent = ({ data }) => {
                             type="number"
                             name="schoolId"
                             className="form-control"
-                            defaultValue={student.ci}
+                            defaultValue={student.schoolarshipCi}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
+                        <div className="form-group">
+                          <label className="form-label">
+                            Cedula de Identidad Venezolana
+                          </label>
+                          <input
+                            type="text"
+                            name="nativeCi"
+                            className="form-control"
+                            defaultValue={student.nativeCi || "No tiene"}
                           />
                         </div>
                       </div>
@@ -215,9 +230,8 @@ const EditStudent = ({ data }) => {
                           <select
                             name="gender"
                             className="form-control"
-                            // defaultValue={student.gender}
+                            defaultValue={student.gender}
                           >
-                            <option value="Genero">Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                           </select>
@@ -236,7 +250,12 @@ const EditStudent = ({ data }) => {
                           />
                         </div>
                       </div>
-                      {/* <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="col-lg-12 col-md-12 col-sm-12">
+                        <h4 className="text-primary mb-5">
+                          Información del Representante
+                        </h4>
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">
                             Nombre del Representante
@@ -285,7 +304,6 @@ const EditStudent = ({ data }) => {
                             className="form-control"
                             defaultValue={student.representant.phone}
                           />
-                          
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
@@ -298,20 +316,23 @@ const EditStudent = ({ data }) => {
                             defaultValue={student.representant.email}
                           />
                         </div>
-                      </div> */}
+                      </div>
 
                       <div className="col-lg-12 col-md-12 col-sm-12">
                         <button type="submit" className="btn btn-primary">
                           Guardar
                         </button>
-                        <button type="submit" className="btn btn-light">
+                        <button
+                          type="button"
+                          className="btn btn-warning ml-2 text-white"
+                        >
                           Cancelar
                         </button>
                         <button
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target={`#record-${student.ci}`}
-                          className="btn btn-primary mr-3 right"
+                          className="btn btn-primary mr-3 float-right"
                         >
                           <span className="mr-3">
                             <i className="fa fa-pencil"></i>

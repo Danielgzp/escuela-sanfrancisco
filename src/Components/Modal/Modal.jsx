@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const Modal = ({ posts }) => {
+const Modal = ({ posts, newsEdited }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -34,6 +34,7 @@ const Modal = ({ posts }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        newsEdited();
         setState({ loading: false, error: null });
       })
       .catch((error) => {

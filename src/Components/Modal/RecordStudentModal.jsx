@@ -69,8 +69,7 @@ const RecordStudentModal = ({ student }) => {
                   Agregar Eventualidad
                 </h5>
                 <a
-                  href="#!"
-                  rel="noopener noreferrer"
+                  type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"

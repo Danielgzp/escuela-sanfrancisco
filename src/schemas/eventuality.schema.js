@@ -4,7 +4,7 @@ const id = Joi.number().integer();
 const teacherCi = Joi.string().min(1).max(9);
 const staffCi = Joi.string().min(1).max(9);
 const title = Joi.string().min(5).max(40);
-const description = Joi.string().min(50).max(200);
+const description = Joi.string().max(200);
 const day = Joi.date();
 
 const limit = Joi.number().integer();

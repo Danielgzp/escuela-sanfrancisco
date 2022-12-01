@@ -1,7 +1,6 @@
 //por los estilos de arriba, hay cosas que se ven mal en el carousel
 
 import "../styles/globals.css";
-import "../styles/juapablo.css";
 // import "materialize-css/dist/css/materialize.min.css";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";
@@ -17,6 +16,7 @@ function MyApp({ Component, pageProps }) {
     require("../styles/default.css");
     require("../styles/default-date.css");
     require("../styles/jquery.dataTables.min.css");
+    require("../styles/datatables.css");
   } else {
     require("materialize-css/dist/css/materialize.min.css");
   }

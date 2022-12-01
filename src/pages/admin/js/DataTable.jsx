@@ -15,59 +15,10 @@ import Loading from "Components/Loaders/Loading";
 import { columns, paginationOptions } from "./columns";
 import { useRef, useState } from "react";
 import { useMemo } from "react";
-// import "./css/datatable.css"
 
-// const [filterText, setFilterText] = useState("");
-// const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-// const filteredItems = fakeUsers.filter(
-//   (item) =>
-//     item.name && item.name.toLowerCase().includes(filterText.toLowerCase())
-// );
-
-// const subHeaderComponentMemo = useMemo(() => {
-//   const handleClear = () => {
-//     if (filterText) {
-//       setResetPaginationToggle(!resetPaginationToggle);
-//       setFilterText("");
-//     }
-//   };
-
-//   return (
-//     <FilterComponent
-//       onFilter={(e) => setFilterText(e.target.value)}
-//       onClear={handleClear}
-//       filterText={filterText}
-//     />
-//   );
-// }, [filterText, resetPaginationToggle]);
+import TableHeader from "./TableHeader";
 
 const ReportDataTable = ({ grades }) => {
-  // const TableHeader = ({ props, changeButton }) => {
-  //   return (
-  //     <div id="headerTable-container">
-  //       <h4 className="card-title">Lista de todos los Estudiantes </h4>
-  //       <div className="search-bar">
-  //         <p>
-  //           <i className="material-icons">search</i>
-  //           Buscar:
-  //         </p>
-  //         <form>
-  //           <input
-  //             type="text"
-  //             value={props}
-  //             // onChange={changeButton}
-  //             className="z-depth-2"
-  //           />
-  //         </form>
-  //       </div>
-  //       <div className="card-header">
-  //         <Link href="/admin/students/add-student">
-  //           <a className="btn btn-primary">Agregar Estudiante +</a>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   );
-  // };
   const formRef = useRef(null);
   const [students, setStudents] = useState([]);
   const [state, setState] = useState({
@@ -96,10 +47,8 @@ const ReportDataTable = ({ grades }) => {
         `${endPoints.students.getAllStudents}?filterGrade=${gradeData.name}&section=${gradeData.section}`
       )
       .then((response) => {
-        console.log(response);
         setStudents(response.data);
         setState({ loading: false, error: null });
-        // router.push("/");
       })
       .catch((err) => {
         Swal.fire({
@@ -114,7 +63,6 @@ const ReportDataTable = ({ grades }) => {
 
   return (
     <>
-      {/* <div className="table-responsive students-table z-depth-3"> */}
       <DataTable
         dense
         direction="auto"
@@ -136,33 +84,7 @@ const ReportDataTable = ({ grades }) => {
         subHeader
         subHeaderComponent={
           <>
-            <div id="headerTable-container">
-              <form onSubmit={handleSubmit} ref={formRef} className="tableForm">
-                <div className="form-group">
-                  <label>Selecciona el grado</label>
-                  <select name="name" className="form-control">
-                    <option value="">Grado</option>
-                    {grades.map((grade) => (
-                      <option
-                        key={grade.id}
-                        value={`${grade.name}`}
-                      >{`${grade.name}`}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Selecciona la seccion</label>
-                  <select name="section" className="form-control">
-                    <option value="">Seccion</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                  </select>
-                </div>
-                <button type="submit" className="btn btn-primary">
-                  Buscar
-                </button>
-              </form>
-            </div>
+            <TableHeader grades={grades} handleSubmit={handleSubmit} />
           </>
         }
         persistTableHead
@@ -172,3 +94,42 @@ const ReportDataTable = ({ grades }) => {
 };
 
 export default ReportDataTable;
+
+{
+  /* <div id="headerTable-container">
+  {level !== undefined && (
+    <>
+      <div className="pagination-button">
+        {level === 1 ? (
+          <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+            Primaria
+          </a>
+        ) : (
+          <a onClick={(e) => educationLevel(e)} className="btn btn-primary">
+            Pre-Escolar
+          </a>
+        )}
+      </div>
+    </>
+  )}
+  <div className="search-bar">
+    <form onSubmit={searchSubmit} ref={formRef} className="tableForm">
+      <label>
+        <i className="material-icons">search</i>
+        Buscar:
+      </label>
+      <input
+        type="text"
+        name="search"
+        value={inputValue || ""}
+        onChange={searchButton}
+        className="z-depth-2"
+      />
+
+      <button type="submit" className="btn btn-primary">
+        Ir
+      </button>
+    </form>
+  </div>
+</div>; */
+}

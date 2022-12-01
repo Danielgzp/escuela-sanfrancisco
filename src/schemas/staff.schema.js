@@ -5,9 +5,9 @@ const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
 const address = Joi.string().min(3).max(100);
 const gender = Joi.string();
-const birthDate = Joi.date()
-const birthPlace = Joi.string().min(3).max(50);;
-const admissionDate = Joi.date()
+const birthDate = Joi.date();
+const birthPlace = Joi.string().min(3).max(50);
+const admissionDate = Joi.date();
 const phone = Joi.string().min(11).max(14);
 const email = Joi.string().email({ tlds: { allow: false } });
 const roleId = Joi.number().integer();
@@ -33,10 +33,6 @@ const createStaffSchema = Joi.object({
   roleId: roleId.required(),
   eventuality: eventuality.optional(),
   news: news.optional(),
-  user: Joi.object({
-    email: email.required(),
-    password: password.required(),
-  }).optional(),
 });
 
 const updateStaffSchema = Joi.object({

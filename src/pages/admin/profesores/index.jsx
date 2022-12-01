@@ -7,6 +7,7 @@ import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Head from "next/head";
+import Swal from "sweetalert2";
 
 const ListTeachers = () => {
   const [state, setState] = useState({
@@ -51,6 +52,33 @@ const ListTeachers = () => {
   const handleSearchButton = (e) => {
     setState({ ...state, search: e.target.value });
   };
+  const handleDeleteTeacher = (e) => {
+    const id = e.target.getAttribute("id");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar a esta Maestra(o)?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminarlo",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(endPoints.teachers.deleteTeacher(id))
+          .then((response) => {
+            Swal.fire("Se ha eliminado correctamente", "", "success");
+          })
+          .catch((err) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: err.response.data,
+            });
+          });
+      } else if (result.isDenied) {
+        Swal.fire("Cancelado", "", "info");
+      }
+    });
+  };
 
   return (
     <>
@@ -77,7 +105,7 @@ const ListTeachers = () => {
                       <div className="table-responsive">
                         <MyDataTable
                           data={state}
-                          tableColumns={columns}
+                          tableColumns={columns(handleDeleteTeacher)}
                           headerSearch={handleSearchButton}
                           totalStudents={totalTeachers}
                           neighbours={2}

@@ -38,10 +38,7 @@ const EditStaff = ({ data }) => {
       birthPlace: objectData.birthPlace,
       phone: objectData.phone,
       roleId: objectData.role,
-      user: {
-        email: objectData.email,
-        password: objectData.password,
-      },
+      email: objectData.email,
     };
 
     setState({ loading: true, error: null });
@@ -57,7 +54,7 @@ const EditStaff = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/admin");
+        router.push("/admin/personal");
       })
       .catch((error) => {
         Swal.fire({
@@ -193,10 +190,11 @@ const EditStaff = ({ data }) => {
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
                           <label className="form-label">Role/Cargo</label>
-                          <select name="role" className="form-control">
-                            <option defaultValue={staff.role.id}>
-                              {staff.role.name}
-                            </option>
+                          <select
+                            name="role"
+                            className="form-control"
+                            defaultValue={staff.role.id}
+                          >
                             {roles.map((role) => (
                               <option
                                 key={role.id}
@@ -252,14 +250,17 @@ const EditStaff = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button type="submit" className="btn btn-light">
+                        <button
+                          type="button"
+                          className="btn btn-warning ml-2 text-white"
+                        >
                           Cancelar
                         </button>
                         <button
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target={`#eventuality-${staff.ci}`}
-                          className="btn btn-primary mr-3"
+                          className="btn btn-primary mr-3 float-right"
                         >
                           <span className="mr-3">
                             <i className="fa fa-pencil"></i>

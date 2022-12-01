@@ -177,7 +177,10 @@ const AddGrade = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Submit
                         </button>
-                        <button type="submit" className="btn btn-light">
+                        <button
+                          type="button"
+                          className="btn btn-warning ml-2 text-white"
+                        >
                           Cancelar
                         </button>
                       </div>

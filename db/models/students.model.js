@@ -43,7 +43,7 @@ const StudentsSchema = {
     allowNull: false,
     type: DataTypes.DATEONLY,
     get: function () {
-      return moment(this.getDataValue("birthDate")).format("YYYY-MM-DD");
+      return moment(this.getDataValue("birthDate")).format("DD-MM-YYYY");
     },
     field: "birth_date",
   },

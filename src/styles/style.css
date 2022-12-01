@@ -6944,7 +6944,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #7356f1 !important;
+  background-color: #143b64 !important;
 }
 
 a.bg-primary:hover,
@@ -34592,7 +34592,7 @@ button:focus {
   position: relative;
   border: 0px solid transparent;
   border-radius: 0.25rem;
-  box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
+  box-shadow: 1px 2px 19px 1px rgba(82, 63, 105, 0.2);
   height: calc(100% - 30px);
 }
 @media only screen and (max-width: 575px) {

@@ -11,7 +11,7 @@ import GradeService from "services/grade.service";
 import TeacherService from "services/teacher.service";
 
 const service = new GradeService();
-const teacherService = new TeacherService()
+const teacherService = new TeacherService();
 
 const EditTeacher = ({ data }) => {
   const { grades, teacher } = data;
@@ -75,7 +75,6 @@ const EditTeacher = ({ data }) => {
     // const script3 = document.createElement("script");
     // const script4 = document.createElement("script");
     // const script5 = document.createElement("script");
-
     // script.src = "/vendor/pickadate/picker.js";
     // script.async = false;
     // document.body.appendChild(script);
@@ -255,14 +254,17 @@ const EditTeacher = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button type="submit" className="btn btn-light">
+                        <button
+                          type="button"
+                          className="btn btn-warning ml-2 text-white"
+                        >
                           Cancelar
                         </button>
                         <button
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target={`#eventuality-${teacher.ci}`}
-                          className="btn btn-primary mr-3"
+                          className="btn btn-primary mr-3 float-right"
                         >
                           <span className="mr-3">
                             <i className="fa fa-pencil"></i>
