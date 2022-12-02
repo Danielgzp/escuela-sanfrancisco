@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 
 const { STUDENTS_TABLE } = require("./students.model");
 
@@ -22,6 +24,9 @@ const RecordStudentSchema = {
   day: {
     allowNull: false,
     type: DataTypes.DATEONLY,
+    get: function () {
+      return moment(this.getDataValue("day")).format("YYYY-MM-DD");
+    },
   },
   createdAt: {
     allowNull: false,

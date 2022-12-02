@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 
 const { STAFF_TABLE } = require("./staff.model");
 const { TEACHER_TABLE } = require("./teacher.model");
@@ -23,6 +25,9 @@ const EventualitySchema = {
   day: {
     allowNull: true,
     type: DataTypes.DATEONLY,
+    get: function () {
+      return moment(this.getDataValue("day")).format("YYYY-MM-DD");
+    },
   },
   createdAt: {
     allowNull: false,

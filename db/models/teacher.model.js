@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 
 const { GRADE_TABLE } = require("./grade.model");
 
@@ -38,6 +40,9 @@ const TeacherSchema = {
     allowNull: true,
     type: DataTypes.DATEONLY,
     field: "birth_date",
+    get: function () {
+      return moment(this.getDataValue("birthDate")).format("YYYY-MM-DD");
+    },
   },
   gender: {
     allowNull: false,
@@ -48,6 +53,9 @@ const TeacherSchema = {
     allowNull: true,
     type: DataTypes.DATEONLY,
     field: "admission_date",
+    get: function () {
+      return moment(this.getDataValue("admissionDate")).format("YYYY-MM-DD");
+    },
   },
   birthPlace: {
     allowNull: false,

@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const EditUser = ({ user, token }) => {
+const EditUser = ({ user, token, fetchData }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -13,7 +13,7 @@ const EditUser = ({ user, token }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const editUser = {
@@ -22,7 +22,7 @@ const EditUser = ({ user, token }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    setState({ loading: true, error: null });
+
     console.log(editUser);
     axios
       .patch(endPoints.users.updateUsers(user.id), editUser, config)
@@ -34,6 +34,7 @@ const EditUser = ({ user, token }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        fetchData();
         setState({ loading: false, error: null });
       })
       .catch((error) => {
@@ -42,7 +43,6 @@ const EditUser = ({ user, token }) => {
           title: "Oops...",
           text: error.response.data,
         });
-        console.log(error);
         setState({ loading: false, error: null });
       });
   };

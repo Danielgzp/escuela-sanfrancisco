@@ -322,6 +322,7 @@ class StudentsService {
           },
           include: [
             "period",
+
             {
               association: "period",
               attributes: ["name"],
@@ -331,6 +332,8 @@ class StudentsService {
               association: "level",
               attributes: ["name"],
             },
+            "teacher",
+            { association: "teacher", attributes: ["name", "lastName"] },
           ],
         },
       ],

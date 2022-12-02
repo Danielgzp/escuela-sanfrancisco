@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 
 const { PERIOD_TABLE } = require("./period.model");
 

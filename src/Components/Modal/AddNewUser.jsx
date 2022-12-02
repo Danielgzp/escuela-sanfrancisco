@@ -3,10 +3,9 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const AddNewUser = ({ roles, token }) => {
+const AddNewUser = ({ roles, token, fetchData }) => {
   const formRef = useRef(null);
 
-  console.log(token);
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -15,7 +14,7 @@ const AddNewUser = ({ roles, token }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const newUser = {
@@ -29,7 +28,7 @@ const AddNewUser = ({ roles, token }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    setState({ loading: true, error: null });
+
     console.log(newUser);
     axios
       .post(endPoints.users.addUsers, newUser, config)
@@ -41,6 +40,7 @@ const AddNewUser = ({ roles, token }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        fetchData();
         setState({ loading: false, error: null });
       })
       .catch((error) => {
@@ -49,7 +49,6 @@ const AddNewUser = ({ roles, token }) => {
           title: "Oops...",
           text: error.response.data,
         });
-        
         setState({ loading: false, error: null });
       });
   };

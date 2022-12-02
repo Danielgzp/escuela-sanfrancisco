@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
 
 const { USER_ROLE_TABLE } = require("./user.role.model");
 

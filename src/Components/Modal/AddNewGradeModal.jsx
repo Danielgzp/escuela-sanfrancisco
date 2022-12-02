@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const AddNewPeriodModal = ({ fetchData }) => {
+const AddNewGrade = ({ fetchData, periods }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -16,24 +16,25 @@ const AddNewPeriodModal = ({ fetchData }) => {
     setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
-    const newPeriod = {
+    const newGrade = {
       name: objectData.name,
-      //   section: objectData.section,
-      //   periodId: objectData.period,
+      section: objectData.section,
+      periodId: objectData.period,
+      // quotas: objectData.quotas,
     };
 
-    console.log(newPeriod);
+    console.log(newGrade);
     axios
-      .post(endPoints.periods.addPeriods, newPeriod)
+      .post(endPoints.grades.addGrade, newGrade)
       .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Se ha creado exitosamente el período",
+          title: "Se ha creado exitosamente el grado",
           showConfirmButton: false,
           timer: 1500,
         });
-        fetchData()
+        fetchData();
         setState({ loading: false, error: null });
       })
       .catch((error) => {
@@ -50,7 +51,7 @@ const AddNewPeriodModal = ({ fetchData }) => {
   return (
     <div
       className="modal fade"
-      id="newPeriod"
+      id="newGrade"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -78,10 +79,40 @@ const AddNewPeriodModal = ({ fetchData }) => {
               </div>
               <div className="modal-body">
                 <form ref={formRef}>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
+                  <div className="col-lg-6 col-md-6 col-sm-12">
                     <div className="form-group">
                       <label className="form-label">Nombre</label>
-                      <input type="text" name="name" className="form-control" />
+                      <input
+                        type="text"
+                        className="form-control"
+                        required
+                        name="name"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-6 col-sm-12">
+                    <div className="form-group">
+                      <label className="form-label">Sección</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        required
+                        name="section"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12">
+                    <div className="form-group">
+                      <label className="form-label">Período Escolar</label>
+                      <select name="period" className="form-control" required>
+                        <option>Período Escolar</option>
+                        {periods?.map((period) => (
+                          <option
+                            key={period.id}
+                            value={`${period.id}`}
+                          >{`${period.name}`}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 </form>
@@ -102,7 +133,7 @@ const AddNewPeriodModal = ({ fetchData }) => {
               onClick={(e) => handleSubmit(e)}
               data-bs-dismiss="modal"
             >
-              Crear Período
+              Crear Grado
             </button>
           </div>
         </div>
@@ -111,4 +142,4 @@ const AddNewPeriodModal = ({ fetchData }) => {
   );
 };
 
-export default AddNewPeriodModal;
+export default AddNewGrade;

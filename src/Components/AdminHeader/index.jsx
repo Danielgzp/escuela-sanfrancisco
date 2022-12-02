@@ -82,7 +82,8 @@ const AdminHeader = () => {
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                     <span className="ml-2">
-                      {auth.user.email} - {auth.user.userRole.name}{" "}
+                      {/* Si se borran los ? da un minimo error */}
+                      {auth?.user?.email} - {auth?.user?.userRole?.name}
                     </span>
                   </a>
                   <a

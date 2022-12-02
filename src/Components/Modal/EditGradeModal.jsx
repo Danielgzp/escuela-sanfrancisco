@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const EditGradeModal = ({ grade, periods }) => {
+const EditGradeModal = ({ grade, periods, fetchData }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -34,6 +34,7 @@ const EditGradeModal = ({ grade, periods }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        fetchData()
         setState({ loading: false, error: null });
       })
       .catch((error) => {

@@ -103,12 +103,22 @@ const ListNews = () => {
             fetchData();
           })
           .catch((err) => {
-            Swal.fire("Oops", err.message, "error");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: err.response.data,
+            });
             setLoading(false);
           });
       } else if (result.isDenied) {
         Swal.fire("Cancelado", "", "info");
       }
+    }).catch((err) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: err.message,
+      });
     });
   };
 

@@ -13,8 +13,7 @@ import TableHeader from "./TableHeader";
 import Loading from "Components/Loaders/Loading";
 import Paginate from "./Paginate";
 import { useState } from "react";
-import "./css/styles.css"
-
+import "./css/styles.css";
 
 const MyDataTable = ({
   data,

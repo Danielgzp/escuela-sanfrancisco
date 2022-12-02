@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const EditPeriodModal = ({ period }) => {
+const EditPeriodModal = ({ period, fetchData }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -13,14 +13,13 @@ const EditPeriodModal = ({ period }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const editPeriod = {
       name: objectData.name,
     };
 
-    setState({ loading: true, error: null });
     console.log(editPeriod);
     axios
       .patch(endPoints.periods.updatePeriod(period.id), editPeriod)
@@ -32,6 +31,7 @@ const EditPeriodModal = ({ period }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        fetchData()
         setState({ loading: false, error: null });
       })
       .catch((error) => {

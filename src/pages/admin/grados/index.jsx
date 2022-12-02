@@ -2,6 +2,7 @@ import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Loader from "Components/Loader";
 import Loading from "Components/Loaders/Loading";
+import AddNewGrade from "Components/Modal/AddNewGradeModal";
 import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import Script from "next/Script";
@@ -17,21 +18,35 @@ const ListGrades = () => {
   const [isClient, setIsClient] = useState(false);
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
+  const fetchData = () => {
+    setState({ loading: true, error: null });
+    axios
+      .get(endPoints.grades.getAllGrades)
+      .then((response) => {
+        setGrades(response.data);
+        setState(false);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+        setState({ loading: false, error: null });
+      });
+  };
 
   useEffect(() => {
     setIsClient(true);
-    async function fetchData() {
+    async function fetchPeriods() {
       setState({ loading: true, error: null });
       try {
-        const response = await axios.get(endPoints.grades.getAllGrades);
         const responsePeriods = await axios.get(
           endPoints.periods.getAllPeriods
         );
-        const data = await JSON.parse(JSON.stringify(response.data));
         const dataPeriods = await JSON.parse(
           JSON.stringify(responsePeriods.data)
         );
-        setGrades(data);
         setPeriods(dataPeriods);
         setState({ loading: false, error: null });
       } catch (err) {
@@ -44,27 +59,49 @@ const ListGrades = () => {
     script.async = true;
     document.body.appendChild(script);
     fetchData();
+    fetchPeriods();
   }, []);
 
   const handleDeleteGrade = async (id) => {
-    try {
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Deseas eliminar este Grado?",
-        icon: "warning",
-        showDenyButton: "true",
-        confirmButtonText: "Sí, deseo eliminar el grado",
-      }).then((result) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este Grado?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminar el grado",
+    })
+      .then((result) => {
         if (result.isConfirmed) {
-          axios.delete(endPoints.grades.deleteGrade(id));
-          Swal.fire("El Grado se ha eliminado correctamente", "", "success");
+          setState({ loading: true, error: null });
+          axios
+            .delete(endPoints.grades.deleteGrade(id))
+            .then((response) => {
+              Swal.fire(
+                "El Grado se ha eliminado correctamente",
+                "",
+                "success"
+              );
+              fetchData();
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data,
+              });
+              setState({ loading: false, error: err });
+            });
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
       });
-    } catch (error) {
-      Swal.fire("Oops", error.message, "error");
-    }
   };
 
   return (
@@ -77,9 +114,15 @@ const ListGrades = () => {
             <div className="card">
               <div className="card-header">
                 <h4 className="card-title">Lista de todos los Grados </h4>
-                <Link href="/admin/grados/agregar-grado">
-                  <a className="btn btn-primary">+ Agregar Grado </a>
-                </Link>
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#newGrade"
+                  className="btn btn-primary"
+                >
+                  + Agregar Grado
+                </button>
+                <AddNewGrade periods={periods} fetchData={fetchData} />
               </div>
               <div className="card-body">
                 <div className="table-responsive">

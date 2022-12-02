@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 
 const REPRESENTANTS_TABLE = "representants";
 const RepresentantsSchema = {

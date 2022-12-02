@@ -1,4 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
+
 const { USER_TABLE } = require("./user.model");
 
 const LOGS_TABLE = "logs";

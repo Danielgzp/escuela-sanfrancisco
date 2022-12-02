@@ -24,20 +24,28 @@ const ListOfUsers = ({ data }) => {
     error: null,
   });
   const [users, setUsers] = useState([]);
-  // const [usersRole, setUsersRole] = useState([]);
 
-  useEffect(() => {
+  const fetchData = () => {
     setState({ loading: true, error: null });
-
     axios
       .get(endPoints.users.getAllUsers)
       .then((response) => {
         setUsers(response.data);
+        setState(false);
       })
       .catch((err) => {
-        setState({ loading: false, error: err });
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+        setState({ loading: false, error: null });
       });
-    setState({ loading: false, error: null });
+  };
+  // const [usersRole, setUsersRole] = useState([]);
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const handleDeleteUser = async (id) => {
@@ -45,15 +53,16 @@ const ListOfUsers = ({ data }) => {
       headers: { Authorization: `Bearer ${cookie}` },
     };
 
-    try {
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Deseas eliminar este Usuario?",
-        icon: "warning",
-        showDenyButton: "true",
-        confirmButtonText: "Sí, deseo eliminar el usuario",
-      }).then((result) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este Usuario?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminar el usuario",
+    })
+      .then((result) => {
         if (result.isConfirmed) {
+          setState({ loading: true, error: null });
           axios
             .delete(endPoints.users.deleteUsers(id), config)
             .then((response) => {
@@ -62,6 +71,7 @@ const ListOfUsers = ({ data }) => {
                 "",
                 "success"
               );
+              fetchData();
             })
             .catch((err) => {
               Swal.fire({
@@ -74,10 +84,14 @@ const ListOfUsers = ({ data }) => {
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
       });
-    } catch (error) {
-      Swal.fire("Oops", error.message, "error");
-    }
   };
 
   return (
@@ -98,7 +112,11 @@ const ListOfUsers = ({ data }) => {
                 >
                   + Agregar Usuario
                 </button>
-                <AddNewUser roles={usersRole} token={cookie} />
+                <AddNewUser
+                  roles={usersRole}
+                  token={cookie}
+                  fetchData={fetchData}
+                />
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -157,7 +175,11 @@ const ListOfUsers = ({ data }) => {
                                 </Link> */}
                               </>
                             </td>
-                            <EditUser user={user} token={cookie} />
+                            <EditUser
+                              user={user}
+                              token={cookie}
+                              fetchData={fetchData}
+                            />
                           </tr>
                         ))}
                       </tbody>

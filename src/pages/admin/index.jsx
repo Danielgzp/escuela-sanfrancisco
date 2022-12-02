@@ -164,7 +164,7 @@ const AdminDashboard = ({ props }) => {
             <div className="col-xl-7 col-xxl-7 col-sm-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Gráficos de datos</h3>
+                  <h4 className="card-title">Resumen de datos de la Escuela</h4>
                 </div>
                 <div className="card-body">
                   <Chart chartData={data} />
@@ -182,11 +182,6 @@ const AdminDashboard = ({ props }) => {
                   className="tab-pane fade active show col-lg-12"
                 >
                   <div className="card">
-                    <div className="card-header">
-                      <h4 className="card-title">
-                        Lista de todos los Estudiantes{" "}
-                      </h4>
-                    </div>
                     <div className="card-body">
                       <div className="table-responsive">
                         <ReportDataTable grades={grades} />

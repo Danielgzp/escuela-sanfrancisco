@@ -15,25 +15,25 @@ const ListPeriods = () => {
     error: null,
   });
   const [periods, setPeriods] = useState([]);
+  const fetchData = () => {
+    setState({ loading: true, error: null });
+    axios
+      .get(endPoints.periods.getAllPeriods)
+      .then((response) => {
+        setPeriods(response.data);
+        setState(false);
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+        setState({ loading: false, error: null });
+      });
+  };
 
   useEffect(() => {
-    async function fetchData() {
-      setState({ loading: true, error: null });
-      try {
-        const response = await axios.get(endPoints.periods.getAllPeriods);
-        const data = await JSON.parse(JSON.stringify(response.data));
-        console.log(data);
-        setPeriods(data);
-        setState({ loading: false, error: null });
-      } catch (err) {
-        setState({ loading: false, error: err });
-      }
-    }
-
-    // const script = document.createElement("script");
-    // script.src = "/js/dlabnav-init.js";
-    // script.async = false;
-    // document.body.appendChild(script);
     fetchData();
   }, []);
 
@@ -47,19 +47,25 @@ const ListPeriods = () => {
         confirmButtonText: "Sí, deseo eliminar el período",
       }).then((result) => {
         if (result.isConfirmed) {
-          async function deletePeriod() {
-            try {
-              await axios.delete(endPoints.periods.deletePeriod(id));
+          setState({ loading: true, error: null });
+          axios
+            .delete(axios.delete(endPoints.periods.deletePeriod(id)))
+            .then((response) => {
               Swal.fire(
                 "El Período se ha eliminado correctamente",
                 "",
                 "success"
               );
-            } catch (err) {
+              fetchData();
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data,
+              });
               setState({ loading: false, error: err });
-            }
-          }
-          deletePeriod();
+            });
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
@@ -89,7 +95,7 @@ const ListPeriods = () => {
                 >
                   + Agregar Período Escolar
                 </button>
-                <AddNewPeriodModal />
+                <AddNewPeriodModal fetchData={fetchData} />
               </div>
               <div className="card-body">
                 <div className="table-responsive">
@@ -139,7 +145,10 @@ const ListPeriods = () => {
                                 </a>
                               </>
                             </td>
-                            <EditPeriodModal period={period} />
+                            <EditPeriodModal
+                              period={period}
+                              fetchData={fetchData}
+                            />
                           </tr>
                         ))}
                       </tbody>

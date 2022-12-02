@@ -61,6 +61,8 @@ const ReportDataTable = ({ grades }) => {
       });
   };
 
+  console.log(students);
+
   return (
     <>
       <DataTable
@@ -69,9 +71,44 @@ const ReportDataTable = ({ grades }) => {
         highlightOnHover={true}
         columns={columns()}
         data={students}
+        actions={
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              if (students.length === 0) {
+                return Swal.fire({
+                  icon: "warning",
+                  title: "Alerta",
+                  text: "Los datos de la tabla estan vacíos",
+                });
+              }
+              axios
+                .post("http://localhost:3000/api/v1/export", students)
+                .then((response) => {
+                  console.log(response);
+                  Swal.fire({
+                    icon: "success",
+                    title: "PDF creado",
+                    text: "Se ha generado exitosamente el reporte",
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: err.message,
+                  });
+                });
+            }}
+          >
+            <i class="fas fa-file-pdf mr-2"></i>
+            Exportar PDF
+          </button>
+        }
         // actions={<button className="btn btn-success">Exportar Excel</button>}
         striped={true}
-        title="Movie List"
+        title="Alumnos por Grado"
         fixedHeader
         fixedHeaderScrollHeight="700px"
         noDataComponent={<h3>No se encontro ningun elemento</h3>}
@@ -84,7 +121,11 @@ const ReportDataTable = ({ grades }) => {
         subHeader
         subHeaderComponent={
           <>
-            <TableHeader grades={grades} handleSubmit={handleSubmit} />
+            <TableHeader
+              grades={grades}
+              handleSubmit={handleSubmit}
+              formRef={formRef}
+            />
           </>
         }
         persistTableHead
