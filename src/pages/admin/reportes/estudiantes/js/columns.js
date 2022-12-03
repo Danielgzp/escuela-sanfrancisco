@@ -1,3 +1,6 @@
+import Link from "next/link";
+import endPoints from "utils/endpoints";
+
 export const columns = (student) => [
   {
     id: (row) => row.id,

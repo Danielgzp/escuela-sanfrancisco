@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginLoader = ({ containerHeight, containerWidth, border, spinnerWidth, spinnerHeigth, left, top }) => {
+const LoginLoader = ({color, containerHeight, containerWidth, border, spinnerWidth, spinnerHeigth, left, top }) => {
   return (
     <>
       <div className="loadingio-spinner-rolling-wb5qu1mp89f">
@@ -21,7 +21,7 @@ const LoginLoader = ({ containerHeight, containerWidth, border, spinnerWidth, sp
           position: absolute;
           width: ${containerWidth};
           height: ${containerHeight};
-          border: ${border} solid #fff;
+          border: ${border} solid ${color};
           border-top-color: transparent;
           border-radius: 50%;
         }

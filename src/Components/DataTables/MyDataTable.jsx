@@ -14,6 +14,7 @@ import Loading from "Components/Loaders/Loading";
 import Paginate from "./Paginate";
 import { useState } from "react";
 import "./css/styles.css";
+import LoginLoader from "Components/Loaders/LoginLoader";
 
 const MyDataTable = ({
   data,
@@ -232,9 +233,24 @@ const MyDataTable = ({
         striped={true}
         fixedHeader
         fixedHeaderScrollHeight="750px"
-        noDataComponent={<h2>No se encontro ningun elemento</h2>}
+        noDataComponent={
+          <h3 style={{ marginTop: "30px", marginBottom: "15px" }}>
+            No se encontro ningun elemento
+          </h3>
+        }
         progressPending={loading}
-        progressComponent={<Loading />}
+        progressComponent={
+          <LoginLoader
+            color={"#143b64"}
+            containerHeight={"30px"}
+            containerWidth={"30px"}
+            border={"4px"}
+            spinnerHeigth={"75px"}
+            spinnerWidth={"75px"}
+            top={"50%"}
+            left={"50px"}
+          />
+        }
         pagination
         persistTableHead
         persistTablePaginationComponent

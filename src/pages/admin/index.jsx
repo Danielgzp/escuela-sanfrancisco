@@ -1,14 +1,13 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import GradeService from "services/grade.service";
-import styles from "./admin.module.css";
-import ReportDataTable from "./js/DataTable";
+import ReportDataTable from "Components/DataTables/ReportsDatatable";
 
 import StaffService from "services/staff.service";
 import StudentsService from "services/students.service";
 import TeacherService from "services/teacher.service";
 import UserService from "services/user.service";
 import { Chart } from "Components/Charts/Chart";
+import { columns } from "./js/columns";
 
 const service = new StudentsService();
 const gradesService = new GradeService();
@@ -167,7 +166,7 @@ const AdminDashboard = ({ props }) => {
                   <h4 className="card-title">Resumen de datos de la Escuela</h4>
                 </div>
                 <div className="card-body">
-                  <Chart chartData={data} />
+                  <Chart chartData={data} columns={columns()}/>
                   {/* <Chart chartData={data} /> */}
                   {/* <div id="morris_bar_2" className="morris_chart_height"></div> */}
                 </div>

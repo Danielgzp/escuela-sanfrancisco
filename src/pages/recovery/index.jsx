@@ -125,6 +125,7 @@ const RecoveryPage = () => {
               <button type="submit" className="btn btn-red">
                 {state.loading ? (
                   <LoginLoader
+                    color={"#fff"}
                     containerHeight={"15px"}
                     containerWidth={"15px"}
                     border={"2px"}

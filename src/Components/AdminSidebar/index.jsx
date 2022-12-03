@@ -124,6 +124,24 @@ const AdminSidebar = () => {
               </Link>
             </li>
             <li>
+              <a className="has-arrow" href="#!" aria-expanded="false">
+                <i className="material-icons">assignment</i>
+                <span className="nav-text">Reportes</span>
+              </a>
+              <ul aria-expanded="false">
+                <li>
+                  <Link href="/admin/reportes/estudiantes">
+                    <a>Estudiantes por Grado</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/admin/reportes/cedulados">
+                    <a>Estudiantes cedulados</a>
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li>
               <Link href="/admin/auditoria">
                 <a className="ai-icon" aria-expanded="false">
                   <i className="material-icons">insert_chart</i>

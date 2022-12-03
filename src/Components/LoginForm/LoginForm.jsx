@@ -149,6 +149,7 @@ const LoginForm = () => {
               <div className="form-group center-align">
                 {state.loading && (
                   <LoginLoader
+                    color={"#fff"}
                     containerHeight={"30px"}
                     containerWidth={"30px"}
                     border={"4px"}

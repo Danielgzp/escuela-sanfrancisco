@@ -41,6 +41,12 @@
         titleAttr: "Imprimir",
         className: "btn btn-info",
       },
+      {
+        extend: "csvHtml5",
+        text: '<i class="fas fa-file-csv"></i> ',
+        titleAttr: "CSV",
+        className: "btn btn-dark",
+      },
     ],
   });
 })(jQuery);

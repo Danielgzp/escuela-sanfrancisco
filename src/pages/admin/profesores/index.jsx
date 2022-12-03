@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-import MyDataTable from "Components/DataTable/MyDataTable";
+import MyDataTable from "Components/DataTables/MyDataTable";
 import { columns } from "./js/columns";
 import axios from "axios";
 import endPoints from "utils/endpoints";

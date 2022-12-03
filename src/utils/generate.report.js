@@ -1,5 +1,3 @@
-import templateHeader from "./template";
-
 const pdf = require("html-pdf");
 const fs = require("fs");
 // var html = fs.readFileSync("./template.html", "utf8");
@@ -10,13 +8,15 @@ const options = {
 };
 
 function doPdf(component, reportName) {
-  pdf.create(component, options).toFile(`./reportes/${reportName}`, function (err, res) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(res);
-    }
-  });
+  pdf
+    .create(component, options)
+    .toFile(`./reportes/${reportName}`, function (err, res) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(res);
+      }
+    });
 }
 
 export default doPdf;

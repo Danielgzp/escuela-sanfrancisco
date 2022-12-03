@@ -302,6 +302,11 @@ a {
 .form-control:focus {
   border-color: orange !important;
 }
+.button-download{
+  border: none;
+  background-color: transparent;
+  color: white;
+}
 /*============ Partes del dashboard*/
 .dashboard-sideBar,
 .dashboard-contentPage {

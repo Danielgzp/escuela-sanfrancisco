@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useState } from "react";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
-import MyDataTable from "Components/DataTable/MyDataTable";
+import MyDataTable from "Components/DataTables/MyDataTable";
 import Link from "next/link";
 import { columns } from "./js/columns";
 import AdminMainPagination from "Components/AdminMainPagination";
