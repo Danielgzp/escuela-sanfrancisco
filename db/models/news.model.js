@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const moment = require("moment");
 
 const { USER_TABLE } = require("./user.model");
 
@@ -28,6 +29,11 @@ const NewsSchema = {
     type: DataTypes.DATE,
     field: "create_at",
     defaultValue: Sequelize.NOW,
+    get: function () {
+      return moment(this.getDataValue("createdAt")).format(
+        "dddd, DD MMMM YYYY HH:mm a"
+      );
+    },
   },
   userId: {
     field: "user_id",

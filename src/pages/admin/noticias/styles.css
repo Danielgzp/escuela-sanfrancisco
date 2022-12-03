@@ -15,7 +15,9 @@
 }
 .postDescription {
   width: 75%;
-  padding: 10px 40px;
+
+  padding: 10px 0 10px 40px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;

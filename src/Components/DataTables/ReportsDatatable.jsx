@@ -37,7 +37,7 @@ const ReportDataTable = ({
             spinnerHeigth={"75px"}
             spinnerWidth={"50px"}
             top={"50%"}
-            left={"50px"}
+            left={"25px"}
           />
         }
         pagination

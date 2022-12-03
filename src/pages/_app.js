@@ -1,6 +1,7 @@
 //por los estilos de arriba, hay cosas que se ven mal en el carousel
 
 import "../styles/globals.css";
+import "moment/locale/es";
 // import "materialize-css/dist/css/materialize.min.css";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";

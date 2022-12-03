@@ -8,6 +8,7 @@ import endPoints from "utils/endpoints";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import MakePDF from "utils/pdfMaker";
 import RenderPDF from "hooks/useRenderClient";
+import Loader from "Components/Loader";
 
 const StudentProfile = ({ data }) => {
   const { ci } = data;
@@ -38,6 +39,9 @@ const StudentProfile = ({ data }) => {
     e.preventDefault();
   };
 
+  if(state.loading){
+    return <Loader />
+  }
   return (
     <>
       <div className="content-body">
@@ -49,7 +53,7 @@ const StudentProfile = ({ data }) => {
 
           {state.loading ? (
             <>
-              <Loading />
+              {/* <Loading /> */}
             </>
           ) : (
             <>

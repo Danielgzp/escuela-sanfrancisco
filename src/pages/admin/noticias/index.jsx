@@ -89,37 +89,39 @@ const ListNews = () => {
       icon: "warning",
       showDenyButton: "true",
       confirmButtonText: "Sí, deseo eliminar la noticia",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setLoading(true);
-        axios
-          .delete(endPoints.news.deleteNews(id))
-          .then((response) => {
-            Swal.fire(
-              "La noticia se ha eliminado correctamente",
-              "",
-              "success"
-            );
-            fetchData();
-          })
-          .catch((err) => {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: err.response.data,
+    })
+      .then((result) => {
+        if (result.isConfirmed) {
+          setLoading(true);
+          axios
+            .delete(endPoints.news.deleteNews(id))
+            .then((response) => {
+              Swal.fire(
+                "La noticia se ha eliminado correctamente",
+                "",
+                "success"
+              );
+              fetchData();
+            })
+            .catch((err) => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: err.response.data,
+              });
+              setLoading(false);
             });
-            setLoading(false);
-          });
-      } else if (result.isDenied) {
-        Swal.fire("Cancelado", "", "info");
-      }
-    }).catch((err) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: err.message,
+        } else if (result.isDenied) {
+          Swal.fire("Cancelado", "", "info");
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
       });
-    });
   };
 
   return (
@@ -224,10 +226,10 @@ const ListNews = () => {
                                       data-bs-target={`#noticia${post.id}`}
                                       className="btn btn-primary mr-3"
                                     >
-                                      <span className="mr-3">
+                                      <span className="mr-2">
                                         <i className="fa fa-pencil"></i>
                                       </span>
-                                      Edit
+                                      Editar
                                     </button>
                                     <button
                                       className="btn btn-danger"
@@ -235,10 +237,10 @@ const ListNews = () => {
                                         handleDeletePost(e, post.id)
                                       }
                                     >
-                                      <span className="mr-3">
+                                      <span className="mr-2">
                                         <i className="fa fa-trash"></i>
                                       </span>
-                                      Delete
+                                      Eliminar
                                     </button>
                                     <span className="postDate">
                                       {post.createdAt}
@@ -264,7 +266,7 @@ const ListNews = () => {
                               ) : (
                                 <div className="text-center mb-2">
                                   <a href="#!" className="btn btn-primary">
-                                    Load More
+                                    Cargar más
                                   </a>
                                 </div>
                               )}

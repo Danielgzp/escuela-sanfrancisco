@@ -1,7 +1,6 @@
 import React from "react";
-import Link from "next/link";
 
-const CarouselArticle = ({ img, title, description, link, date }) => {
+const CarouselArticle = ({ img, title, description, date }) => {
   return (
     <article className="carousel-item z-depth-3 center">
       <div className="carousel-item__image">

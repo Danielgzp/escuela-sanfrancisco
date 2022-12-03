@@ -78,7 +78,7 @@ const GradeStudents = ({ data }) => {
           <>
             <CSVLink data={dataCSV} filename="estudiantesGrado.csv">
               <button className="btn btn-secondary text-white">
-                <i class="fas fa-file-csv mr-2"></i>
+                <i className="fas fa-file-csv mr-2"></i>
                 CSV
               </button>
             </CSVLink>
@@ -86,7 +86,7 @@ const GradeStudents = ({ data }) => {
               trigger={() => {
                 return (
                   <button className="btn btn-dark text-white">
-                    <i class="fas fa-file-csv mr-2"></i>
+                    <i class="fas fa-print mr-2"></i>
                     Imprimir
                   </button>
                 );
