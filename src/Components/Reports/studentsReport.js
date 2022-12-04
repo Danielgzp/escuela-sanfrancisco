@@ -1,8 +1,8 @@
 import moment from "moment";
 import reportHeader from "./reportHeader";
 
-const date = new Date()
-moment(date).format("DD-MM-YYYY")
+const date = new Date();
+moment(date).format("DD-MM-YYYY");
 
 const studentsReport = (body) => `
 <!doctype html>
@@ -102,7 +102,7 @@ tbody tr th {
       >
         <h3>Total Estudiantes: ${body.length}</h3>
         <h3>Profesora: ${body[0].grade?.teacher?.name || "No"} ${
-  body[0].grade?.teacher?.lastName || "No hay Profesor"
+  body[0].grade?.teacher?.lastName || "hay Profesor"
 }</h3>
         <h3>${date}</h3>
       </div>
@@ -131,6 +131,37 @@ tbody tr th {
         )}
       </tbody>
     </table>
+    <div id="pageFooter" style="border-top: 1px solid #ddd; padding-top: 5px">
+      <p
+        style="
+          color: #143b64;
+          width: 70%;
+          margin: 0;
+          padding-bottom: 5px;
+          text-align: left;
+          font-family: sans-serif;
+          font-size: 12px;
+          float: left;
+        "
+      >
+      Extraído de: 
+        <a href="http://localhost:3000/" target="_blank"
+          >http://localhost:3000/</a
+        >
+      </p>
+      <p
+        style="
+          color: #143b64;
+          margin: 0;
+          padding-bottom: 5px;
+          text-align: right;
+          font-family: sans-serif;
+          font-size: 0.65em;
+        "
+      >
+        Página {{page}} de {{pages}}
+      </p>
+    </div>
      </body>
 </html>
 `;

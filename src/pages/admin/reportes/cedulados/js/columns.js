@@ -33,7 +33,7 @@ export const columns = (student) => [
   },
   {
     name: "Cedula",
-    selector: (row) => row.nativeCi || "NA",
+    selector: (row) => row.nativeCi,
     sortable: true,
     reorder: true,
   },

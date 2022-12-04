@@ -228,7 +228,7 @@ class StudentsService {
       ],
       where: {
         nativeCi: {
-          [Op.ne]: null || " ",
+          [Op.ne]: null || " " || "",
         },
 
         // name: {
@@ -303,8 +303,6 @@ class StudentsService {
   }
 
   async findByGrade(filterGrade, section) {
-    console.log(filterGrade);
-    console.log(section);
     const options = {
       include: [
         // "representant",

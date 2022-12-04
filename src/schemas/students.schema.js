@@ -38,7 +38,7 @@ const getStudentSchema = Joi.object({
 
 const createStudentSchema = Joi.object({
   schoolarshipCi: schoolarshipCi.required(),
-  nativeCi: Joi.string().optional(),
+  nativeCi: Joi.optional(),
   name: name.required(),
   lastName: lastName.required(),
   address: address.required(),

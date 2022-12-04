@@ -30,15 +30,16 @@ const AddStudent = ({ data }) => {
 
     const newStudent = {
       schoolarshipCi: objectData.schoolId,
-      nativeCi: () => {
-        console.log("entro aca");
-        if (objectData.nativeCi.lenght() > 0) {
-          return null;
-        } else {
-          console.log("no era");
-          return objectData.nativeCi;
-        }
-      },
+      nativeCi: null || objectData.nativeCi,
+      // nativeCi: () => {
+      //   console.log("entro aca");
+      //   if (objectData.nativeCi.lenght() > 0) {
+      //     return null;
+      //   } else {
+      //     console.log("no era");
+      //     return objectData.nativeCi;
+      //   }
+      // },
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
