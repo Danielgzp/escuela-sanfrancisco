@@ -6,6 +6,7 @@ import "moment/locale/es";
 import MainLayout from "Layout/MainLayout";
 import { ProviderAuth } from "hooks/useAuth";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -18,6 +19,19 @@ function MyApp({ Component, pageProps }) {
     require("../styles/default-date.css");
     require("../styles/jquery.dataTables.min.css");
     require("../styles/datatables.css");
+
+    axios.get("http://localhost:3000/api/v1/admin/unlink");
+    // fs.unlink("materialize-css/dist/css/materialize.min.css", function (err) {
+    //   if (err && err.code == "ENOENT") {
+    //     // file doens't exist
+    //     console.info("File doesn't exist, won't remove it.");
+    //   } else if (err) {
+    //     // other errors, e.g. maybe we don't have enough permission
+    //     console.error("Error occurred while trying to remove file");
+    //   } else {
+    //     console.info(`removed`);
+    //   }
+    // });
   } else {
     require("materialize-css/dist/css/materialize.min.css");
   }

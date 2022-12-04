@@ -1,0 +1,65 @@
+.firstColumn {
+  background-color: #bed8f3;
+}
+#firstColumn {
+  background-color: #bed8f3;
+}
+#totalData {
+  width: 100%;
+}
+.totalData {
+  width: 100%;
+}
+.reportTitle {
+  margin: 0 auto;
+}
+.reportTitle h2 {
+  margin: 0 auto;
+  text-align: center;
+}
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  margin: 0;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+thead tr {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+thead tr th {
+  background-color: #143b64;
+  width: fit-content;
+  font-size: 18px;
+  color: white;
+  padding: 5px 10px;
+  margin: 0;
+}
+tbody {
+  background-color: #d0e4fa;
+}
+tbody tr th {
+  width: fit-content;
+  font-size: 15px;
+  padding: 5px;
+  margin: 0;
+}
+
+/* a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+b{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+} */

@@ -9,12 +9,12 @@ const AdminSidebar = () => {
           <ul className="metismenu" id="menu">
             <li className="nav-label first">Main Menu</li>
             <li>
-              <Link href="/">
-                <a className="ai-icon" aria-expanded="false">
-                  <i className="material-icons">home</i>
-                  <span className="nav-text">Home Page</span>
-                </a>
-              </Link>
+              {/* <Link href="/"> */}
+              <a className="ai-icon" aria-expanded="false" href="/">
+                <i className="material-icons">home</i>
+                <span className="nav-text">Home Page</span>
+              </a>
+              {/* </Link> */}
             </li>
             <li>
               <Link href="/admin">

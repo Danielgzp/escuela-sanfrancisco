@@ -28,19 +28,9 @@ const StaffPDF = ({ profile }) => {
     formData: {
       fontSize: "22",
     },
-    pdfTitle: {
-      fontSize: 24,
-      color: "blue",
-    },
     header: {
       width: "100%",
-      margin: "25 auto",
-      border: "2 black solid",
-      borderRadius: 25,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      flexDirection: "row",
+      margin: "25 auto 10 auto",
     },
     leftHeader: {
       textAlign: "center",
@@ -72,6 +62,8 @@ const StaffPDF = ({ profile }) => {
       padding: "4 8",
       border: "2px solid black",
       borderRadius: 25,
+      backgroundColor: "#d0e4fa",
+      color: "black",
     },
     numberTitle: {
       fontSize: 10,
@@ -82,6 +74,8 @@ const StaffPDF = ({ profile }) => {
       height: "20px",
       textAlign: "center",
       verticalAlign: "center",
+      backgroundColor: "#d0e4fa",
+      color: "black",
     },
     separatorImg: {
       width: "20px",
@@ -146,42 +140,11 @@ const StaffPDF = ({ profile }) => {
       <Page size="A4" style={styles.page}>
         <View style={styles.fullContainer}>
           <View style={styles.header}>
-            <View style={styles.leftHeader}>
-              <Text
-                style={{
-                  color: "grey",
-                  textAlign: "center",
-                  fontSize: "10px",
-                  fontWeight: "bold",
-                }}
-              >
-                FORMATO
-              </Text>
-              <Text
-                style={{
-                  color: "black",
-                  textAlign: "center",
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  // marginBottom: "5px",
-                  // marginTop: "5px",
-                }}
-              >
-                PERFIL DEL ESTUDIANTE
-              </Text>
-              <Text
-                style={{ color: "grey", textAlign: "center", fontSize: "8px" }}
-              >
-                Algo mas
-              </Text>
-            </View>
-            <View style={styles.rightHeader}>
-              <Image
-                src="/images/LogoSanFrancisco.png"
-                alt="Logo de Fe y Alegria"
-                style={{ width: "90%", height: "auto" }}
-              ></Image>
-            </View>
+            <Image
+              src="/images/HeaderReportes.png"
+              alt="Logo de Fe y Alegria"
+              style={{ width: "100%", height: "auto" }}
+            ></Image>
           </View>
           <View style={styles.firstTitle}>
             <Text style={styles.numberTitle}>1</Text>

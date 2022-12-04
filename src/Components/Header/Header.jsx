@@ -212,9 +212,9 @@ const Header = () => {
                     <li>
                       {/* He quitado el href porque la pagina index necesita cargar scripts
                   y si se maneja en forma de SPA no cargan los scripts */}
-                      <Link href="/admin">
-                        <a>Admin</a>
-                      </Link>
+                      {/* <Link href="/admin"> */}
+                      <a href="/admin">Admin</a>
+                      {/* </Link> */}
                     </li>
                     <li onClick={auth?.logout}>
                       <a>Cerrar Sesion</a>

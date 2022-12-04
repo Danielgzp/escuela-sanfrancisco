@@ -244,6 +244,82 @@ const Ey = () => {
             </div>
           </div>
         </div> */}
+        <div
+          class="reportTitle"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <strong>
+              <h2>LISTAS DE ESTUDIANTES</h2>
+            </strong>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <h3>2do grado</h3>
+            <h3>Seccion A</h3>
+            <h3>Período 2022/2024</h3>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              width: "100%",
+              alignItems: "center",
+            }}
+          >
+            <h3>Total Estudiantes: 32</h3>
+            <h3>Profesora: Naibys Paez</h3>
+            <h3>18-07-2022</h3>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">C.I Escolar</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Género</th>
+              <th scope="col">Fecha de Nacimiento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr key="${student.id}">
+              <th class="firstColumn" id="firstColumn">
+                fsafsa
+              </th>
+              <th>asdsa </th>
+              <th>fsafsa</th>
+              <th>dsgdsgds</th>
+              <th>asgassag</th>
+            </tr>
+            <tr key="${student.id}">
+              <th class="firstColumn" id="firstColumn">
+                fsafsa
+              </th>
+              <th>asdsa </th>
+              <th>fsafsa</th>
+              <th>dsgdsgds</th>
+              <th>asgassag</th>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <h2>El Profesor es: 2 </h2>
+        </div>
         <div>
           <button
             className="btn btn-primary"
