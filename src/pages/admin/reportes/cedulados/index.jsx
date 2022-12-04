@@ -41,7 +41,9 @@ const GradeStudents = ({ data }) => {
     setState({ loading: true, error: null });
 
     axios
-      .get(`${endPoints.students.getAllStudents}?cedulados`)
+      .get(
+        `${endPoints.students.getAllStudents}?cedulados=${objectData.cedulado}`
+      )
       .then((response) => {
         setStudents(response.data);
         setState({ loading: false, error: null });
@@ -150,10 +152,10 @@ const GradeStudents = ({ data }) => {
           <form onSubmit={handleSubmit} ref={formRef} className="tableForm">
             <div className="form-group">
               <label>Selecciona</label>
-              <select name="section" className="form-control">
+              <select name="cedulado" className="form-control">
                 <option>Alumnos</option>
-                <option value="A">Cedulados</option>
-                <option value="B">No cedulados</option>
+                <option value="si">Cedulados</option>
+                <option value="no">No cedulados</option>
               </select>
             </div>
 

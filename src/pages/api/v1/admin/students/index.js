@@ -34,8 +34,13 @@ handler
         res.json(students);
       }
       if (req.query.cedulados !== undefined) {
-        const students = await service.filterStudentsCi();
-        res.json(students);
+        if (req.query.cedulados === "si") {
+          const students = await service.filterStudentsCi();
+          res.json(students);
+        } else {
+          const students = await service.filterStudentsNoCi();
+          res.json(students);
+        }
       }
       if (req.query !== undefined) {
         const students = await service.find(req.query);

@@ -72,9 +72,9 @@ const AdminDashboard = ({ props }) => {
       <div className="content-body">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xl-5 col-xxl-5 col-sm-12">
+            <div className="col-xl-12 col-xxl-12 col-sm-12">
               <div className="row">
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Estudiantes totales</h4>
@@ -88,7 +88,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Primaria</h4>
@@ -102,7 +102,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Pre-Escolar</h4>
@@ -116,7 +116,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Maestros totales</h4>
@@ -130,7 +130,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Personal Total</h4>
@@ -144,7 +144,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-6 col-xxl-6 col-sm-6">
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
                       <h4 className="card-title">Usuarios</h4>
@@ -160,33 +160,13 @@ const AdminDashboard = ({ props }) => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-7 col-xxl-7 col-sm-12">
+            <div className="col-xl-12 col-xxl-12 col-sm-12">
               <div className="card">
                 <div className="card-header">
                   <h4 className="card-title">Resumen de datos de la Escuela</h4>
                 </div>
                 <div className="card-body">
-                  <Chart chartData={data} columns={columns()}/>
-                  {/* <Chart chartData={data} /> */}
-                  {/* <div id="morris_bar_2" className="morris_chart_height"></div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="row tab-content">
-                <div
-                  id="list-view"
-                  className="tab-pane fade active show col-lg-12"
-                >
-                  <div className="card">
-                    <div className="card-body">
-                      <div className="table-responsive">
-                        <ReportDataTable grades={grades} />
-                      </div>
-                    </div>
-                  </div>
+                  <Chart chartData={data} columns={columns()} />
                 </div>
               </div>
             </div>

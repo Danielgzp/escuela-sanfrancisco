@@ -14,7 +14,7 @@ const houseProperty = Joi.string().min(3).max(30);
 const ci = Joi.string().max(9);
 const repName = Joi.string().min(3).max(30);
 const repLastName = Joi.string().min(3).max(30);
-const phone = Joi.string().min(11).max(14);;
+const phone = Joi.string().min(11).max(14);
 const email = Joi.string().email({ tlds: { allow: false } });
 const representant = Joi.object({});
 
