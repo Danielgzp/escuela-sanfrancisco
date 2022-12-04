@@ -12,7 +12,7 @@ export default function Document() {
           rel="stylesheet"
         />
         {/* <link rel="manifest" href="/public/manifest.json" /> */}
-        <link rel="apple-touch-icon" href="/logo.png" />
+        {/* <link rel="apple-touch-icon" href="/logo.png" /> */}
         {/* BOOTSTRAP ICONS */}
         <link
           rel="stylesheet"

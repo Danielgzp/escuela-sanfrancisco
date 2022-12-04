@@ -20,7 +20,6 @@ function MyApp({ Component, pageProps }) {
     require("../styles/jquery.dataTables.min.css");
     require("../styles/datatables.css");
 
-    axios.get("http://localhost:3000/api/v1/admin/unlink");
     // fs.unlink("materialize-css/dist/css/materialize.min.css", function (err) {
     //   if (err && err.code == "ENOENT") {
     //     // file doens't exist
