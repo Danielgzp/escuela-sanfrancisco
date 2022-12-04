@@ -20,6 +20,7 @@
     "seeds:delete": "sequelize-cli db:seed:undo:all"
   },
   "dependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@getvim/execute": "^1.0.0",
     "@hapi/boom": "^10.0.0",
     "@react-pdf/renderer": "^3.0.1",

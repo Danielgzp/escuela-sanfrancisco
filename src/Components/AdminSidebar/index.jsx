@@ -90,11 +90,6 @@ const AdminSidebar = () => {
                     <a>Lista de Grados</a>
                   </Link>
                 </li>
-                <li>
-                  <Link href="/admin/grados/agregar-grado">
-                    <a>Añadir Grado</a>
-                  </Link>
-                </li>
               </ul>
             </li>
             <li>

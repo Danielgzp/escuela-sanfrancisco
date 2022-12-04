@@ -1,48 +1,91 @@
 const boom = require("@hapi/boom");
 const { Op } = require("sequelize");
+// const faker = require("faker");
+import { faker } from "@faker-js/faker";
 
 const { models } = require("../../libs/sequelize");
 
 class StudentsService {
-  constructor() {}
-  generate() {}
+  constructor() {
+    this.students = [];
+    this.generate();
+  }
+
+  generate() {
+    const limit = 100;
+    for (let index = 0; index < limit; index++) {
+      this.students.push({
+        id: faker.datatype.uuid(),
+        name: faker.name.fullName(),
+        lastName: faker.name.lastName(),
+        address: faker.address.direction(),
+        gener: faker.name.gender(),
+        birthData: faker.date.birthdate(),
+        birthPlace: faker.address.cityName(),
+        admissionDate: faker.date.recent(),
+        houseProperty: faker.name.jobTitle(),
+        gradeId: faker.datatype.number()
+      });
+      //      schoolarshipCi: schoolarshipCi.required(),
+      // nativeCi: Joi.optional(),
+      // name: name.required(),
+      // lastName: lastName.required(),
+      // address: address.required(),
+      // gender: gender.required(),
+      // birthDate: birthDate.required(),
+      // birthPlace: birthPlace.required(),
+      // admissionDate: admissionDate.required(),
+      // houseProperty: houseProperty.required(),
+      // representantId: representantId.optional(),
+      // representant: {
+      //   ci: ci.optional(),
+      //   repName: repName.required(),
+      //   repLastName: repLastName.required(),
+      //   phone: phone.required(),
+      //   email: email.required(),
+      // },
+      // record: Joi.array().optional(),
+      // gradeId: gradeId.required(),
+    }
+  }
 
   async find(query) {
-    const options = {
-      include: [
-        // "representant",
-        // "record",
-        "grade",
-        // "record",
-        {
-          association: "grade",
-          include: ["period"],
-        },
-      ],
-      order: [["gradeId"]],
-      attributes: [
-        "name",
-        "lastName",
-        "birthPlace",
-        "birthDate",
-        "admissionDate",
-        "id",
-        "gender",
-        "nativeCi",
-        "schoolarshipCi",
-      ],
-      // where: {},
-    };
+    // const options = {
+    //   include: [
+    //     // "representant",
+    //     // "record",
+    //     "grade",
+    //     // "record",
+    //     {
+    //       association: "grade",
+    //       include: ["period"],
+    //     },
+    //   ],
+    //   order: [["gradeId"]],
+    //   attributes: [
+    //     "name",
+    //     "lastName",
+    //     "birthPlace",
+    //     "birthDate",
+    //     "admissionDate",
+    //     "id",
+    //     "gender",
+    //     "nativeCi",
+    //     "schoolarshipCi",
+    //   ],
+    //   // where: {},
+    // };
 
-    const { limit, offset } = query;
-    if (limit && offset) {
-      options.limit = limit;
-      options.offset = offset;
-    }
+    // const { limit, offset } = query;
+    // if (limit && offset) {
+    //   options.limit = limit;
+    //   options.offset = offset;
+    // }
 
-    const students = await models.Students.findAll(options);
+    // const students = await models.Students.findAll(options);
 
-    return students;
+    // return students;
+    return this.students;
   }
 
   async findOne(ci) {

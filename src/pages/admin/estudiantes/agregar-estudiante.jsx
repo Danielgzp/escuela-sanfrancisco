@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import GradeService from "services/grade.service";
+import SearchRepresentant from "Components/Modal/SearchRepresentant";
 
 const service = new GradeService();
 
@@ -19,6 +20,7 @@ const AddStudent = ({ data }) => {
     loading: false,
     error: null,
   });
+  const [representant, setRepresentant] = useState([]);
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -48,6 +50,7 @@ const AddStudent = ({ data }) => {
       admissionDate: objectData.admissionDate,
       birthPlace: objectData.birthPlace,
       houseProperty: objectData.houseProperty,
+
       representant: {
         ci: objectData.repCI,
         repName: objectData.repName,
@@ -118,6 +121,8 @@ const AddStudent = ({ data }) => {
 
     // getGrades();
   }, []);
+
+  console.log(representant);
 
   return (
     <>
@@ -276,10 +281,23 @@ const AddStudent = ({ data }) => {
                           />
                         </div>
                       </div>
-                      <div className="card-header col-lg-12 col-md-12 col-sm-12">
-                        <h5 className="card-title">
+                      <div className="card-header col-lg-9 col-md-12 col-sm-12">
+                        <h4 className="text-primary mb-4">
                           Información del representante
-                        </h5>
+                        </h4>
+                      </div>
+                      <div className="card-header col-lg-3 col-md-12 col-sm-12">
+                        <a
+                          className="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#searchRepresentant`}
+                        >
+                          Buscar Representante
+                        </a>
+                        <SearchRepresentant
+                          setRepresentant={setRepresentant}
+                          representant={representant}
+                        />
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
@@ -291,6 +309,7 @@ const AddStudent = ({ data }) => {
                             name="repName"
                             className="form-control"
                             required
+                            defaultValue={representant?.repName}
                           />
                         </div>
                       </div>
@@ -302,8 +321,10 @@ const AddStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repLastName"
-                            className="form-control"
+                            className="form-control disabled"
                             required
+                            defaultValue={representant?.repLastName}
+                            disabled
                           />
                         </div>
                       </div>
@@ -317,6 +338,7 @@ const AddStudent = ({ data }) => {
                             name="repCI"
                             className="form-control"
                             required
+                            defaultValue={representant?.ci}
                           />
                         </div>
                       </div>
@@ -329,6 +351,7 @@ const AddStudent = ({ data }) => {
                             name="phone"
                             className="form-control"
                             required
+                            defaultValue={representant?.phone}
                           />
                           {/* <input
                             name="datepicker"
@@ -345,6 +368,7 @@ const AddStudent = ({ data }) => {
                             name="email"
                             className="form-control"
                             required
+                            defaultValue={representant?.email}
                           />
                         </div>
                       </div>

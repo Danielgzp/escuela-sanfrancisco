@@ -1,5 +1,6 @@
 import axios from "axios";
 import AdminMainPagination from "Components/AdminMainPagination";
+import ReportDataTable from "Components/DataTables/ReportsDatatable";
 import Loader from "Components/Loader";
 import Loading from "Components/Loaders/Loading";
 import AddNewGrade from "Components/Modal/AddNewGradeModal";
@@ -7,17 +8,24 @@ import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import Script from "next/Script";
 import React, { useEffect, useState } from "react";
+import { useRef } from "react";
+import { CSVLink } from "react-csv";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
+import ReactToPrint from "react-to-print";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
+import { columns } from "./js/columns";
 
 const ListGrades = () => {
   const [state, setState] = useState({
     loading: false,
     error: null,
   });
+  const componentRef = useRef();
   const [isClient, setIsClient] = useState(false);
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
+  const [levels, setLevels] = useState([]);
   const fetchData = () => {
     setState({ loading: true, error: null });
     axios
@@ -38,28 +46,35 @@ const ListGrades = () => {
 
   useEffect(() => {
     setIsClient(true);
-    async function fetchPeriods() {
+    async function fetchNewData() {
       setState({ loading: true, error: null });
       try {
         const responsePeriods = await axios.get(
           endPoints.periods.getAllPeriods
         );
+        const responseLevels = await axios.get(
+          "http://localhost:3000/api/v1/admin/levels"
+        );
         const dataPeriods = await JSON.parse(
           JSON.stringify(responsePeriods.data)
         );
+        const dataLevels = await JSON.parse(
+          JSON.stringify(responseLevels.data)
+        );
         setPeriods(dataPeriods);
+        setLevels(dataLevels);
         setState({ loading: false, error: null });
       } catch (err) {
         setState({ loading: false, error: err });
       }
     }
 
-    const script = document.createElement("script");
-    script.src = "/js/plugins-init/datatables.init.js";
-    script.async = true;
-    document.body.appendChild(script);
+    // const script = document.createElement("script");
+    // script.src = "/js/plugins-init/datatables.init.js";
+    // script.async = true;
+    // document.body.appendChild(script);
     fetchData();
-    fetchPeriods();
+    fetchNewData();
   }, []);
 
   const handleDeleteGrade = async (id) => {
@@ -104,6 +119,102 @@ const ListGrades = () => {
       });
   };
 
+  const Actions = () => {
+    return (
+      <>
+        {grades.length > 0 && (
+          <>
+            <CSVLink data={grades} filename="estudiantesGrado.csv">
+              <button className="btn btn-secondary text-white">
+                <i className="fas fa-file-csv mr-2"></i>
+                CSV
+              </button>
+            </CSVLink>
+            <ReactToPrint
+              trigger={() => {
+                return (
+                  <button className="btn btn-dark text-white">
+                    <i class="fas fa-print mr-2"></i>
+                    Imprimir
+                  </button>
+                );
+              }}
+              documentTitle="Estudiantes por Grado"
+              pageStyle="print"
+              content={() => componentRef.current}
+              copyStyles={true}
+            />
+            <button className="btn btn-success text-white">
+              <i class="fas fa-file-excel mr-2"></i>
+              <ReactHtmlTableToExcel
+                id="exportExcel"
+                sheet="Pagina 1"
+                table="grades"
+                filename="grados"
+                buttonText="Excel"
+                style={{ border: "none", backgroundColor: "transparent" }}
+                // className="btn"
+              ></ReactHtmlTableToExcel>
+            </button>
+
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                axios
+                  .post(
+                    "http://localhost:3000/api/v1/admin/grades/reports",
+                    grades
+                  )
+                  .then((response) => {
+                    console.log(response);
+                    Swal.fire({
+                      icon: "success",
+                      title: "PDF creado",
+                      text: "Se ha generado exitosamente el reporte",
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Ha ocurrido un error al generar el PDF",
+                    });
+                  });
+              }}
+            >
+              <i class="fas fa-file-pdf mr-2"></i>
+              PDF
+            </button>
+          </>
+        )}
+      </>
+    );
+  };
+
+  const TableHeader = () => {
+    return (
+      <>
+        <div id="headerTable-container">
+          <form onSubmit={handleSubmit} ref={formRef} className="tableForm">
+            <div className="form-group">
+              <label>Selecciona</label>
+              <select name="cedulado" className="form-control">
+                <option>Alumnos</option>
+                <option value="si">Cedulados</option>
+                <option value="no">No cedulados</option>
+              </select>
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Buscar
+            </button>
+          </form>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <div className="content-body">
@@ -122,11 +233,21 @@ const ListGrades = () => {
                 >
                   + Agregar Grado
                 </button>
-                <AddNewGrade periods={periods} fetchData={fetchData} />
+                <AddNewGrade
+                  periods={periods}
+                  fetchData={fetchData}
+                  educationLevels={levels}
+                />
               </div>
               <div className="card-body">
-                <div className="table-responsive">
-                  <table
+                <div className="table-responsive" ref={componentRef}>
+                  <ReportDataTable
+                    data={grades}
+                    columns={columns()}
+                    actionsComponent={Actions()}
+                    loading={state.loading}
+                  />
+                  {/* <table
                     id="example5"
                     className="table table-striped verticle-middle table-responsive-sm"
                   >
@@ -184,13 +305,37 @@ const ListGrades = () => {
                         </tr>
                       ))}
                     </tbody>
-                  </table>
+                  </table> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <table id="grades" style={{ display: "none" }}>
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Sección</th>
+            <th scope="col">Alumnos Totales</th>
+            <th scope="col">Maestro/a</th>
+          </tr>
+        </thead>
+        <tbody>
+          {grades?.map((grade) => (
+            <tr key={grade.id}>
+              <th>{grade.id}</th>
+              <th>{grade.name}</th>
+              <th>{grade.section}</th>
+              <th>{grade.students.length}</th>
+              <th>
+                {grade.teacher?.name || "No"} {grade.teacher?.lastName || "Hay"}
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       {/* <Script
         src="/js/plugins-init/datatables.init.js"
         strategy="afterInteractive"

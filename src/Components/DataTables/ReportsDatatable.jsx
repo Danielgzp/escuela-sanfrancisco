@@ -44,6 +44,7 @@ const ReportDataTable = ({
         subHeader
         subHeaderComponent={tableHeaderComponent}
         persistTableHead
+        selectableRows
       />
     </>
   );

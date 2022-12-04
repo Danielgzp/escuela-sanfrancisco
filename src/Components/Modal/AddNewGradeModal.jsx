@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const AddNewGrade = ({ fetchData, periods }) => {
+const AddNewGrade = ({ fetchData, periods, educationLevels }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -20,6 +20,7 @@ const AddNewGrade = ({ fetchData, periods }) => {
       name: objectData.name,
       section: objectData.section,
       periodId: objectData.period,
+      levelId: objectData.level,
       // quotas: objectData.quotas,
     };
 
@@ -79,40 +80,56 @@ const AddNewGrade = ({ fetchData, periods }) => {
               </div>
               <div className="modal-body">
                 <form ref={formRef}>
-                  <div className="col-lg-6 col-md-6 col-sm-12">
-                    <div className="form-group">
-                      <label className="form-label">Nombre</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        required
-                        name="name"
-                      />
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="form-group">
+                        <label className="form-label">Nombre</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          required
+                          name="name"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-lg-6 col-md-6 col-sm-12">
-                    <div className="form-group">
-                      <label className="form-label">Sección</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        required
-                        name="section"
-                      />
+                    <div className="col-lg-6 col-md-6 col-sm-12">
+                      <div className="form-group">
+                        <label className="form-label">Sección</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          required
+                          name="section"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12">
-                    <div className="form-group">
-                      <label className="form-label">Período Escolar</label>
-                      <select name="period" className="form-control" required>
-                        <option>Período Escolar</option>
-                        {periods?.map((period) => (
-                          <option
-                            key={period.id}
-                            value={`${period.id}`}
-                          >{`${period.name}`}</option>
-                        ))}
-                      </select>
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                      <div className="form-group">
+                        <label className="form-label">Período Escolar</label>
+                        <select name="period" className="form-control" required>
+                          <option>Período Escolar</option>
+                          {periods?.map((period) => (
+                            <option
+                              key={period.id}
+                              value={`${period.id}`}
+                            >{`${period.name}`}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12">
+                      <div className="form-group">
+                        <label className="form-label">Nivel de educación</label>
+                        <select name="level" className="form-control" required>
+                          <option>Nivel</option>
+                          {educationLevels?.map((level) => (
+                            <option
+                              key={level.id}
+                              value={`${level.id}`}
+                            >{`${level.name}`}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </form>
