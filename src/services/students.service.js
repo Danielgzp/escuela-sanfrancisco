@@ -24,7 +24,7 @@ class StudentsService {
         birthPlace: faker.address.cityName(),
         admissionDate: faker.date.recent(),
         houseProperty: faker.name.jobTitle(),
-        gradeId: faker.datatype.number()
+        gradeId: faker.datatype.number(),
       });
       //      schoolarshipCi: schoolarshipCi.required(),
       // nativeCi: Joi.optional(),
@@ -50,42 +50,42 @@ class StudentsService {
   }
 
   async find(query) {
-    // const options = {
-    //   include: [
-    //     // "representant",
-    //     // "record",
-    //     "grade",
-    //     // "record",
-    //     {
-    //       association: "grade",
-    //       include: ["period"],
-    //     },
-    //   ],
-    //   order: [["gradeId"]],
-    //   attributes: [
-    //     "name",
-    //     "lastName",
-    //     "birthPlace",
-    //     "birthDate",
-    //     "admissionDate",
-    //     "id",
-    //     "gender",
-    //     "nativeCi",
-    //     "schoolarshipCi",
-    //   ],
-    //   // where: {},
-    // };
+    const options = {
+      include: [
+        // "representant",
+        // "record",
+        "grade",
+        // "record",
+        {
+          association: "grade",
+          include: ["period"],
+        },
+      ],
+      order: [["gradeId"]],
+      attributes: [
+        "name",
+        "lastName",
+        "birthPlace",
+        "birthDate",
+        "admissionDate",
+        "id",
+        "gender",
+        "nativeCi",
+        "schoolarshipCi",
+      ],
+      // where: {},
+    };
 
-    // const { limit, offset } = query;
-    // if (limit && offset) {
-    //   options.limit = limit;
-    //   options.offset = offset;
-    // }
+    const { limit, offset } = query;
+    if (limit && offset) {
+      options.limit = limit;
+      options.offset = offset;
+    }
 
-    // const students = await models.Students.findAll(options);
+    const students = await models.Students.findAll(options);
 
-    // return students;
-    return this.students;
+    return students;
+    // return this.students;
   }
 
   async findOne(ci) {
@@ -106,7 +106,7 @@ class StudentsService {
     const { limit, offset, level } = query;
     const options = {
       include: [
-        // "representant",
+        "representant",
         "grade",
         {
           association: "grade",
@@ -158,6 +158,8 @@ class StudentsService {
     // console.log(filterGrade);
 
     const { search } = query;
+    console.log(query);
+    console.log(search);
 
     const options = {
       include: [
@@ -203,12 +205,12 @@ class StudentsService {
         [Op.or]: [
           {
             name: {
-              [Op.substring]: query.toUpperCase(),
+              [Op.substring]: query,
             },
           },
           {
             lastName: {
-              [Op.substring]: query.toUpperCase(),
+              [Op.substring]: query,
             },
           },
         ],
@@ -271,7 +273,7 @@ class StudentsService {
       ],
       where: {
         nativeCi: {
-          [Op.ne]: null || " " || "",
+          [Op.ne]: null,
         },
 
         // name: {
@@ -334,7 +336,7 @@ class StudentsService {
       ],
       where: {
         nativeCi: {
-          [Op.ne]: !null,
+          [Op.is]: null,
         },
 
         // name: {

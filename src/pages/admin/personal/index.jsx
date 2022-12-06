@@ -7,6 +7,10 @@ import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Swal from "sweetalert2";
+import { CSVLink } from "react-csv";
+import ReactToPrint from "react-to-print";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
+import { useRef } from "react";
 
 const ListStaff = () => {
   const [state, setState] = useState({
@@ -15,9 +19,9 @@ const ListStaff = () => {
     api: [],
     filter: [],
     search: "",
-    tableTitle: "Personal",
   });
   const [totalStaff, setTotalStaff] = useState(0);
+  const componentRef = useRef();
 
   useEffect(() => {
     setState({ loading: true, error: null });
@@ -81,6 +85,79 @@ const ListStaff = () => {
     });
   };
 
+  const Actions = () => {
+    return (
+      <>
+        {state?.filter?.length > 0 && (
+          <>
+            <CSVLink data={state.filter} filename="estudiantesGrado.csv">
+              <button className="btn btn-secondary text-white">
+                <i className="fas fa-file-csv mr-2"></i>
+                CSV
+              </button>
+            </CSVLink>
+            <ReactToPrint
+              trigger={() => {
+                return (
+                  <button className="btn btn-dark text-white">
+                    <i class="fas fa-print mr-2"></i>
+                    Imprimir
+                  </button>
+                );
+              }}
+              documentTitle="Personal de la Escuela"
+              pageStyle="print"
+              content={() => componentRef.current}
+              copyStyles={true}
+            />
+            <button className="btn btn-success text-white">
+              <i class="fas fa-file-excel mr-2"></i>
+              <ReactHtmlTableToExcel
+                id="exportExcel"
+                sheet="Pagina 1"
+                table="staff"
+                filename="personal"
+                buttonText="Excel"
+                style={{ border: "none", backgroundColor: "transparent" }}
+                // className="btn"
+              ></ReactHtmlTableToExcel>
+            </button>
+
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                axios
+                  .post(
+                    "http://localhost:3000/api/v1/admin/staff/reports",
+                    state.filter
+                  )
+                  .then((response) => {
+                    console.log(response);
+                    Swal.fire({
+                      icon: "success",
+                      title: "PDF creado",
+                      text: "Se ha generado exitosamente el reporte",
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Ha ocurrido un error al generar el PDF",
+                    });
+                  });
+              }}
+            >
+              <i class="fas fa-file-pdf mr-2"></i>
+              PDF
+            </button>
+          </>
+        )}
+      </>
+    );
+  };
+
   return (
     <div className="content-body">
       <div className="container-fluid">
@@ -101,15 +178,16 @@ const ListStaff = () => {
                     </Link>
                   </div>
                   <div className="card-body">
-                    <div className="table-responsive">
+                    <div className="table-responsive" ref={componentRef}>
                       <MyDataTable
                         data={state}
                         tableColumns={columns(handleDeleteStaff)}
                         headerSearch={handleSearchButton}
-                        totalStudents={totalStaff}
+                        totalstaffs={totalStaff}
                         neighbours={2}
                         setOffsetStudents={0}
                         studentsPerPage={50}
+                        actionsComponent={Actions()}
                       />
                     </div>
                   </div>
@@ -119,6 +197,34 @@ const ListStaff = () => {
           </div>
         </div>
       </div>
+      <table id="staff" style={{ display: "none" }}>
+        <thead>
+          <tr>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Cargo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state?.filter?.map((staff) => (
+            <tr key={staff.id}>
+              <th>{staff.ci}</th>
+              <th>{staff.name}</th>
+              <th>{staff.lastName}</th>
+              <th>{staff.address}</th>
+              <th>{staff.phone}</th>
+              <th>{staff.birthDate}</th>
+              <th>{staff.email}</th>
+              <th>{staff.role.name}</th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

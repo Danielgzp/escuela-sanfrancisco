@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const representantId = Joi.number().integer();
+const representantCi = Joi.string();
 const schoolarshipCi = Joi.string().max(12);
 const name = Joi.string().min(3).max(30);
 const lastName = Joi.string().min(3).max(30);
@@ -47,13 +47,13 @@ const createStudentSchema = Joi.object({
   birthPlace: birthPlace.required(),
   admissionDate: admissionDate.required(),
   houseProperty: houseProperty.required(),
-  representantId: representantId.optional(),
+  representantCi: representantCi.optional(),
   representant: {
     ci: ci.optional(),
-    repName: repName.required(),
-    repLastName: repLastName.required(),
-    phone: phone.required(),
-    email: email.required(),
+    repName: repName.optional(),
+    repLastName: repLastName.optional(),
+    phone: phone.optional(),
+    email: email.optional(),
   },
   record: Joi.array().optional(),
   gradeId: gradeId.required(),
@@ -70,7 +70,7 @@ const updateStudentSchema = Joi.object({
   admissionDate,
   houseProperty,
   studentId,
-  representantId,
+  representantCi,
   representant: {
     ci,
     repName,

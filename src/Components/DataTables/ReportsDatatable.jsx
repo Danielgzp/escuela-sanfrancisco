@@ -1,5 +1,6 @@
 import DataTable from "react-data-table-component";
 import LoginLoader from "Components/Loaders/LoginLoader";
+import { useCallback, useState, useMemo } from "react";
 
 const ReportDataTable = ({
   actionsComponent,
@@ -8,7 +9,43 @@ const ReportDataTable = ({
   columns,
   loading,
   tableTitle,
+  // handleDelete,
 }) => {
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [toggleCleared, setToggleCleared] = useState(false);
+  const [items, setItems] = useState(data);
+
+  const handleRowSelected = useCallback((state) => {
+    setSelectedRows(state.selectedRows);
+  }, []);
+
+  const contextActions = useMemo(() => {
+    const handleDelete = () => {
+      if (
+        window.confirm(
+          `Are you sure you want to delete:\r ${selectedRows.map(
+            (r) => r.name
+          )}?`
+        )
+      ) {
+        setToggleCleared(!toggleCleared);
+        setItems(differenceBy(data, selectedRows, "name"));
+      }
+    };
+    
+
+    return (
+      <button
+        className="btn btn-danger"
+        key="delete"
+        onClick={handleDelete}
+        style={{ backgroundColor: "red" }}
+        icon
+      >
+        Delete
+      </button>
+    );
+  }, [data, selectedRows, toggleCleared]);
   return (
     <>
       <DataTable
@@ -45,6 +82,9 @@ const ReportDataTable = ({
         subHeaderComponent={tableHeaderComponent}
         persistTableHead
         selectableRows
+        contextActions={contextActions}
+        onSelectedRowsChange={handleRowSelected}
+        clearSelectedRows={toggleCleared}
       />
     </>
   );

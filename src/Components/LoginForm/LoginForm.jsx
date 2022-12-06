@@ -38,7 +38,7 @@ const LoginForm = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/");
+        router.push("/admin");
       })
       .catch((err) => {
         if (err.response?.status === 401) {

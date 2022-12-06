@@ -9,6 +9,7 @@ const EditGradeModal = ({ grade, periods, fetchData }) => {
     loading: false,
     error: null,
   });
+
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -23,9 +24,9 @@ const EditGradeModal = ({ grade, periods, fetchData }) => {
     };
 
     setState({ loading: true, error: null });
-    console.log(editGrade);
+
     axios
-      .patch(endPoints.grades.updateGrade(grade), editGrade)
+      .patch(endPoints.grades.updateGrade(grade.id), editGrade)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -34,7 +35,7 @@ const EditGradeModal = ({ grade, periods, fetchData }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        fetchData()
+        fetchData();
         setState({ loading: false, error: null });
       })
       .catch((error) => {

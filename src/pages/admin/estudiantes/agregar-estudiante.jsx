@@ -20,28 +20,20 @@ const AddStudent = ({ data }) => {
     loading: false,
     error: null,
   });
-  const [representant, setRepresentant] = useState([]);
+  const [representant, setRepresentant] = useState(null);
+
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let addNewStudent = {};
 
     const formData = new FormData(formRef.current);
 
     const objectData = Object.fromEntries([...formData.entries()]);
-
-    const newStudent = {
+    const newStudentNoRepresententant = {
       schoolarshipCi: objectData.schoolId,
-      nativeCi: null || objectData.nativeCi,
-      // nativeCi: () => {
-      //   console.log("entro aca");
-      //   if (objectData.nativeCi.lenght() > 0) {
-      //     return null;
-      //   } else {
-      //     console.log("no era");
-      //     return objectData.nativeCi;
-      //   }
-      // },
+      nativeCi: objectData.nativeCi || undefined,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -50,7 +42,21 @@ const AddStudent = ({ data }) => {
       admissionDate: objectData.admissionDate,
       birthPlace: objectData.birthPlace,
       houseProperty: objectData.houseProperty,
+      representantCi: representant?.ci,
+      gradeId: objectData.grade,
+    };
 
+    const newStudent = {
+      schoolarshipCi: objectData.schoolId,
+      nativeCi: objectData.nativeCi || undefined,
+      name: objectData.name,
+      lastName: objectData.lastName,
+      address: objectData.address,
+      birthDate: objectData.birthDate,
+      gender: objectData.gender,
+      admissionDate: objectData.admissionDate,
+      birthPlace: objectData.birthPlace,
+      houseProperty: objectData.houseProperty,
       representant: {
         ci: objectData.repCI,
         repName: objectData.repName,
@@ -63,8 +69,15 @@ const AddStudent = ({ data }) => {
 
     setState({ loading: true, error: null });
 
+    if (representant !== null) {
+      addNewStudent = newStudentNoRepresententant;
+    } else {
+      addNewStudent = newStudent;
+    }
+
+    console.log(addNewStudent);
     axios
-      .post(endPoints.students.addStudent, newStudent)
+      .post(endPoints.students.addStudent, addNewStudent)
       .then((response) => {
         console.log(response);
         Swal.fire({
@@ -87,42 +100,8 @@ const AddStudent = ({ data }) => {
         setState({ loading: false, error: null });
       });
   };
-  useEffect(() => {
-    // async function getGrades() {
-    //   try {
-    //     const res = await axios.get(endPoints.grades.getAllGrades);
 
-    //     setGrades(res.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-    const script = document.createElement("script");
-    const script2 = document.createElement("script");
-    const script3 = document.createElement("script");
-    const script4 = document.createElement("script");
-    const script5 = document.createElement("script");
-
-    // script.src = "/vendor/pickadate/picker.js";
-    // script.async = false;
-    // document.body.appendChild(script);
-    // script2.src = "/vendor/pickadate/picker.time.js";
-    // script2.async = false;
-    // document.body.appendChild(script2);
-    // script3.src = "/vendor/pickadate/picker.date.js";
-    // script3.async = false;
-    // document.body.appendChild(script3);
-    // script4.src = "/js/plugins-init/pickadate-init.js";
-    // script4.async = false;
-    // document.body.appendChild(script4);
-    // script5.src = "/js/dlabnav-init.js";
-    // script5.async = false;
-    // document.body.appendChild(script5);
-
-    // getGrades();
-  }, []);
-
-  console.log(representant);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -307,7 +286,11 @@ const AddStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repName"
-                            className="form-control"
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
                             required
                             defaultValue={representant?.repName}
                           />
@@ -321,10 +304,13 @@ const AddStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repLastName"
-                            className="form-control disabled"
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
                             required
                             defaultValue={representant?.repLastName}
-                            disabled
                           />
                         </div>
                       </div>
@@ -336,7 +322,11 @@ const AddStudent = ({ data }) => {
                           <input
                             type="number"
                             name="repCI"
-                            className="form-control"
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
                             required
                             defaultValue={representant?.ci}
                           />
@@ -349,7 +339,11 @@ const AddStudent = ({ data }) => {
                           <input
                             type="text"
                             name="phone"
-                            className="form-control"
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
                             required
                             defaultValue={representant?.phone}
                           />
@@ -362,11 +356,15 @@ const AddStudent = ({ data }) => {
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Email</label>
+                          <label className="form-label">Correo</label>
                           <input
                             type="email"
                             name="email"
-                            className="form-control"
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
                             required
                             defaultValue={representant?.email}
                           />

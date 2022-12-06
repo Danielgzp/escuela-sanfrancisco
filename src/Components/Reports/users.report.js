@@ -4,7 +4,7 @@ import reportHeader from "./reportHeader";
 const now = Date.now();
 const date = new Date(now);
 
-const gradesReport = (body) => `
+const usersReport = (body) => `
 <!doctype html>
 <html>
   <head>
@@ -82,7 +82,7 @@ tbody tr th {
     >
       <div>
         <strong>
-          <h2>LISTA DE GRADOS</h2>
+          <h2>LISTA DE USUARIOS</h2>
         </strong>
       </div>
       <div
@@ -101,7 +101,7 @@ tbody tr th {
                 align-items: center;
                 width: 100%;"
       >
-        <h3>Total de Grados: ${body.length}</h3>
+        <h3>Total de Usuarios: ${body.length}</h3>
         <h3>${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</h3>
       </div>
     </div>
@@ -109,24 +109,16 @@ tbody tr th {
       <thead>
         <tr>
           <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Sección</th>
-            <th scope="col">Alumnos Totales</th>
-            <th scope="col">Maestro/a</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Rol</th>
         </tr>
       </thead>
       <tbody>
         ${body.map(
-          (grade) => `
-            <th>${grade.id}</th>
-              <th>${grade.name}</th>
-              <th>${grade.section}</th>
-              <th>${grade.students.length}</th>
-              <th>
-                ${grade.teacher?.name || "No"} ${
-            grade.teacher?.lastName || "Hay"
-          }
-              </th>
+          (user) => `
+              <th>${user.id}</th>
+              <th>${user.email}</th>
+              <th>${user.userRole.name}</th>
           </tr>
           `
         )}
@@ -167,4 +159,4 @@ tbody tr th {
 </html>
 `;
 
-export default gradesReport;
+export default usersReport;

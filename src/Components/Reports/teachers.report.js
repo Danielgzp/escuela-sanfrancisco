@@ -4,7 +4,7 @@ import reportHeader from "./reportHeader";
 const now = Date.now();
 const date = new Date(now);
 
-const gradesReport = (body) => `
+const teachersReport = (body) => `
 <!doctype html>
 <html>
   <head>
@@ -82,7 +82,7 @@ tbody tr th {
     >
       <div>
         <strong>
-          <h2>LISTA DE GRADOS</h2>
+          <h2>LISTA DE MAESTROS</h2>
         </strong>
       </div>
       <div
@@ -101,32 +101,35 @@ tbody tr th {
                 align-items: center;
                 width: 100%;"
       >
-        <h3>Total de Grados: ${body.length}</h3>
+        <h3>Total de Maestros: ${body.length}</h3>
         <h3>${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</h3>
       </div>
     </div>
     <table>
       <thead>
         <tr>
-          <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Sección</th>
-            <th scope="col">Alumnos Totales</th>
-            <th scope="col">Maestro/a</th>
+          <th scope="col">Cédula</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Grado</th>
         </tr>
       </thead>
       <tbody>
-        ${body.map(
-          (grade) => `
-            <th>${grade.id}</th>
-              <th>${grade.name}</th>
-              <th>${grade.section}</th>
-              <th>${grade.students.length}</th>
-              <th>
-                ${grade.teacher?.name || "No"} ${
-            grade.teacher?.lastName || "Hay"
-          }
-              </th>
+        ${body?.map(
+          (teacher) => `
+          <tr key=${teacher.ci}>
+            <th>${teacher.ci}</th>
+            <th>${teacher.name}</th>
+            <th>${teacher.lastName}</th>
+            <th>${teacher.address}</th>
+            <th>${teacher.phone}</th>
+            <th>${teacher.birthDate}</th>
+            <th>${teacher.email}</th>
+            <th>${teacher.grade?.name} ${teacher.grade?.section}</th>
           </tr>
           `
         )}
@@ -167,4 +170,4 @@ tbody tr th {
 </html>
 `;
 
-export default gradesReport;
+export default teachersReport;

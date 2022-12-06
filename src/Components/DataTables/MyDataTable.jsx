@@ -31,6 +31,7 @@ const MyDataTable = ({
   totalStudents,
   neighbours,
   studentsPerPage,
+  actionsComponent
 }) => {
   const { filter, loading, error, search, tableTitle } = data;
 
@@ -229,6 +230,7 @@ const MyDataTable = ({
         direction="auto"
         highlightOnHover={true}
         columns={tableColumns}
+        actions={actionsComponent}
         data={filter}
         striped={true}
         fixedHeader

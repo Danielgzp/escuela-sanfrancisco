@@ -1,16 +1,19 @@
 import moment from "moment";
 import reportHeader from "./reportHeader";
 
-const now = Date.now();
-const date = new Date(now);
+const date = new Date();
+moment(date).format("DD-MM-YYYY");
 
-const gradesReport = (body) => `
+const studentsCi = (body) => `
 <!doctype html>
 <html>
   <head>
   <meta></meta>
   <title></title>
   <style>
+  .reportContainer {
+  padding: 20px;
+}
   body {
   padding: 20px;
   margin: 10px 15px;
@@ -82,7 +85,7 @@ tbody tr th {
     >
       <div>
         <strong>
-          <h2>LISTA DE GRADOS</h2>
+          <h2>LISTAS DE ESTUDIANTES CEDULADOS</h2>
         </strong>
       </div>
       <div
@@ -92,7 +95,9 @@ tbody tr th {
                 align-items: center;
                 width: 100%;"
       >
-        
+        <h3>${body[0].grade?.name}</h3>
+        <h3>Seccion ${body[0].grade?.section}</h3>
+        <h3>${body[0].grade?.period?.name}</h3>
       </div>
       <div
         style="display: flex;
@@ -101,32 +106,31 @@ tbody tr th {
                 align-items: center;
                 width: 100%;"
       >
-        <h3>Total de Grados: ${body.length}</h3>
-        <h3>${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</h3>
+        <h3>Total de Estudiantes: ${body.length}</h3>
+        <h3>${date}</h3>
       </div>
     </div>
     <table>
       <thead>
         <tr>
-          <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Sección</th>
-            <th scope="col">Alumnos Totales</th>
-            <th scope="col">Maestro/a</th>
+          <th scope="col">C.I Escolar</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Género</th>
+          <th scope="col">Fecha de Nacimiento</th>
         </tr>
       </thead>
       <tbody>
         ${body.map(
-          (grade) => `
-            <th>${grade.id}</th>
-              <th>${grade.name}</th>
-              <th>${grade.section}</th>
-              <th>${grade.students.length}</th>
-              <th>
-                ${grade.teacher?.name || "No"} ${
-            grade.teacher?.lastName || "Hay"
-          }
-              </th>
+          (student) => `
+            <tr key="${student.id}">
+            <th class="firstColumn" id="firstColumn" >${student.schoolarshipCi}</th>
+            <th>${student.nativeCi}</th>
+            <th>${student.name}</th>
+            <th>${student.lastName}</th>
+            <th>${student.gender}</th>
+            <th>${student.birthDate}</th>
           </tr>
           `
         )}
@@ -167,4 +171,4 @@ tbody tr th {
 </html>
 `;
 
-export default gradesReport;
+export default studentsCi;

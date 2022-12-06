@@ -49,7 +49,6 @@ const SearchRepresentant = ({
       });
   };
 
-  console.log(representant.name);
   return (
     <div
       className="modal fade"

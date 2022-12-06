@@ -29,8 +29,9 @@ const AdminDashboard = ({ props }) => {
   const data = {
     labels: [
       "Estudiantes Totales",
-      "Primaria",
+
       "PreEscolar",
+      "Primaria",
       "Personal",
       "Maestros",
       "Usuarios",
@@ -41,8 +42,8 @@ const AdminDashboard = ({ props }) => {
         borderWidth: 2,
         backgroundColor: [
           "#143b64",
-          "#ffaa16",
           "#c62828",
+          "#ffaa16",
           "#673bb7",
           "#7ed321",
 
@@ -88,20 +89,7 @@ const AdminDashboard = ({ props }) => {
                     </div>
                   </div>
                 </div>
-                <div className="col-xl-4 col-xxl-4 col-sm-6">
-                  <div className="widget-stat card">
-                    <div className="card-body">
-                      <h4 className="card-title">Primaria</h4>
-                      <h3>{countPrimary}</h3>
-                      <div className="progress mb-2">
-                        <div
-                          className="progress-bar progress-animated bg-warning"
-                          style={{ width: "1000%" }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div className="col-xl-4 col-xxl-4 col-sm-6">
                   <div className="widget-stat card">
                     <div className="card-body">
@@ -111,6 +99,20 @@ const AdminDashboard = ({ props }) => {
                         <div
                           className="progress-bar progress-animated bg-red"
                           style={{ width: "100%" }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-4 col-xxl-4 col-sm-6">
+                  <div className="widget-stat card">
+                    <div className="card-body">
+                      <h4 className="card-title">Primaria</h4>
+                      <h3>{countPrimary}</h3>
+                      <div className="progress mb-2">
+                        <div
+                          className="progress-bar progress-animated bg-warning"
+                          style={{ width: "1000%" }}
                         ></div>
                       </div>
                     </div>

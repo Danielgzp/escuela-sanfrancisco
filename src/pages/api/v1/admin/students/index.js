@@ -37,7 +37,8 @@ handler
         if (req.query.cedulados === "si") {
           const students = await service.filterStudentsCi();
           res.json(students);
-        } else {
+        }
+        if (req.query.cedulados === "no") {
           const students = await service.filterStudentsNoCi();
           res.json(students);
         }

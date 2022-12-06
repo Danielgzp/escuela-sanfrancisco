@@ -78,6 +78,8 @@ const ListGrades = () => {
   }, []);
 
   const handleDeleteGrade = async (id) => {
+    // const id = e.target.getAttribute("id");
+    console.log(id)
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¿Deseas eliminar este Grado?",
@@ -124,7 +126,7 @@ const ListGrades = () => {
       <>
         {grades.length > 0 && (
           <>
-            <CSVLink data={grades} filename="estudiantesGrado.csv">
+            <CSVLink data={grades} filename="listGrados.csv">
               <button className="btn btn-secondary text-white">
                 <i className="fas fa-file-csv mr-2"></i>
                 CSV
@@ -139,7 +141,7 @@ const ListGrades = () => {
                   </button>
                 );
               }}
-              documentTitle="Estudiantes por Grado"
+              documentTitle="ListaGrados"
               pageStyle="print"
               content={() => componentRef.current}
               copyStyles={true}
@@ -243,104 +245,44 @@ const ListGrades = () => {
                 <div className="table-responsive" ref={componentRef}>
                   <ReportDataTable
                     data={grades}
-                    columns={columns()}
+                    columns={columns(handleDeleteGrade, fetchData, periods)}
                     actionsComponent={Actions()}
                     loading={state.loading}
+                    handleDelete={handleDeleteGrade}
                   />
-                  {/* <table
-                    id="example5"
-                    className="table table-striped verticle-middle table-responsive-sm"
-                  >
-                    <thead>
-                      <tr>
-                        <th scope="col">Grado</th>
-                        <th scope="col">Sección</th>
-                        <th scope="col">Maestra/Maestro</th>
-                        <th scope="col">Estudiantes Cursantes</th>
-                        <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {grades?.map((grade) => (
-                        <tr key={grade.id}>
-                          <td>{grade.name}</td>
-                          <td>{grade.section}</td>
-                          <td>
-                            {grade?.teacher?.name} {grade?.teacher?.lastName}
-                          </td>
-
-                          <td>{grade.students.length}</td>
-                          <td>
-                            <>
-                              <a
-                                href="#!"
-                                data-bs-toggle="modal"
-                                data-bs-target={`#grade-${grade.id}`}
-                              >
-                                <i className="material-icons">edit</i>
-                              </a>
-                              <a
-                                href="#!"
-                                rel="noopener noreferrer"
-                                onClick={() => handleDeleteGrade(grade.id)}
-                              >
-                                <i className="material-icons">delete</i>
-                              </a>
-                              <Link
-                                href={`/admin/grados/editar/${grade.id}`
-                                  .toLowerCase()
-                                  .replaceAll(" ", "-")
-                                  .normalize("NFD")
-                                  .replace(/[?¿¡!\u0300-\u036f]/g, "")}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <a>
-                                  <i className="material-icons">account_box</i>
-                                </a>
-                              </Link>
-                            </>
-                          </td>
-                          <EditGradeModal grade={grade} periods={periods} />
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <table id="grades" style={{ display: "none" }}>
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Sección</th>
-            <th scope="col">Alumnos Totales</th>
-            <th scope="col">Maestro/a</th>
-          </tr>
-        </thead>
-        <tbody>
-          {grades?.map((grade) => (
-            <tr key={grade.id}>
-              <th>{grade.id}</th>
-              <th>{grade.name}</th>
-              <th>{grade.section}</th>
-              <th>{grade.students.length}</th>
-              <th>
-                {grade.teacher?.name || "No"} {grade.teacher?.lastName || "Hay"}
-              </th>
+      <div style={{ display: "none" }}>
+        <table id="grades">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Sección</th>
+              <th scope="col">Alumnos Totales</th>
+              <th scope="col">Maestro/a</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* <Script
-        src="/js/plugins-init/datatables.init.js"
-        strategy="afterInteractive"
-      /> */}
-      {/* {isClient && } */}
+          </thead>
+          <tbody>
+            {grades?.map((grade) => (
+              <tr key={grade.id}>
+                <th>{grade.id}</th>
+                <th>{grade.name}</th>
+                <th>{grade.section}</th>
+                <th>{grade.students.length}</th>
+                <th>
+                  {grade.teacher?.name || "No"}{" "}
+                  {grade.teacher?.lastName || "Hay"}
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

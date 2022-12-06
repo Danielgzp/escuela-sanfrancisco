@@ -62,7 +62,7 @@ const TeacherSchema = {
     type: DataTypes.STRING,
     field: "birth_place",
   },
-  // email: { allowNull: false, type: DataTypes.STRING, unique: true },
+  email: { allowNull: false, type: DataTypes.STRING, unique: true },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,

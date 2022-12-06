@@ -4,7 +4,7 @@ import endPoints from "utils/endpoints";
 export const columns = (handleDelete) => [
   {
     name: "Grado",
-    selector: (row) => `${row.grade.name} ${row.grade.section}`,
+    selector: (row) => `${row.grade?.name} ${row.grade?.section}`,
     sortable: true,
     reorder: true,
     style: {
@@ -13,7 +13,7 @@ export const columns = (handleDelete) => [
   },
   {
     name: "C.I",
-    selector: (row) => `${row.ci}`,
+    selector: (row) => row.ci,
     sortable: true,
     reorder: true,
   },

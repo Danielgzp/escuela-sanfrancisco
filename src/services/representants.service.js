@@ -17,7 +17,7 @@ class RepresentantsService {
   async findOne(id) {
     const representant = await models.Representants.findByPk(id);
     if (!representant) {
-      throw boom.notFound("Representant not found");
+      throw boom.notFound("Representante no encontrado");
     }
     return representant;
   }

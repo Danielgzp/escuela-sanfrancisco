@@ -13,6 +13,10 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import Cookies from "js-cookie";
+import { CSVLink } from "react-csv";
+import ReactToPrint from "react-to-print";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
+import { useRef } from "react";
 
 const service = new UserRoleService();
 
@@ -24,6 +28,7 @@ const ListOfUsers = ({ data }) => {
     error: null,
   });
   const [users, setUsers] = useState([]);
+  const componentRef = useRef();
 
   const fetchData = () => {
     setState({ loading: true, error: null });
@@ -119,11 +124,85 @@ const ListOfUsers = ({ data }) => {
                 />
               </div>
               <div className="card-body">
+                <div className="card-header">
+                  {users.length > 0 && (
+                    <>
+                      <CSVLink data={users} filename="listUsuarios.csv">
+                        <button className="btn btn-secondary text-white">
+                          <i className="fas fa-file-csv mr-2"></i>
+                          CSV
+                        </button>
+                      </CSVLink>
+                      <ReactToPrint
+                        trigger={() => {
+                          return (
+                            <button className="btn btn-dark text-white">
+                              <i class="fas fa-print mr-2"></i>
+                              Imprimir
+                            </button>
+                          );
+                        }}
+                        documentTitle="ListaUsuarios"
+                        pageStyle="print"
+                        content={() => componentRef.current}
+                        copyStyles={true}
+                      />
+                      <button className="btn btn-success text-white">
+                        <i class="fas fa-file-excel mr-2"></i>
+                        <ReactHtmlTableToExcel
+                          id="exportExcel"
+                          sheet="Pagina 1"
+                          table="users"
+                          filename="usuarios"
+                          buttonText="Excel"
+                          style={{
+                            border: "none",
+                            backgroundColor: "transparent",
+                          }}
+                          // className="btn"
+                        ></ReactHtmlTableToExcel>
+                      </button>
+
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          axios
+                            .post(
+                              "http://localhost:3000/api/v1/admin/users/reports",
+                              users
+                            )
+                            .then((response) => {
+                              Swal.fire({
+                                icon: "success",
+                                title: "PDF creado",
+                                text: "Se ha generado exitosamente el reporte",
+                              });
+                            })
+                            .catch((err) => {
+                              console.log(err);
+                              Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Ha ocurrido un error al generar el PDF",
+                              });
+                            });
+                        }}
+                      >
+                        <i class="fas fa-file-pdf mr-2"></i>
+                        PDF
+                      </button>
+                    </>
+                  )}
+                </div>
                 <div className="table-responsive">
                   {state.loading ? (
                     <Loading />
                   ) : (
-                    <table className="table table-striped verticle-middle table-responsive-sm">
+                    <table
+                      id="users"
+                      className="table table-striped verticle-middle table-responsive-sm"
+                      ref={componentRef}
+                    >
                       <thead>
                         <tr>
                           <th scope="col">#</th>

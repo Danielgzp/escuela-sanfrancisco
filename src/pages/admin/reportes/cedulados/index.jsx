@@ -33,6 +33,7 @@ const GradeStudents = ({ data }) => {
 
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
+
     // const gradeData = {
     //   name: objectData.name,
     //   section: objectData.section,
@@ -115,7 +116,7 @@ const GradeStudents = ({ data }) => {
               onClick={() => {
                 axios
                   .post(
-                    "http://localhost:3000/api/v1/admin/students/reports",
+                    "http://localhost:3000/api/v1/admin/students/reports?cedulados",
                     students
                   )
                   .then((response) => {
@@ -208,7 +209,7 @@ const GradeStudents = ({ data }) => {
           {students?.map((student) => (
             <tr key={student.id}>
               <th>
-                {student.grade.name} {student.grade.section}
+                {student.grade?.name} {student.grade?.section}
               </th>
               <th>{student.schoolarshipCi}</th>
               <th>{student.nativeCi}</th>

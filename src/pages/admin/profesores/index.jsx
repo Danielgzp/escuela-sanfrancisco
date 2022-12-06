@@ -8,6 +8,9 @@ import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import Head from "next/head";
 import Swal from "sweetalert2";
+import { CSVLink } from "react-csv";
+import ReactToPrint from "react-to-print";
+import ReactHtmlTableToExcel from "react-html-table-to-excel";
 
 const ListTeachers = () => {
   const [state, setState] = useState({
@@ -16,7 +19,6 @@ const ListTeachers = () => {
     api: [],
     filter: [],
     search: "",
-    tableTitle: "Profesores",
   });
   const [totalTeachers, setTotalTeachers] = useState(0);
   useEffect(() => {
@@ -39,8 +41,9 @@ const ListTeachers = () => {
   }, []);
 
   useMemo(() => {
+    console.log(state?.api);
     const result = state?.api?.filter((teacher) => {
-      return `${teacher.name} ${teacher.lastName} ${teacher.ci} ${teacher.grade.name} ${teacher.grade.section}`
+      return `${teacher.name} ${teacher.lastName} ${teacher.ci} ${teacher.grade?.name} ${teacher.grade?.section}`
         .toLowerCase()
         .includes(state.search.toLowerCase());
     });
@@ -80,6 +83,79 @@ const ListTeachers = () => {
     });
   };
 
+  const Actions = () => {
+    return (
+      <>
+        {state?.filter?.length > 0 && (
+          <>
+            <CSVLink data={state.filter} filename="profesores.csv">
+              <button className="btn btn-secondary text-white">
+                <i className="fas fa-file-csv mr-2"></i>
+                CSV
+              </button>
+            </CSVLink>
+            <ReactToPrint
+              trigger={() => {
+                return (
+                  <button className="btn btn-dark text-white">
+                    <i class="fas fa-print mr-2"></i>
+                    Imprimir
+                  </button>
+                );
+              }}
+              documentTitle="Profesores de la Escuela"
+              pageStyle="print"
+              content={() => componentRef.current}
+              copyStyles={true}
+            />
+            <button className="btn btn-success text-white">
+              <i class="fas fa-file-excel mr-2"></i>
+              <ReactHtmlTableToExcel
+                id="exportExcel"
+                sheet="Pagina 1"
+                table="teachers"
+                filename="profesores"
+                buttonText="Excel"
+                style={{ border: "none", backgroundColor: "transparent" }}
+                // className="btn"
+              ></ReactHtmlTableToExcel>
+            </button>
+
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                axios
+                  .post(
+                    "http://localhost:3000/api/v1/admin/teachers/reports",
+                    state.filter
+                  )
+                  .then((response) => {
+                    console.log(response);
+                    Swal.fire({
+                      icon: "success",
+                      title: "PDF creado",
+                      text: "Se ha generado exitosamente el reporte",
+                    });
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    Swal.fire({
+                      icon: "error",
+                      title: "Oops...",
+                      text: "Ha ocurrido un error al generar el PDF",
+                    });
+                  });
+              }}
+            >
+              <i class="fas fa-file-pdf mr-2"></i>
+              PDF
+            </button>
+          </>
+        )}
+      </>
+    );
+  };
+
   return (
     <>
       <div className="content-body">
@@ -111,6 +187,7 @@ const ListTeachers = () => {
                           neighbours={2}
                           setOffsetStudents={0}
                           studentsPerPage={50}
+                          actionsComponent={Actions()}
                         />
                       </div>
                     </div>
@@ -120,6 +197,36 @@ const ListTeachers = () => {
             </div>
           </div>
         </div>
+        <table id="teachers" style={{ display: "none" }}>
+          <thead>
+            <tr>
+              <th scope="col">Cédula</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Dirección</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Fecha de Nacimiento</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Grado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {state?.filter?.map((teacher) => (
+              <tr key={teacher.id}>
+                <th>{teacher.ci}</th>
+                <th>{teacher.name}</th>
+                <th>{teacher.lastName}</th>
+                <th>{teacher.address}</th>
+                <th>{teacher.phone}</th>
+                <th>{teacher.birthDate}</th>
+                <th>{teacher.email}</th>
+                <th>
+                  {teacher.grade?.name} ${teacher.grade?.section}
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

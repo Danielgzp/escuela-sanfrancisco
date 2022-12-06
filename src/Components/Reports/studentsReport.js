@@ -14,11 +14,15 @@ const studentsReport = (body) => `
   .reportContainer {
   padding: 20px;
 }
+  body {
+  padding: 20px;
+  margin: 10px 15px;
+}
 .firstColumn {
-  background-color: #bed8f3;
+  background-color: #daecff;
 }
 #firstColumn {
-  background-color: #bed8f3;
+  background-color: #daecff;
 }
 #totalData {
   width: 100%;
@@ -34,12 +38,12 @@ const studentsReport = (body) => `
   text-align: center;
 }
 table {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.25);
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: table;
   border-collapse: collapse;
   border-spacing: 0;
@@ -58,7 +62,7 @@ thead tr th {
   margin: 0;
 }
 tbody {
-  background-color: #d0e4fa;
+  background-color: #daecff;
 }
 tbody tr th {
   width: fit-content;
@@ -75,7 +79,9 @@ tbody tr th {
       style="display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;"
+        align-items: center;
+        width: 95%;
+        margin: 0 auto;"
     >
       <div>
         <strong>
