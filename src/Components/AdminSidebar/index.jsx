@@ -134,6 +134,11 @@ const AdminSidebar = () => {
                     <a>Estudiantes cedulados</a>
                   </Link>
                 </li>
+                <li>
+                  <Link href="/admin/reportes/representantes">
+                    <a>Representantes por Grado</a>
+                  </Link>
+                </li>
               </ul>
             </li>
             <li>

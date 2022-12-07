@@ -72,7 +72,7 @@ const EditStudent = ({ data }) => {
 
     setState({ loading: true, error: null });
     axios
-      .patch(endPoints.students.updateStudent(student.ci), updateDataStudent)
+      .patch(endPoints.students.updateStudent(student.schoolarshipCi), updateDataStudent)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -82,7 +82,7 @@ const EditStudent = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/admin/students");
+        router.push("/admin/estudiantes");
       })
       .catch((error) => {
         Swal.fire({

@@ -32,7 +32,6 @@ const ReportDataTable = ({
         setItems(differenceBy(data, selectedRows, "name"));
       }
     };
-    
 
     return (
       <button
@@ -81,7 +80,6 @@ const ReportDataTable = ({
         subHeader
         subHeaderComponent={tableHeaderComponent}
         persistTableHead
-        selectableRows
         contextActions={contextActions}
         onSelectedRowsChange={handleRowSelected}
         clearSelectedRows={toggleCleared}

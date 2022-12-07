@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Logs } = require("../../db/models/logs.models");
 
 const { models } = require("../../libs/sequelize");
 
@@ -27,19 +28,36 @@ class NewsService {
   async create(data) {
     const newNews = await models.News.create(data);
 
+    await Logs.create({
+      userId: 1,
+      description: "Ha creado una nueva noticia en la tabla de News",
+      action: "CREATE",
+      table: "NEWS",
+    });
     return newNews;
   }
 
   async update(id, changes) {
     const news = await this.findOne(id);
     const updateNews = await news.update(changes);
-
+    await Logs.create({
+      userId: 1,
+      description: "Noticia actualizada en la tabla de News",
+      action: "UPDATE",
+      table: "NEWS",
+    });
     return updateNews;
   }
 
   async delete(id) {
     const news = await this.findOne(id);
     await news.destroy();
+    await Logs.create({
+      userId: 1,
+      description: "Noticia eliminada en la tabla de Noticias",
+      action: "DELETE",
+      table: "NEWS",
+    });
 
     return { id };
   }

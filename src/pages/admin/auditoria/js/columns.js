@@ -4,7 +4,7 @@ import endPoints from "utils/endpoints";
 export const columns = (student) => [
   {
     name: "#",
-    selector: (row) => `${row.grade.name} ${row.grade.section}`,
+    selector: (row) => row.id,
     sortable: true,
     reorder: true,
     style: {
@@ -13,19 +13,19 @@ export const columns = (student) => [
   },
   {
     name: "Usuario",
-    selector: (row) => row.user,
+    selector: (row) => row.user?.email,
     sortable: true,
     reorder: true,
   },
   {
     name: "Modulo",
-    selector: (row) => row.lastName,
+    selector: (row) => row.table,
     sortable: true,
     reorder: true,
   },
   {
     name: "Acción",
-    selector: (row) => row.gender,
+    selector: (row) => row.action,
     sortable: true,
     reorder: true,
   },
@@ -34,12 +34,12 @@ export const columns = (student) => [
     //   <img height="56px" width="56px" alt={row.name} src={row.image} />
     // ),
     name: "Descripción",
-    selector: (row) => row.birthDate,
+    selector: (row) => row.description,
     sortable: true,
     reorder: true,
   },
   {
-    selector: (row) => row.birthPlace,
+    selector: (row) => row.createdAt,
     name: "Fecha",
     sortable: true,
     reorder: true,

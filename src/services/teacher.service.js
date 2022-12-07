@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Logs } = require("../../db/models/logs.models");
 
 const { models } = require("../../libs/sequelize");
 
@@ -36,12 +37,25 @@ class TeacherService {
       include: ["eventuality"],
     });
 
+    await Logs.create({
+      userId: 1,
+      description: "Ha creado un profesor/a en la tabla de maestros",
+      action: "CREATE",
+      table: "TEACHERS",
+    });
+
     return newTeacher;
   }
 
   async update(ci, changes) {
     const teacher = await this.findOne(ci);
     const updateTeacher = await teacher.update(changes);
+    await Logs.create({
+      userId: 1,
+      description: "Ha actualizado un profesor/a en la tabla de maestros",
+      action: "UPDATE",
+      table: "TEACHERS",
+    });
 
     return updateTeacher;
   }
@@ -50,6 +64,12 @@ class TeacherService {
     const teacher = await this.findOne(ci);
     await teacher.destroy();
 
+    await Logs.create({
+      userId: 1,
+      description: "Profesor/a en la tabla de maestros",
+      action: "DELETE",
+      table: "TEACHERS",
+    });
     return { ci };
   }
 }

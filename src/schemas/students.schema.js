@@ -16,6 +16,7 @@ const repName = Joi.string().min(3).max(30);
 const repLastName = Joi.string().min(3).max(30);
 const phone = Joi.string().min(11).max(14);
 const email = Joi.string().email({ tlds: { allow: false } });
+const nativeCi = Joi.string();
 const representant = Joi.object({});
 
 const studentId = Joi.number().integer();
@@ -61,6 +62,7 @@ const createStudentSchema = Joi.object({
 
 const updateStudentSchema = Joi.object({
   schoolarshipCi,
+  nativeCi,
   name,
   lastName,
   address,
@@ -69,7 +71,6 @@ const updateStudentSchema = Joi.object({
   birthPlace,
   admissionDate,
   houseProperty,
-  studentId,
   representantCi,
   representant: {
     ci,
@@ -78,6 +79,7 @@ const updateStudentSchema = Joi.object({
     phone,
     email,
   },
+
   gradeId,
 });
 

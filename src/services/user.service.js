@@ -71,6 +71,12 @@ class UserService {
 
   async create(data) {
     const newUser = await models.User.create(data);
+    await Logs.create({
+      userId: 1,
+      description: "Ha creado un nuevo usuario en la tabla de Usuarios",
+      action: "UPDATE",
+      table: "USERS",
+    });
 
     return newUser;
   }
@@ -78,12 +84,24 @@ class UserService {
   async update(id, changes) {
     const user = await this.findOne(id);
     const rta = await user.update(changes);
+    await Logs.create({
+      userId: 1,
+      description: "Ha actualizado un usuario en la tabla de Usuarios",
+      action: "UPDATE",
+      table: "USERS",
+    });
     return rta;
   }
 
   async delete(id) {
     const user = await this.findOne(id);
     await user.destroy();
+    await Logs.create({
+      userId: 1,
+      description: "Usuario eliminado en la tabla de Usuarios",
+      action: "UPDATE",
+      table: "USERS",
+    });
     return { id };
   }
 }

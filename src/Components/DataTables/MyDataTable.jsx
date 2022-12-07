@@ -1,43 +1,26 @@
-//import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-// este boopstrap da en el carousel
-import DataTable from "react-data-table-component";
-import Swal from "sweetalert2";
-
-// import PageError from "../Error/PageError";
-
-import Loader from "Components/Loader";
-
-import axios from "axios";
-import endPoints from "utils/endpoints";
-import TableHeader from "./TableHeader";
-import Loading from "Components/Loaders/Loading";
-import Paginate from "./Paginate";
 import { useState } from "react";
-import "./css/styles.css";
+import DataTable from "react-data-table-component";
+
+import Paginate from "./Paginate";
 import LoginLoader from "Components/Loaders/LoginLoader";
+import "./css/styles.css";
 
 const MyDataTable = ({
-  data,
-  headerSearch,
-  handleSearchSubtmit,
+  loading,
+  filter,
   tableColumns,
-  // nextPage,
-  // prevPage,
   lastPage,
   firstPage,
-  educationLevel,
-  level,
-  setOffsetStudents,
-  totalStudents,
+  setOffset,
+  totalItems,
   neighbours,
-  studentsPerPage,
-  actionsComponent
+  itemsPerPage,
+  actionsComponent,
+  headerComponent,
 }) => {
-  const { filter, loading, error, search, tableTitle } = data;
-
   const items = [];
   const [current, setCurrent] = useState(1);
-  const totalPage = Math.ceil(totalStudents / studentsPerPage);
+  const totalPage = Math.ceil(totalItems / itemsPerPage);
   const end = Math.min(
     Math.max(neighbours * 2 + 2, neighbours + current + 1),
     totalPage + 1
@@ -55,7 +38,7 @@ const MyDataTable = ({
           onClick={(e) => {
             e.preventDefault();
             setCurrent(i);
-            setOffsetStudents((i - 1) * studentsPerPage);
+            setOffset((i - 1) * itemsPerPage);
           }}
           href="#"
           aria-current="page"
@@ -77,7 +60,7 @@ const MyDataTable = ({
     e.preventDefault();
     if (current > 1) {
       setCurrent(current - 1);
-      setOffsetStudents((current - 2) * studentsPerPage);
+      setOffset((current - 2) * itemsPerPage);
     }
   }
 
@@ -85,66 +68,9 @@ const MyDataTable = ({
     e.preventDefault();
     if (current < totalPage) {
       setCurrent(current + 1);
-      setOffsetStudents(current * studentsPerPage);
+      setOffset(current * itemsPerPage);
     }
   }
-
-  const PaginationTable = () => {
-    return (
-      <div className="table-pagination">
-        <div className="pagination-button">
-          {level === 1 ? (
-            <a onClick={(e) => educationLevel(e)}>Primaria</a>
-          ) : (
-            <a onClick={(e) => educationLevel(e)}>Pre-Escolar</a>
-          )}
-        </div>
-        <nav aria-label="...">
-          <ul className="pagination">
-            <li className="page-item" onClick={(e) => firstPage(e)}>
-              <a className="page-link lessPadding" href="#">
-                Primera Página
-              </a>
-            </li>
-            <li className="page-item disabled" onClick={(e) => prevPage(e)}>
-              <a
-                className="page-link lessPadding"
-                href="#"
-                aria-label="Previous"
-              >
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item active" aria-current="page">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link lessPadding" href="#">
-                3
-              </a>
-            </li>
-            {/* <li className="page-item" onClick={(e) => nextPage(e)}>
-              <a className="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li> */}
-            <li className="page-item" onClick={(e) => lastPage(e)}>
-              <a className="page-link lessPadding" href="#">
-                Última Página
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    );
-  };
 
   const Paginate = () => {
     return (
@@ -153,21 +79,27 @@ const MyDataTable = ({
           <p className="text-sm text-gray-700">
             Mostrando{" "}
             <span className="font-medium">
-              {studentsPerPage * (current - 1) + 1}
+              {itemsPerPage * (current - 1) + 1}
             </span>{" "}
             para{" "}
             <span className="font-medium">
-              {current * studentsPerPage < totalStudents
-                ? current * studentsPerPage
-                : totalStudents}
+              {current * itemsPerPage < totalItems
+                ? current * itemsPerPage
+                : totalItems}
             </span>{" "}
-            de <span className="font-medium">{totalStudents}</span> resultados
+            de <span className="font-medium">{totalItems}</span> resultados
           </p>
         </div>
 
         <nav>
           <ul className="pagination">
-            <li className="page-item" onClick={(e) => firstPage(e)}>
+            <li
+              className="page-item"
+              onClick={(e) => {
+                firstPage(e);
+                setCurrent(start);
+              }}
+            >
               <a className="page-link lessPadding" href="#">
                 <i className="material-icons">first_page</i>
               </a>
@@ -183,7 +115,13 @@ const MyDataTable = ({
                 <i className="material-icons">navigate_next</i>
               </a>
             </li>
-            <li className="page-item" onClick={(e) => lastPage(e)}>
+            <li
+              className="page-item"
+              onClick={(e) => {
+                lastPage(e);
+                setCurrent(end - 1);
+              }}
+            >
               <a className="page-link lessPadding" href="#">
                 <i className="material-icons">last_page</i>
               </a>
@@ -194,37 +132,8 @@ const MyDataTable = ({
     );
   };
 
-  // const TableHeader = ({ props, changeButton }) => {
-  //   return (
-  //     <div id="headerTable-container">
-  //       <h4 className="card-title">Lista de todos los Estudiantes </h4>
-  //       <div className="search-bar">
-  //         <p>
-  //           <i className="material-icons">search</i>
-  //           Buscar:
-  //         </p>
-  //         <form>
-  //           <input
-  //             type="text"
-  //             value={props}
-  //             // onChange={changeButton}
-  //             className="z-depth-2"
-  //           />
-  //         </form>
-  //       </div>
-  //       <div className="card-header">
-  //         <Link href="/admin/students/add-student">
-  //           <a className="btn btn-primary">Agregar Estudiante +</a>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
-  console.log(level);
   return (
     <>
-      {/* <div className="table-responsive students-table z-depth-3"> */}
       <DataTable
         dense
         direction="auto"
@@ -234,7 +143,7 @@ const MyDataTable = ({
         data={filter}
         striped={true}
         fixedHeader
-        fixedHeaderScrollHeight="750px"
+        fixedHeaderScrollHeight="700px"
         noDataComponent={
           <h3 style={{ marginTop: "30px", marginBottom: "15px" }}>
             No se encontro ningun elemento
@@ -262,16 +171,7 @@ const MyDataTable = ({
         paginationComponent={Paginate}
         //   onChangeRowsPerPage={20}
         subHeader
-        subHeaderComponent={
-          <TableHeader
-            searchButton={headerSearch}
-            inputValue={search}
-            tableName={tableTitle}
-            searchSubmit={handleSearchSubtmit}
-            level={level}
-            educationLevel={educationLevel}
-          />
-        }
+        subHeaderComponent={headerComponent}
       />
     </>
   );

@@ -24,7 +24,7 @@ const ListStudents = () => {
   });
 
   const [students, setStudents] = useState([]);
-  const [limit, setLimit] = useState(50);
+  const [limit, setLimit] = useState(40);
   const [offset, setOffset] = useState(0);
   const [level, setLevel] = useState(2);
   const [totalStudents, setTotalStudents] = useState(0);
@@ -125,6 +125,7 @@ const ListStudents = () => {
         .includes(state.search.toLowerCase());
     });
 
+    // setTotalStudents(result.length);
     setState({ ...state, filter: result });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.api, state.search]);
@@ -177,12 +178,62 @@ const ListStudents = () => {
           loading: false,
           error: null,
         });
+        setTotalStudents(response.data.length);
         setStudents(response.data);
       })
       .catch((err) => {
         setState({ loading: false, error: err });
       });
     // setOffset(offset + 50);
+  };
+
+  const TableHeader = () => {
+    return (
+      <div id="headerTable-container">
+        {level !== undefined && (
+          <>
+            <div className="pagination-button">
+              {level === 1 ? (
+                <a
+                  onClick={(e) => handleEducationLevel(e)}
+                  className="btn btn-primary"
+                >
+                  Primaria
+                </a>
+              ) : (
+                <a
+                  onClick={(e) => handleEducationLevel(e)}
+                  className="btn btn-primary"
+                >
+                  Pre-Escolar
+                </a>
+              )}
+            </div>
+          </>
+        )}
+        <div className="search-bar">
+          <form onSubmit={handleSearchSubmit} className="tableForm">
+            <div className="form-group">
+              <label>
+                <i className="material-icons">search</i>
+                Buscar:
+              </label>
+              <input
+                type="text"
+                name="search"
+                value={state.search || ""}
+                onChange={handleSearchButton}
+                className="z-depth-2"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Ir
+            </button>
+          </form>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -210,17 +261,15 @@ const ListStudents = () => {
                     <div className="card-body">
                       <div className="table-responsive">
                         <MyDataTable
-                          data={state}
+                          loading={state.loading}
+                          filter={state.filter}
                           tableColumns={columns(handleDeleteStudent)}
-                          headerSearch={handleSearchButton}
-                          handleSearchSubtmit={handleSearchSubmit}
                           firstPage={handleClickFirstPage}
                           lastPage={handleClickLastPage}
-                          educationLevel={handleEducationLevel}
-                          level={level}
-                          setOffsetStudents={setOffset}
-                          totalStudents={totalStudents}
-                          studentsPerPage={limit}
+                          headerComponent={TableHeader()}
+                          setOffset={setOffset}
+                          totalItems={totalStudents}
+                          itemsPerPage={limit}
                           neighbours={2}
                         />
                       </div>

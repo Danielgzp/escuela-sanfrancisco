@@ -24,6 +24,13 @@ const endPoints = {
     deleteGrade: (id) => `${API}/${VERSION}/admin/grades/${id}`,
     updateGrade: (id) => `${API}/${VERSION}/admin/grades/${id}`,
   },
+  logs: {
+    getAllLogs: `${API}/${VERSION}/admin/logs`,
+    getLog: (id) => `${API}/${VERSION}/admin/logs/${id}`,
+    addLog: `${API}/${VERSION}/admin/logs`,
+    deleteLog: (id) => `${API}/${VERSION}/admin/logs/${id}`,
+    updateLog: (id) => `${API}/${VERSION}/admin/logs/${id}`,
+  },
   news: {
     getAllNews: `${API}/${VERSION}/news`,
     getNews: (id) => `${API}/${VERSION}/news/${id}`,

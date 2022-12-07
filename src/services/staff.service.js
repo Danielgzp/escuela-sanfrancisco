@@ -33,21 +33,38 @@ class StaffService {
     const newStaff = await models.Staff.create(data, {
       include: ["eventuality"],
     });
-
+    await Logs.create({
+      userId: 1,
+      description:
+        "Ha creado un nuevo miebro del personal en la tabla de Staff",
+      action: "CREATE",
+      table: "STAFF",
+    });
     return newStaff;
   }
 
   async update(ci, changes) {
     const staff = await this.findOne(ci);
     const updateStaff = await staff.update(changes);
-
+    await Logs.create({
+      userId: 1,
+      description:
+        "Ha actualizado un miembro del personal en la tabla de Staff",
+      action: "UPDATE",
+      table: "STAFF",
+    });
     return updateStaff;
   }
 
   async delete(ci) {
     const staff = await this.findOne(ci);
     await staff.destroy();
-
+    await Logs.create({
+      userId: 1,
+      description: "Miembro del personal eliminado en la tabla de Staff",
+      action: "DELETE",
+      table: "STAFF",
+    });
     return { ci };
   }
 }

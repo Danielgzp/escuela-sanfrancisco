@@ -56,7 +56,7 @@ thead tr {
 thead tr th {
   background-color: #143b64;
   width: fit-content;
-  font-size: 18px;
+  font-size: 17px;
   color: white;
   padding: 5px 10px;
   margin: 0;
@@ -66,7 +66,7 @@ tbody {
 }
 tbody tr th {
   width: fit-content;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px;
   margin: 0;
 }

@@ -29,6 +29,11 @@ const LogsSchema = {
     type: DataTypes.DATE,
     field: "create_at",
     defaultValue: Sequelize.NOW,
+    get: function () {
+      return moment(this.getDataValue("createdAt")).format(
+        "dddd, DD-MM-YYYY HH:mm a"
+      );
+    },
   },
   userId: {
     field: "user_id",

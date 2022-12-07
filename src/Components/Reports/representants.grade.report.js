@@ -1,19 +1,16 @@
 import moment from "moment";
 import reportHeader from "./reportHeader";
 
-const date = new Date();
-moment(date).format("DD-MM-YYYY");
+const now = Date.now();
+const date = new Date(now);
 
-const studentsReport = (body) => `
+const representantsGradeReport = (body) => `
 <!doctype html>
 <html>
   <head>
   <meta></meta>
   <title></title>
   <style>
-  .reportContainer {
-  padding: 20px;
-}
   body {
   padding: 20px;
   margin: 10px 15px;
@@ -75,20 +72,6 @@ tbody tr th {
   <body>
     ${reportHeader}
      <div
-      class="reportTitle"
-      style="display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 95%;
-        margin: 0 auto;"
-    >
-      <div>
-        <strong>
-          <h2>LISTAS DE ESTUDIANTES</h2>
-        </strong>
-      </div>
-      <div
         style="display: flex;
                 flex-direction: row;
                 justify-content: space-around;
@@ -107,35 +90,44 @@ tbody tr th {
                 width: 100%;"
       >
         <h3>Total Estudiantes: ${body.length}</h3>
-        <h3>Profesora: ${body[0].grade?.teacher?.name || "No"} ${
+        <h3>Profesora/or: ${body[0].grade?.teacher?.name || "No"} ${
   body[0].grade?.teacher?.lastName || "hay Profesor"
 }</h3>
-        <h3>${date}</h3>
+       
+        <h3>${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</h3>
       </div>
     </div>
     <table>
       <thead>
-        <tr>
-          <th scope="col">C.I Escolar</th>
-          <th scope="col">Nombres</th>
-          <th scope="col">Apellidos</th>
-          <th scope="col">Género</th>
-          <th scope="col">Fecha de Nacimiento</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${body.map(
-          (student) => `
-            <tr key="${student.id}">
-            <th class="firstColumn" id="firstColumn" >${student.schoolarshipCi}</th>
-            <th>${student.name}</th>
-            <th>${student.lastName}</th>
-            <th>${student.gender}</th>
-            <th>${student.birthDate}</th>
+          <tr>
+            <th scope="col">C.I Escolar</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">C.I Representante</th>
+            <th scope="col">Nombre del Representante</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Correo</th>
           </tr>
-          `
-        )}
-      </tbody>
+        </thead>
+        <tbody>
+          ${body?.map(
+            (student) => `
+            <tr key=${student.id}>
+              <th>${student.schoolarshipCi}</th>
+              <th>
+                ${student.name} ${student.lastName}
+              </th>
+              <th>${student.representant?.ci}</th>
+              <th>
+                ${student.representant?.repName}
+                ${student.representant?.repLastName}
+              </th>
+
+              <th>${student.representant?.phone}</th>
+              <th>${student.representant?.email}</th>
+            </tr>
+         `
+          )}
+        </tbody>
     </table>
     <div id="pageFooter" style="border-top: 1px solid #ddd; padding-top: 5px">
       <p
@@ -172,4 +164,4 @@ tbody tr th {
 </html>
 `;
 
-export default studentsReport;
+export default representantsGradeReport;

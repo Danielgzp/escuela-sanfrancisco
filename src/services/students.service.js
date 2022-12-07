@@ -2,6 +2,7 @@ const boom = require("@hapi/boom");
 const { Op } = require("sequelize");
 // const faker = require("faker");
 import { faker } from "@faker-js/faker";
+import { Logs } from "../../db/models/logs.models";
 
 const { models } = require("../../libs/sequelize");
 
@@ -413,7 +414,7 @@ class StudentsService {
   async findByGrade(filterGrade, section) {
     const options = {
       include: [
-        // "representant",
+        "representant",
         "grade",
         {
           association: "grade",
@@ -465,6 +466,12 @@ class StudentsService {
     const newStudent = await models.Students.create(data, {
       include: ["representant", "record"],
     });
+    await Logs.create({
+      userId: 1,
+      description: "Ha creado un nuevo estudiante en la tabla de estudiantes",
+      action: "CREATE",
+      table: "STUDENTS",
+    });
 
     return newStudent;
   }
@@ -475,12 +482,59 @@ class StudentsService {
       include: ["representant"],
     });
 
+    await Logs.create({
+      userId: 1,
+      description: "Ha actualizado un estudiante en la tabla de estudiantes",
+      action: "UPDATE",
+      table: "STUDENTS",
+    });
+
     return updateStudent;
   }
 
   async delete(ci) {
     const student = await this.findOne(ci);
     await student.destroy();
+
+    await Logs.create({
+      userId: 1,
+      description: "Estudiante eliminado de la tabla de estudiantes",
+      action: "DELETE",
+      table: "STUDENTS",
+    });
+
+    //   id: {
+    //   allowNull: false,
+    //   autoIncrement: true,
+    //   primaryKey: true,
+    //   type: DataTypes.INTEGER,
+    // },
+    // description: {
+    //   allowNull: false,
+    //   type: DataTypes.STRING,
+    // },
+    // table: {
+    //   allowNull: false,
+    //   type: DataTypes.STRING,
+    // },
+    // action: {
+    //   allowNull: false,
+    //   type: DataTypes.STRING,
+    // },
+    // createdAt: {
+    //   allowNull: false,
+    //   type: DataTypes.DATE,
+    //   field: "create_at",
+    //   defaultValue: Sequelize.NOW,
+    // },
+    // userId: {
+    //   field: "user_id",
+    //   allowNull: false,
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: USER_TABLE,
+    //     key: "id",
+    //   },
 
     return { ci };
   }
