@@ -53,7 +53,7 @@ const GradeStudents = ({ data }) => {
             CIEscolar: element.schoolarshipCi,
             Nombre: element.name,
             RepCI: element.representant?.ci,
-            RepNombre: element.representant?.name,
+            RepNombre: element.representant?.repName,
             Telefono: element.representant?.phone,
             Correo: element.representant?.email,
           });
@@ -72,14 +72,13 @@ const GradeStudents = ({ data }) => {
       });
   };
 
-  console.log(students)
   const Actions = () => {
     return (
       <>
         {students.length > 0 && (
           <>
             <CSVLink data={dataCSV} filename="representantesGrado.csv">
-              <button className="btn btn-secondary text-white">
+              <button type="button" className="btn btn-secondary text-white">
                 <i className="fas fa-file-csv mr-2"></i>
                 CSV
               </button>
@@ -87,8 +86,8 @@ const GradeStudents = ({ data }) => {
             <ReactToPrint
               trigger={() => {
                 return (
-                  <button className="btn btn-dark text-white">
-                    <i class="fas fa-print mr-2"></i>
+                  <button type="button" className="btn btn-dark text-white">
+                    <i className="fas fa-print mr-2"></i>
                     Imprimir
                   </button>
                 );
@@ -98,8 +97,8 @@ const GradeStudents = ({ data }) => {
               content={() => componentRef.current}
               copyStyles={true}
             />
-            <button className="btn btn-success text-white">
-              <i class="fas fa-file-excel mr-2"></i>
+            <button type="button" className="btn btn-success text-white">
+              <i className="fas fa-file-excel mr-2"></i>
               <ReactHtmlTableToExcel
                 id="exportExcel"
                 sheet="Pagina 1"
@@ -112,6 +111,7 @@ const GradeStudents = ({ data }) => {
             </button>
 
             <button
+              type="button"
               className="btn btn-danger"
               onClick={() => {
                 axios
@@ -137,7 +137,7 @@ const GradeStudents = ({ data }) => {
                   });
               }}
             >
-              <i class="fas fa-file-pdf mr-2"></i>
+              <i className="fas fa-file-pdf mr-2"></i>
               PDF
             </button>
           </>

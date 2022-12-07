@@ -79,7 +79,7 @@ const ListGrades = () => {
 
   const handleDeleteGrade = async (id) => {
     // const id = e.target.getAttribute("id");
-    console.log(id)
+    console.log(id);
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¿Deseas eliminar este Grado?",
@@ -136,7 +136,7 @@ const ListGrades = () => {
               trigger={() => {
                 return (
                   <button className="btn btn-dark text-white">
-                    <i class="fas fa-print mr-2"></i>
+                    <i className="fas fa-print mr-2"></i>
                     Imprimir
                   </button>
                 );
@@ -147,7 +147,7 @@ const ListGrades = () => {
               copyStyles={true}
             />
             <button className="btn btn-success text-white">
-              <i class="fas fa-file-excel mr-2"></i>
+              <i className="fas fa-file-excel mr-2"></i>
               <ReactHtmlTableToExcel
                 id="exportExcel"
                 sheet="Pagina 1"
@@ -185,7 +185,7 @@ const ListGrades = () => {
                   });
               }}
             >
-              <i class="fas fa-file-pdf mr-2"></i>
+              <i className="fas fa-file-pdf mr-2"></i>
               PDF
             </button>
           </>

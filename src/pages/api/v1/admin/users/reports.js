@@ -13,9 +13,9 @@ handler.post(async (req, res, next) => {
       usersReport(body),
       `reporte-usuarios-${moment(date).format("DD-MM-YYYY")}.pdf`
     );
-    res.status(200).json("PDF creado exitosamente");
+    res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
   } catch (error) {
-    console.log(error)
+    console.log(error);
     next(error);
   }
 });

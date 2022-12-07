@@ -16,7 +16,7 @@ class TeacherService {
     return teacher;
   }
 
-  async findOne(ci) {
+  async findOne(ci, userId) {
     const teacher = await models.Teacher.findByPk(ci, {
       include: ["eventuality", "grade"],
     });
@@ -32,13 +32,13 @@ class TeacherService {
     return count;
   }
 
-  async create(data) {
+  async create(data, userId) {
     const newTeacher = await models.Teacher.create(data, {
       include: ["eventuality"],
     });
 
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Ha creado un profesor/a en la tabla de maestros",
       action: "CREATE",
       table: "TEACHERS",
@@ -47,11 +47,11 @@ class TeacherService {
     return newTeacher;
   }
 
-  async update(ci, changes) {
+  async update(ci, changes, userId) {
     const teacher = await this.findOne(ci);
     const updateTeacher = await teacher.update(changes);
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Ha actualizado un profesor/a en la tabla de maestros",
       action: "UPDATE",
       table: "TEACHERS",
@@ -65,7 +65,7 @@ class TeacherService {
     await teacher.destroy();
 
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Profesor/a en la tabla de maestros",
       action: "DELETE",
       table: "TEACHERS",

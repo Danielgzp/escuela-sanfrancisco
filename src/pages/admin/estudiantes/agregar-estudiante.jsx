@@ -347,11 +347,6 @@ const AddStudent = ({ data }) => {
                             required
                             defaultValue={representant?.phone}
                           />
-                          {/* <input
-                            name="datepicker"
-                            className="datepicker-default form-control"
-                            id="datepicker1"
-                          /> */}
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">

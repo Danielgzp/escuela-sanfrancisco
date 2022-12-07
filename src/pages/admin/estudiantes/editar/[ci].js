@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import GradeService from "services/grade.service";
 import StudentsService from "services/students.service";
+import SearchRepresentant from "Components/Modal/SearchRepresentant";
 
 const service = new GradeService();
 const studentService = new StudentsService();
@@ -21,35 +22,20 @@ const EditStudent = ({ data }) => {
     loading: false,
     error: null,
   });
+  const [representant, setRepresentant] = useState(null);
 
-  useEffect(() => {
-    // const script = document.createElement("script");
-    // const script2 = document.createElement("script");
-    // const script3 = document.createElement("script");
-    // const script4 = document.createElement("script");
-    // script.src = "/vendor/pickadate/picker.js";
-    // script.async = false;
-    // document.body.appendChild(script);
-    // script2.src = "/vendor/pickadate/picker.time.js";
-    // script2.async = false;
-    // document.body.appendChild(script2);
-    // script3.src = "/vendor/pickadate/picker.date.js";
-    // script3.async = false;
-    // document.body.appendChild(script3);
-    // script4.src = "/js/plugins-init/pickadate-init.js";
-    // script4.async = false;
-    // document.body.appendChild(script4);
-  }, []);
-  // const [grades, setGrades] = useState([]);
+  useEffect(() => {}, [representant]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let addNewStudent = {};
 
     const formData = new FormData(formRef.current);
+
     const objectData = Object.fromEntries([...formData.entries()]);
-    const updateDataStudent = {
+    const newStudentNoRepresententant = {
       schoolarshipCi: objectData.schoolId,
-      nativeCi: objectData.nativeCi,
+      nativeCi: objectData.nativeCi || undefined,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -58,10 +44,23 @@ const EditStudent = ({ data }) => {
       admissionDate: objectData.admissionDate,
       birthPlace: objectData.birthPlace,
       houseProperty: objectData.houseProperty,
-      // no funciona bien el actualizar el representante
-      // representantId: 7,
+      representantCi: representant?.ci,
+      gradeId: objectData.grade,
+    };
+
+    const newStudent = {
+      schoolarshipCi: objectData.schoolId,
+      nativeCi: objectData.nativeCi || undefined,
+      name: objectData.name,
+      lastName: objectData.lastName,
+      address: objectData.address,
+      birthDate: objectData.birthDate,
+      gender: objectData.gender,
+      admissionDate: objectData.admissionDate,
+      birthPlace: objectData.birthPlace,
+      houseProperty: objectData.houseProperty,
       representant: {
-        ci: objectData.repCi,
+        ci: objectData.repCI,
         repName: objectData.repName,
         repLastName: objectData.repLastName,
         email: objectData.email,
@@ -71,8 +70,19 @@ const EditStudent = ({ data }) => {
     };
 
     setState({ loading: true, error: null });
+
+    if (representant !== null) {
+      addNewStudent = newStudentNoRepresententant;
+    } else {
+      addNewStudent = newStudent;
+    }
+
+    setState({ loading: true, error: null });
     axios
-      .patch(endPoints.students.updateStudent(student.schoolarshipCi), updateDataStudent)
+      .patch(
+        endPoints.students.updateStudent(student.schoolarshipCi),
+        updateDataStudent
+      )
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -250,10 +260,23 @@ const EditStudent = ({ data }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12">
-                        <h4 className="text-primary mb-5">
-                          Información del Representante
+                      <div className="card-header col-lg-9 col-md-12 col-sm-12">
+                        <h4 className="text-primary mb-4">
+                          Información del representante
                         </h4>
+                      </div>
+                      <div className="card-header col-lg-3 col-md-12 col-sm-12">
+                        <a
+                          className="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target={`#searchRepresentant`}
+                        >
+                          Buscar Representante
+                        </a>
+                        <SearchRepresentant
+                          setRepresentant={setRepresentant}
+                          representant={representant}
+                        />
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
@@ -263,8 +286,16 @@ const EditStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repName"
-                            className="form-control"
-                            defaultValue={student.representant.repName}
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
+                            defaultValue={
+                              representant !== null
+                                ? representant?.repName
+                                : student.representant?.repName
+                            }
                           />
                         </div>
                       </div>
@@ -276,8 +307,16 @@ const EditStudent = ({ data }) => {
                           <input
                             type="text"
                             name="repLastName"
-                            className="form-control"
-                            defaultValue={student.representant.repLastName}
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
+                            defaultValue={
+                              representant !== null
+                                ? representant?.repLastName
+                                : student.representant?.repLastName
+                            }
                           />
                         </div>
                       </div>
@@ -289,8 +328,16 @@ const EditStudent = ({ data }) => {
                           <input
                             type="number"
                             name="repCI"
-                            className="form-control"
-                            defaultValue={student.representant.ci}
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
+                            defaultValue={
+                              representant !== null
+                                ? representant?.ci
+                                : student.representant?.ci
+                            }
                           />
                         </div>
                       </div>
@@ -301,8 +348,16 @@ const EditStudent = ({ data }) => {
                           <input
                             type="text"
                             name="phone"
-                            className="form-control"
-                            defaultValue={student.representant.phone}
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
+                            defaultValue={
+                              representant !== null
+                                ? representant?.phone
+                                : student.representant?.phone
+                            }
                           />
                         </div>
                       </div>
@@ -312,8 +367,16 @@ const EditStudent = ({ data }) => {
                           <input
                             type="email"
                             name="email"
-                            className="form-control"
-                            defaultValue={student.representant.email}
+                            className={`form-control ${
+                              representant !== null && "disabled"
+                            }
+                            `}
+                            disabled={representant !== null && "true"}
+                            defaultValue={
+                              representant !== null
+                                ? representant?.email
+                                : student.representant?.email
+                            }
                           />
                         </div>
                       </div>
@@ -331,7 +394,7 @@ const EditStudent = ({ data }) => {
                         <button
                           type="button"
                           data-bs-toggle="modal"
-                          data-bs-target={`#record-${student.ci}`}
+                          data-bs-target={`#record-${student.schoolarshipCi}`}
                           className="btn btn-primary mr-3 float-right"
                         >
                           <span className="mr-3">

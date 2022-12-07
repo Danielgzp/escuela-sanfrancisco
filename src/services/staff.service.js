@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Logs } = require("../../db/models/logs.models");
 
 const { models } = require("../../libs/sequelize");
 
@@ -29,12 +30,12 @@ class StaffService {
 
     return count;
   }
-  async create(data) {
+  async create(data, userId) {
     const newStaff = await models.Staff.create(data, {
       include: ["eventuality"],
     });
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description:
         "Ha creado un nuevo miebro del personal en la tabla de Staff",
       action: "CREATE",
@@ -43,7 +44,7 @@ class StaffService {
     return newStaff;
   }
 
-  async update(ci, changes) {
+  async update(ci, changes, userId) {
     const staff = await this.findOne(ci);
     const updateStaff = await staff.update(changes);
     await Logs.create({
@@ -56,11 +57,11 @@ class StaffService {
     return updateStaff;
   }
 
-  async delete(ci) {
+  async delete(ci, userId) {
     const staff = await this.findOne(ci);
     await staff.destroy();
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Miembro del personal eliminado en la tabla de Staff",
       action: "DELETE",
       table: "STAFF",

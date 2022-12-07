@@ -25,11 +25,11 @@ class NewsService {
     return news;
   }
 
-  async create(data) {
+  async create(data, userId) {
     const newNews = await models.News.create(data);
 
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Ha creado una nueva noticia en la tabla de News",
       action: "CREATE",
       table: "NEWS",
@@ -37,11 +37,11 @@ class NewsService {
     return newNews;
   }
 
-  async update(id, changes) {
+  async update(id, changes, userId) {
     const news = await this.findOne(id);
     const updateNews = await news.update(changes);
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Noticia actualizada en la tabla de News",
       action: "UPDATE",
       table: "NEWS",
@@ -49,11 +49,11 @@ class NewsService {
     return updateNews;
   }
 
-  async delete(id) {
+  async delete(id, userId) {
     const news = await this.findOne(id);
     await news.destroy();
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Noticia eliminada en la tabla de Noticias",
       action: "DELETE",
       table: "NEWS",

@@ -26,7 +26,7 @@ class GradeService {
     return grade;
   }
 
-  async create(data) {
+  async create(data, userId) {
     const newGrade = await models.Grade.create(
       data
       //     , {
@@ -34,7 +34,7 @@ class GradeService {
       // }
     );
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Se ha creado un nuevo grado en la table de Grades",
       action: "CREATE",
       table: "GRADES",
@@ -42,11 +42,11 @@ class GradeService {
     return newGrade;
   }
 
-  async update(id, changes) {
+  async update(id, changes, userId) {
     const grade = await this.findOne(id);
     const updateGrade = await grade.update(changes);
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Grado actualizado en la tabla de Grades",
       action: "UPDATE",
       table: "GRADES",
@@ -54,11 +54,11 @@ class GradeService {
     return updateGrade;
   }
 
-  async delete(id) {
+  async delete(id, userId) {
     const grade = await this.findOne(id);
     await grade.destroy();
     await Logs.create({
-      userId: 1,
+      userId: userId,
       description: "Grado eliminado en la tabla de Grades",
       action: "DELETE",
       table: "GRADES",

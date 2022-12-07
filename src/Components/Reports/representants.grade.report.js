@@ -35,7 +35,7 @@ const representantsGradeReport = (body) => `
   text-align: center;
 }
 table {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.25);

@@ -5,6 +5,7 @@ import validatorHandler from "middlewares/validator.handler";
 import { createNewsSchema } from "schemas/newsSchema";
 import NewsService from "services/news.service";
 import { errorHandler } from "middlewares/error.handler";
+import { verify } from "jsonwebtoken";
 
 const service = new NewsService();
 const handler = nextConnect();
@@ -19,13 +20,22 @@ handler
     }
   })
   .post(
-    // passport.authenticate("jwt", { session: false }),
-    // checkRoles("superadmin", "gerencia"),
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin", "gerencia"),
     validatorHandler(createNewsSchema, "body"),
     async (req, res, next) => {
       try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
         const body = req.body;
-        const newPost = await service.create(body);
+        const newPost = await service.create(body, sub);
+
         res.status(201).json(newPost);
       } catch (error) {
         res.status(500).json("Ha ocurrido un error");

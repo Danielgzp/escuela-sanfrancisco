@@ -19,6 +19,7 @@ handler.post(
 
       res.json(service.signToken(user));
     } catch (error) {
+      console.log(error)
       next(error);
     }
   }

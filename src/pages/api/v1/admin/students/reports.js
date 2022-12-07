@@ -15,13 +15,13 @@ handler.post(async (req, res, next) => {
         studentsCi(body),
         `reporte-${moment(date).format("DD-MM-YYYY")}.pdf`
       );
-      res.status(200).json("PDF creado exitosamente");
+      res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     } else {
       doPdf(
         studentsReport(body),
         `reporte-${moment(date).format("DD-MM-YYYY")}.pdf`
       );
-      res.status(200).json("PDF creado exitosamente");
+      res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     }
   } catch (error) {
     next(error);

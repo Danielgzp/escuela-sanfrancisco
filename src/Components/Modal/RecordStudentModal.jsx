@@ -51,7 +51,7 @@ const RecordStudentModal = ({ student }) => {
   return (
     <div
       className="modal fade"
-      id={`record-${student.ci}`}
+      id={`record-${student.schoolarshipCi}`}
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"

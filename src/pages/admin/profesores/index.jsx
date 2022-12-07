@@ -98,7 +98,7 @@ const ListTeachers = () => {
               trigger={() => {
                 return (
                   <button className="btn btn-dark text-white">
-                    <i class="fas fa-print mr-2"></i>
+                    <i className="fas fa-print mr-2"></i>
                     Imprimir
                   </button>
                 );
@@ -109,7 +109,7 @@ const ListTeachers = () => {
               copyStyles={true}
             />
             <button className="btn btn-success text-white">
-              <i class="fas fa-file-excel mr-2"></i>
+              <i className="fas fa-file-excel mr-2"></i>
               <ReactHtmlTableToExcel
                 id="exportExcel"
                 sheet="Pagina 1"
@@ -147,7 +147,7 @@ const ListTeachers = () => {
                   });
               }}
             >
-              <i class="fas fa-file-pdf mr-2"></i>
+              <i className="fas fa-file-pdf mr-2"></i>
               PDF
             </button>
           </>

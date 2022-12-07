@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const { config } = require("../../config/config");
-const { Logs } = require("../../db/models/logs.models");
+// const { Logs } = require("../../db/models/logs.models");
 
 // const nodemailer = require("nodemailer");
 
@@ -32,26 +32,26 @@ class AuthService {
   }
 
   //agregue el async por si da error
-  async signToken(user) {
+  //efectivamente daba error
+  signToken(user) {
     const jwtConfig = {
       expiresIn: "7d",
     };
 
-    console.log(user);
     const payload = {
       sub: user.id,
       email: user.email,
-      // // staff: user.staff,
       role: user.userRole.name,
     };
 
     const token = jwt.sign(payload, config.jwtSecret, jwtConfig);
-    await Logs.create({
-      userId: 1,
-      description: "El usuario tal ha iniciado sesión",
-      action: "LOGIN",
-      table: "AUTH",
-    });
+
+    // await Logs.create({
+    //   userId: 1,
+    //   description: "El usuario tal ha iniciado sesión",
+    //   action: "LOGIN",
+    //   table: "AUTH",
+    // });
 
     return {
       user,

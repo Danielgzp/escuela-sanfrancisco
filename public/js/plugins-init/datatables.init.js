@@ -25,25 +25,25 @@
     buttons: [
       {
         extend: "excelHtml5",
-        text: '<i class="fas fa-file-excel"></i> ',
+        text: '<i className="fas fa-file-excel"></i> ',
         titleAttr: "Exportar a Excel",
         className: "btn btn-success",
       },
       {
         extend: "pdfHtml5",
-        text: '<i class="fas fa-file-pdf"></i> ',
+        text: '<i className="fas fa-file-pdf"></i> ',
         titleAttr: "Exportar a PDF",
         className: "btn btn-danger",
       },
       {
         extend: "print",
-        text: '<i class="fa fa-print"></i> ',
+        text: '<i className="fa fa-print"></i> ',
         titleAttr: "Imprimir",
         className: "btn btn-info",
       },
       {
         extend: "csvHtml5",
-        text: '<i class="fas fa-file-csv"></i> ',
+        text: '<i className="fas fa-file-csv"></i> ',
         titleAttr: "CSV",
         className: "btn btn-dark",
       },
