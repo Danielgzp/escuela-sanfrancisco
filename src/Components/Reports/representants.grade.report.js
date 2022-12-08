@@ -115,18 +115,18 @@ tbody tr th {
           ${body?.map(
             (student) => `
             <tr key=${student.id}>
-              <th>${student.schoolarshipCi}</th>
+              <th>${student.schoolarshipCi || "N/A"}</th>
               <th>
-                ${student.name} ${student.lastName}
+                ${student.name || "N"} ${student.lastName || "/A"}
               </th>
-              <th>${student.representant?.ci}</th>
+              <th>${student.representant?.ci || "N/A"}</th>
               <th>
-                ${student.representant?.repName}
-                ${student.representant?.repLastName}
+                ${student.representant?.repName || "N"}
+                ${student.representant?.repLastName || "/A"}
               </th>
 
-              <th>${student.representant?.phone}</th>
-              <th>${student.representant?.email}</th>
+              <th>${student.representant?.phone || "N/A"}</th>
+              <th>${student.representant?.email || "N/A"}</th>
             </tr>
          `
           )}

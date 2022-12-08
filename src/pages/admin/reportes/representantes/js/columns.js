@@ -4,7 +4,7 @@ import endPoints from "utils/endpoints";
 export const columns = (student) => [
   {
     name: "C.I Escolar",
-    selector: (row) => row.schoolarshipCi,
+    selector: (row) => row.schoolarshipCi || "N/A",
     sortable: true,
     reorder: true,
     style: {
@@ -14,32 +14,35 @@ export const columns = (student) => [
 
   {
     name: "Nombre",
-    selector: (row) => `${row.name} ${row.lastName}`,
+    selector: (row) => `${row.name} ${row.lastName}` || "N/A",
 
     sortable: true,
     reorder: true,
   },
   {
     name: "C.I Representante",
-    selector: (row) => row.representant?.ci,
+    selector: (row) => row.representant?.ci || "N/A",
     sortable: true,
     reorder: true,
   },
   {
     name: "Nombre del Representante",
-    selector: (row) => `${row.representant?.repName} ${row.representant?.repLastName}`,
+    selector: (row) =>
+      `${row.representant?.repName || "N"} ${
+        row.representant?.repLastName || "/A"
+      }`,
     sortable: true,
     reorder: true,
   },
   {
     name: "Teléfono",
-    selector: (row) => row.representant?.phone,
+    selector: (row) => row.representant?.phone || "N/A",
     sortable: true,
     reorder: true,
   },
   {
     name: "Correo",
-    selector: (row) => row.representant?.email,
+    selector: (row) => row.representant?.email || "N/A",
     sortable: true,
     reorder: true,
   },

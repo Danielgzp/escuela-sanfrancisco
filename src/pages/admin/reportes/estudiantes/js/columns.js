@@ -3,16 +3,14 @@ import endPoints from "utils/endpoints";
 
 export const columns = (student) => [
   {
-    id: (row) => row.id,
-    name: "#",
-    selector: (row) => row.id,
+    name: "C.I Escolar",
+    selector: (row) => row.schoolarshipCi,
     sortable: true,
     reorder: true,
     style: {
       backgroundColor: "#143b6444",
     },
   },
-
   {
     name: "Apellidos",
     selector: (row) => row.lastName,
@@ -25,12 +23,7 @@ export const columns = (student) => [
     sortable: true,
     reorder: true,
   },
-  {
-    name: "C.I Escolar",
-    selector: (row) => row.schoolarshipCi,
-    sortable: true,
-    reorder: true,
-  },
+
   {
     name: "Cedula",
     selector: (row) => row.nativeCi || "NA",

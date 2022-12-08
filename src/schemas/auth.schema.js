@@ -5,6 +5,7 @@
     Este es un schema para validar los datos que tengan que ver con la autenticacion
 
 */
+const { stringMessages } = require("utils/validations.messages");
 
 const Joi = require("joi");
 
@@ -12,7 +13,7 @@ const email = Joi.string().email(),
   //Aqui validamos que la password sea de 6 o mas caracteres
   password = Joi.string().min(8),
   //Aqui validamos que la newPassword sea de 6 o mas caracteres
-  newPassword = Joi.string().min(8),
+  newPassword = Joi.string().min(8).messages("La nueva contraseña"),
   //Este es un metodo para validar el token de jwt
   token = Joi.string();
 

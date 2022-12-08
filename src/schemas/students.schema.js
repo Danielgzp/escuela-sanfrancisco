@@ -1,28 +1,66 @@
 const Joi = require("joi");
+const {
+  stringMessages,
+  dateMessages,
+  numberMessages,
+} = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const representantCi = Joi.string();
-const schoolarshipCi = Joi.string().max(12);
-const name = Joi.string().min(3).max(30);
-const lastName = Joi.string().min(3).max(30);
-const address = Joi.string().min(5).max(60);
-const gender = Joi.string();
-const birthDate = Joi.date();
-const birthPlace = Joi.string().min(5).max(60);
-const admissionDate = Joi.date();
-const houseProperty = Joi.string().min(3).max(30);
-const ci = Joi.string().max(9);
-const repName = Joi.string().min(3).max(30);
-const repLastName = Joi.string().min(3).max(30);
-const phone = Joi.string().min(11).max(14);
-const email = Joi.string().email({ tlds: { allow: false } });
-const nativeCi = Joi.string();
+const representantCi = Joi.string().messages(stringMessages("La cedula del representnte"));
+
+const nativeCi = Joi.string().messages(stringMessages("La cedula"));
+const schoolarshipCi = Joi.string()
+  .max(12)
+  .messages(stringMessages("La cédula escolar"));
+
+const name = Joi.string().min(3).max(30).messages(stringMessages("El nombre"));
+const lastName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El Apellido"));
+const address = Joi.string()
+  .min(5)
+  .max(60)
+  .messages(stringMessages("La dirección"));
+const gender = Joi.string().messages(stringMessages("Genero"));
+const birthDate = Joi.date().messages(dateMessages("La fecha de Nacimiento"));
+const birthPlace = Joi.string()
+  .min(5)
+  .max(60)
+  .messages(stringMessages("El lugar de nacimiento"));
+const admissionDate = Joi.date().messages(dateMessages("La fecha de admision"));
+const houseProperty = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El tipo de propiedad"));
+const ci = Joi.string()
+  .max(9)
+  .messages(stringMessages("La cedula del representante"));
+const repName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El nombre del representante"));
+const repLastName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El apellido del representante"));
+const phone = Joi.string()
+  .min(11)
+  .max(14)
+  .messages(stringMessages("El telefono"));
+const email = Joi.string()
+  .email({ tlds: { allow: false } })
+  .messages(stringMessages("Correo"));
 const representant = Joi.object({});
 
 const studentId = Joi.number().integer();
-const title = Joi.string();
-const description = Joi.string();
-const day = Joi.string();
+const title = Joi.string().messages(
+  stringMessages("El titulo de la eventualidad")
+);
+const description = Joi.string().messages(
+  stringMessages("La descripcion de la eventualidad")
+);
+const day = Joi.string().messages(dateMessages("La fecha de la eventualidad"));
 
 const gradeId = Joi.number().integer();
 

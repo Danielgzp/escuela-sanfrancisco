@@ -1,11 +1,22 @@
 const Joi = require("joi");
+const {
+  stringMessages,
+  numberMessages,
+} = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const periodId = Joi.number().integer();
-const levelId = Joi.number().integer();
+const periodId = Joi.number()
+  .integer()
+  .messages(numberMessages("El id del periodo escolar"));
+const levelId = Joi.number()
+  .integer()
+  .messages(numberMessages("El id del nivel de educacion"));
 // const sectionId = Joi.number().integer();
-const name = Joi.string().min(3).max(30);
-const section = Joi.string().min(1).max(1);
+const name = Joi.string()
+  .min(3)
+  .max(10)
+  .messages(stringMessages("El nombre del grado"));
+const section = Joi.string().length(1).messages(stringMessages("La seccion"));
 
 const getGradeSchema = Joi.object({
   id: id.required(),

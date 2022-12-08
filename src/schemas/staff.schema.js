@@ -1,19 +1,39 @@
 const Joi = require("joi");
+const {
+  stringMessages,
+  dateMessages,
+  numberMessages,
+} = require("utils/validations.messages");
 
-const ci = Joi.string().min(3).max(10);
-const name = Joi.string().min(3).max(30);
-const lastName = Joi.string().min(3).max(30);
-const address = Joi.string().min(3).max(100);
-const gender = Joi.string();
-const birthDate = Joi.date();
-const birthPlace = Joi.string().min(3).max(50);
-const admissionDate = Joi.date();
-const phone = Joi.string().min(11).max(14);
-const email = Joi.string().email({ tlds: { allow: false } });
-const roleId = Joi.number().integer();
+const ci = Joi.string().min(3).max(10).messages(stringMessages("La cedula"));
+const name = Joi.string().min(3).max(30).messages(stringMessages("El bombre"));
+const lastName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El Apellido"));
+const address = Joi.string()
+  .min(3)
+  .max(100)
+  .messages(stringMessages("La direccion"));
+const gender = Joi.string().messages(stringMessages("Sexo"));
+const birthDate = Joi.date().messages(dateMessages("La fecha de nacimiento"));
+const birthPlace = Joi.string()
+  .min(3)
+  .max(50)
+  .messages(stringMessages("El lugar de nacimiento"));
+const admissionDate = Joi.date().messages(
+  dateMessages("La fecha de contratacion")
+);
+const phone = Joi.string()
+  .min(11)
+  .max(14)
+  .messages(stringMessages("El telefono"));
+const email = Joi.string()
+  .email({ tlds: { allow: false } })
+  .messages(stringMessages("Correo"));
+const roleId = Joi.number().integer().messages(numberMessages("El id del rol"));
 const eventuality = Joi.array();
 const news = Joi.array();
-const password = Joi.string().min(8);
 
 const getStaffSchema = Joi.object({
   ci: ci.required(),

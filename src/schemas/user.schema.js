@@ -1,8 +1,9 @@
 const Joi = require("joi");
+const { stringMessages } = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const email = Joi.string().email();
-const password = Joi.string().min(8);
+const email = Joi.string().email().messages(stringMessages("Correo"));
+const password = Joi.string().min(8).messages(stringMessages("La contraseña"));
 const userRoleId = Joi.number().integer();
 
 const createUserSchema = Joi.object({

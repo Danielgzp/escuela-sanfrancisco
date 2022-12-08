@@ -1,11 +1,26 @@
 const Joi = require("joi");
+const {
+  stringMessages,
+  dateMessages,
+} = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const teacherCi = Joi.string().min(1).max(9);
-const staffCi = Joi.string().min(1).max(9);
-const title = Joi.string().min(5).max(40);
-const description = Joi.string().max(200);
-const day = Joi.date();
+const teacherCi = Joi.string()
+  .min(1)
+  .max(9)
+  .messages(stringMessages("La cedula del profesor"));
+const staffCi = Joi.string()
+  .min(1)
+  .max(9)
+  .messages(stringMessages("La cedula del empleado"));
+const title = Joi.string()
+  .min(5)
+  .max(40)
+  .messages(stringMessages("El titulo de la eventualidad"));
+const description = Joi.string()
+  .max(200)
+  .messages(stringMessages("La descripcion de la eventulidad"));
+const day = Joi.date().messages(dateMessages("La fecha de al eventualidad"));
 
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();

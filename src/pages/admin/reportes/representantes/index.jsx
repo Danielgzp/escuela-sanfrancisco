@@ -23,8 +23,7 @@ const GradeStudents = ({ data }) => {
   const formRef = useRef(null);
   const componentRef = useRef();
   const [students, setStudents] = useState([]);
-  const [dataCSV, setDataCSV] = useState([]);
-
+  
   useEffect(() => {}, []);
 
   const handleSubmit = async (event) => {
@@ -46,20 +45,6 @@ const GradeStudents = ({ data }) => {
       .then((response) => {
         setStudents(response.data);
         setState({ loading: false, error: null });
-
-        let dataArray = [];
-        students.forEach((element) => {
-          dataArray.push({
-            CIEscolar: element.schoolarshipCi,
-            Nombre: element.name,
-            RepCI: element.representant?.ci,
-            RepNombre: element.representant?.repName,
-            Telefono: element.representant?.phone,
-            Correo: element.representant?.email,
-          });
-        });
-
-        setDataCSV(dataArray);
       })
       .catch((err) => {
         Swal.fire({
@@ -77,7 +62,7 @@ const GradeStudents = ({ data }) => {
       <>
         {students.length > 0 && (
           <>
-            <CSVLink data={dataCSV} filename="representantesGrado.csv">
+            <CSVLink data={students} filename="representantesGrado.csv">
               <button type="button" className="btn btn-secondary text-white">
                 <i className="fas fa-file-csv mr-2"></i>
                 CSV

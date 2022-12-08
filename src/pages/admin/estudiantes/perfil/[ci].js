@@ -52,9 +52,7 @@ const StudentProfile = ({ data }) => {
           />
 
           {state.loading ? (
-            <>
-              {/* <Loading /> */}
-            </>
+            <>{/* <Loading /> */}</>
           ) : (
             <>
               <div className="row">
@@ -201,7 +199,8 @@ const StudentProfile = ({ data }) => {
                                 <div className="row mb-4">
                                   <div className="col-lg-3 col-md-4 col-sm-6 col-6">
                                     <h5 className="f-w-500">
-                                      Fecha de Nacimiento <span className="pull-right">:</span>
+                                      Fecha de Nacimiento{" "}
+                                      <span className="pull-right">:</span>
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
@@ -227,7 +226,9 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.nativeCi || "No tiene"}</span>
+                                    <span>
+                                      {student?.nativeCi || "No tiene"}
+                                    </span>
                                   </div>
                                 </div>
                               </div>
@@ -243,7 +244,10 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.representant?.repName}</span>
+                                    <span>
+                                      {student?.representant?.repName ||
+                                        "No asignado"}
+                                    </span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -255,7 +259,8 @@ const StudentProfile = ({ data }) => {
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
                                     <span>
-                                      {student?.representant?.repLastName}
+                                      {student?.representant?.repLastName ||
+                                        "No asignado"}
                                     </span>
                                   </div>
                                 </div>
@@ -267,7 +272,10 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.representant?.ci}</span>
+                                    <span>
+                                      {student?.representant?.ci ||
+                                        "No asignado"}
+                                    </span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -278,7 +286,10 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.representant?.email}</span>
+                                    <span>
+                                      {student?.representant?.email ||
+                                        "No asignado"}
+                                    </span>
                                   </div>
                                 </div>
                                 <div className="row mb-4">
@@ -289,7 +300,10 @@ const StudentProfile = ({ data }) => {
                                     </h5>
                                   </div>
                                   <div className="col-lg-9 col-md-8 col-sm-6 col-6">
-                                    <span>{student?.representant?.phone}</span>
+                                    <span>
+                                      {student?.representant?.phone ||
+                                        "No asignado"}
+                                    </span>
                                   </div>
                                 </div>
                               </div>

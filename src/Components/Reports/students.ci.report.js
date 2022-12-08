@@ -11,9 +11,6 @@ const studentsCi = (body) => `
   <meta></meta>
   <title></title>
   <style>
-  .reportContainer {
-  padding: 20px;
-}
   body {
   padding: 20px;
   margin: 10px 15px;
@@ -99,7 +96,7 @@ tbody tr th {
       <thead>
         <tr>
           <th scope="col">C.I Escolar</th>
-          <th scope="col">Cédula</th>
+          
           <th scope="col">Nombres</th>
           <th scope="col">Apellidos</th>
           <th scope="col">Género</th>
@@ -111,7 +108,7 @@ tbody tr th {
           (student) => `
             <tr key="${student.id}">
             <th>${student.schoolarshipCi}</th>
-            <th>${student.nativeCi}</th>
+            
             <th>${student.name}</th>
             <th>${student.lastName}</th>
             <th>${student.gender}</th>

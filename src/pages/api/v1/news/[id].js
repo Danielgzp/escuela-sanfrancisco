@@ -8,7 +8,6 @@ import { verify } from "jsonwebtoken";
 
 const service = new NewsService();
 const handler = nextConnect();
-chec;
 
 handler
   .get(validatorHandler(getNewsSchema, "params"), async (req, res, next) => {
@@ -22,7 +21,7 @@ handler
   })
   .patch(
     passport.authenticate("jwt", { session: false }),
-    checkRole("superadmin", "gerencia"),
+    checkRoles("superadmin", "gerencia"),
     validatorHandler(getNewsSchema, "params"),
     validatorHandler(updateNewsSchema, "body"),
     async (req, res, next) => {

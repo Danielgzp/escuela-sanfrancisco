@@ -1,5 +1,5 @@
 // import passport from "utils/passport";
-import { checkRoles } from "mcidlewares/auth.handler";
+import { checkRoles } from "middlewares/auth.handler";
 import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
 import { getStudentSchema, updateStudentSchema } from "schemas/students.schema";

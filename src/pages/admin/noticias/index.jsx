@@ -17,6 +17,10 @@ const ListNews = () => {
   const { id } = auth.user;
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
   const fetchData = () => {
     setLoading(true);
@@ -50,9 +54,6 @@ const ListNews = () => {
       info: objectData.description,
       image: objectData.image,
       userId: id,
-    };
-    const config = {
-      headers: { Authorization: `Bearer ${cookie}` },
     };
 
     axios
@@ -91,7 +92,7 @@ const ListNews = () => {
         if (result.isConfirmed) {
           setLoading(true);
           axios
-            .delete(endPoints.news.deleteNews(id))
+            .delete(endPoints.news.deleteNews(id), config)
             .then((response) => {
               Swal.fire(
                 "La noticia se ha eliminado correctamente",
@@ -249,7 +250,7 @@ const ListNews = () => {
                                 </div>
                               </div>
 
-                              <Modal posts={post} newsEdited={fetchData} />
+                              <Modal posts={post} newsEdited={fetchData} authorization={config} />
                             </article>
                           ))}
                           {isLoading ? (
@@ -263,7 +264,7 @@ const ListNews = () => {
                               ) : (
                                 <div className="text-center mb-2">
                                   <a href="#!" className="btn btn-primary">
-                                    Cargar más
+                                    Noticias
                                   </a>
                                 </div>
                               )}

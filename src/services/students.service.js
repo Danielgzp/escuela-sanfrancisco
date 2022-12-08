@@ -206,12 +206,12 @@ class StudentsService {
         [Op.or]: [
           {
             name: {
-              [Op.substring]: query,
+              [Op.substring]: query.toUpperCase(),
             },
           },
           {
             lastName: {
-              [Op.substring]: query,
+              [Op.substring]: query.toUpperCase(),
             },
           },
         ],

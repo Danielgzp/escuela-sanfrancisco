@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const Modal = ({ posts, newsEdited }) => {
+const Modal = ({ posts, newsEdited, authorization }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -25,7 +25,7 @@ const Modal = ({ posts, newsEdited }) => {
     setState({ loading: true, error: null });
     console.log(updatePost);
     axios
-      .patch(endPoints.news.updateNews(posts.id), updatePost)
+      .patch(endPoints.news.updateNews(posts.id), updatePost, authorization)
       .then(() => {
         Swal.fire({
           position: "top-end",

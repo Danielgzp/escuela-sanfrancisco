@@ -3,9 +3,8 @@ import endPoints from "utils/endpoints";
 
 export const columns = (student) => [
   {
-    id: (row) => row.id,
-    name: "#",
-    selector: (row) => row.id,
+    name: "Gradp",
+    selector: (row) => `${row.grade?.name} ${row.grade?.section}`,
     sortable: true,
     reorder: true,
     style: {
@@ -33,7 +32,7 @@ export const columns = (student) => [
   },
   {
     name: "Cedula",
-    selector: (row) => row.nativeCi,
+    selector: (row) => row.nativeCi || "N/A",
     sortable: true,
     reorder: true,
   },

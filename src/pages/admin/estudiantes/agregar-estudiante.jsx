@@ -6,10 +6,9 @@ import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import GradeService from "services/grade.service";
 import SearchRepresentant from "Components/Modal/SearchRepresentant";
+import Cookies from "js-cookie";
 
 const service = new GradeService();
-
-const boom = require("@hapi/boom");
 
 const AddStudent = ({ data }) => {
   const { grades } = data;
@@ -21,7 +20,10 @@ const AddStudent = ({ data }) => {
     error: null,
   });
   const [representant, setRepresentant] = useState(null);
-
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -77,7 +79,7 @@ const AddStudent = ({ data }) => {
 
     console.log(addNewStudent);
     axios
-      .post(endPoints.students.addStudent, addNewStudent)
+      .post(endPoints.students.addStudent, addNewStudent, config)
       .then((response) => {
         console.log(response);
         Swal.fire({

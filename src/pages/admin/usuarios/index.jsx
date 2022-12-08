@@ -99,6 +99,8 @@ const ListOfUsers = ({ data }) => {
       });
   };
 
+  console.log(users)
+
   return (
     <>
       <div className="content-body">
@@ -215,7 +217,7 @@ const ListOfUsers = ({ data }) => {
                         {users?.map((user) => (
                           <tr key={user.id}>
                             <td>{user.id}</td>
-                            <td>{user.userRole.name}</td>
+                            <td>{user.userRole?.name}</td>
                             <td>{user.email}</td>
 
                             {/* <td>{User.totalStudents}</td> */}

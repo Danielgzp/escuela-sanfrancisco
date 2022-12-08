@@ -24,7 +24,7 @@ const StudentsSchema = {
     allowNull: true,
     field: "native_ci",
     type: DataTypes.STRING,
-    // unique: true,
+    unique: true,
   },
   name: {
     allowNull: false,

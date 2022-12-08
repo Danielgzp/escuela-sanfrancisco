@@ -81,7 +81,7 @@ const EditStudent = ({ data }) => {
     axios
       .patch(
         endPoints.students.updateStudent(student.schoolarshipCi),
-        updateDataStudent
+        addNewStudent
       )
       .then(() => {
         Swal.fire({
@@ -146,8 +146,8 @@ const EditStudent = ({ data }) => {
                             Cedula de Identidad Escolar
                           </label>
                           <input
-                            type="number"
-                            name="schoolId"
+                            type="text"
+                            name="schoolarshipCi"
                             className="form-control"
                             defaultValue={student.schoolarshipCi}
                           />

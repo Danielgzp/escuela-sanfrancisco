@@ -24,7 +24,6 @@ const GradeStudents = ({ data }) => {
   const formRef = useRef(null);
   const componentRef = useRef();
   const [students, setStudents] = useState([]);
-  const [dataCSV, setDataCSV] = useState([]);
 
   useEffect(() => {}, []);
 
@@ -48,20 +47,6 @@ const GradeStudents = ({ data }) => {
       .then((response) => {
         setStudents(response.data);
         setState({ loading: false, error: null });
-
-        let dataArray = [];
-        students.forEach((element) => {
-          dataArray.push({
-            CIEscolar: element.schoolarshipCi,
-            Cedula: element.nativeCi || "No tiene",
-            Nombres: element.name,
-            Apellidos: element.lastName,
-            FechaDeNacimiento: element.birthDate,
-            Sexo: element.gender,
-          });
-        });
-
-        setDataCSV(dataArray);
       })
       .catch((err) => {
         Swal.fire({
@@ -78,7 +63,7 @@ const GradeStudents = ({ data }) => {
       <>
         {students.length > 0 && (
           <>
-            <CSVLink data={dataCSV} filename="estudiantesGrado.csv">
+            <CSVLink data={students} filename="estudiantes.ci.csv">
               <button className="btn btn-secondary text-white">
                 <i className="fas fa-file-csv mr-2"></i>
                 CSV
@@ -93,7 +78,7 @@ const GradeStudents = ({ data }) => {
                   </button>
                 );
               }}
-              documentTitle="Estudiantes por Grado"
+              documentTitle="Estudiantes C.I"
               pageStyle="print"
               content={() => componentRef.current}
               copyStyles={true}
@@ -103,8 +88,8 @@ const GradeStudents = ({ data }) => {
               <ReactHtmlTableToExcel
                 id="exportExcel"
                 sheet="Pagina 1"
-                table="estudiantesGrado"
-                filename="estudiantesGrado"
+                table="studentsCI"
+                filename="estudiantes.ci"
                 buttonText="Excel"
                 style={{ border: "none", backgroundColor: "transparent" }}
                 // className="btn"
@@ -114,6 +99,7 @@ const GradeStudents = ({ data }) => {
             <button
               className="btn btn-danger"
               onClick={() => {
+                setState({ loading: true, error: null });
                 axios
                   .post(
                     "http://localhost:3000/api/v1/admin/students/reports?cedulados",
@@ -121,6 +107,7 @@ const GradeStudents = ({ data }) => {
                   )
                   .then((response) => {
                     console.log(response);
+                    setState({ loading: false, error: null });
                     Swal.fire({
                       icon: "success",
                       title: "PDF creado",
@@ -129,6 +116,7 @@ const GradeStudents = ({ data }) => {
                   })
                   .catch((err) => {
                     console.log(err);
+                    setState({ loading: false, error: err });
                     Swal.fire({
                       icon: "error",
                       title: "Oops...",
@@ -173,7 +161,9 @@ const GradeStudents = ({ data }) => {
     <>
       <div className="content-body">
         <div className="container-fluid">
-          <AdminMainPagination pageName={"Estudiantes por Grado"} />
+          <AdminMainPagination
+            pageName={"Estudiantes Cedulados y no Cedulados"}
+          />
 
           <div className="col-lg-12">
             <div className="card">
@@ -193,12 +183,12 @@ const GradeStudents = ({ data }) => {
           </div>
         </div>
       </div>
-      <table id="estudiantesGrado" style={{ display: "none" }}>
+      <table id="studentsCI" style={{ display: "none" }}>
         <thead>
           <tr>
             <th scope="col">Grado</th>
             <th scope="col">C.I Escolar</th>
-            <th scope="col">Cédula</th>
+            {students?.nativeCi && <th scope="col">Cédula</th>}
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Género</th>
@@ -212,7 +202,7 @@ const GradeStudents = ({ data }) => {
                 {student.grade?.name} {student.grade?.section}
               </th>
               <th>{student.schoolarshipCi}</th>
-              <th>{student.nativeCi}</th>
+              {student.nativeCi && <th>{student.nativeCi}</th>}
               <th>{student.name}</th>
               <th>{student.lastName}</th>
               <th>{student.gender}</th>

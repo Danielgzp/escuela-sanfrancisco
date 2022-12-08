@@ -283,7 +283,7 @@ const StudentPDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Nombres</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>{representant.repName}</Text>
+                  <Text style={styles.columnText}>{representant?.repName}</Text>
                 </View>
               </View>
               <View style={[{ width: "40%" }, styles.column]}>
@@ -292,7 +292,7 @@ const StudentPDF = ({ profile }) => {
                 </View>
                 <View>
                   <Text style={styles.columnText}>
-                    {representant.repLastName}
+                    {representant?.repLastName}
                   </Text>
                 </View>
               </View>
@@ -303,7 +303,7 @@ const StudentPDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Cedula</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>{representant.ci}</Text>
+                  <Text style={styles.columnText}>{representant?.ci}</Text>
                 </View>
               </View>
             </View>
@@ -313,7 +313,7 @@ const StudentPDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Correo</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>{representant.email}</Text>
+                  <Text style={styles.columnText}>{representant?.email}</Text>
                 </View>
               </View>
               <View
@@ -323,7 +323,7 @@ const StudentPDF = ({ profile }) => {
                   <Text style={styles.columnTitle}>Telefono</Text>
                 </View>
                 <View>
-                  <Text style={styles.columnText}>{representant.phone}</Text>
+                  <Text style={styles.columnText}>{representant?.phone}</Text>
                 </View>
               </View>
             </View>

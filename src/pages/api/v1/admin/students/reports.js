@@ -10,6 +10,7 @@ const date = new Date();
 handler.post(async (req, res, next) => {
   try {
     const body = req.body;
+    console.log(body)
     if (req.query.cedulados !== undefined) {
       doPdf(
         studentsCi(body),

@@ -1,10 +1,17 @@
 const Joi = require("joi");
+const { stringMessages, dateMessages } = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const studentSchoolarshipCi = Joi.number().integer()
-const title = Joi.string().min(5).max(40);
-const description = Joi.string().min(10).max(100);
-const day = Joi.date();
+const studentSchoolarshipCi = Joi.number().integer();
+const title = Joi.string()
+  .min(5)
+  .max(40)
+  .messages(stringMessages("El titulo de la eventualidad"));
+const description = Joi.string()
+  .min(10)
+  .max(100)
+  .messages(stringMessages("La descripcion de la eventualidad"));
+const day = Joi.date().messages(dateMessages("La fecha de la eventualidad"));
 
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();
