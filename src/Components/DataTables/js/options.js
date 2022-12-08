@@ -1,7 +1,7 @@
 export const paginationOptions = {
   rowsPerPageText: "Filas por página",
   rangeSeparatorText: "de",
-  noRowsPerPage: true,
+  noRowsPerPage: false,
   selectAllRowsItem: true,
   selectAllRowsItemText: "Todos",
 };

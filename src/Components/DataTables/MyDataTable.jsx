@@ -97,7 +97,7 @@ const MyDataTable = ({
               className="page-item"
               onClick={(e) => {
                 firstPage(e);
-                setCurrent(start);
+                setCurrent(1);
               }}
             >
               <a className="page-link lessPadding" href="#">
@@ -119,7 +119,7 @@ const MyDataTable = ({
               className="page-item"
               onClick={(e) => {
                 lastPage(e);
-                setCurrent(end - 1);
+                setCurrent(totalPage);
               }}
             >
               <a className="page-link lessPadding" href="#">

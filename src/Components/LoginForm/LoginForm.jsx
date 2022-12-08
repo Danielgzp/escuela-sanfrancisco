@@ -38,7 +38,8 @@ const LoginForm = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        router.push("/");
+
+        window.location.href = "/admin";
       })
       .catch((err) => {
         if (err.response?.status === 401) {
@@ -64,38 +65,6 @@ const LoginForm = () => {
         }
         setState({ loading: false });
       });
-    /*axios
-      .post("http://localhost:3000/api/v1/auth/login", loginUser)
-      .then((resp) => {
-        const token = resp.data.token;
-        Cookies.set("tokenJWT", token, { expires: 5 });
-        axios.defaults.headers.Authorization = `Bearer ${token}`;
-        console.log(resp.data);
-        console.log(token);
-        // window.localStorage.setItem("loggedNoteAppUser", resp.data.token);
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Loggin Successfull",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        setState({ loading: false, error: null });
-        router.push("/");
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          // text: error.message,
-          text: "Correo o Contraseña incorrectos",
-        });
-        console.log(error);
-        setState({ loading: false, error: null });
-      });
-
-      */
   };
 
   return (

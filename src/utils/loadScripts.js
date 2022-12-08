@@ -8,11 +8,6 @@ export const loadScripts = () => {
   const script5 = document.createElement("script");
   const script6 = document.createElement("script");
   const script7 = document.createElement("script");
-  const script8 = document.createElement("script");
-  const script9 = document.createElement("script");
-  const script10 = document.createElement("script");
-  const script11 = document.createElement("script");
-  const script12 = document.createElement("script");
 
   // Puede que solo san necesarios esos 2 scripts
 
