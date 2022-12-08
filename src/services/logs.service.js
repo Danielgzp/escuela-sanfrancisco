@@ -10,6 +10,7 @@ class LogsService {
   async find(query) {
     const options = {
       include: ["user"],
+      order: [["createdAt", "DESC"]],
     };
 
     const { limit, offset } = query;
@@ -77,10 +78,10 @@ class LogsService {
     return newLog;
   }
 
-  async count(){
-    const countLogs = await models.Logs.count()
+  async count() {
+    const countLogs = await models.Logs.count();
 
-    return countLogs
+    return countLogs;
   }
 
   async update(id, changes) {

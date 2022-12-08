@@ -63,3 +63,15 @@ b{
     justify-content: space-evenly;
     width: 100%;
 } */
+
+.red{
+  background-color: #143b64;
+}
+.green{
+  background-color: aqua;
+}
+.date{
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}

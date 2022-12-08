@@ -1,8 +1,8 @@
 import moment from "moment";
 import reportHeader from "./reportHeader";
 
-const date = new Date();
-moment(date).format("DD-MM-YYYY");
+const now = Date.now();
+const date = new Date(now);
 
 const studentsCi = (body) => `
 <!doctype html>
@@ -18,18 +18,6 @@ const studentsCi = (body) => `
   padding: 20px;
   margin: 10px 15px;
 }
-.firstColumn {
-  background-color: #daecff;
-}
-#firstColumn {
-  background-color: #daecff;
-}
-#totalData {
-  width: 100%;
-}
-.totalData {
-  width: 100%;
-}
 .reportTitle {
   margin: 0 auto;
 }
@@ -38,7 +26,7 @@ const studentsCi = (body) => `
   text-align: center;
 }
 table {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.25);
@@ -70,6 +58,19 @@ tbody tr th {
   padding: 5px;
   margin: 0;
 }
+.row{
+  width: 100%;
+  display: -webkit-box; 
+  -webkit-box-pack: justify;
+}
+.date{
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
   </style>
   </head>
   <body>
@@ -87,28 +88,12 @@ tbody tr th {
         <strong>
           <h2>LISTAS DE ESTUDIANTES CEDULADOS</h2>
         </strong>
+        <p class="date">${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</p>
       </div>
-      <div
-        style="display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%;"
-      >
-        <h3>${body[0].grade?.name}</h3>
-        <h3>Seccion ${body[0].grade?.section}</h3>
-        <h3>${body[0].grade?.period?.name}</h3>
-      </div>
-      <div
-        style="display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%;"
-      >
+      <div class="row" >
         <h3>Total de Estudiantes: ${body.length}</h3>
-        <h3>${date}</h3>
       </div>
+    </div>
     </div>
     <table>
       <thead>
@@ -125,7 +110,7 @@ tbody tr th {
         ${body.map(
           (student) => `
             <tr key="${student.id}">
-            <th class="firstColumn" id="firstColumn" >${student.schoolarshipCi}</th>
+            <th>${student.schoolarshipCi}</th>
             <th>${student.nativeCi}</th>
             <th>${student.name}</th>
             <th>${student.lastName}</th>

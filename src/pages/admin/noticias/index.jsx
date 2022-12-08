@@ -17,7 +17,6 @@ const ListNews = () => {
   const { id } = auth.user;
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const cookie = Cookies.get("userJWT");
 
   const fetchData = () => {
     setLoading(true);
@@ -52,12 +51,10 @@ const ListNews = () => {
       image: objectData.image,
       userId: id,
     };
-
     const config = {
       headers: { Authorization: `Bearer ${cookie}` },
     };
 
-    console.log(newPost);
     axios
       .post(endPoints.news.addNews, newPost, config)
       .then(() => {

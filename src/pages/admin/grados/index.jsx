@@ -5,6 +5,7 @@ import Loader from "Components/Loader";
 import Loading from "Components/Loaders/Loading";
 import AddNewGrade from "Components/Modal/AddNewGradeModal";
 import EditGradeModal from "Components/Modal/EditGradeModal";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import Script from "next/Script";
 import React, { useEffect, useState } from "react";
@@ -26,6 +27,12 @@ const ListGrades = () => {
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
   const [levels, setLevels] = useState([]);
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
+
+
   const fetchData = () => {
     setState({ loading: true, error: null });
     axios
@@ -91,7 +98,7 @@ const ListGrades = () => {
         if (result.isConfirmed) {
           setState({ loading: true, error: null });
           axios
-            .delete(endPoints.grades.deleteGrade(id))
+            .delete(endPoints.grades.deleteGrade(id), config)
             .then((response) => {
               Swal.fire(
                 "El Grado se ha eliminado correctamente",
@@ -239,13 +246,14 @@ const ListGrades = () => {
                   periods={periods}
                   fetchData={fetchData}
                   educationLevels={levels}
+                  authorization={config}
                 />
               </div>
               <div className="card-body">
                 <div className="table-responsive" ref={componentRef}>
                   <ReportDataTable
                     data={grades}
-                    columns={columns(handleDeleteGrade, fetchData, periods)}
+                    columns={columns(handleDeleteGrade, fetchData, periods, config)}
                     actionsComponent={Actions()}
                     loading={state.loading}
                     handleDelete={handleDeleteGrade}

@@ -185,7 +185,7 @@ const GradeStudents = ({ data }) => {
                     loading={state.loading}
                     columns={columns()}
                     data={students}
-                    tableTitle={"Alumnos Cedulados"}
+                    tableTitle={"Lista de Estudiantes"}
                   />
                 </div>
               </div>

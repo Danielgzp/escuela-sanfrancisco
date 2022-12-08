@@ -2,7 +2,12 @@ import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-export const columns = (handleDeleteGrade, fetchData, periods) => [
+export const columns = (
+  handleDeleteGrade,
+  fetchData,
+  periods,
+  authorization
+) => [
   {
     id: (row) => row.id,
     name: "#",
@@ -28,14 +33,15 @@ export const columns = (handleDeleteGrade, fetchData, periods) => [
   },
   {
     name: "Estudiantes Totales",
-    selector: (row) => row.students.length,
+    selector: (row) => row.students?.length,
     sortable: true,
     reorder: true,
   },
   {
     name: "Maestro/a",
     selector: (row) =>
-      row.teacher?.name + " " + row.teacher?.lastName || "No tiene",
+      `${row.teacher?.name || "No"} ${row.teacher?.lastName || "asignado"}`,
+
     sortable: true,
     reorder: true,
   },
@@ -48,7 +54,12 @@ export const columns = (handleDeleteGrade, fetchData, periods) => [
         <a href="#!" onClick={() => handleDeleteGrade(row.id)}>
           <i className="material-icons">delete</i>
         </a>
-        <EditGradeModal grade={row} periods={periods} fetchData={fetchData} />
+        <EditGradeModal
+          grade={row}
+          periods={periods}
+          fetchData={fetchData}
+          config={authorization}
+        />
       </>
     ),
     name: "Acciones",
@@ -56,11 +67,3 @@ export const columns = (handleDeleteGrade, fetchData, periods) => [
     reorder: true,
   },
 ];
-
-export const paginationOptions = {
-  rowsPerPageText: "Filas por página",
-  rangeSeparatorText: "de",
-  noRowsPerPage: false,
-  selectAllRowsItem: true,
-  selectAllRowsItemText: "Todos",
-};

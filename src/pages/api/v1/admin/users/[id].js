@@ -4,6 +4,7 @@ import validatorHandler from "middlewares/validator.handler";
 import nextConnect from "next-connect";
 import { getUserSchema, updateUserSchema } from "schemas/user.schema";
 import UserService from "services/user.service";
+import { verify } from "jsonwebtoken";
 
 const service = new UserService();
 const handler = nextConnect();
@@ -25,9 +26,17 @@ handler
     validatorHandler(updateUserSchema, "body"),
     async (req, res, next) => {
       try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
         const { id } = req.query;
         const body = req.body;
-        const user = await service.update(id, body);
+        const user = await service.update(id, body, sub);
         res.json(user);
       } catch (error) {
         next(error);
@@ -40,8 +49,16 @@ handler
     validatorHandler(getUserSchema, "params"),
     async (req, res, next) => {
       try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
         const { id } = req.query;
-        await service.delete(id);
+        await service.delete(id, sub);
         res.status(201).json({ id });
       } catch (error) {
         next(error);

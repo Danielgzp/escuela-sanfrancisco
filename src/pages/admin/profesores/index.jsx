@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { CSVLink } from "react-csv";
 import ReactToPrint from "react-to-print";
 import ReactHtmlTableToExcel from "react-html-table-to-excel";
+import Cookies from "js-cookie";
 
 const ListTeachers = () => {
   const [state, setState] = useState({
@@ -21,7 +22,12 @@ const ListTeachers = () => {
     search: "",
   });
   const [totalTeachers, setTotalTeachers] = useState(0);
-  useEffect(() => {
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
+
+  const fetchData = () => {
     setState({ loading: true, error: null });
     axios
       .get(endPoints.teachers.getAllTeachers)
@@ -38,6 +44,9 @@ const ListTeachers = () => {
       .catch((err) => {
         setState({ loading: false, error: err });
       });
+  };
+  useEffect(() => {
+    fetchData();
   }, []);
 
   useMemo(() => {
@@ -66,9 +75,10 @@ const ListTeachers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(endPoints.teachers.deleteTeacher(id))
+          .delete(endPoints.teachers.deleteTeacher(id), config)
           .then((response) => {
             Swal.fire("Se ha eliminado correctamente", "", "success");
+            fetchData();
           })
           .catch((err) => {
             Swal.fire({
@@ -81,6 +91,34 @@ const ListTeachers = () => {
         Swal.fire("Cancelado", "", "info");
       }
     });
+  };
+
+  const TableHeader = () => {
+    return (
+      <div id="headerTable-container">
+        <div className="search-bar">
+          <form className="tableForm">
+            <div className="form-group">
+              <label>
+                <i className="material-icons">search</i>
+                Buscar:
+              </label>
+              <input
+                type="text"
+                name="search"
+                value={state.search || ""}
+                onChange={handleSearchButton}
+                className="z-depth-2"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Ir
+            </button>
+          </form>
+        </div>
+      </div>
+    );
   };
 
   const Actions = () => {
@@ -180,13 +218,16 @@ const ListTeachers = () => {
                     <div className="card-body">
                       <div className="table-responsive">
                         <MyDataTable
-                          data={state}
+                          loading={state.loading}
+                          filter={state.filter}
                           tableColumns={columns(handleDeleteTeacher)}
-                          headerSearch={handleSearchButton}
-                          totalStudents={totalTeachers}
+                          // firstPage={handleClickFirstPage}
+                          // lastPage={handleClickLastPage}
+                          headerComponent={TableHeader()}
+                          setOffset={0}
+                          totalItems={totalTeachers}
+                          itemsPerPage={50}
                           neighbours={2}
-                          setOffsetStudents={0}
-                          studentsPerPage={50}
                           actionsComponent={Actions()}
                         />
                       </div>

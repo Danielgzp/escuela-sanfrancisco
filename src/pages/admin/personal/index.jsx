@@ -11,6 +11,7 @@ import { CSVLink } from "react-csv";
 import ReactToPrint from "react-to-print";
 import ReactHtmlTableToExcel from "react-html-table-to-excel";
 import { useRef } from "react";
+import Cookies from "js-cookie";
 
 const ListStaff = () => {
   const [state, setState] = useState({
@@ -22,8 +23,12 @@ const ListStaff = () => {
   });
   const [totalStaff, setTotalStaff] = useState(0);
   const componentRef = useRef();
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
-  useEffect(() => {
+  const fetchData = () => {
     setState({ loading: true, error: null });
     axios
       .get(endPoints.staff.getAllStaff)
@@ -40,6 +45,10 @@ const ListStaff = () => {
       .catch((err) => {
         setState({ loading: false, error: err });
       });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   useMemo(() => {
@@ -68,9 +77,10 @@ const ListStaff = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(endPoints.staff.deleteStaff(id))
+          .delete(endPoints.staff.deleteStaff(id), config)
           .then((response) => {
             Swal.fire("Se ha eliminado correctamente", "", "success");
+            fetchData()
           })
           .catch((err) => {
             Swal.fire({
@@ -83,6 +93,62 @@ const ListStaff = () => {
         Swal.fire("Cancelado", "", "info");
       }
     });
+  };
+
+  //  const handleSearchSubmit = (e) => {
+  //    e.preventDefault();
+
+  //    setState({
+  //      loading: true,
+  //      error: null,
+  //    });
+  //    axios
+  //      .get(
+  //        `http://localhost:3000/api/v1/admin/staff?search=${state.search}`
+  //      )
+  //      .then((response) => {
+  //        setState({
+  //          ...state,
+  //          api: response.data,
+  //          filter: state.api,
+  //          loading: false,
+  //          error: null,
+  //        });
+  //        setTotalStaff(response.data.length);
+  //       //  setStudents(response.data);
+  //      })
+  //      .catch((err) => {
+  //        setState({ loading: false, error: err });
+  //      });
+  //    // setOffset(offset + 50);
+  //  };
+
+  const TableHeader = () => {
+    return (
+      <div id="headerTable-container">
+        <div className="search-bar">
+          <form className="tableForm">
+            <div className="form-group">
+              <label>
+                <i className="material-icons">search</i>
+                Buscar:
+              </label>
+              <input
+                type="text"
+                name="search"
+                value={state.search || ""}
+                onChange={handleSearchButton}
+                className="z-depth-2"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Ir
+            </button>
+          </form>
+        </div>
+      </div>
+    );
   };
 
   const Actions = () => {
@@ -180,14 +246,17 @@ const ListStaff = () => {
                   <div className="card-body">
                     <div className="table-responsive" ref={componentRef}>
                       <MyDataTable
-                        data={state}
-                        tableColumns={columns(handleDeleteStaff)}
-                        headerSearch={handleSearchButton}
-                        totalstaffs={totalStaff}
-                        neighbours={2}
-                        setOffsetStudents={0}
-                        studentsPerPage={50}
                         actionsComponent={Actions()}
+                        loading={state.loading}
+                        filter={state.filter}
+                        tableColumns={columns(handleDeleteStaff)}
+                        // firstPage={handleClickFirstPage}
+                        // lastPage={handleClickLastPage}
+                        headerComponent={TableHeader()}
+                        setOffset={0}
+                        totalItems={totalStaff}
+                        itemsPerPage={50}
+                        neighbours={2}
                       />
                     </div>
                   </div>
@@ -220,7 +289,7 @@ const ListStaff = () => {
               <th>{staff.phone}</th>
               <th>{staff.birthDate}</th>
               <th>{staff.email}</th>
-              <th>{staff.role.name}</th>
+              <th>{staff.role?.name}</th>
             </tr>
           ))}
         </tbody>

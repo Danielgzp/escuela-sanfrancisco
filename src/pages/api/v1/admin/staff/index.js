@@ -3,6 +3,9 @@ import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
 import { createStaffSchema } from "schemas/staff.schema";
 import StaffService from "services/staff.service";
+import { verify } from "jsonwebtoken";
+import { checkRoles } from "middlewares/auth.handler";
+import passport from "passport";
 
 const service = new StaffService();
 const handler = nextConnect();
@@ -16,14 +19,27 @@ handler
       console.log(error);
     }
   })
-  .post(validatorHandler(createStaffSchema, "body"), async (req, res, next) => {
-    try {
-      const body = req.body;
-      const newStaff = await service.create(body);
-      res.json(newStaff);
-    } catch (error) {
-      next(error);
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin", "gerencia"),
+    validatorHandler(createStaffSchema, "body"),
+    async (req, res, next) => {
+      try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
+        const body = req.body;
+        const newStaff = await service.create(body, sub);
+        res.json(newStaff);
+      } catch (error) {
+        next(error);
+      }
     }
-  });
+  );
 
 export default handler;

@@ -48,11 +48,6 @@ const AdminDashboard = ({ props }) => {
           "#7ed321",
 
           "#50e3c2",
-          // "#50AF95",
-
-          // "#2a71d0",
-
-          // "#e29000",
         ],
         data: [
           totalStudents,
@@ -83,7 +78,7 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-primary"
-                          style={{ width: "1000%" }}
+                          style={{ width: "100%" }}
                         ></div>
                       </div>
                     </div>
@@ -112,7 +107,7 @@ const AdminDashboard = ({ props }) => {
                       <div className="progress mb-2">
                         <div
                           className="progress-bar progress-animated bg-warning"
-                          style={{ width: "1000%" }}
+                          style={{ width: "100%" }}
                         ></div>
                       </div>
                     </div>

@@ -1,6 +1,7 @@
 import DataTable from "react-data-table-component";
 import LoginLoader from "Components/Loaders/LoginLoader";
 import { useCallback, useState, useMemo } from "react";
+import { paginationOptions } from "./js/options";
 
 const ReportDataTable = ({
   actionsComponent,
@@ -77,6 +78,7 @@ const ReportDataTable = ({
           />
         }
         pagination
+        paginationComponentOptions={paginationOptions}
         subHeader
         subHeaderComponent={tableHeaderComponent}
         persistTableHead

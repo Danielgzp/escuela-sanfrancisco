@@ -5,6 +5,7 @@ export const columns = (handleDelete) => [
   {
     name: "Grado",
     selector: (row) => `${row.grade?.name} ${row.grade?.section}`,
+    // `${row.grade?.name || "No"} ${row.grade?.section || "asignado"}`
     sortable: true,
     reorder: true,
     style: {

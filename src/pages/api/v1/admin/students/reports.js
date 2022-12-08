@@ -13,13 +13,13 @@ handler.post(async (req, res, next) => {
     if (req.query.cedulados !== undefined) {
       doPdf(
         studentsCi(body),
-        `reporte-${moment(date).format("DD-MM-YYYY")}.pdf`
+        `reporteCI-estudiantes${moment(date).format("DD-MM-YYYY")}.pdf`
       );
       res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     } else {
       doPdf(
         studentsReport(body),
-        `reporte-${moment(date).format("DD-MM-YYYY")}.pdf`
+        `reporte-estudiantes-${moment(date).format("DD-MM-YYYY")}.pdf`
       );
       res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     }

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import RoleService from "services/role.service";
+import Cookies from "js-cookie";
 
 const service = new RoleService();
 
@@ -16,6 +17,10 @@ const AddStaff = ({ data }) => {
     loading: false,
     error: null,
   });
+   const cookie = Cookies.get("userJWT");
+   const config = {
+     headers: { Authorization: `Bearer ${cookie}` },
+   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,17 +37,14 @@ const AddStaff = ({ data }) => {
       admissionDate: objectData.admissionDate,
       birthPlace: objectData.birthPlace,
       phone: objectData.phone,
+      email: objectData.email,
       roleId: objectData.role,
-      user: {
-        email: objectData.email,
-        password: objectData.password,
-      },
     };
 
     setState({ loading: true, error: null });
     console.log(newStaff);
     axios
-      .post(endPoints.staff.addStaff, newStaff)
+      .post(endPoints.staff.addStaff, newStaff, config)
       .then(() => {
         Swal.fire({
           position: "top-end",
@@ -52,7 +54,7 @@ const AddStaff = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/admin");
+        router.push("/admin/personal");
       })
       .catch((error) => {
         Swal.fire({
@@ -64,38 +66,7 @@ const AddStaff = ({ data }) => {
         setState({ loading: false, error: null });
       });
   };
-  useEffect(() => {
-    // async function getGrades() {
-    //   try {
-    //     const res = await axios.get(endPoints.grades.getAllGrades);
-
-    //     setGrades(res.data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
-
-    const script = document.createElement("script");
-    const script2 = document.createElement("script");
-    const script3 = document.createElement("script");
-    const script4 = document.createElement("script");
-    const script5 = document.createElement("script");
-
-    // script.src = "/vendor/pickadate/picker.js";
-    // script.async = false;
-    // document.body.appendChild(script);
-    // script2.src = "/vendor/pickadate/picker.time.js";
-    // script2.async = false;
-    // document.body.appendChild(script2);
-    // script3.src = "/vendor/pickadate/picker.date.js";
-    // script3.async = false;
-    // document.body.appendChild(script3);
-    // script4.src = "/js/plugins-init/pickadate-init.js";
-    // script4.async = false;
-    // document.body.appendChild(script4);
-
-    // getGrades();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -236,30 +207,14 @@ const AddStaff = ({ data }) => {
                             className="form-control"
                             required
                           />
-                          {/* <input
-                            name="datepicker"
-                            className="datepicker-default form-control"
-                            id="datepicker1"
-                          /> */}
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Email</label>
+                          <label className="form-label">Correo</label>
                           <input
                             type="email"
                             name="email"
-                            className="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-sm-12">
-                        <div className="form-group">
-                          <label className="form-label">Password</label>
-                          <input
-                            type="password"
-                            name="password"
                             className="form-control"
                             required
                           />

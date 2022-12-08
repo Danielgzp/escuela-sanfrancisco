@@ -11,7 +11,7 @@ handler.post(async (req, res, next) => {
     const body = req.body;
     doPdf(
       gradesReport(body),
-      `reporte-${moment(date).format("DD-MM-YYYY")}.pdf`
+      `reporte-grados-${moment(date).format("DD-MM-YYYY")}.pdf`
     );
     res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
   } catch (error) {

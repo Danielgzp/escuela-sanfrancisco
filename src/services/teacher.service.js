@@ -60,7 +60,7 @@ class TeacherService {
     return updateTeacher;
   }
 
-  async delete(ci) {
+  async delete(ci, userId) {
     const teacher = await this.findOne(ci);
     await teacher.destroy();
 

@@ -15,18 +15,6 @@ const teachersReport = (body) => `
   padding: 20px;
   margin: 10px 15px;
 }
-.firstColumn {
-  background-color: #daecff;
-}
-#firstColumn {
-  background-color: #daecff;
-}
-#totalData {
-  width: 100%;
-}
-.totalData {
-  width: 100%;
-}
 .reportTitle {
   margin: 0 auto;
 }
@@ -35,7 +23,7 @@ const teachersReport = (body) => `
   text-align: center;
 }
 table {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 1px 2px 6px 1px rgba(0, 0, 0, 0.25);
@@ -67,6 +55,19 @@ tbody tr th {
   padding: 5px;
   margin: 0;
 }
+.row{
+  width: 100%;
+  display: -webkit-box; 
+  -webkit-box-pack: justify;
+}
+.date{
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
   </style>
   </head>
   <body>
@@ -84,25 +85,10 @@ tbody tr th {
         <strong>
           <h2>LISTA DE MAESTROS</h2>
         </strong>
-      </div>
-      <div
-        style="display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%;"
-      >
-        
-      </div>
-      <div
-        style="display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: center;
-                width: 100%;"
-      >
-        <h3>Total de Maestros: ${body.length}</h3>
         <h3>${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</h3>
+      </div>
+      <div class="row">
+        <h3>Total de Maestros: ${body.length}</h3>
       </div>
     </div>
     <table>

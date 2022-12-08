@@ -3,7 +3,12 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const AddNewGrade = ({ fetchData, periods, educationLevels }) => {
+const AddNewGrade = ({
+  fetchData,
+  periods,
+  educationLevels,
+  authorization,
+}) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -26,7 +31,7 @@ const AddNewGrade = ({ fetchData, periods, educationLevels }) => {
 
     console.log(newGrade);
     axios
-      .post(endPoints.grades.addGrade, newGrade)
+      .post(endPoints.grades.addGrade, newGrade, authorization)
       .then(() => {
         Swal.fire({
           position: "top-end",

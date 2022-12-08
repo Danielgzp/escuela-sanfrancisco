@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import EventualityTeacherModal from "Components/Modal/EventualityTeacherModal";
 import RoleService from "services/role.service";
 import StaffService from "services/staff.service";
+import Cookies from "js-cookie";
 
 const rolesService = new RoleService();
 const service = new StaffService();
@@ -21,6 +22,10 @@ const EditStaff = ({ data }) => {
     loading: false,
     error: null,
   });
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,7 +49,7 @@ const EditStaff = ({ data }) => {
     setState({ loading: true, error: null });
     console.log(editStaff);
     axios
-      .patch(endPoints.staff.updateStaff(staff.ci), editStaff)
+      .patch(endPoints.staff.updateStaff(staff.ci), editStaff, config)
       .then(() => {
         Swal.fire({
           position: "top-end",

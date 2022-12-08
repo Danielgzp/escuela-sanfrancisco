@@ -7,7 +7,10 @@ import {
   createStudentSchema,
   queryStudentSchema,
 } from "schemas/students.schema";
+import { checkRoles } from "middlewares/auth.handler";
 import StudentsService from "services/students.service";
+import passport from "passport";
+import { verify } from "jsonwebtoken";
 
 const service = new StudentsService();
 const handler = nextConnect();
@@ -56,11 +59,21 @@ handler
     }
   })
   .post(
+    passport.authenticate("jwt", { session: false }),
+    checkRoles("superadmin", "gerencia"),
     validatorHandler(createStudentSchema, "body"),
     async (req, res, next) => {
       try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
         const body = req.body;
-        const newStudent = await service.create(body);
+        const newStudent = await service.create(body, sub);
         res.json(newStudent);
       } catch (error) {
         next(error);

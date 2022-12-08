@@ -4,6 +4,7 @@ import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
 import { createUserSchema } from "schemas/user.schema";
 import UserService from "services/user.service";
+import { verify } from "jsonwebtoken";
 
 const service = new UserService();
 const handler = nextConnect();
@@ -29,8 +30,16 @@ handler
     validatorHandler(createUserSchema, "body"),
     async (req, res, next) => {
       try {
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
         const body = req.body;
-        const newUser = await service.create(body);
+        const newUser = await service.create(body, sub);
         res.json(newUser);
       } catch (error) {
         next(error);

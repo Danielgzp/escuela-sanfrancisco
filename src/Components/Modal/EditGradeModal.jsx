@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 
-const EditGradeModal = ({ grade, periods, fetchData }) => {
+const EditGradeModal = ({ grade, periods, fetchData, config }) => {
   const formRef = useRef(null);
   const [state, setState] = useState({
     loading: false,
@@ -26,7 +26,7 @@ const EditGradeModal = ({ grade, periods, fetchData }) => {
     setState({ loading: true, error: null });
 
     axios
-      .patch(endPoints.grades.updateGrade(grade.id), editGrade)
+      .patch(endPoints.grades.updateGrade(grade.id), editGrade, config)
       .then(() => {
         Swal.fire({
           position: "top-end",

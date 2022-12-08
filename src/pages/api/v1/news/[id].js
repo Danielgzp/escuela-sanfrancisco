@@ -4,6 +4,7 @@ import { getNewsSchema, updateNewsSchema } from "schemas/newsSchema";
 import NewsService from "services/news.service";
 import passport from "passport";
 import { checkRoles } from "middlewares/auth.handler";
+import { verify } from "jsonwebtoken";
 
 const service = new NewsService();
 const handler = nextConnect();
@@ -28,8 +29,15 @@ handler
       try {
         const { id } = req.query;
         const body = req.body;
-        console.log(body);
-        const news = await service.update(id, body);
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
+        const news = await service.update(id, body, sub);
         res.json(news);
       } catch (error) {
         next(error);
@@ -38,12 +46,20 @@ handler
   )
   .delete(
     passport.authenticate("jwt", { session: false }),
-    checkRole("superadmin", "gerencia"),
+    checkRoles("superadmin", "gerencia"),
     validatorHandler(getNewsSchema, "params"),
     async (req, res, next) => {
       try {
         const { id } = req.query;
-        await service.delete(id);
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
+        await service.delete(id, sub);
         res.status(201).json({ id });
       } catch (error) {
         next(error);
