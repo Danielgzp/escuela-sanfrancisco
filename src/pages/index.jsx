@@ -109,7 +109,7 @@ const Home = ({ data }) => {
                               src="http://radios.feyalegrianoticias.com/wp-content/uploads/2022/12/Streaming_Barquisimeto.png"
                               className="vc_single_image-img attachment-full"
                               alt="radio fe y alegria"
-                              srcset="http://radios.feyalegrianoticias.com/wp-content/uploads/2022/12/Streaming_Barquisimeto.png 362w, http://radios.feyalegrianoticias.com/wp-content/uploads/2022/12/Streaming_Barquisimeto-300x124.png 300w"
+                              srcSet="http://radios.feyalegrianoticias.com/wp-content/uploads/2022/12/Streaming_Barquisimeto.png 362w, http://radios.feyalegrianoticias.com/wp-content/uploads/2022/12/Streaming_Barquisimeto-300x124.png 300w"
                               sizes="(max-width: 362px) 100vw, 362px"
                             />
                           </div>

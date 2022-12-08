@@ -8,13 +8,13 @@ import endPoints from "utils/endpoints";
 import GradeService from "services/grade.service";
 import StudentsService from "services/students.service";
 import SearchRepresentant from "Components/Modal/SearchRepresentant";
+import Cookies from "js-cookie";
 
 const service = new GradeService();
 const studentService = new StudentsService();
 
 const EditStudent = ({ data }) => {
   const { student, grades } = data;
-  console.log(student);
 
   const formRef = useRef(null);
   const router = useRouter();
@@ -23,6 +23,10 @@ const EditStudent = ({ data }) => {
     error: null,
   });
   const [representant, setRepresentant] = useState(null);
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
   useEffect(() => {}, [representant]);
 
@@ -81,7 +85,8 @@ const EditStudent = ({ data }) => {
     axios
       .patch(
         endPoints.students.updateStudent(student.schoolarshipCi),
-        addNewStudent
+        addNewStudent,
+        config
       )
       .then(() => {
         Swal.fire({

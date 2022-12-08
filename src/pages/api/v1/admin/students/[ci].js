@@ -30,11 +30,19 @@ handler
       try {
         const { ci } = req.query;
         const body = req.body;
-        console.log(body);
-        const student = await service.update(ci, body);
+        const authorization = req.headers.authorization;
+
+        const userAuthorization = verify(
+          authorization.slice(7),
+          process.env.JWT_SECRET
+        );
+
+        const { sub } = userAuthorization;
+        const student = await service.update(ci, body, sub);
         res.json(student);
       } catch (error) {
         next(error);
+        console.log(error)
       }
     }
   )
@@ -57,6 +65,7 @@ handler
         res.status(201).json({ ci });
       } catch (error) {
         next(error);
+        console.log(error);
       }
     }
   );

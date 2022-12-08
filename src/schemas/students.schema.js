@@ -6,7 +6,9 @@ const {
 } = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const representantCi = Joi.string().messages(stringMessages("La cedula del representnte"));
+const representantCi = Joi.string().messages(
+  stringMessages("La cedula del representnte")
+);
 
 const nativeCi = Joi.string().messages(stringMessages("La cedula"));
 const schoolarshipCi = Joi.string()

@@ -11,8 +11,8 @@ export default function Document() {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"
         />
-        {/* <link rel="manifest" href="/public/manifest.json" /> */}
-        {/* <link rel="apple-touch-icon" href="/logo.png" /> */}
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" href="/icon-192x192.png" />
         {/* BOOTSTRAP ICONS */}
         <link
           rel="stylesheet"
@@ -42,16 +42,16 @@ export default function Document() {
           src="/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
           strategy="afterInteractive"
         /> */}
-        <Script
+        {/* <Script
           src="/vendor/global/global.min.js"
           strategy="beforeInteractive"
-        />
+        /> */}
         {/* <Script
           src="https://code.jquery.com/jquery-3.6.0.min.js"
           strategy="beforeInteractive"
         /> */}
 
-        <Script
+        {/* <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"
           strategy="beforeInteractive"
         />
@@ -86,7 +86,7 @@ export default function Document() {
         <Script
           src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"
           strategy="beforeInteractive"
-        />
+        /> */}
         {/* <Script
           src="/vendor/global/global.min.js"
           strategy="beforeInteractive"

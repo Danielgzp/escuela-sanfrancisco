@@ -112,7 +112,7 @@
     sidebarPosition: "fixed",
     headerPosition: "fixed",
     containerLayout: "full",
-    direction: direction,
+    // direction: direction,
   };
 
   jQuery(document).ready(function () {

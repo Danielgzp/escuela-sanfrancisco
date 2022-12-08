@@ -12,9 +12,9 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   if (router.pathname.includes("/admin")) {
+    require("../styles/bootstrap-select.min.css");
     require("../styles/style.css");
     require("../styles/skin-2.css");
-    require("../styles/bootstrap-select.min.css");
     require("../styles/default.css");
     require("../styles/default-date.css");
     require("../styles/jquery.dataTables.min.css");

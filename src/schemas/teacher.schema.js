@@ -20,7 +20,7 @@ const birthPlace = Joi.string()
 const admissionDate = Joi.date().messages(
   dateMessages("La fecha de contratacion")
 );
-const phone = Joi.string().min(11).max(14).messages(stringMessages("El teléfono"));
+const phone = Joi.string().min(10).max(14).messages(stringMessages("El teléfono"));
 const email = Joi.string()
   .email({ tlds: { allow: false } })
   .messages(stringMessages("Correo"));

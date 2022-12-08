@@ -81,7 +81,6 @@ function useProvideAuth() {
     Cookies.remove("userJWT");
     Cookies.remove("userData");
     setUser(null);
-    delete axios.defaults.headers.Authorization;
     window.location.href = "/login";
   };
 

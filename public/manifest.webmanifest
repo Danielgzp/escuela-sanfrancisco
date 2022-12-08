@@ -1,0 +1,32 @@
+{
+  "theme_color": "#ff0202",
+  "background_color": "#181176",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": "/",
+  "name": "Matricula - FyA San Francisco",
+  "short_name": "San Francisco",
+  "description": "Aplicacion para la gestion de la matricula escolar de la escuela Fe y Alegria San Francisco",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
