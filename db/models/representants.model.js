@@ -29,9 +29,9 @@ const RepresentantsSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  email: { allowNull: false, type: DataTypes.STRING, unique: true },
+  email: { allowNull: true, type: DataTypes.STRING, unique: false },
   createdAt: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
     field: "create_at",
     defaultValue: Sequelize.NOW,

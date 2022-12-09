@@ -228,7 +228,7 @@ const ListGrades = () => {
     <>
       <div className="content-body">
         <div className="container-fluid">
-          <AdminMainPagination pageName={"Grades"} />
+          <AdminMainPagination pageName={"Grados"} />
 
           <div className="col-lg-12">
             <div className="card">
