@@ -187,6 +187,43 @@ const ListStudents = () => {
     // setOffset(offset + 50);
   };
 
+  const clearSearch = (e) => {
+    e.preventDefault();
+
+    setState({ loading: true, error: null });
+
+    axios
+      .get(`http://localhost:3000/api/v1/admin/students?level=${level}`)
+      .then((response) => {
+        setStudents(response.data);
+        setTotalStudents(response.data.length);
+      })
+      .catch((err) => {
+        setState({ loading: false, error: err });
+      });
+
+    axios
+      .get(
+        `http://localhost:3000/api/v1/admin/students?limit=${limit}&offset=${offset}&level=${level}`
+      )
+      .then((response) => {
+        setStudents(response.data);
+        setState({
+          ...state,
+          loading: false,
+          error: null,
+          api: response.data,
+          filter: state.api,
+          search: "",
+        });
+      })
+      .catch((err) => {
+        setState({ loading: false, error: err });
+      });
+
+    setState({ loading: false, error: null });
+  };
+
   const TableHeader = () => {
     return (
       <div id="headerTable-container">
@@ -225,6 +262,14 @@ const ListStudents = () => {
                 onChange={handleSearchButton}
                 className="z-depth-2"
               />
+              {state.search?.length > 0 && (
+                <i
+                  className="material-icons clearSearch"
+                  onClick={(e) => clearSearch(e)}
+                >
+                  clear
+                </i>
+              )}
             </div>
 
             <button type="submit" className="btn btn-primary">

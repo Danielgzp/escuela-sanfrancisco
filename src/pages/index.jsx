@@ -16,7 +16,7 @@ const Home = ({ data }) => {
   return (
     <>
       <Head>
-        <title>Fe y Alegria San Francisco</title>
+        <title>Fe y Alegría San Francisco</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
 

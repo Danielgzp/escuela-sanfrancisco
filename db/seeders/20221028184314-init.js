@@ -79,7 +79,7 @@ module.exports = {
       "users",
       [
         {
-          email: "daniel@gmail.com",
+          email: "danielgzp01@gmail.com",
           password: hash,
           create_at: new Date(),
           role_user: 1,

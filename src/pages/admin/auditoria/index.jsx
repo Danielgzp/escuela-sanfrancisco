@@ -91,6 +91,13 @@ const AuditoryPage = ({ countLogs }) => {
         setState({ loading: false, error: err });
       });
   };
+
+  const clearSearch = (e) => {
+    e.preventDefault();
+    fetchData();
+    setSearch("")
+  };
+
   const TableHeader = () => {
     return (
       <div id="headerTable-container">
@@ -108,6 +115,14 @@ const AuditoryPage = ({ countLogs }) => {
                 onChange={handleSearchButton}
                 className="z-depth-2"
               />
+              {search?.length > 0 && (
+                <i
+                  className="material-icons clearSearch"
+                  onClick={(e) => clearSearch(e)}
+                >
+                  clear
+                </i>
+              )}
             </div>
 
             <button type="submit" className="btn btn-primary">

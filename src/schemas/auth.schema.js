@@ -13,7 +13,9 @@ const email = Joi.string().email(),
   //Aqui validamos que la password sea de 6 o mas caracteres
   password = Joi.string().min(8),
   //Aqui validamos que la newPassword sea de 6 o mas caracteres
-  newPassword = Joi.string().min(8).messages("La nueva contraseña"),
+  newPassword = Joi.string()
+    .min(8)
+    .messages(stringMessages("La nueva contraseña")),
   //Este es un metodo para validar el token de jwt
   token = Joi.string();
 

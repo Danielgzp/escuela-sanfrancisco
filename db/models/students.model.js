@@ -29,11 +29,17 @@ const StudentsSchema = {
   name: {
     allowNull: false,
     type: DataTypes.STRING,
+    get: function () {
+      return this.getDataValue("name").toUpperCase();
+    },
   },
   lastName: {
     allowNull: false,
     type: DataTypes.STRING,
     field: "last_name",
+    get: function () {
+      return this.getDataValue("lastName").toUpperCase();
+    },
   },
   address: {
     allowNull: true,

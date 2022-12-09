@@ -20,7 +20,6 @@ const EducationLevelSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
-  
 };
 
 class EducationLevel extends Model {
@@ -29,13 +28,11 @@ class EducationLevel extends Model {
     //   as: "section",
     //   foreignKey: "EducationLevelId",
     // });
-    
+
     this.hasMany(models.Grade, {
       as: "grade",
       foreignKey: "levelId",
     });
-
-    
   }
 
   static config(sequelize) {
