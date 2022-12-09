@@ -1,4 +1,5 @@
 const boom = require("@hapi/boom");
+const { Logs } = require("../../db/models/logs.models");
 
 const { models } = require("../../libs/sequelize");
 
@@ -52,7 +53,7 @@ class UserService {
     });
     if (!user) {
       //BOOM para manejar los errores
-      throw boom.notFound("User not found");
+      throw boom.notFound("Usuario no encontrado");
     }
     return user;
   }
@@ -81,11 +82,11 @@ class UserService {
     return newUser;
   }
 
-  async update(id, changes, userId) {
+  async update(id, changes) {
     const user = await this.findOne(id);
     const rta = await user.update(changes);
     await Logs.create({
-      userId: userId,
+      userId: id,
       description: "Ha actualizado un usuario en la tabla de Usuarios",
       action: "UPDATE",
       table: "USERS",

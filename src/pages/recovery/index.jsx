@@ -1,20 +1,13 @@
 import React, { useRef, useState } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "hooks/useAuth";
-
 import axios from "axios";
-import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
 import LoginLoader from "Components/Loaders/LoginLoader";
-import Loading from "Components/Loaders/Loading";
 import endPoints from "utils/endpoints";
 import "./css/styles.css";
 
 const RecoveryPage = () => {
   const formRef = useRef(null);
-  const router = useRouter();
-  const auth = useAuth();
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -24,9 +17,9 @@ const RecoveryPage = () => {
     event.preventDefault();
     setState({ loading: true, error: null });
     const formData = new FormData(formRef.current);
+
     const userEmail = Object.fromEntries([...formData.entries()]);
 
-    console.log(userEmail);
     axios
       .post(endPoints.auth.recovery, userEmail)
       .then(() => {
@@ -55,6 +48,7 @@ const RecoveryPage = () => {
             icon: "error",
             text: "Usuario no encontrado",
           });
+          console.log(err);
         } else {
           setState({ loading: false, error: err });
           Swal.fire({

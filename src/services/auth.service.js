@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const { config } = require("../../config/config");
-// const { Logs } = require("../../db/models/logs.models");
 
 // const nodemailer = require("nodemailer");
 
@@ -61,6 +60,7 @@ class AuthService {
 
   async sendRecoveryPassword(email) {
     const user = await service.findByEmail(email);
+
     //Si no existe ese correo en la db pues, no le da permiso
     if (!user) {
       throw boom.unauthorized();
@@ -74,7 +74,7 @@ class AuthService {
 
     const link = `http://localhost:3000/recovery/change-password?token=${token}`;
     //Viene de la funcion update del user.service
-    await service.update(user.id, { recoveryToken: token });
+    await service.update(user.id, { recoveryToken: token }, user.id);
     const mail = {
       from: `Fe y Aleria San Francisco <${config.emailUser}>`,
       to: `${user.email}`,
