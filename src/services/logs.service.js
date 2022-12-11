@@ -62,9 +62,9 @@ class LogsService {
       ],
     };
 
-    const students = await models.Students.findAll(options);
+    const logs = await models.Logs.findAll(options);
 
-    return students;
+    return logs;
   }
 
   async create(data) {

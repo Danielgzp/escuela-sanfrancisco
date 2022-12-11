@@ -69,7 +69,7 @@ const GradeStudents = ({ data }) => {
                 CSV
               </button>
             </CSVLink>
-            <ReactToPrint
+            {/* <ReactToPrint
               trigger={() => {
                 return (
                   <button className="btn btn-dark text-white">
@@ -82,7 +82,7 @@ const GradeStudents = ({ data }) => {
               pageStyle="print"
               content={() => componentRef.current}
               copyStyles={true}
-            />
+            /> */}
             <button className="btn btn-success text-white">
               <i className="fas fa-file-excel mr-2"></i>
               <ReactHtmlTableToExcel
@@ -96,7 +96,7 @@ const GradeStudents = ({ data }) => {
               ></ReactHtmlTableToExcel>
             </button>
 
-            <button
+            {/* <button
               className="btn btn-danger"
               onClick={() => {
                 setState({ loading: true, error: null });
@@ -127,7 +127,7 @@ const GradeStudents = ({ data }) => {
             >
               <i className="fas fa-file-pdf mr-2"></i>
               PDF
-            </button>
+            </button> */}
           </>
         )}
       </>

@@ -14,8 +14,8 @@ class RepresentantsService {
     return representants;
   }
 
-  async findOne(id) {
-    const representant = await models.Representants.findByPk(id);
+  async findOne(ci) {
+    const representant = await models.Representants.findByPk(ci);
     if (!representant) {
       throw boom.notFound("Representante no encontrado");
     }
@@ -28,17 +28,17 @@ class RepresentantsService {
     return newRepresentant;
   }
 
-  async update(id, changes) {
-    const representant = await this.findOne(id);
+  async update(ci, changes) {
+    const representant = await this.findOne(ci);
     const updateRepresentant = await representant.update(changes);
     return updateRepresentant;
   }
 
-  async delete(id) {
-    const representant = await this.findOne(id);
+  async delete(ci) {
+    const representant = await this.findOne(ci);
     await representant.destroy();
 
-    return { id };
+    return { ci };
   }
 }
 

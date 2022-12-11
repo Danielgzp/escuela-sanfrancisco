@@ -7,8 +7,8 @@ const handler = nextConnect();
 handler
   .get(async (req, res, next) => {
     try {
-      const { id } = req.query;
-      const representant = await service.findOne(id);
+      const { ci } = req.query;
+      const representant = await service.findOne(ci);
       res.json(representant);
     } catch (error) {
       next(error);
@@ -16,9 +16,10 @@ handler
   })
   .patch(async (req, res, next) => {
     try {
-      const { id } = req.query;
+      const { ci } = req.query;
       const body = req.body;
-      const representant = await service.update(id, body);
+      console.log(body);
+      const representant = await service.update(ci, body);
       res.json(representant);
     } catch (error) {
       next(error);
@@ -26,9 +27,9 @@ handler
   })
   .delete(async (req, res, next) => {
     try {
-      const { id } = req.query;
-      await service.delete(id);
-      res.status(201).json({ id });
+      const { ci } = req.query;
+      await service.delete(ci);
+      res.status(201).json({ ci });
     } catch (error) {
       next(error);
     }

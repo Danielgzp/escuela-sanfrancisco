@@ -1,5 +1,6 @@
 export const stringMessages = (title) => {
   const messages = {
+    "string.empty": `${title} no puede estar vacío`,
     "string.base": `${title} debe ser una cadena de texto`,
     "string.min": `${title} debe ser mínimo de {#limit} carácteres de largo`,
     "string.max": `${title} debe ser de máximo {#limit} carácteres de largo`,

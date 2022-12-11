@@ -94,8 +94,10 @@ const AuditoryPage = ({ countLogs }) => {
 
   const clearSearch = (e) => {
     e.preventDefault();
+    // setOffset(0);
+    setSearch("");
+    setTotalLogs(countLogs);
     fetchData();
-    setSearch("")
   };
 
   const TableHeader = () => {

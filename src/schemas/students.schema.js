@@ -11,8 +11,7 @@ const representantCi = Joi.string().messages(
 );
 
 const nativeCi = Joi.string()
-  .allow(null)
-  .allow("")
+  .allow(null, "")
   .messages(stringMessages("La cedula"));
 const schoolarshipCi = Joi.string()
   .max(12)
@@ -55,7 +54,7 @@ const phone = Joi.string()
   .messages(stringMessages("El telefono"));
 const email = Joi.string()
   .email({ tlds: { allow: false } })
-  .messages(stringMessages("Correo"));
+  .messages(stringMessages("El correo"));
 const representant = Joi.object({});
 
 const studentId = Joi.number().integer();
@@ -75,6 +74,8 @@ const level = Joi.number().integer();
 const filterGrade = Joi.number().integer().optional();
 const section = Joi.string().optional();
 const search = Joi.string();
+
+// Con  .allow("") puedo permitir que el campo quede vacio
 
 const getStudentSchema = Joi.object({
   schoolarshipCi: schoolarshipCi.required(),
@@ -115,13 +116,6 @@ const updateStudentSchema = Joi.object({
   admissionDate,
   houseProperty,
   representantCi,
-  representant: {
-    ci,
-    repName,
-    repLastName,
-    phone,
-    email,
-  },
   gradeId,
 });
 
