@@ -4,8 +4,8 @@ import endPoints from "utils/endpoints";
 export const columns = (handleDelete) => [
   {
     name: "Grado",
-    selector: (row) => `${row.grade?.name} ${row.grade?.section}`,
-    // `${row.grade?.name || "No"} ${row.grade?.section || "asignado"}`
+    selector: (row) =>
+      `${row.grade?.name || "No"} ${row.grade?.section || "asignado"}`,
     sortable: true,
     reorder: true,
     style: {
@@ -60,6 +60,12 @@ export const columns = (handleDelete) => [
   {
     name: "Telefono",
     selector: (row) => row.phone,
+    sortable: true,
+    reorder: true,
+  },
+  {
+    name: "Correo",
+    selector: (row) => row.email,
     sortable: true,
     reorder: true,
   },

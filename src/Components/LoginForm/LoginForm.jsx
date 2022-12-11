@@ -2,13 +2,10 @@ import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "hooks/useAuth";
 
-import axios from "axios";
-import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
 import styles from "./styles";
 import LoginLoader from "Components/Loaders/LoginLoader";
-import Loading from "Components/Loaders/Loading";
 import Link from "next/link";
 
 const LoginForm = () => {
@@ -79,7 +76,7 @@ const LoginForm = () => {
               ref={formRef}
               id="user-form"
             >
-              <p className="center-align text-muted">
+              <p className="center-align">
                 <i className="zmdi zmdi-account-circle zmdi-hc-2x"></i>
               </p>
               <h2 className="center-align">Inicia sesión con tu cuenta</h2>
@@ -112,22 +109,21 @@ const LoginForm = () => {
               </div>
               <div className="form-group center-align">
                 <button type="submit" className="sesion-button">
-                  Iniciar Sesion{" "}
+                  {state.loading ? (
+                    <LoginLoader
+                      color={"#fff"}
+                      containerHeight={"15px"}
+                      containerWidth={"15px"}
+                      border={"3px"}
+                      spinnerHeigth={"100%"}
+                      spinnerWidth={"100%"}
+                      top={"50%"}
+                      left={"50%"}
+                    />
+                  ) : (
+                    <span>Iniciar sesión</span>
+                  )}
                 </button>
-              </div>
-              <div className="form-group center-align">
-                {state.loading && (
-                  <LoginLoader
-                    color={"#fff"}
-                    containerHeight={"30px"}
-                    containerWidth={"30px"}
-                    border={"4px"}
-                    spinnerHeigth={"50px"}
-                    spinnerWidth={"50px"}
-                    top={"25px"}
-                    left={"25px"}
-                  />
-                )}
               </div>
             </form>
           </div>

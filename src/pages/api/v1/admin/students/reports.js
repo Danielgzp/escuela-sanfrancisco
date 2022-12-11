@@ -10,7 +10,7 @@ const date = new Date();
 handler.post(async (req, res, next) => {
   try {
     const body = req.body;
-    console.log(body)
+    console.log(body);
     if (req.query.cedulados !== undefined) {
       doPdf(
         studentsCi(body),
@@ -22,7 +22,6 @@ handler.post(async (req, res, next) => {
         studentsReport(body),
         `reporte-estudiantes-${moment(date).format("DD-MM-YYYY")}.pdf`
       );
-      res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     }
   } catch (error) {
     next(error);

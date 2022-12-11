@@ -36,9 +36,11 @@ handler
     async (req, res, next) => {
       try {
         const { id } = req.query;
+
         await service.delete(id);
         res.status(201).json({ id });
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

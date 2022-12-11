@@ -31,8 +31,8 @@ export default css`
     background-color: #131313;
     width: 100%;
     line-height: 20px;
-    border-bottom: 8px solid red;
-    height: 90px;
+    border-bottom: 4px solid red;
+    height: 80px;
   }
   .logo-container {
     width: 65%;

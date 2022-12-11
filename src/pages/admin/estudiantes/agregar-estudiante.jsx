@@ -33,6 +33,7 @@ const AddStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
 
     const objectData = Object.fromEntries([...formData.entries()]);
+    
     const newStudentNoRepresententant = {
       schoolarshipCi: objectData.schoolId,
       nativeCi: objectData.nativeCi || undefined,

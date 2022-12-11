@@ -2,7 +2,9 @@ const Joi = require("joi");
 const { stringMessages, dateMessages } = require("utils/validations.messages");
 
 const id = Joi.number().integer();
-const studentSchoolarshipCi = Joi.number().integer();
+const studentSchoolarshipCi = Joi.string()
+  .max(12)
+  .messages(stringMessages("La cédula escolar"));
 const title = Joi.string()
   .min(5)
   .max(40)

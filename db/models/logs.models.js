@@ -43,6 +43,8 @@ const LogsSchema = {
       model: USER_TABLE,
       key: "id",
     },
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
   },
   // periodId: {
   //   field: "period_id",

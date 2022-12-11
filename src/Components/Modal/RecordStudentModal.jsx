@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
+import { useRouter } from "next/router";
 
 const RecordStudentModal = ({ student }) => {
   const formRef = useRef(null);
+  const router = useRouter();
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -36,6 +38,7 @@ const RecordStudentModal = ({ student }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
+        router.push(`/admin/estudiantes/perfil/${student.schoolarshipCi}`);
       })
       .catch((error) => {
         Swal.fire({

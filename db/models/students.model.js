@@ -90,7 +90,6 @@ const StudentsSchema = {
       key: "ci",
     },
     onUpdate: "CASCADE",
-    onDelete: "SET NULL",
   },
   gradeId: {
     field: "grade_id",

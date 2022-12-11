@@ -39,8 +39,8 @@ const StudentProfile = ({ data }) => {
     e.preventDefault();
   };
 
-  if(state.loading){
-    return <Loader />
+  if (state.loading) {
+    return <Loader />;
   }
   return (
     <>
@@ -87,12 +87,7 @@ const StudentProfile = ({ data }) => {
                               Editar
                             </a>
                           </Link>
-                          <a
-                            href="#!"
-                            className="btn btn-secondary btn-rounded px-4"
-                          >
-                            Eliminar
-                          </a>
+
                           <RenderPDF student={student} />
                         </div>
                       </div>

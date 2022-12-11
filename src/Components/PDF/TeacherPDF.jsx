@@ -16,11 +16,12 @@ const StaffPDF = ({ profile }) => {
     birthPlace,
     admissionDate,
     gender,
-
-    eventualities,
+    eventuality,
     address,
     grade,
   } = profile;
+
+  console.log(profile)
 
   const styles = StyleSheet.create({
     // page: { width: "90", height: "90%" },
@@ -255,9 +256,9 @@ const StaffPDF = ({ profile }) => {
             />
             <Text style={styles.title}>Eventualidades</Text>
           </View>
-          {eventualities ? (
+          {eventuality ? (
             <>
-              {eventualities?.map((eventualities) => (
+              {eventuality?.map((eventualities) => (
                 <View style={styles.eventualities} key={eventualities.id}>
                   <View style={[styles.firstRow, styles.row]}>
                     <View

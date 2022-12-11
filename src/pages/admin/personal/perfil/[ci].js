@@ -79,12 +79,7 @@ const StaffProfile = ({ data }) => {
                               Editar
                             </a>
                           </Link>
-                          <a
-                            href="#!"
-                            className="btn btn-warning btn-rounded px-4"
-                          >
-                            Eliminar
-                          </a>
+
                           <RenderPDF staff={staff} />
                         </div>
                       </div>

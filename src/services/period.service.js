@@ -25,7 +25,7 @@ class PeriodService {
   async findOne(id) {
     const period = await models.Period.findByPk(id);
     if (!period) {
-      throw boom.notFound("Period not found");
+      throw boom.notFound("Período no encontrado");
     }
     return period;
   }

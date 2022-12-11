@@ -9,7 +9,7 @@ const gradesReport = (body) => `
 <html>
   <head>
   <meta></meta>
-  <title>Reporte de los grados</title>
+  <title></title>
   <style>
   body {
   padding: 20px;

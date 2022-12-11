@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
 import GradeService from "services/grade.service";
+import Cookies from "js-cookie";
 
 const service = new GradeService();
 
@@ -18,6 +19,11 @@ const AddTeacher = ({ data }) => {
     loading: false,
     error: null,
   });
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
+
   // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -42,7 +48,7 @@ const AddTeacher = ({ data }) => {
     setState({ loading: true, error: null });
     console.log(newTeacher);
     axios
-      .post(endPoints.teachers.addTeachers, newTeacher)
+      .post(endPoints.teachers.addTeachers, newTeacher, config)
       .then(() => {
         Swal.fire({
           position: "top-end",

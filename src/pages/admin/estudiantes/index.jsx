@@ -7,6 +7,7 @@ import MyDataTable from "Components/DataTables/MyDataTable";
 import Link from "next/link";
 import { columns } from "./js/columns";
 import AdminMainPagination from "Components/AdminMainPagination";
+import Cookies from "js-cookie";
 
 // import styles from "./styles";
 
@@ -30,9 +31,12 @@ const ListStudents = () => {
   const [totalStudents, setTotalStudents] = useState(0);
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
-  useEffect(() => {
-    setState({ loading: true, error: null });
+  const fecthData = () => {
     axios
       .get(`http://localhost:3000/api/v1/admin/students?level=${level}`)
       .then((response) => {
@@ -55,10 +59,17 @@ const ListStudents = () => {
           api: response.data,
           filter: state.api,
         });
+        // setState({ loading: false, error: null });
+        // setState({ loading: false, error: null });
       })
       .catch((err) => {
         setState({ loading: false, error: err });
       });
+  };
+
+  useEffect(() => {
+    setState({ loading: true, error: null });
+    fecthData();
   }, [offset, level]);
 
   const handleDeleteStudent = (e) => {
@@ -72,13 +83,14 @@ const ListStudents = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(endPoints.students.deleteStudent(id))
+          .delete(endPoints.students.deleteStudent(id), config)
           .then((response) => {
             Swal.fire(
               "El Estudiante se ha eliminado correctamente",
               "",
               "success"
             );
+            fecthData();
           })
           .catch((err) => {
             Swal.fire({

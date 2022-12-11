@@ -15,7 +15,7 @@ const RenderPDF = ({ student }) => {
       {isClient && (
         <PDFDownloadLink
           document={<StudentPDF profile={student} />}
-          fileName="perfil.pdf"
+          fileName={`perfil-${student.schoolarshipCi}.pdf`}
         >
           <button
             variant="info"

@@ -62,7 +62,7 @@ const EditTeacher = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/admin/profesores");
+        router.push(`/admin/profesores/perfil/${teacher.ci}`);
       })
       .catch((error) => {
         Swal.fire({

@@ -9,7 +9,6 @@ const AddNewPeriodModal = ({ fetchData }) => {
     loading: false,
     error: null,
   });
-  // const [grades, setGrades] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,11 +17,8 @@ const AddNewPeriodModal = ({ fetchData }) => {
     const objectData = Object.fromEntries([...formData.entries()]);
     const newPeriod = {
       name: objectData.name,
-      //   section: objectData.section,
-      //   periodId: objectData.period,
     };
 
-    console.log(newPeriod);
     axios
       .post(endPoints.periods.addPeriods, newPeriod)
       .then(() => {
@@ -33,7 +29,7 @@ const AddNewPeriodModal = ({ fetchData }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-        fetchData()
+        fetchData();
         setState({ loading: false, error: null });
       })
       .catch((error) => {

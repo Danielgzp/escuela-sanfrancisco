@@ -94,28 +94,25 @@ tbody tr th {
     <table>
       <thead>
         <tr>
+          <th scope="col">Grado</th>
           <th scope="col">Cédula</th>
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Teléfono</th>
-            <th scope="col">Fecha de Nacimiento</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Grado</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Correo</th>
+            
         </tr>
       </thead>
       <tbody>
         ${body?.map(
           (teacher) => `
           <tr key=${teacher.ci}>
+            <th>${teacher.grade?.name} ${teacher.grade?.section}</th>
             <th>${teacher.ci}</th>
             <th>${teacher.name}</th>
             <th>${teacher.lastName}</th>
-            <th>${teacher.address}</th>
             <th>${teacher.phone}</th>
-            <th>${teacher.birthDate}</th>
             <th>${teacher.email}</th>
-            <th>${teacher.grade?.name} ${teacher.grade?.section}</th>
           </tr>
           `
         )}

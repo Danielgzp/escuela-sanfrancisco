@@ -15,8 +15,6 @@ const TeacherProfile = ({ data }) => {
   const [teacher, setTeacher] = useState({});
 
   useEffect(() => {
-    const script = document.createElement("script");
-
     async function fetchData() {
       setState({ loading: true, error: null });
       try {
@@ -31,8 +29,6 @@ const TeacherProfile = ({ data }) => {
 
     fetchData();
   }, []);
-
-  console.log(teacher);
 
   return (
     <>
@@ -81,12 +77,6 @@ const TeacherProfile = ({ data }) => {
                               Editar
                             </a>
                           </Link>
-                          <a
-                            href="#!"
-                            className="btn btn-warning btn-rounded px-4"
-                          >
-                            Eliminar
-                          </a>
                           <RenderPDF teacher={teacher} />
                         </div>
                       </div>

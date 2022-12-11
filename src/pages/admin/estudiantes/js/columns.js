@@ -35,7 +35,7 @@ export const columns = (handleDelete) => [
     // ),
     name: "Fecha de Nacimiento",
     selector: (row) => row.birthDate,
-    sorteble: true,
+    sortable: true,
     reorder: true,
   },
   {

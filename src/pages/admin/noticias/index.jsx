@@ -14,7 +14,7 @@ import "./styles.css";
 const ListNews = () => {
   const formRef = useRef(null);
   const auth = useAuth();
-  const { id } = auth.user;
+  const { id } = auth?.user;
   const [news, setNews] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const cookie = Cookies.get("userJWT");
@@ -244,7 +244,7 @@ const ListNews = () => {
                                       {post.createdAt}
                                     </span>
                                     <span className="postDate">
-                                      Publicada por - {post.user.email}
+                                      Publicada por - {post?.user?.email}
                                     </span>
                                   </div>
                                 </div>

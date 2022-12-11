@@ -37,24 +37,24 @@ const EditStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
 
     const objectData = Object.fromEntries([...formData.entries()]);
-    const newStudentNoRepresententant = {
-      schoolarshipCi: objectData.schoolId,
-      nativeCi: objectData.nativeCi || undefined,
-      name: objectData.name,
-      lastName: objectData.lastName,
-      address: objectData.address,
-      birthDate: objectData.birthDate,
-      gender: objectData.gender,
-      admissionDate: objectData.admissionDate,
-      birthPlace: objectData.birthPlace,
-      houseProperty: objectData.houseProperty,
-      representantCi: representant?.ci,
-      gradeId: objectData.grade,
-    };
+    // const newStudentNoRepresententant = {
+    //   schoolarshipCi: objectData.schoolId,
+    //   nativeCi: objectData.nativeCi || undefined,
+    //   name: objectData.name,
+    //   lastName: objectData.lastName,
+    //   address: objectData.address,
+    //   birthDate: objectData.birthDate,
+    //   gender: objectData.gender,
+    //   admissionDate: objectData.admissionDate,
+    //   birthPlace: objectData.birthPlace,
+    //   houseProperty: objectData.houseProperty,
+    //   representantCi: representant?.ci,
+    //   gradeId: objectData.grade,
+    // };
 
-    const newStudent = {
-      schoolarshipCi: objectData.schoolId,
-      nativeCi: objectData.nativeCi || undefined,
+    const editStudent = {
+      schoolarshipCi: objectData.schoolarshipCi,
+      nativeCi: objectData.nativeCi || null,
       name: objectData.name,
       lastName: objectData.lastName,
       address: objectData.address,
@@ -70,22 +70,24 @@ const EditStudent = ({ data }) => {
         email: objectData.email,
         phone: objectData.phone,
       },
+      representantCi: representant?.ci,
       gradeId: objectData.grade,
     };
 
     setState({ loading: true, error: null });
 
-    if (representant !== null) {
-      addNewStudent = newStudentNoRepresententant;
-    } else {
-      addNewStudent = newStudent;
-    }
+    // if (representant !== null) {
+    //   addNewStudent = newStudentNoRepresententant;
+    // } else {
+    //   addNewStudent = newStudent;
+    // }
 
     setState({ loading: true, error: null });
+    console.log(editStudent)
     axios
       .patch(
         endPoints.students.updateStudent(student.schoolarshipCi),
-        addNewStudent,
+        editStudent,
         config
       )
       .then(() => {
@@ -167,7 +169,8 @@ const EditStudent = ({ data }) => {
                             type="text"
                             name="nativeCi"
                             className="form-control"
-                            defaultValue={student.nativeCi || "No tiene"}
+                            defaultValue={student.nativeCi || null}
+                            placeholder={student.nativeCi === null && "No tiene"}
                           />
                         </div>
                       </div>

@@ -17,7 +17,7 @@ const EditUser = ({ user, token, fetchData }) => {
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
     const editUser = {
-      name: objectData.name,
+      email: objectData.email,
     };
     const config = {
       headers: { Authorization: `Bearer ${token}` },

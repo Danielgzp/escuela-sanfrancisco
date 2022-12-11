@@ -57,10 +57,12 @@ handler
         );
 
         const { sub } = userAuthorization;
+        console.log(sub)
         const { id } = req.query;
         await service.delete(id, sub);
         res.status(201).json({ id });
       } catch (error) {
+        console.log(error)
         next(error);
       }
     }

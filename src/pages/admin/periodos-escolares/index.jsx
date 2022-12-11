@@ -38,18 +38,18 @@ const ListPeriods = () => {
   }, []);
 
   const handleDeletePeriod = async (id) => {
-    try {
-      Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Deseas eliminar este Período Escolar?",
-        icon: "warning",
-        showDenyButton: "true",
-        confirmButtonText: "Sí, deseo eliminar el período",
-      }).then((result) => {
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este Período Escolar?",
+      icon: "warning",
+      showDenyButton: "true",
+      confirmButtonText: "Sí, deseo eliminar el período",
+    })
+      .then((result) => {
         if (result.isConfirmed) {
           setState({ loading: true, error: null });
           axios
-            .delete(axios.delete(endPoints.periods.deletePeriod(id)))
+            .delete(endPoints.periods.deletePeriod(id))
             .then((response) => {
               Swal.fire(
                 "El Período se ha eliminado correctamente",
@@ -69,10 +69,14 @@ const ListPeriods = () => {
         } else if (result.isDenied) {
           Swal.fire("Cancelado", "", "info");
         }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
       });
-    } catch (error) {
-      Swal.fire("Oops", error.message, "error");
-    }
   };
 
   return (

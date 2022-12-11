@@ -23,7 +23,7 @@ const ListGrades = () => {
     error: null,
   });
   const componentRef = useRef();
-  const [isClient, setIsClient] = useState(false);
+
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
   const [levels, setLevels] = useState([]);
@@ -32,14 +32,13 @@ const ListGrades = () => {
     headers: { Authorization: `Bearer ${cookie}` },
   };
 
-
   const fetchData = () => {
     setState({ loading: true, error: null });
     axios
       .get(endPoints.grades.getAllGrades)
       .then((response) => {
         setGrades(response.data);
-        setState(false);
+        setState({ loading: false, error: null });
       })
       .catch((err) => {
         Swal.fire({
@@ -52,7 +51,6 @@ const ListGrades = () => {
   };
 
   useEffect(() => {
-    setIsClient(true);
     async function fetchNewData() {
       setState({ loading: true, error: null });
       try {
@@ -86,7 +84,6 @@ const ListGrades = () => {
 
   const handleDeleteGrade = async (id) => {
     // const id = e.target.getAttribute("id");
-    console.log(id);
     Swal.fire({
       title: "¿Estás seguro?",
       text: "¿Deseas eliminar este Grado?",
@@ -127,6 +124,7 @@ const ListGrades = () => {
         });
       });
   };
+
 
   const Actions = () => {
     return (
@@ -169,26 +167,29 @@ const ListGrades = () => {
             <button
               className="btn btn-danger"
               onClick={() => {
+                console.log("hace click");
+                setState({loading:true, error: null})
                 axios
-                  .post(
-                    "http://localhost:3000/api/v1/admin/grades/reports",
-                    grades
-                  )
+                  .post("http://localhost:3000/api/v1/admin/grades/reports", grades)
                   .then((response) => {
-                    console.log(response);
+                    console.log("llega aqui");
                     Swal.fire({
                       icon: "success",
                       title: "PDF creado",
-                      text: "Se ha generado exitosamente el reporte",
+                      text: response.data,
                     });
+                    setState({ loading: false, error: null });
                   })
                   .catch((err) => {
+                    console.log("llega al error");
                     console.log(err);
+                    setState({ loading: false, error: err });
                     Swal.fire({
                       icon: "error",
                       title: "Oops...",
                       text: "Ha ocurrido un error al generar el PDF",
                     });
+
                   });
               }}
             >
@@ -253,7 +254,12 @@ const ListGrades = () => {
                 <div className="table-responsive" ref={componentRef}>
                   <ReportDataTable
                     data={grades}
-                    columns={columns(handleDeleteGrade, fetchData, periods, config)}
+                    columns={columns(
+                      handleDeleteGrade,
+                      fetchData,
+                      periods,
+                      config
+                    )}
                     actionsComponent={Actions()}
                     loading={state.loading}
                     handleDelete={handleDeleteGrade}

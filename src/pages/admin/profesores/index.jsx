@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 import MyDataTable from "Components/DataTables/MyDataTable";
@@ -6,7 +6,6 @@ import { columns } from "./js/columns";
 import axios from "axios";
 import endPoints from "utils/endpoints";
 import AdminMainPagination from "Components/AdminMainPagination";
-import Head from "next/head";
 import Swal from "sweetalert2";
 import { CSVLink } from "react-csv";
 import ReactToPrint from "react-to-print";
@@ -21,6 +20,7 @@ const ListTeachers = () => {
     filter: [],
     search: "",
   });
+  const componentRef = useRef();
   const [totalTeachers, setTotalTeachers] = useState(0);
   const cookie = Cookies.get("userJWT");
   const config = {
@@ -211,13 +211,14 @@ const ListTeachers = () => {
                       <h4 className="card-title">
                         Lista de todos los Profesores{" "}
                       </h4>
-                      <Link href="/admin/profesores/añadir-profesor">
+                      <Link href="/admin/profesores/agregar-profesor">
                         <a className="btn btn-primary">Agregar Profesor/a +</a>
                       </Link>
                     </div>
                     <div className="card-body">
-                      <div className="table-responsive">
+                      <div className="table-responsive" ref={componentRef}>
                         <MyDataTable
+                          actionsComponent={Actions()}
                           loading={state.loading}
                           filter={state.filter}
                           tableColumns={columns(handleDeleteTeacher)}
@@ -228,7 +229,6 @@ const ListTeachers = () => {
                           totalItems={totalTeachers}
                           itemsPerPage={50}
                           neighbours={2}
-                          actionsComponent={Actions()}
                         />
                       </div>
                     </div>
@@ -241,6 +241,7 @@ const ListTeachers = () => {
         <table id="teachers" style={{ display: "none" }}>
           <thead>
             <tr>
+              <th scope="col">Grado</th>
               <th scope="col">Cédula</th>
               <th scope="col">Nombres</th>
               <th scope="col">Apellidos</th>
@@ -248,12 +249,14 @@ const ListTeachers = () => {
               <th scope="col">Teléfono</th>
               <th scope="col">Fecha de Nacimiento</th>
               <th scope="col">Correo</th>
-              <th scope="col">Grado</th>
             </tr>
           </thead>
           <tbody>
             {state?.filter?.map((teacher) => (
               <tr key={teacher.id}>
+                <th>
+                  {teacher.grade?.name} {teacher.grade?.section}
+                </th>
                 <th>{teacher.ci}</th>
                 <th>{teacher.name}</th>
                 <th>{teacher.lastName}</th>
@@ -261,9 +264,6 @@ const ListTeachers = () => {
                 <th>{teacher.phone}</th>
                 <th>{teacher.birthDate}</th>
                 <th>{teacher.email}</th>
-                <th>
-                  {teacher.grade?.name} ${teacher.grade?.section}
-                </th>
               </tr>
             ))}
           </tbody>
