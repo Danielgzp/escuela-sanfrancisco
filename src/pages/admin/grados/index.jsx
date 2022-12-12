@@ -165,7 +165,7 @@ const ListGrades = () => {
               ></ReactHtmlTableToExcel>
             </button>
 
-            <button
+            {/* <button
               className="btn btn-danger"
               onClick={() => {
                 console.log("hace click");
@@ -196,7 +196,7 @@ const ListGrades = () => {
             >
               <i className="fas fa-file-pdf mr-2"></i>
               PDF
-            </button>
+            </button> */}
           </>
         )}
       </>
