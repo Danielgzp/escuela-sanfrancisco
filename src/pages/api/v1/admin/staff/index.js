@@ -1,11 +1,11 @@
 import nextConnect from "next-connect";
+import passport from "utils/passport";
 
 import validatorHandler from "middlewares/validator.handler";
 import { createStaffSchema } from "schemas/staff.schema";
 import StaffService from "services/staff.service";
 import { verify } from "jsonwebtoken";
 import { checkRoles } from "middlewares/auth.handler";
-import passport from "passport";
 
 const service = new StaffService();
 const handler = nextConnect();
