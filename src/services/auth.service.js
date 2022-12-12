@@ -88,6 +88,7 @@ class AuthService {
 
   //Funcion para cambiar la contrasenia
   async changePassword(token, newPassword) {
+    console.log(token);
     try {
       //veryficamos y firmamos el token que nos llega al correo
       //Cree un nuevo secret para los token de los emails para mas seguridad
@@ -96,6 +97,9 @@ class AuthService {
       //Buscamos el usuario a partir del payload.sub, que vendria siendo el id del usuario encriptado
       //dentro del token
       const user = await service.findOne(payload.sub);
+
+      console.log(user);
+      console.log(user.recoveryToken);
 
       //Si el token que esta en la base de datos asignado al usuario es diferente al que llega por paramatro
       //Es el decir al que esta como query en el link de la url que nos llega al correo

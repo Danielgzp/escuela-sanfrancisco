@@ -118,10 +118,11 @@ const EditTeacher = ({ data }) => {
                             Cedula de Identidad
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="ci"
-                            className="form-control"
+                            className="form-control disabled"
                             defaultValue={teacher?.ci}
+                            disabled
                           />
                         </div>
                       </div>
@@ -182,10 +183,11 @@ const EditTeacher = ({ data }) => {
                           <label className="form-label">
                             Grado el cual imparte
                           </label>
-                          <select name="role" className="form-control">
-                            <option value="" defaultValue={teacher?.grade?.id}>
-                              {teacher?.grade?.name} {teacher?.grade?.section}
-                            </option>
+                          <select
+                            name="grade"
+                            className="form-control"
+                            defaultValue={teacher?.grade?.id}
+                          >
                             {grades?.map((grade) => (
                               <option
                                 key={grade.id}
@@ -197,7 +199,7 @@ const EditTeacher = ({ data }) => {
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Género</label>
+                          <label className="form-label">Sexo</label>
                           <select
                             name="gender"
                             className="form-control"
@@ -237,12 +239,20 @@ const EditTeacher = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           className="btn btn-warning ml-2 text-white"
                         >
                           Cancelar
-                        </button>
+                        </button> */}
+                        <Link href={`/admin/profesores/perfil/${teacher.ci}`}>
+                          <a
+                            type="button"
+                            className="btn btn-warning ml-2 text-white"
+                          >
+                            Ir al Perfil
+                          </a>
+                        </Link>
                         <button
                           type="button"
                           data-bs-toggle="modal"

@@ -89,7 +89,7 @@ const TeacherProfile = ({ data }) => {
                         <div className="card-body pb-0">
                           <ul className="list-group list-group-flush">
                             <li className="list-group-item d-flex px-0 justify-content-between">
-                              <strong>Género</strong>
+                              <strong>Sexo</strong>
                               <span className="mb-0">{teacher?.gender}</span>
                             </li>
                             <li className="list-group-item d-flex px-0 justify-content-between">

@@ -97,6 +97,7 @@ const EditRepresentantModal = ({ representant, fetchData }) => {
                           name="ci"
                           className="form-control disabled"
                           defaultValue={representant?.ci}
+                          disabled
                           
                         />
                       </div>

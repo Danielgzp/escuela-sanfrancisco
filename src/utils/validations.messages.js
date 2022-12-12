@@ -51,7 +51,7 @@ export const numberMessages = (title) => {
 
 export const dateMessages = (title) => {
   const messages = {
-    "date.base": `${title} debe ser una cantidad de milisegundos o una fecha en cadena de texto válida`,
+    "date.base": `${title} debe ser una fecha válida`,
     "date.min": `${title} debe ser mayor o igual a {#limit}`,
     "date.max": `${title} debe ser menor o igual que "{#limit}`,
     "date.isoDate": `${title} debe ser una fecha en formato ISO 8601`,

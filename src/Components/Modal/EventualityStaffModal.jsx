@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
+import { useRouter } from "next/router";
 
 const EventualityStaffModal = ({ staff }) => {
   const formRef = useRef(null);
@@ -15,7 +16,6 @@ const EventualityStaffModal = ({ staff }) => {
     // const script3 = document.createElement("script");
     // const script4 = document.createElement("script");
     // const script5 = document.createElement("script");
-
     // script.src = "/vendor/pickadate/picker.js";
     // script.async = false;
     // document.body.appendChild(script);
@@ -119,7 +119,7 @@ const EventualityStaffModal = ({ staff }) => {
                           Fecha en qué ocurrió
                         </label>
                         <input
-                        type="date"
+                          type="date"
                           name="day"
                           className="datepicker-default form-control"
                           id="datepicker"

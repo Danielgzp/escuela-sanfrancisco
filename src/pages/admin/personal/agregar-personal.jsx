@@ -17,10 +17,10 @@ const AddStaff = ({ data }) => {
     loading: false,
     error: null,
   });
-   const cookie = Cookies.get("userJWT");
-   const config = {
-     headers: { Authorization: `Bearer ${cookie}` },
-   };
+  const cookie = Cookies.get("userJWT");
+  const config = {
+    headers: { Authorization: `Bearer ${cookie}` },
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -111,7 +111,7 @@ const AddStaff = ({ data }) => {
                             Cedula de Identidad
                           </label>
                           <input
-                            type="number"
+                            type="TEXT"
                             name="ci"
                             className="form-control"
                             required
@@ -172,7 +172,7 @@ const AddStaff = ({ data }) => {
                         <div className="form-group">
                           <label className="form-label">Role/Cargo</label>
                           <select name="role" className="form-control" required>
-                            <option value="">Role</option>
+                            <option value="">Rol</option>
                             {roles.map((role) => (
                               <option
                                 key={role.id}
@@ -184,13 +184,13 @@ const AddStaff = ({ data }) => {
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Género</label>
+                          <label className="form-label">Sexo</label>
                           <select
                             name="gender"
                             className="form-control"
                             required
                           >
-                            <option value="">Género</option>
+                            <option value="">Sexo</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                           </select>
@@ -225,12 +225,12 @@ const AddStaff = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           className="btn btn-warning ml-2 text-white"
                         >
                           Cancelar
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </form>

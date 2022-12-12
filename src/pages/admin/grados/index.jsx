@@ -27,6 +27,7 @@ const ListGrades = () => {
   const [grades, setGrades] = useState([]);
   const [periods, setPeriods] = useState([]);
   const [levels, setLevels] = useState([]);
+  console.log(grades)
   const cookie = Cookies.get("userJWT");
   const config = {
     headers: { Authorization: `Bearer ${cookie}` },
@@ -287,7 +288,7 @@ const ListGrades = () => {
                 <th>{grade.id}</th>
                 <th>{grade.name}</th>
                 <th>{grade.section}</th>
-                <th>{grade.students.length}</th>
+                <th>{grade.students?.length}</th>
                 <th>
                   {grade.teacher?.name || "No"}{" "}
                   {grade.teacher?.lastName || "Hay"}

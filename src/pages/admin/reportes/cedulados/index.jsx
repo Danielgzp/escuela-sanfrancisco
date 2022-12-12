@@ -24,6 +24,7 @@ const GradeStudents = ({ data }) => {
   const formRef = useRef(null);
   const componentRef = useRef();
   const [students, setStudents] = useState([]);
+  const [hideColumn, setHideColumns] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -32,6 +33,11 @@ const GradeStudents = ({ data }) => {
 
     const formData = new FormData(formRef.current);
     const objectData = Object.fromEntries([...formData.entries()]);
+    if (objectData.cedulado === "si") {
+      setHideColumns(false);
+    } else {
+      setHideColumns(true);
+    }
 
     // const gradeData = {
     //   name: objectData.name,
@@ -96,10 +102,11 @@ const GradeStudents = ({ data }) => {
               ></ReactHtmlTableToExcel>
             </button>
 
-            {/* <button
+            <button
               className="btn btn-danger"
               onClick={() => {
                 setState({ loading: true, error: null });
+                console.log(students);
                 axios
                   .post(
                     "http://localhost:3000/api/v1/admin/students/reports?cedulados",
@@ -111,7 +118,7 @@ const GradeStudents = ({ data }) => {
                     Swal.fire({
                       icon: "success",
                       title: "PDF creado",
-                      text: "Se ha generado exitosamente el reporte",
+                      text: response.data,
                     });
                   })
                   .catch((err) => {
@@ -127,7 +134,7 @@ const GradeStudents = ({ data }) => {
             >
               <i className="fas fa-file-pdf mr-2"></i>
               PDF
-            </button> */}
+            </button>
           </>
         )}
       </>
@@ -173,7 +180,7 @@ const GradeStudents = ({ data }) => {
                     actionsComponent={Actions()}
                     tableHeaderComponent={TableHeader()}
                     loading={state.loading}
-                    columns={columns()}
+                    columns={columns(hideColumn)}
                     data={students}
                     tableTitle={"Lista de Estudiantes"}
                   />
@@ -188,10 +195,10 @@ const GradeStudents = ({ data }) => {
           <tr>
             <th scope="col">Grado</th>
             <th scope="col">C.I Escolar</th>
-            {students?.nativeCi && <th scope="col">Cédula</th>}
+            {students[0]?.nativeCi !== null && <th scope="col">Cédula</th>}
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
-            <th scope="col">Género</th>
+            <th scope="col">Sexo</th>
             <th scope="col">Fecha de Nacimiento</th>
           </tr>
         </thead>

@@ -2,12 +2,7 @@ import EditGradeModal from "Components/Modal/EditGradeModal";
 import Link from "next/link";
 import endPoints from "utils/endpoints";
 
-export const columns = (
-  handleDeleteGrade,
-  fetchData,
-  periods,
-  authorization
-) => [
+export const columns = (handleDeleteGrade, fetchData, periods, authorization) => [
   {
     id: (row) => row.id,
     name: "#",

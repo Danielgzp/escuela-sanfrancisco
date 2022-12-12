@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 import endPoints from "utils/endpoints";
+import Router, { useRouter } from "next/router";
 
 const EventualityTeacherModal = ({ teacher, staff }) => {
   const ci = staff || teacher;
@@ -10,6 +11,7 @@ const EventualityTeacherModal = ({ teacher, staff }) => {
     loading: false,
     error: null,
   });
+  const router = useRouter();
   useEffect(() => {
     // const script = document.createElement("script");
     // const script2 = document.createElement("script");
@@ -56,6 +58,7 @@ const EventualityTeacherModal = ({ teacher, staff }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
+        router.reload();
       })
       .catch((error) => {
         Swal.fire({

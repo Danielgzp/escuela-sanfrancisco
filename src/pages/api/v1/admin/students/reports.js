@@ -10,7 +10,10 @@ const date = new Date();
 handler.post(async (req, res, next) => {
   try {
     const body = req.body;
-    console.log(body);
+    const grade =
+      body[0]?.grade?.name.replace(" ", "") + body[0]?.grade?.section;
+    
+
     if (req.query.cedulados !== undefined) {
       doPdf(
         studentsCi(body),
@@ -20,10 +23,12 @@ handler.post(async (req, res, next) => {
     } else {
       doPdf(
         studentsReport(body),
-        `reporte-estudiantes-${moment(date).format("DD-MM-YYYY")}.pdf`
+        `estudiantes${grade.trim()}-${moment(date).format("DD-MM-YYYY")}.pdf`
       );
+      res.status(200).json("PDF creado exitosamente en la carpeta de reportes");
     }
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });

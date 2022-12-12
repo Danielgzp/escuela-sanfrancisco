@@ -491,7 +491,7 @@ export default MakePDF;
               </View>
               <View style={styles.">
                 <View style={styles.">
-                  <Text style={styles.">Género</Text>
+                  <Text style={styles.">Sexo</Text>
                   <Text style={styles.">{grade.gender}</Text>
                 </View>
               </View>

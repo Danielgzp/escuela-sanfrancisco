@@ -1,48 +1,47 @@
 const Joi = require("joi");
+const { stringMessages } = require("utils/validations.messages");
 
-const representantCI = Joi.string().max(9);
-const representantName = Joi.string().min(3).max(30);
-const representantLastName = Joi.string().min(3).max(30);
-const representantPhone = Joi.string().min(11).max(14);
-const representantEmail = Joi.string().email({ tlds: { allow: false } });
-
-// const ci = Joi.string()
-//   .max(9)
-//   .messages(stringMessages("La cedula del representante"));
-// const repName = Joi.string()
-//   .min(3)
-//   .max(30)
-//   .messages(stringMessages("El nombre del representante"));
-// const repLastName = Joi.string()
-//   .min(3)
-//   .max(30)
-//   .messages(stringMessages("El apellido del representante"));
-// const phone = Joi.string()
-//   .min(11)
-//   .max(14)
-//   .messages(stringMessages("El telefono"));
-// const email = Joi.string()
-//   .email({ tlds: { allow: false } })
-//   .messages(stringMessages("Correo"));
+const ci = Joi.string()
+  .max(9)
+  .messages(stringMessages("La cedula del representante"));
+const repName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El nombre del representante"));
+const repLastName = Joi.string()
+  .min(3)
+  .max(30)
+  .messages(stringMessages("El apellido del representante"));
+const phone = Joi.string()
+  .min(11)
+  .max(14)
+  .messages(stringMessages("El telefono"));
+const email = Joi.string()
+  .email({ tlds: { allow: false } })
+  .messages(stringMessages("El correo"));
 
 const createRepresentantSchema = Joi.object({
-  representantCI: representantCI.required(),
-  representantName: representantName.required(),
-  representantLastName: representantLastName.required(),
-  representantPhone: representantPhone.required(),
-  representantEmail: representantEmail.required(),
+  ci: ci.required(),
+  repName: repName.required(),
+  repLastName: repLastName.required(),
+  phone: phone.required(),
+  email: email.required(),
 });
 
 const updateRepresentantSchema = Joi.object({
-  representantCI,
-  representantName,
-  representantLastName,
-  representantPhone,
-  representantEmail,
+  ci,
+  repName,
+  repLastName,
+  phone,
+  email,
 });
 
 const getRepresentantSchema = Joi.object({
-  representantCI: representantCI.required(),
+  ci: ci.required(),
 });
 
-module.exports = { createRepresentantSchema, updateRepresentantSchema, getRepresentantSchema };
+module.exports = {
+  createRepresentantSchema,
+  updateRepresentantSchema,
+  getRepresentantSchema,
+};

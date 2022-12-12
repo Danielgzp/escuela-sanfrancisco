@@ -59,7 +59,7 @@ const EditStaff = ({ data }) => {
           timer: 1500,
         });
         setState({ loading: false, error: null });
-        router.push("/admin/personal");
+        router.push(`/admin/personal/perfil/${staff.ci}`);
       })
       .catch((error) => {
         Swal.fire({
@@ -133,10 +133,11 @@ const EditStaff = ({ data }) => {
                             Cedula de Identidad
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="ci"
-                            className="form-control"
+                            className="form-control disabled"
                             defaultValue={staff.ci}
+                            disabled
                           />
                         </div>
                       </div>
@@ -211,7 +212,7 @@ const EditStaff = ({ data }) => {
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Género</label>
+                          <label className="form-label">Sexo</label>
                           <select name="gender" className="form-control">
                             <option defaultValue={staff.gender}>
                               {staff.gender}
@@ -255,12 +256,20 @@ const EditStaff = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           className="btn btn-warning ml-2 text-white"
                         >
                           Cancelar
-                        </button>
+                        </button> */}
+                        <Link href={`/admin/personal/perfil/${staff.ci}`}>
+                          <a
+                            type="button"
+                            className="btn btn-warning ml-2 text-white"
+                          >
+                            Ir al Perfil
+                          </a>
+                        </Link>
                         <button
                           type="button"
                           data-bs-toggle="modal"

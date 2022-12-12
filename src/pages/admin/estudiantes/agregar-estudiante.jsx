@@ -33,7 +33,7 @@ const AddStudent = ({ data }) => {
     const formData = new FormData(formRef.current);
 
     const objectData = Object.fromEntries([...formData.entries()]);
-    
+
     const newStudentNoRepresententant = {
       schoolarshipCi: objectData.schoolId,
       nativeCi: objectData.nativeCi || undefined,
@@ -238,13 +238,13 @@ const AddStudent = ({ data }) => {
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-12">
                         <div className="form-group">
-                          <label className="form-label">Género</label>
+                          <label className="form-label">Sexo</label>
                           <select
                             name="gender"
                             className="form-control"
                             required
                           >
-                            <option value="">Género</option>
+                            <option value="">Sexo</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
                           </select>
@@ -323,7 +323,7 @@ const AddStudent = ({ data }) => {
                             Cedula de Identidad del Representante
                           </label>
                           <input
-                            type="number"
+                            type="text"
                             name="repCI"
                             className={`form-control ${
                               representant !== null && "disabled"
@@ -373,12 +373,12 @@ const AddStudent = ({ data }) => {
                         <button type="submit" className="btn btn-primary">
                           Enviar
                         </button>
-                        <button
+                        {/* <button
                           type="button"
                           className="btn btn-warning ml-2 text-white"
                         >
                           Cancelar
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </form>

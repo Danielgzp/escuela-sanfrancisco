@@ -114,15 +114,14 @@ const GradeStudents = ({ data }) => {
               onClick={() => {
                 axios
                   .post(
-                    "http://localhost:3000/api/v1/admin/students/reports",
+                    "http://localhost:3000/api/v1/admin/students/reports?grado",
                     students
                   )
                   .then((response) => {
-                    console.log(response);
                     Swal.fire({
                       icon: "success",
                       title: "PDF creado",
-                      text: "Se ha generado exitosamente el reporte",
+                      text: response.data,
                     });
                   })
                   .catch((err) => {
@@ -209,7 +208,7 @@ const GradeStudents = ({ data }) => {
             <th scope="col">C.I Escolar</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
-            <th scope="col">Género</th>
+            <th scope="col">Sexo</th>
             <th scope="col">Fecha de Nacimiento</th>
           </tr>
         </thead>

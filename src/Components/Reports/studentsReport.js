@@ -4,7 +4,6 @@ import reportHeader from "./reportHeader";
 const now = Date.now();
 const date = new Date(now);
 
-
 const studentsReport = (body) => `
 <!doctype html>
 <html>
@@ -42,7 +41,7 @@ thead tr {
 thead tr th {
   background-color: #143b64;
   width: fit-content;
-  font-size: 17px;
+  font-size: 14px;
   color: white;
   padding: 5px 10px;
   margin: 0;
@@ -52,7 +51,7 @@ tbody {
 }
 tbody tr th {
   width: fit-content;
-  font-size: 13px;
+  font-size: 12px;
   padding: 5px;
   margin: 0;
 }
@@ -67,7 +66,7 @@ tbody tr th {
   margin: 0 auto;
   margin-top: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
   </style>
   </head>
@@ -84,20 +83,20 @@ tbody tr th {
     >
       <div>
         <strong>
-          <h2>LISTAS DE ESTUDIANTES</h2>
+          <h3>LISTAS DE ESTUDIANTES</h3>
         </strong>
         <p class="date">${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</p>
       </div>
       <div class="row">
-        <h3>${body[0].grade?.name}</h3>
-        <h3>Seccion ${body[0].grade?.section}</h3>
-        <h3>${body[0].grade?.period?.name}</h3>
+        <h4>${body[0].grade?.name}</h4>
+        <h4>Seccion ${body[0].grade?.section}</h4>
+        <h4>Período Escolar ${body[0].grade?.period?.name}</h4>
       </div>
       <div class="row">
-        <h3>Total Estudiantes: ${body.length}</h3>
-        <h3>Profesora: ${body[0].grade?.teacher?.name || "No"} ${
+        <h4>Total Estudiantes: ${body.length}</h4>
+        <h4>Profesora: ${body[0].grade?.teacher?.name || "No"} ${
   body[0].grade?.teacher?.lastName || "hay Profesor"
-}</h3>
+}</h4>
         
       </div>
     </div>
@@ -107,7 +106,7 @@ tbody tr th {
           <th scope="col">C.I Escolar</th>
           <th scope="col">Nombres</th>
           <th scope="col">Apellidos</th>
-          <th scope="col">Género</th>
+          <th scope="col">Sexo</th>
           <th scope="col">Fecha de Nacimiento</th>
         </tr>
       </thead>

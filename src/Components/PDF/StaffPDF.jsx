@@ -17,7 +17,7 @@ const StaffPDF = ({ profile }) => {
     admissionDate,
     gender,
     role,
-    eventualities,
+    eventuality,
     address,
   } = profile;
 
@@ -254,9 +254,9 @@ const StaffPDF = ({ profile }) => {
             />
             <Text style={styles.title}>Eventualidades</Text>
           </View>
-          {eventualities ? (
+          {eventuality ? (
             <>
-              {eventualities?.map((eventualities) => (
+              {eventuality?.map((eventualities) => (
                 <View style={styles.eventualities} key={eventualities.id}>
                   <View style={[styles.firstRow, styles.row]}>
                     <View
@@ -271,7 +271,9 @@ const StaffPDF = ({ profile }) => {
                       </Text>
                     </View>
                   </View>
-                  <View style={[styles.secondRow, styles.row]}>
+                  <View
+                    style={[styles.secondRow, styles.row, styles.rowNoBorder]}
+                  >
                     <View
                       style={[
                         styles.column,

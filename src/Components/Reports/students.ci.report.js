@@ -41,7 +41,7 @@ thead tr {
 thead tr th {
   background-color: #143b64;
   width: fit-content;
-  font-size: 17px;
+  font-size: 14px;
   color: white;
   padding: 5px 10px;
   margin: 0;
@@ -51,7 +51,7 @@ tbody {
 }
 tbody tr th {
   width: fit-content;
-  font-size: 13px;
+  font-size: 12px;
   padding: 5px;
   margin: 0;
 }
@@ -66,7 +66,7 @@ tbody tr th {
   margin: 0 auto;
   margin-top: 10px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
   </style>
   </head>
@@ -83,7 +83,7 @@ tbody tr th {
     >
       <div>
         <strong>
-          <h2>LISTAS DE ESTUDIANTES CEDULADOS</h2>
+          <h2>LISTAS DE ESTUDIANTES</h2>
         </strong>
         <p class="date">${moment(date).format("dddd, DD MMMM YYYY HH:mm a")}</p>
       </div>
@@ -99,7 +99,7 @@ tbody tr th {
           
           <th scope="col">Nombres</th>
           <th scope="col">Apellidos</th>
-          <th scope="col">Género</th>
+          <th scope="col">Sexo</th>
           <th scope="col">Fecha de Nacimiento</th>
         </tr>
       </thead>

@@ -72,6 +72,7 @@ const TeacherSchema = {
   gradeId: {
     field: "grade_id",
     allowNull: true,
+    unique: true,
     type: DataTypes.INTEGER,
     references: {
       model: GRADE_TABLE,

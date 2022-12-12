@@ -11,6 +11,7 @@ import SearchRepresentant from "Components/Modal/SearchRepresentant";
 import Cookies from "js-cookie";
 import EditRepresentantModal from "Components/Modal/EditRepresentantModal";
 import Loading from "Components/Loaders/Loading";
+import Link from "next/link";
 
 const service = new GradeService();
 const studentService = new StudentsService();
@@ -260,7 +261,7 @@ const EditStudent = ({ data }) => {
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label className="form-label">Género</label>
+                            <label className="form-label">Sexo</label>
                             <select
                               name="gender"
                               className="form-control"
@@ -418,12 +419,22 @@ const EditStudent = ({ data }) => {
                           <button type="submit" className="btn btn-primary">
                             Guardar
                           </button>
-                          <button
+                          {/* <button
                             type="button"
                             className="btn btn-warning ml-2 text-white"
                           >
                             Cancelar
-                          </button>
+                          </button> */}
+                          <Link
+                            href={`/admin/estudiantes/perfil/${student.schoolarshipCi}`}
+                          >
+                            <a
+                              type="button"
+                              className="btn btn-warning ml-2 text-white"
+                            >
+                              Ir al Perfil
+                            </a>
+                          </Link>
                           <button
                             type="button"
                             data-bs-toggle="modal"

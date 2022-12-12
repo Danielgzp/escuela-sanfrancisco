@@ -13,28 +13,28 @@ export const middleware = async (req) => {
 
   //asi funcioan pero en postmas da problemas serios
 
-  // if (url.includes("/admin")) {
-  //   if (cookieToken === undefined) {
-  //     // if (!verifiedToken) {
-  //     //   // if this an API request, respond with JSON
-  //     //   return new NextResponse(
-  //     //     JSON.stringify({ error: { message: "authentication required" } }),
-  //     //     { status: 401 }
-  //     //   );
-  //     // }
+  if (url.includes("/admin")) {
+    if (cookieToken === undefined) {
+      // if (!verifiedToken) {
+      //   // if this an API request, respond with JSON
+      //   return new NextResponse(
+      //     JSON.stringify({ error: { message: "authentication required" } }),
+      //     { status: 401 }
+      //   );
+      // }
 
-  //     return NextResponse.redirect("http://localhost:3000/");
-  //   }
+      return NextResponse.redirect("http://localhost:3000/");
+    }
 
-  //   try {
-  //     // pilas aquiii, no funciona bien la veryficacion del token
-  //     // jwtVerify(cookieToken, new TextEncoder().encode(secret));
+    try {
+      // pilas aquiii, no funciona bien la veryficacion del token
+      // jwtVerify(cookieToken, new TextEncoder().encode(secret));
 
-  //     return NextResponse.next();
-  //   } catch (err) {
-  //     return NextResponse.redirect("http://localhost:3000/");
-  //   }
-  // }
+      return NextResponse.next();
+    } catch (err) {
+      return NextResponse.redirect("http://localhost:3000/");
+    }
+  }
 
   if (url.includes("/login") || url.includes("/recovery")) {
     if (cookieToken !== undefined) {

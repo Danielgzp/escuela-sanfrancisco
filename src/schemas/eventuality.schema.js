@@ -1,8 +1,5 @@
 const Joi = require("joi");
-const {
-  stringMessages,
-  dateMessages,
-} = require("utils/validations.messages");
+const { stringMessages, dateMessages } = require("utils/validations.messages");
 
 const id = Joi.number().integer();
 const teacherCi = Joi.string()
@@ -18,9 +15,10 @@ const title = Joi.string()
   .max(40)
   .messages(stringMessages("El titulo de la eventualidad"));
 const description = Joi.string()
+  .min(10)
   .max(200)
   .messages(stringMessages("La descripcion de la eventulidad"));
-const day = Joi.date().messages(dateMessages("La fecha de al eventualidad"));
+const day = Joi.date().messages(dateMessages("El día de la enventualidad"));
 
 const limit = Joi.number().integer();
 const offset = Joi.number().integer();

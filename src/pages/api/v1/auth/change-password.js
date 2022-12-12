@@ -15,10 +15,12 @@ handler.post(
   async (req, res, next) => {
     try {
       const { token, newPassword } = req.body;
+      console.log(token)
 
       const rta = await service.changePassword(token, newPassword);
       res.json(rta);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   }

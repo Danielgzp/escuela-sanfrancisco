@@ -47,7 +47,7 @@ const a = () => {
             <th scope="col">Cédula</th>
             <th scope="col">Nombres</th>
             <th scope="col">Apellidos</th>
-            <th scope="col">Género</th>
+            <th scope="col">Sexo</th>
             <th scope="col">Fecha de Nacimiento</th>
           </tr>
         </thead>

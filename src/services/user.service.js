@@ -82,15 +82,15 @@ class UserService {
     return newUser;
   }
 
-  async update(id, changes, userId) {
+  async update(id, changes) {
     const user = await this.findOne(id);
     const rta = await user.update(changes);
-    await Logs.create({
-      userId: userId,
-      description: "Ha actualizado un usuario en la tabla de Usuarios",
-      action: "UPDATE",
-      table: "USERS",
-    });
+    // await Logs.create({
+    //   userId: userId,
+    //   description: "Ha actualizado un usuario en la tabla de Usuarios",
+    //   action: "UPDATE",
+    //   table: "USERS",
+    // });
     return rta;
   }
 
