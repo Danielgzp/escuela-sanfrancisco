@@ -16,6 +16,7 @@ handler
       const staff = await service.findOne(ci);
       res.json(staff);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
@@ -39,6 +40,7 @@ handler
         const staff = await service.update(ci, body, sub);
         res.json(staff);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }
@@ -61,6 +63,7 @@ handler
         await service.delete(ci, sub);
         res.status(201).json({ ci });
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

@@ -15,6 +15,7 @@ handler
       const grades = await service.find(req.query);
       res.json(grades);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
@@ -36,6 +37,7 @@ handler
         const newGrade = await service.create(body, sub);
         res.json(newGrade);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

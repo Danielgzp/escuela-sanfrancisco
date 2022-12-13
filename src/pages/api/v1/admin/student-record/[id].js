@@ -13,6 +13,7 @@ handler
       const recordStudent = await service.findOne(id);
       res.json(recordStudent);
     } catch (error) {
+       console.log(error);
       next(error);
     }
   })
@@ -27,6 +28,7 @@ handler
         const recordStudent = await service.update(id, body);
         res.json(recordStudent);
       } catch (error) {
+         console.log(error);
         next(error);
       }
     }
@@ -37,6 +39,7 @@ handler
       await service.delete(id);
       res.status(201).json({ id });
     } catch (error) {
+       console.log(error);
       next(error);
     }
   });

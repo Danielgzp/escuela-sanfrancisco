@@ -34,6 +34,7 @@ handler
         const newLog = await service.create(body);
         res.json(newLog);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

@@ -37,6 +37,7 @@ handler
         const newTeacher = await service.create(body, sub);
         res.json(newTeacher);
       } catch (error) {
+         console.log(error);
         next(error);
       }
     }

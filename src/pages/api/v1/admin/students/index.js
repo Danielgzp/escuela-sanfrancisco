@@ -1,4 +1,4 @@
-// import passport from "utils/passport";
+import passport from "utils/passport";
 
 // import { checkRoles } from "middlewares/auth.handler";
 import nextConnect from "next-connect";
@@ -9,7 +9,6 @@ import {
 } from "schemas/students.schema";
 import { checkRoles } from "middlewares/auth.handler";
 import StudentsService from "services/students.service";
-import passport from "passport";
 import { verify } from "jsonwebtoken";
 
 const service = new StudentsService();
@@ -76,6 +75,7 @@ handler
         const newStudent = await service.create(body, sub);
         res.json(newStudent);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

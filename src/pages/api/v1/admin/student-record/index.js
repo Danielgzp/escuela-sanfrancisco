@@ -23,6 +23,7 @@ handler
         const newRecordStudent = await service.create(body);
         res.json(newRecordStudent);
       } catch (error) {
+         console.log(error);
         next(error);
       }
     }

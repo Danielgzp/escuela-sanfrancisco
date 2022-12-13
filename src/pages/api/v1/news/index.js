@@ -16,6 +16,7 @@ handler
       const news = await service.find(req.query);
       res.json(news);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
@@ -38,6 +39,7 @@ handler
 
         res.status(201).json(newPost);
       } catch (error) {
+        console.log(error);
         res.status(500).json("Ha ocurrido un error");
       }
     }

@@ -42,6 +42,7 @@ handler
         const newUser = await service.create(body, sub);
         res.json(newUser);
       } catch (error) {
+         console.log(error);
         next(error);
       }
     }

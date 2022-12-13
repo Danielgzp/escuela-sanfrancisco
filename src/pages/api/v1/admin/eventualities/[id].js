@@ -18,6 +18,7 @@ handler
         const eventuality = await service.findOne(id);
         res.json(eventuality);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }
@@ -33,6 +34,7 @@ handler
         const eventuality = await service.update(id, body);
         res.json(eventuality);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }
@@ -45,6 +47,7 @@ handler
         await service.delete(id);
         res.status(201).json({ id });
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

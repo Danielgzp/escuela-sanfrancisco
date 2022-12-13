@@ -37,8 +37,8 @@ const AddStudent = ({ data }) => {
     const newStudentNoRepresententant = {
       schoolarshipCi: objectData.schoolId,
       nativeCi: objectData.nativeCi || undefined,
-      name: objectData.name,
-      lastName: objectData.lastName,
+      name: objectData.name.toUpperCase(),
+      lastName: objectData.lastName.toUpperCase(),
       address: objectData.address,
       birthDate: objectData.birthDate,
       gender: objectData.gender,
@@ -52,8 +52,8 @@ const AddStudent = ({ data }) => {
     const newStudent = {
       schoolarshipCi: objectData.schoolId,
       nativeCi: objectData.nativeCi || undefined,
-      name: objectData.name,
-      lastName: objectData.lastName,
+      name: objectData.name.toUpperCase(),
+      lastName: objectData.lastName.toUpperCase(),
       address: objectData.address,
       birthDate: objectData.birthDate,
       gender: objectData.gender,

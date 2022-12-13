@@ -65,8 +65,9 @@ handler
         await service.delete(ci, sub);
         res.status(201).json({ ci });
       } catch (error) {
+         console.log(error);
         next(error);
-        console.log(error);
+       
       }
     }
   );

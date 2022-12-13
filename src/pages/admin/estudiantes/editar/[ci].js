@@ -74,8 +74,8 @@ const EditStudent = ({ data }) => {
     const editStudent = {
       schoolarshipCi: objectData.schoolarshipCi,
       nativeCi: objectData.nativeCi || null,
-      name: objectData.name,
-      lastName: objectData.lastName,
+      name: objectData.name.toUpperCase(),
+      lastName: objectData.lastName.toUpperCase(),
       address: objectData.address,
       birthDate: objectData.birthDate,
       gender: objectData.gender,

@@ -13,7 +13,7 @@ handler
       const { id } = req.query;
       const period = await service.findOne(id);
       res.json(period);
-    } catch (error) {
+    } catch (error) { console.log(error);
       next(error);
     }
   })
@@ -26,7 +26,7 @@ handler
         const body = req.body;
         const period = await service.update(id, body);
         res.json(period);
-      } catch (error) {
+      } catch (error) { console.log(error);
         next(error);
       }
     }

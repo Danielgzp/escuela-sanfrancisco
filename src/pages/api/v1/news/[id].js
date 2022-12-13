@@ -16,6 +16,7 @@ handler
       const news = await service.findOne(id);
       res.json(news);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
@@ -39,6 +40,7 @@ handler
         const news = await service.update(id, body, sub);
         res.json(news);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }
@@ -61,6 +63,7 @@ handler
         await service.delete(id, sub);
         res.status(201).json({ id });
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

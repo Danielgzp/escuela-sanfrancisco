@@ -41,6 +41,7 @@ handler
         const teacher = await service.update(ci, body, sub);
         res.json(teacher);
       } catch (error) {
+         console.log(error);
         next(error);
       }
     }

@@ -29,6 +29,7 @@ handler
         const newPeriod = await service.create(body);
         res.json(newPeriod);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }

@@ -254,7 +254,7 @@ const StaffPDF = ({ profile }) => {
             />
             <Text style={styles.title}>Eventualidades</Text>
           </View>
-          {eventuality ? (
+          {eventuality.length > 0 ? (
             <>
               {eventuality?.map((eventualities) => (
                 <View style={styles.eventualities} key={eventualities.id}>

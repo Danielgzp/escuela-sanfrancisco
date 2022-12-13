@@ -102,7 +102,7 @@ const GradeStudents = ({ data }) => {
               ></ReactHtmlTableToExcel>
             </button>
 
-            <button
+            {/* <button
               className="btn btn-danger"
               onClick={() => {
                 setState({ loading: true, error: null });
@@ -134,7 +134,7 @@ const GradeStudents = ({ data }) => {
             >
               <i className="fas fa-file-pdf mr-2"></i>
               PDF
-            </button>
+            </button> */}
           </>
         )}
       </>

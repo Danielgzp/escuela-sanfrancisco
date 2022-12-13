@@ -1,7 +1,7 @@
 import nextConnect from "next-connect";
 import validatorHandler from "middlewares/validator.handler";
 import EventualityService from "services/eventuality.service";
-import { createEventualitychema} from "schemas/eventuality.schema";
+import { createEventualitychema } from "schemas/eventuality.schema";
 
 const service = new EventualityService();
 const handler = nextConnect();
@@ -12,6 +12,7 @@ handler
       const eventuality = await service.find();
       res.json(eventuality);
     } catch (error) {
+      console.log(error);
       next(error);
     }
   })
@@ -23,6 +24,7 @@ handler
         const newEventuality = await service.create(body);
         res.json(newEventuality);
       } catch (error) {
+        console.log(error);
         next(error);
       }
     }
