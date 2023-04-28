@@ -1,3 +1,6 @@
+# nomina-sanfrancisco
+Repositorio para trabajar el sistema de registro de datos de la U.E.C Fe y Alegría San Fracisco, desarrollado como parte del Trabajo Especial de Grado de la carrera de informática
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
